@@ -19,10 +19,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    InfoViewController *infoVC = [[InfoViewController alloc] initWithNibName:nil bundle:nil];
-    self.navCon = [[MainViewController alloc] initWithRootViewController:infoVC];
-    [self.navCon setNavigationBarHidden:YES animated:NO];
-    [self.window setRootViewController:self.navCon];
+    [self.window setRootViewController:[[MainViewController alloc] initWithNibName:nil bundle:nil]];
         
     [self.window makeKeyAndVisible];
     return YES;

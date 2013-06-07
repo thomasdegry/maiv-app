@@ -14,19 +14,58 @@
 
 @implementation MainViewController
 
+@synthesize app = _app;
+@synthesize tabBar = _tabBar;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.tabBar = [[TabBar alloc] initWithFrame:CGRectMake(0, 380, 320, 80)];
+        
+        [self.tabBar.btnInfo addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.tabBar.btnGame addTarget:self action:@selector(showGame:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.tabBar.btnMenus addTarget:self action:@selector(showMenus:) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.app = [[AppViewController alloc] initWithNibName:nil bundle:nil];
+
     }
     return self;
+}
+
+- (void)showInfo:(id)sender
+{
+    [self.app setSelectedIndex:0];
+    [self.app.view setNeedsDisplay];
+    [self.app.view setNeedsLayout];
+}
+
+- (void)showGame:(id)sender
+{
+    GameViewController *gameVC = [[GameViewController alloc] initWithRootViewController:[[UIViewController alloc] initWithNibName:nil bundle:nil]];
+    
+    gameVC.view.backgroundColor = [UIColor orangeColor];
+    
+    [self presentViewController:gameVC animated:YES completion:^{}];
+}
+
+- (void)showMenus:(id)sender
+{
+    [self.app setSelectedIndex:1];
+    [self.app.view setNeedsDisplay];
+    [self.app.view setNeedsLayout];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    CGRect appFrame = self.app.view.frame;
+    appFrame.origin.y -= 20;
+    [self.view addSubview:self.app.view];
+    [self.app.view setFrame:appFrame];
+    [self.view addSubview:self.tabBar];
 }
 
 - (void)didReceiveMemoryWarning

@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UINavigationController
+#import "AppViewController.h"
+#import "TabBar.h"
+
+#import "GameViewController.h"
+
+@interface MainViewController : UIViewController
+
+@property (strong, nonatomic) AppViewController *app;
+@property (strong, nonatomic) TabBar *tabBar;
 
 @end

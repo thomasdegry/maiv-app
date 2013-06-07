@@ -97,6 +97,8 @@
 		EAE29A8D1761DEE000E01E88 /* GameResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A8C1761DEE000E01E88 /* GameResultViewController.m */; };
 		EAE29A901761DF4500E01E88 /* GameResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A8F1761DF4500E01E88 /* GameResultView.m */; };
 		EAE29A931761E59300E01E88 /* UIColor+MrBurger.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A921761E59300E01E88 /* UIColor+MrBurger.m */; };
+		EAE29AE117621A4D00E01E88 /* AppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29AE017621A4D00E01E88 /* AppViewController.m */; };
+		EAE29AE517621B5B00E01E88 /* TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29AE417621B5B00E01E88 /* TabBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -235,6 +237,10 @@
 		EAE29A8F1761DF4500E01E88 /* GameResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameResultView.m; sourceTree = "<group>"; };
 		EAE29A911761E59300E01E88 /* UIColor+MrBurger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MrBurger.h"; sourceTree = "<group>"; };
 		EAE29A921761E59300E01E88 /* UIColor+MrBurger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MrBurger.m"; sourceTree = "<group>"; };
+		EAE29ADF17621A4C00E01E88 /* AppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppViewController.h; sourceTree = "<group>"; };
+		EAE29AE017621A4D00E01E88 /* AppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppViewController.m; sourceTree = "<group>"; };
+		EAE29AE317621B5B00E01E88 /* TabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBar.h; sourceTree = "<group>"; };
+		EAE29AE417621B5B00E01E88 /* TabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBar.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +317,7 @@
 		4D4B9C1C176140AB003673A0 /* mrburger */ = {
 			isa = PBXGroup;
 			children = (
+				EAE29AE217621B4B00E01E88 /* Tabbar */,
 				4D4B9C641761D890003673A0 /* Assets */,
 				EAE29A141761D15800E01E88 /* Buttons */,
 				EAE29A4C1761DAF600E01E88 /* Game */,
@@ -318,13 +325,15 @@
 				EAE29A3F1761D87600E01E88 /* Menus */,
 				EAE29A321761D4F200E01E88 /* Modal */,
 				EAE29A281761D3E100E01E88 /* Tables */,
+				4D4B9C631761D719003673A0 /* Info */,
 				4D4B9C25176140AB003673A0 /* AppDelegate.h */,
 				4D4B9C26176140AB003673A0 /* AppDelegate.m */,
 				4D4B9C2E176140AB003673A0 /* mrburger.xcdatamodeld */,
-				4D4B9C1D176140AB003673A0 /* Supporting Files */,
 				4D4B9C5D1761D35A003673A0 /* MainViewController.h */,
 				4D4B9C5E1761D35A003673A0 /* MainViewController.m */,
-				4D4B9C631761D719003673A0 /* Info */,
+				EAE29ADF17621A4C00E01E88 /* AppViewController.h */,
+				EAE29AE017621A4D00E01E88 /* AppViewController.m */,
+				4D4B9C1D176140AB003673A0 /* Supporting Files */,
 			);
 			path = mrburger;
 			sourceTree = "<group>";
@@ -558,6 +567,15 @@
 			name = Result;
 			sourceTree = "<group>";
 		};
+		EAE29AE217621B4B00E01E88 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				EAE29AE317621B5B00E01E88 /* TabBar.h */,
+				EAE29AE417621B5B00E01E88 /* TabBar.m */,
+			);
+			name = Tabbar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -692,6 +710,8 @@
 				EAE29A901761DF4500E01E88 /* GameResultView.m in Sources */,
 				EAE29A931761E59300E01E88 /* UIColor+MrBurger.m in Sources */,
 				4D4B9CA81762291B003673A0 /* FacebookButton.m in Sources */,
+				EAE29AE117621A4D00E01E88 /* AppViewController.m in Sources */,
+				EAE29AE517621B5B00E01E88 /* TabBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
