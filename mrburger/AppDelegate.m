@@ -21,9 +21,9 @@
     
     InfoViewController *infoVC = [[InfoViewController alloc] initWithNibName:nil bundle:nil];
     self.navCon = [[MainViewController alloc] initWithRootViewController:infoVC];
+    [self.navCon setNavigationBarHidden:YES animated:NO];
     [self.window setRootViewController:self.navCon];
         
-    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
 }

@@ -7,6 +7,7 @@
 //
 
 #import "InfoViewController.h"
+#import "RoundedView.h"
 
 @interface InfoViewController ()
 
@@ -42,6 +43,12 @@
     InfoButton *infoButton = [[InfoButton alloc] initWithX:160 andY:180];
     [self.view addSubview:infoButton];
     
+}
+
+- (void)loadView {
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    RoundedView *view = [[RoundedView alloc] initWithFrame:frame];
+    [self setView:view];
 }
 
 - (void)didReceiveMemoryWarning
