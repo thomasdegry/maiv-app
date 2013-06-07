@@ -90,6 +90,7 @@
 		EAE29A891761DEAE00E01E88 /* GameStep3InfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A881761DEAE00E01E88 /* GameStep3InfoView.m */; };
 		EAE29A8D1761DEE000E01E88 /* GameResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A8C1761DEE000E01E88 /* GameResultViewController.m */; };
 		EAE29A901761DF4500E01E88 /* GameResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A8F1761DF4500E01E88 /* GameResultView.m */; };
+		EAE29A931761E59300E01E88 /* UIColor+MrBurger.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A921761E59300E01E88 /* UIColor+MrBurger.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -219,6 +220,8 @@
 		EAE29A8C1761DEE000E01E88 /* GameResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameResultViewController.m; sourceTree = "<group>"; };
 		EAE29A8E1761DF4500E01E88 /* GameResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameResultView.h; sourceTree = "<group>"; };
 		EAE29A8F1761DF4500E01E88 /* GameResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameResultView.m; sourceTree = "<group>"; };
+		EAE29A911761E59300E01E88 /* UIColor+MrBurger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MrBurger.h"; sourceTree = "<group>"; };
+		EAE29A921761E59300E01E88 /* UIColor+MrBurger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MrBurger.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -398,6 +401,8 @@
 			children = (
 				EAE29A251761D3B700E01E88 /* RoundedView.h */,
 				EAE29A261761D3B700E01E88 /* RoundedView.m */,
+				EAE29A911761E59300E01E88 /* UIColor+MrBurger.h */,
+				EAE29A921761E59300E01E88 /* UIColor+MrBurger.m */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -660,6 +665,7 @@
 				EAE29A891761DEAE00E01E88 /* GameStep3InfoView.m in Sources */,
 				EAE29A8D1761DEE000E01E88 /* GameResultViewController.m in Sources */,
 				EAE29A901761DF4500E01E88 /* GameResultView.m in Sources */,
+				EAE29A931761E59300E01E88 /* UIColor+MrBurger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,8 +695,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Thomas Degry (SLJZ9Y88N6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thomas Degry (SLJZ9Y88N6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pieter Beulque (66NL9B7C83)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pieter Beulque (66NL9B7C83)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -723,8 +729,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Thomas Degry (SLJZ9Y88N6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thomas Degry (SLJZ9Y88N6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pieter Beulque (66NL9B7C83)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pieter Beulque (66NL9B7C83)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -742,8 +748,8 @@
 		4D4B9C34176140AB003673A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Thomas Degry (SLJZ9Y88N6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thomas Degry (SLJZ9Y88N6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pieter Beulque (66NL9B7C83)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pieter Beulque (66NL9B7C83)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/mrburger\"",
@@ -761,8 +767,8 @@
 		4D4B9C35176140AB003673A0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Thomas Degry (SLJZ9Y88N6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thomas Degry (SLJZ9Y88N6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pieter Beulque (66NL9B7C83)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pieter Beulque (66NL9B7C83)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/mrburger\"",
