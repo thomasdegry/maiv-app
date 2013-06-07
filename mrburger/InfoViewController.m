@@ -15,6 +15,9 @@
 
 @implementation InfoViewController
 
+@synthesize accountStore = _accountStore;
+@synthesize facebookAccount = _facebookAccount;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -43,6 +46,49 @@
     InfoButton *infoButton = [[InfoButton alloc] initWithX:160 andY:180];
     [self.view addSubview:infoButton];
     
+    FacebookButton *facebook = [[FacebookButton alloc] initWithText:@"Login with Facebook" andX:25 andY:300];
+    [facebook addTarget:self action:@selector(loginWithFacebook:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:facebook];
+    
+}
+
+- (void)loginWithFacebook:(id)sender {
+    if(!self.accountStore) {
+        self.accountStore = [[ACAccountStore alloc] init];
+        
+        ACAccountType *facebookAccountType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+        
+        [_accountStore requestAccessToAccountsWithType:facebookAccountType options:@{ACFacebookAppIdKey: @"197361027085761", ACFacebookPermissionsKey: @[@"email"]} completion:^(BOOL granted, NSError *error) {
+            if(granted) {
+                NSArray *accounts = [_accountStore accountsWithAccountType:facebookAccountType];
+                _facebookAccount = [accounts lastObject];
+                NSLog(@"Success");
+                
+                [self me];
+            } else {
+                NSLog(@"Fail");
+                NSLog(@"Error: %@", error);
+            }
+        }];
+    }
+}
+
+- (void)me {
+    NSURL *meurl = [NSURL URLWithString:@"https://graph.facebook.com/me"];
+    
+    SLRequest *merequest = [SLRequest requestForServiceType:SLServiceTypeFacebook
+                                              requestMethod:SLRequestMethodGET
+                                                        URL:meurl
+                                                 parameters:nil];
+    
+    merequest.account = _facebookAccount;
+    
+    [merequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+        NSString *meDataString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+        
+        NSLog(@"%@", meDataString);
+        
+    }];
 }
 
 - (void)loadView {

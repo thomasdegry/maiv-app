@@ -34,4 +34,8 @@
     return [UIColor colorWithRed:0.96f green:0.96f blue:0.96f alpha:1.00f];
 }
 
++ (UIColor *) beige {
+    return [UIColor colorWithRed:0.925 green:0.929 blue:0.878 alpha:1.000];
+}
+
 @end

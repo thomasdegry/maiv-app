@@ -53,6 +53,12 @@
 		4D4B9CA017620D37003673A0 /* btn_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9C9817620D36003673A0 /* btn_close@2x.png */; };
 		4D4B9CA117620D37003673A0 /* btn_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9C9917620D36003673A0 /* btn_info.png */; };
 		4D4B9CA217620D37003673A0 /* btn_info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9C9A17620D36003673A0 /* btn_info@2x.png */; };
+		4D4B9CA51762274E003673A0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4B9CA317622747003673A0 /* Accounts.framework */; };
+		4D4B9CA81762291B003673A0 /* FacebookButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4B9CA71762291B003673A0 /* FacebookButton.m */; };
+		4D4B9CAD17622A38003673A0 /* btn_fb_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9CA917622A38003673A0 /* btn_fb_active.png */; };
+		4D4B9CAE17622A38003673A0 /* btn_fb_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9CAA17622A38003673A0 /* btn_fb_active@2x.png */; };
+		4D4B9CAF17622A38003673A0 /* btn_fb_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9CAB17622A38003673A0 /* btn_fb_normal.png */; };
+		4D4B9CB017622A38003673A0 /* btn_fb_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9CAC17622A38003673A0 /* btn_fb_normal@2x.png */; };
 		EAE29A171761D16D00E01E88 /* CircularButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A161761D16D00E01E88 /* CircularButton.m */; };
 		EAE29A1A1761D18900E01E88 /* RoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A191761D18900E01E88 /* RoundedButton.m */; };
 		EAE29A1D1761D19800E01E88 /* RoundedButtonAlternate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A1C1761D19800E01E88 /* RoundedButtonAlternate.m */; };
@@ -146,6 +152,13 @@
 		4D4B9C9817620D36003673A0 /* btn_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close@2x.png"; sourceTree = "<group>"; };
 		4D4B9C9917620D36003673A0 /* btn_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_info.png; sourceTree = "<group>"; };
 		4D4B9C9A17620D36003673A0 /* btn_info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_info@2x.png"; sourceTree = "<group>"; };
+		4D4B9CA317622747003673A0 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		4D4B9CA61762291B003673A0 /* FacebookButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookButton.h; sourceTree = "<group>"; };
+		4D4B9CA71762291B003673A0 /* FacebookButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookButton.m; sourceTree = "<group>"; };
+		4D4B9CA917622A38003673A0 /* btn_fb_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_fb_active.png; sourceTree = "<group>"; };
+		4D4B9CAA17622A38003673A0 /* btn_fb_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_fb_active@2x.png"; sourceTree = "<group>"; };
+		4D4B9CAB17622A38003673A0 /* btn_fb_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_fb_normal.png; sourceTree = "<group>"; };
+		4D4B9CAC17622A38003673A0 /* btn_fb_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_fb_normal@2x.png"; sourceTree = "<group>"; };
 		EAE29A151761D16D00E01E88 /* CircularButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularButton.h; sourceTree = "<group>"; };
 		EAE29A161761D16D00E01E88 /* CircularButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularButton.m; sourceTree = "<group>"; };
 		EAE29A181761D18900E01E88 /* RoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedButton.h; sourceTree = "<group>"; };
@@ -229,6 +242,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D4B9CA51762274E003673A0 /* Accounts.framework in Frameworks */,
 				4D4B9C5C176142DA003673A0 /* Social.framework in Frameworks */,
 				4D4B9C1B176140AB003673A0 /* CoreData.framework in Frameworks */,
 				4D4B9C19176140AB003673A0 /* CoreGraphics.framework in Frameworks */,
@@ -273,6 +287,7 @@
 		4D4B9C13176140AB003673A0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4D4B9CA317622747003673A0 /* Accounts.framework */,
 				4D4B9C5A176142CC003673A0 /* Social.framework */,
 				4D4B9C541761415B003673A0 /* Parse.framework */,
 				4D4B9C3617614131003673A0 /* AudioToolbox.framework */,
@@ -350,6 +365,10 @@
 			isa = PBXGroup;
 			children = (
 				4D4B9C9317620D36003673A0 /* btn_circle_active.png */,
+				4D4B9CA917622A38003673A0 /* btn_fb_active.png */,
+				4D4B9CAA17622A38003673A0 /* btn_fb_active@2x.png */,
+				4D4B9CAB17622A38003673A0 /* btn_fb_normal.png */,
+				4D4B9CAC17622A38003673A0 /* btn_fb_normal@2x.png */,
 				4D4B9C9417620D36003673A0 /* btn_circle_active@2x.png */,
 				4D4B9C9517620D36003673A0 /* btn_circle_normal.png */,
 				4D4B9C9617620D36003673A0 /* btn_circle_normal@2x.png */,
@@ -392,6 +411,8 @@
 				EAE29A1F1761D1F500E01E88 /* CloseButton.m */,
 				EAE29A211761D20400E01E88 /* InfoButton.h */,
 				EAE29A221761D20400E01E88 /* InfoButton.m */,
+				4D4B9CA61762291B003673A0 /* FacebookButton.h */,
+				4D4B9CA71762291B003673A0 /* FacebookButton.m */,
 			);
 			name = Buttons;
 			sourceTree = "<group>";
@@ -613,6 +634,10 @@
 				4D4B9CA017620D37003673A0 /* btn_close@2x.png in Resources */,
 				4D4B9CA117620D37003673A0 /* btn_info.png in Resources */,
 				4D4B9CA217620D37003673A0 /* btn_info@2x.png in Resources */,
+				4D4B9CAD17622A38003673A0 /* btn_fb_active.png in Resources */,
+				4D4B9CAE17622A38003673A0 /* btn_fb_active@2x.png in Resources */,
+				4D4B9CAF17622A38003673A0 /* btn_fb_normal.png in Resources */,
+				4D4B9CB017622A38003673A0 /* btn_fb_normal@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,6 +691,7 @@
 				EAE29A8D1761DEE000E01E88 /* GameResultViewController.m in Sources */,
 				EAE29A901761DF4500E01E88 /* GameResultView.m in Sources */,
 				EAE29A931761E59300E01E88 /* UIColor+MrBurger.m in Sources */,
+				4D4B9CA81762291B003673A0 /* FacebookButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,24 +1,24 @@
 //
-//  RoundedButtonAlternate.m
+//  FacebookButton.m
 //  mrburger
 //
-//  Created by Pieter Beulque on 7/06/13.
+//  Created by Thomas Degry on 07/06/13.
 //  Copyright (c) 2013 devine. All rights reserved.
 //
 
-#import "RoundedButtonAlternate.h"
+#import "FacebookButton.h"
 
-@implementation RoundedButtonAlternate
+@implementation FacebookButton
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        UIImage *normalState = [UIImage imageNamed:@"btn_blue_normal"];
+        UIImage *normalState = [UIImage imageNamed:@"btn_fb_normal"];
         [self setBackgroundImage:normalState  forState:UIControlStateNormal];
-
-        UIImage *activeState = [UIImage imageNamed:@"btn_blue_active"];
+        
+        UIImage *activeState = [UIImage imageNamed:@"btn_fb_active"];
         [self setBackgroundImage:activeState forState:UIControlStateHighlighted];
     }
     return self;
