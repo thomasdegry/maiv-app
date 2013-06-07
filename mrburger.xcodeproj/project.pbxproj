@@ -39,6 +39,38 @@
 		EAE29A1D1761D19800E01E88 /* RoundedButtonAlternate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A1C1761D19800E01E88 /* RoundedButtonAlternate.m */; };
 		EAE29A201761D1F500E01E88 /* CloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A1F1761D1F500E01E88 /* CloseButton.m */; };
 		EAE29A231761D20400E01E88 /* InfoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A221761D20400E01E88 /* InfoButton.m */; };
+		EAE29A271761D3B700E01E88 /* RoundedView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A261761D3B700E01E88 /* RoundedView.m */; };
+		EAE29A2B1761D3F800E01E88 /* TitledTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A2A1761D3F800E01E88 /* TitledTableView.m */; };
+		EAE29A2E1761D45300E01E88 /* ZebraTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A2D1761D45300E01E88 /* ZebraTableView.m */; };
+		EAE29A311761D46100E01E88 /* ZebraTableViewAlternate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A301761D46100E01E88 /* ZebraTableViewAlternate.m */; };
+		EAE29A351761D50F00E01E88 /* ModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A341761D50F00E01E88 /* ModalViewController.m */; };
+		EAE29A381761D52400E01E88 /* ModalPresentingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A371761D52400E01E88 /* ModalPresentingView.m */; };
+		EAE29A3B1761D53800E01E88 /* ModalMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A3A1761D53800E01E88 /* ModalMainView.m */; };
+		EAE29A3E1761D55200E01E88 /* ModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A3D1761D55200E01E88 /* ModalView.m */; };
+		EAE29A421761D8A300E01E88 /* MenusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A411761D8A300E01E88 /* MenusViewController.m */; };
+		EAE29A451761D8B200E01E88 /* MenusView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A441761D8B200E01E88 /* MenusView.m */; };
+		EAE29A481761D8C000E01E88 /* MenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A471761D8C000E01E88 /* MenuView.m */; };
+		EAE29A4B1761D90800E01E88 /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A4A1761D90800E01E88 /* Menu.m */; };
+		EAE29A4F1761DB1800E01E88 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A4E1761DB1800E01E88 /* GameViewController.m */; };
+		EAE29A521761DBCB00E01E88 /* GameStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A511761DBCB00E01E88 /* GameStepViewController.m */; };
+		EAE29A551761DBEF00E01E88 /* GameStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A541761DBEF00E01E88 /* GameStepView.m */; };
+		EAE29A581761DC0100E01E88 /* GameStepInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A571761DC0100E01E88 /* GameStepInfoView.m */; };
+		EAE29A5B1761DC1100E01E88 /* GameStepMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A5A1761DC1100E01E88 /* GameStepMainView.m */; };
+		EAE29A5F1761DC9900E01E88 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A5E1761DC9900E01E88 /* LoginViewController.m */; };
+		EAE29A631761DD2600E01E88 /* GameStep1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A621761DD2600E01E88 /* GameStep1ViewController.m */; };
+		EAE29A661761DD3600E01E88 /* GameStep1View.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A651761DD3600E01E88 /* GameStep1View.m */; };
+		EAE29A6C1761DDA500E01E88 /* GameStep1MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A6B1761DDA500E01E88 /* GameStep1MainView.m */; };
+		EAE29A6F1761DDB800E01E88 /* GameStep1InfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A6E1761DDB800E01E88 /* GameStep1InfoView.m */; };
+		EAE29A731761DDE500E01E88 /* GameStep2InfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A721761DDE500E01E88 /* GameStep2InfoView.m */; };
+		EAE29A761761DDFA00E01E88 /* GameStep2MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A751761DDFA00E01E88 /* GameStep2MainView.m */; };
+		EAE29A791761DE2200E01E88 /* GameStep2View.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A781761DE2200E01E88 /* GameStep2View.m */; };
+		EAE29A7C1761DE3100E01E88 /* GameStep2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A7B1761DE3100E01E88 /* GameStep2ViewController.m */; };
+		EAE29A801761DE8200E01E88 /* GameStep3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A7F1761DE8200E01E88 /* GameStep3ViewController.m */; };
+		EAE29A831761DE9200E01E88 /* GameStep3View.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A821761DE9200E01E88 /* GameStep3View.m */; };
+		EAE29A861761DEA000E01E88 /* GameStep3MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A851761DEA000E01E88 /* GameStep3MainView.m */; };
+		EAE29A891761DEAE00E01E88 /* GameStep3InfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A881761DEAE00E01E88 /* GameStep3InfoView.m */; };
+		EAE29A8D1761DEE000E01E88 /* GameResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A8C1761DEE000E01E88 /* GameResultViewController.m */; };
+		EAE29A901761DF4500E01E88 /* GameResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A8F1761DF4500E01E88 /* GameResultView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +117,70 @@
 		EAE29A1F1761D1F500E01E88 /* CloseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloseButton.m; sourceTree = "<group>"; };
 		EAE29A211761D20400E01E88 /* InfoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoButton.h; sourceTree = "<group>"; };
 		EAE29A221761D20400E01E88 /* InfoButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoButton.m; sourceTree = "<group>"; };
+		EAE29A251761D3B700E01E88 /* RoundedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedView.h; sourceTree = "<group>"; };
+		EAE29A261761D3B700E01E88 /* RoundedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedView.m; sourceTree = "<group>"; };
+		EAE29A291761D3F800E01E88 /* TitledTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitledTableView.h; sourceTree = "<group>"; };
+		EAE29A2A1761D3F800E01E88 /* TitledTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitledTableView.m; sourceTree = "<group>"; };
+		EAE29A2C1761D45300E01E88 /* ZebraTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZebraTableView.h; sourceTree = "<group>"; };
+		EAE29A2D1761D45300E01E88 /* ZebraTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZebraTableView.m; sourceTree = "<group>"; };
+		EAE29A2F1761D46100E01E88 /* ZebraTableViewAlternate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZebraTableViewAlternate.h; sourceTree = "<group>"; };
+		EAE29A301761D46100E01E88 /* ZebraTableViewAlternate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZebraTableViewAlternate.m; sourceTree = "<group>"; };
+		EAE29A331761D50F00E01E88 /* ModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalViewController.h; sourceTree = "<group>"; };
+		EAE29A341761D50F00E01E88 /* ModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalViewController.m; sourceTree = "<group>"; };
+		EAE29A361761D52400E01E88 /* ModalPresentingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalPresentingView.h; sourceTree = "<group>"; };
+		EAE29A371761D52400E01E88 /* ModalPresentingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalPresentingView.m; sourceTree = "<group>"; };
+		EAE29A391761D53800E01E88 /* ModalMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalMainView.h; sourceTree = "<group>"; };
+		EAE29A3A1761D53800E01E88 /* ModalMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalMainView.m; sourceTree = "<group>"; };
+		EAE29A3C1761D55100E01E88 /* ModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalView.h; sourceTree = "<group>"; };
+		EAE29A3D1761D55200E01E88 /* ModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalView.m; sourceTree = "<group>"; };
+		EAE29A401761D8A300E01E88 /* MenusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenusViewController.h; sourceTree = "<group>"; };
+		EAE29A411761D8A300E01E88 /* MenusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenusViewController.m; sourceTree = "<group>"; };
+		EAE29A431761D8B200E01E88 /* MenusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenusView.h; sourceTree = "<group>"; };
+		EAE29A441761D8B200E01E88 /* MenusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenusView.m; sourceTree = "<group>"; };
+		EAE29A461761D8C000E01E88 /* MenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuView.h; sourceTree = "<group>"; };
+		EAE29A471761D8C000E01E88 /* MenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuView.m; sourceTree = "<group>"; };
+		EAE29A491761D90700E01E88 /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
+		EAE29A4A1761D90800E01E88 /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Menu.m; sourceTree = "<group>"; };
+		EAE29A4D1761DB1800E01E88 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		EAE29A4E1761DB1800E01E88 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		EAE29A501761DBCB00E01E88 /* GameStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStepViewController.h; sourceTree = "<group>"; };
+		EAE29A511761DBCB00E01E88 /* GameStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStepViewController.m; sourceTree = "<group>"; };
+		EAE29A531761DBEF00E01E88 /* GameStepView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStepView.h; sourceTree = "<group>"; };
+		EAE29A541761DBEF00E01E88 /* GameStepView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStepView.m; sourceTree = "<group>"; };
+		EAE29A561761DC0100E01E88 /* GameStepInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStepInfoView.h; sourceTree = "<group>"; };
+		EAE29A571761DC0100E01E88 /* GameStepInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStepInfoView.m; sourceTree = "<group>"; };
+		EAE29A591761DC1100E01E88 /* GameStepMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStepMainView.h; sourceTree = "<group>"; };
+		EAE29A5A1761DC1100E01E88 /* GameStepMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStepMainView.m; sourceTree = "<group>"; };
+		EAE29A5D1761DC9900E01E88 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		EAE29A5E1761DC9900E01E88 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		EAE29A611761DD2600E01E88 /* GameStep1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep1ViewController.h; sourceTree = "<group>"; };
+		EAE29A621761DD2600E01E88 /* GameStep1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep1ViewController.m; sourceTree = "<group>"; };
+		EAE29A641761DD3600E01E88 /* GameStep1View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep1View.h; sourceTree = "<group>"; };
+		EAE29A651761DD3600E01E88 /* GameStep1View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep1View.m; sourceTree = "<group>"; };
+		EAE29A6A1761DDA500E01E88 /* GameStep1MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep1MainView.h; sourceTree = "<group>"; };
+		EAE29A6B1761DDA500E01E88 /* GameStep1MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep1MainView.m; sourceTree = "<group>"; };
+		EAE29A6D1761DDB800E01E88 /* GameStep1InfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep1InfoView.h; sourceTree = "<group>"; };
+		EAE29A6E1761DDB800E01E88 /* GameStep1InfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep1InfoView.m; sourceTree = "<group>"; };
+		EAE29A711761DDE500E01E88 /* GameStep2InfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep2InfoView.h; sourceTree = "<group>"; };
+		EAE29A721761DDE500E01E88 /* GameStep2InfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep2InfoView.m; sourceTree = "<group>"; };
+		EAE29A741761DDFA00E01E88 /* GameStep2MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep2MainView.h; sourceTree = "<group>"; };
+		EAE29A751761DDFA00E01E88 /* GameStep2MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep2MainView.m; sourceTree = "<group>"; };
+		EAE29A771761DE2200E01E88 /* GameStep2View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep2View.h; sourceTree = "<group>"; };
+		EAE29A781761DE2200E01E88 /* GameStep2View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep2View.m; sourceTree = "<group>"; };
+		EAE29A7A1761DE3100E01E88 /* GameStep2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep2ViewController.h; sourceTree = "<group>"; };
+		EAE29A7B1761DE3100E01E88 /* GameStep2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep2ViewController.m; sourceTree = "<group>"; };
+		EAE29A7E1761DE8200E01E88 /* GameStep3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep3ViewController.h; sourceTree = "<group>"; };
+		EAE29A7F1761DE8200E01E88 /* GameStep3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep3ViewController.m; sourceTree = "<group>"; };
+		EAE29A811761DE9200E01E88 /* GameStep3View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep3View.h; sourceTree = "<group>"; };
+		EAE29A821761DE9200E01E88 /* GameStep3View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep3View.m; sourceTree = "<group>"; };
+		EAE29A841761DEA000E01E88 /* GameStep3MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep3MainView.h; sourceTree = "<group>"; };
+		EAE29A851761DEA000E01E88 /* GameStep3MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep3MainView.m; sourceTree = "<group>"; };
+		EAE29A871761DEAE00E01E88 /* GameStep3InfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep3InfoView.h; sourceTree = "<group>"; };
+		EAE29A881761DEAE00E01E88 /* GameStep3InfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep3InfoView.m; sourceTree = "<group>"; };
+		EAE29A8B1761DEE000E01E88 /* GameResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameResultViewController.h; sourceTree = "<group>"; };
+		EAE29A8C1761DEE000E01E88 /* GameResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameResultViewController.m; sourceTree = "<group>"; };
+		EAE29A8E1761DF4500E01E88 /* GameResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameResultView.h; sourceTree = "<group>"; };
+		EAE29A8F1761DF4500E01E88 /* GameResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameResultView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +256,11 @@
 			isa = PBXGroup;
 			children = (
 				EAE29A141761D15800E01E88 /* Buttons */,
+				EAE29A4C1761DAF600E01E88 /* Game */,
+				EAE29A241761D37D00E01E88 /* General */,
+				EAE29A3F1761D87600E01E88 /* Menus */,
+				EAE29A321761D4F200E01E88 /* Modal */,
+				EAE29A281761D3E100E01E88 /* Tables */,
 				4D4B9C25176140AB003673A0 /* AppDelegate.h */,
 				4D4B9C26176140AB003673A0 /* AppDelegate.m */,
 				4D4B9C2E176140AB003673A0 /* mrburger.xcdatamodeld */,
@@ -209,6 +310,145 @@
 				EAE29A221761D20400E01E88 /* InfoButton.m */,
 			);
 			name = Buttons;
+			sourceTree = "<group>";
+		};
+		EAE29A241761D37D00E01E88 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				EAE29A251761D3B700E01E88 /* RoundedView.h */,
+				EAE29A261761D3B700E01E88 /* RoundedView.m */,
+			);
+			name = General;
+			sourceTree = "<group>";
+		};
+		EAE29A281761D3E100E01E88 /* Tables */ = {
+			isa = PBXGroup;
+			children = (
+				EAE29A291761D3F800E01E88 /* TitledTableView.h */,
+				EAE29A2A1761D3F800E01E88 /* TitledTableView.m */,
+				EAE29A2C1761D45300E01E88 /* ZebraTableView.h */,
+				EAE29A2D1761D45300E01E88 /* ZebraTableView.m */,
+				EAE29A2F1761D46100E01E88 /* ZebraTableViewAlternate.h */,
+				EAE29A301761D46100E01E88 /* ZebraTableViewAlternate.m */,
+			);
+			name = Tables;
+			sourceTree = "<group>";
+		};
+		EAE29A321761D4F200E01E88 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				EAE29A331761D50F00E01E88 /* ModalViewController.h */,
+				EAE29A341761D50F00E01E88 /* ModalViewController.m */,
+				EAE29A361761D52400E01E88 /* ModalPresentingView.h */,
+				EAE29A371761D52400E01E88 /* ModalPresentingView.m */,
+				EAE29A391761D53800E01E88 /* ModalMainView.h */,
+				EAE29A3A1761D53800E01E88 /* ModalMainView.m */,
+				EAE29A3C1761D55100E01E88 /* ModalView.h */,
+				EAE29A3D1761D55200E01E88 /* ModalView.m */,
+			);
+			name = Modal;
+			sourceTree = "<group>";
+		};
+		EAE29A3F1761D87600E01E88 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				EAE29A401761D8A300E01E88 /* MenusViewController.h */,
+				EAE29A411761D8A300E01E88 /* MenusViewController.m */,
+				EAE29A431761D8B200E01E88 /* MenusView.h */,
+				EAE29A441761D8B200E01E88 /* MenusView.m */,
+				EAE29A461761D8C000E01E88 /* MenuView.h */,
+				EAE29A471761D8C000E01E88 /* MenuView.m */,
+				EAE29A491761D90700E01E88 /* Menu.h */,
+				EAE29A4A1761D90800E01E88 /* Menu.m */,
+			);
+			name = Menus;
+			sourceTree = "<group>";
+		};
+		EAE29A4C1761DAF600E01E88 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				EAE29A5C1761DC8300E01E88 /* Login */,
+				EAE29A601761DCBA00E01E88 /* Step 1 */,
+				EAE29A701761DDD000E01E88 /* Step 2 */,
+				EAE29A7D1761DE4400E01E88 /* Step 3 */,
+				EAE29A8A1761DEC500E01E88 /* Result */,
+				EAE29A4D1761DB1800E01E88 /* GameViewController.h */,
+				EAE29A4E1761DB1800E01E88 /* GameViewController.m */,
+				EAE29A501761DBCB00E01E88 /* GameStepViewController.h */,
+				EAE29A511761DBCB00E01E88 /* GameStepViewController.m */,
+				EAE29A531761DBEF00E01E88 /* GameStepView.h */,
+				EAE29A541761DBEF00E01E88 /* GameStepView.m */,
+				EAE29A561761DC0100E01E88 /* GameStepInfoView.h */,
+				EAE29A571761DC0100E01E88 /* GameStepInfoView.m */,
+				EAE29A591761DC1100E01E88 /* GameStepMainView.h */,
+				EAE29A5A1761DC1100E01E88 /* GameStepMainView.m */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
+		EAE29A5C1761DC8300E01E88 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				EAE29A5D1761DC9900E01E88 /* LoginViewController.h */,
+				EAE29A5E1761DC9900E01E88 /* LoginViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		EAE29A601761DCBA00E01E88 /* Step 1 */ = {
+			isa = PBXGroup;
+			children = (
+				EAE29A611761DD2600E01E88 /* GameStep1ViewController.h */,
+				EAE29A621761DD2600E01E88 /* GameStep1ViewController.m */,
+				EAE29A641761DD3600E01E88 /* GameStep1View.h */,
+				EAE29A651761DD3600E01E88 /* GameStep1View.m */,
+				EAE29A6A1761DDA500E01E88 /* GameStep1MainView.h */,
+				EAE29A6B1761DDA500E01E88 /* GameStep1MainView.m */,
+				EAE29A6D1761DDB800E01E88 /* GameStep1InfoView.h */,
+				EAE29A6E1761DDB800E01E88 /* GameStep1InfoView.m */,
+			);
+			name = "Step 1";
+			sourceTree = "<group>";
+		};
+		EAE29A701761DDD000E01E88 /* Step 2 */ = {
+			isa = PBXGroup;
+			children = (
+				EAE29A7A1761DE3100E01E88 /* GameStep2ViewController.h */,
+				EAE29A7B1761DE3100E01E88 /* GameStep2ViewController.m */,
+				EAE29A771761DE2200E01E88 /* GameStep2View.h */,
+				EAE29A781761DE2200E01E88 /* GameStep2View.m */,
+				EAE29A741761DDFA00E01E88 /* GameStep2MainView.h */,
+				EAE29A751761DDFA00E01E88 /* GameStep2MainView.m */,
+				EAE29A711761DDE500E01E88 /* GameStep2InfoView.h */,
+				EAE29A721761DDE500E01E88 /* GameStep2InfoView.m */,
+			);
+			name = "Step 2";
+			sourceTree = "<group>";
+		};
+		EAE29A7D1761DE4400E01E88 /* Step 3 */ = {
+			isa = PBXGroup;
+			children = (
+				EAE29A7E1761DE8200E01E88 /* GameStep3ViewController.h */,
+				EAE29A7F1761DE8200E01E88 /* GameStep3ViewController.m */,
+				EAE29A811761DE9200E01E88 /* GameStep3View.h */,
+				EAE29A821761DE9200E01E88 /* GameStep3View.m */,
+				EAE29A841761DEA000E01E88 /* GameStep3MainView.h */,
+				EAE29A851761DEA000E01E88 /* GameStep3MainView.m */,
+				EAE29A871761DEAE00E01E88 /* GameStep3InfoView.h */,
+				EAE29A881761DEAE00E01E88 /* GameStep3InfoView.m */,
+			);
+			name = "Step 3";
+			sourceTree = "<group>";
+		};
+		EAE29A8A1761DEC500E01E88 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				EAE29A8B1761DEE000E01E88 /* GameResultViewController.h */,
+				EAE29A8C1761DEE000E01E88 /* GameResultViewController.m */,
+				EAE29A8E1761DF4500E01E88 /* GameResultView.h */,
+				EAE29A8F1761DF4500E01E88 /* GameResultView.m */,
+			);
+			name = Result;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +528,38 @@
 				EAE29A231761D20400E01E88 /* InfoButton.m in Sources */,
 				4D4B9C5F1761D35A003673A0 /* MainViewController.m in Sources */,
 				4D4B9C621761D3B2003673A0 /* InfoViewController.m in Sources */,
+				EAE29A271761D3B700E01E88 /* RoundedView.m in Sources */,
+				EAE29A2B1761D3F800E01E88 /* TitledTableView.m in Sources */,
+				EAE29A2E1761D45300E01E88 /* ZebraTableView.m in Sources */,
+				EAE29A311761D46100E01E88 /* ZebraTableViewAlternate.m in Sources */,
+				EAE29A351761D50F00E01E88 /* ModalViewController.m in Sources */,
+				EAE29A381761D52400E01E88 /* ModalPresentingView.m in Sources */,
+				EAE29A3B1761D53800E01E88 /* ModalMainView.m in Sources */,
+				EAE29A3E1761D55200E01E88 /* ModalView.m in Sources */,
+				EAE29A421761D8A300E01E88 /* MenusViewController.m in Sources */,
+				EAE29A451761D8B200E01E88 /* MenusView.m in Sources */,
+				EAE29A481761D8C000E01E88 /* MenuView.m in Sources */,
+				EAE29A4B1761D90800E01E88 /* Menu.m in Sources */,
+				EAE29A4F1761DB1800E01E88 /* GameViewController.m in Sources */,
+				EAE29A521761DBCB00E01E88 /* GameStepViewController.m in Sources */,
+				EAE29A551761DBEF00E01E88 /* GameStepView.m in Sources */,
+				EAE29A581761DC0100E01E88 /* GameStepInfoView.m in Sources */,
+				EAE29A5B1761DC1100E01E88 /* GameStepMainView.m in Sources */,
+				EAE29A5F1761DC9900E01E88 /* LoginViewController.m in Sources */,
+				EAE29A631761DD2600E01E88 /* GameStep1ViewController.m in Sources */,
+				EAE29A661761DD3600E01E88 /* GameStep1View.m in Sources */,
+				EAE29A6C1761DDA500E01E88 /* GameStep1MainView.m in Sources */,
+				EAE29A6F1761DDB800E01E88 /* GameStep1InfoView.m in Sources */,
+				EAE29A731761DDE500E01E88 /* GameStep2InfoView.m in Sources */,
+				EAE29A761761DDFA00E01E88 /* GameStep2MainView.m in Sources */,
+				EAE29A791761DE2200E01E88 /* GameStep2View.m in Sources */,
+				EAE29A7C1761DE3100E01E88 /* GameStep2ViewController.m in Sources */,
+				EAE29A801761DE8200E01E88 /* GameStep3ViewController.m in Sources */,
+				EAE29A831761DE9200E01E88 /* GameStep3View.m in Sources */,
+				EAE29A861761DEA000E01E88 /* GameStep3MainView.m in Sources */,
+				EAE29A891761DEAE00E01E88 /* GameStep3InfoView.m in Sources */,
+				EAE29A8D1761DEE000E01E88 /* GameResultViewController.m in Sources */,
+				EAE29A901761DF4500E01E88 /* GameResultView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
