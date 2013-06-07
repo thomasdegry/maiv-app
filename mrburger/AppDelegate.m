@@ -19,10 +19,24 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
+    [Parse setApplicationId:@"NtnxE18I4w5dIAHEec1UvRrRaMzwYQnY4EZ3VOwz" clientKey:@"aUUy8wQogs8VZ6TuW1BqGZH4BYwTroD9qQSdRoYL"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
+    
     [self.window setRootViewController:[[MainViewController alloc] initWithNibName:nil bundle:nil]];
-        
+    
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+    NSLog(@"registered for remote notification with device token: %@", [currentInstallation deviceToken]);
+    [[NSUserDefaults standardUserDefaults] setObject:[currentInstallation deviceToken] forKey:@"deviceToken"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

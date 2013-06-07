@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
+
 #import "MainViewController.h"
 #import "InfoViewController.h"
 

@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import "User.h"
 #import "LoginViewController.h"
 
 @interface GameViewController : UINavigationController
+
+@property (strong, nonatomic) User *user;
 
 - (id)initGame;
 

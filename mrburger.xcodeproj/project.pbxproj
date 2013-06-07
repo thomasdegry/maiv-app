@@ -99,6 +99,7 @@
 		EAE29A931761E59300E01E88 /* UIColor+MrBurger.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A921761E59300E01E88 /* UIColor+MrBurger.m */; };
 		EAE29AE117621A4D00E01E88 /* AppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29AE017621A4D00E01E88 /* AppViewController.m */; };
 		EAE29AE517621B5B00E01E88 /* TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29AE417621B5B00E01E88 /* TabBar.m */; };
+		EAE29AE917623FEC00E01E88 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29AE817623FEC00E01E88 /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -241,6 +242,8 @@
 		EAE29AE017621A4D00E01E88 /* AppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppViewController.m; sourceTree = "<group>"; };
 		EAE29AE317621B5B00E01E88 /* TabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBar.h; sourceTree = "<group>"; };
 		EAE29AE417621B5B00E01E88 /* TabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBar.m; sourceTree = "<group>"; };
+		EAE29AE717623FEC00E01E88 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		EAE29AE817623FEC00E01E88 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -483,6 +486,7 @@
 		EAE29A4C1761DAF600E01E88 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				EAE29AE617623FE400E01E88 /* User */,
 				EAE29A5C1761DC8300E01E88 /* Login */,
 				EAE29A601761DCBA00E01E88 /* Step 1 */,
 				EAE29A701761DDD000E01E88 /* Step 2 */,
@@ -574,6 +578,15 @@
 				EAE29AE417621B5B00E01E88 /* TabBar.m */,
 			);
 			name = Tabbar;
+			sourceTree = "<group>";
+		};
+		EAE29AE617623FE400E01E88 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				EAE29AE717623FEC00E01E88 /* User.h */,
+				EAE29AE817623FEC00E01E88 /* User.m */,
+			);
+			name = User;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -712,6 +725,7 @@
 				4D4B9CA81762291B003673A0 /* FacebookButton.m in Sources */,
 				EAE29AE117621A4D00E01E88 /* AppViewController.m in Sources */,
 				EAE29AE517621B5B00E01E88 /* TabBar.m in Sources */,
+				EAE29AE917623FEC00E01E88 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
