@@ -34,6 +34,13 @@
 		4D4B9C5C176142DA003673A0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4B9C5A176142CC003673A0 /* Social.framework */; };
 		4D4B9C5F1761D35A003673A0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4B9C5E1761D35A003673A0 /* MainViewController.m */; };
 		4D4B9C621761D3B2003673A0 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4B9C611761D3B2003673A0 /* InfoViewController.m */; };
+		4D4B9C6A1761D9A3003673A0 /* btn_orange_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9C661761D9A3003673A0 /* btn_orange_active.png */; };
+		4D4B9C6B1761D9A3003673A0 /* btn_orange_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9C671761D9A3003673A0 /* btn_orange_active@2x.png */; };
+		4D4B9C6C1761D9A3003673A0 /* btn_orange_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9C681761D9A3003673A0 /* btn_orange_normal.png */; };
+		4D4B9C6D1761D9A3003673A0 /* btn_orange_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9C691761D9A3003673A0 /* btn_orange_normal@2x.png */; };
+		4D4B9C701761DDD3003673A0 /* btn_orange_activeNr2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9C6E1761DDD3003673A0 /* btn_orange_activeNr2.png */; };
+		4D4B9C711761DDD3003673A0 /* btn_orange_activeNr2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9C6F1761DDD3003673A0 /* btn_orange_activeNr2@2x.png */; };
+		4D4B9C761761E7E1003673A0 /* AlternateGothic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9C751761E7E1003673A0 /* AlternateGothic.ttf */; };
 		EAE29A171761D16D00E01E88 /* CircularButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A161761D16D00E01E88 /* CircularButton.m */; };
 		EAE29A1A1761D18900E01E88 /* RoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A191761D18900E01E88 /* RoundedButton.m */; };
 		EAE29A1D1761D19800E01E88 /* RoundedButtonAlternate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A1C1761D19800E01E88 /* RoundedButtonAlternate.m */; };
@@ -75,6 +82,13 @@
 		4D4B9C5E1761D35A003673A0 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		4D4B9C601761D3B2003673A0 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		4D4B9C611761D3B2003673A0 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		4D4B9C661761D9A3003673A0 /* btn_orange_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_orange_active.png; sourceTree = "<group>"; };
+		4D4B9C671761D9A3003673A0 /* btn_orange_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_orange_active@2x.png"; sourceTree = "<group>"; };
+		4D4B9C681761D9A3003673A0 /* btn_orange_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_orange_normal.png; sourceTree = "<group>"; };
+		4D4B9C691761D9A3003673A0 /* btn_orange_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_orange_normal@2x.png"; sourceTree = "<group>"; };
+		4D4B9C6E1761DDD3003673A0 /* btn_orange_activeNr2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_orange_activeNr2.png; sourceTree = "<group>"; };
+		4D4B9C6F1761DDD3003673A0 /* btn_orange_activeNr2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_orange_activeNr2@2x.png"; sourceTree = "<group>"; };
+		4D4B9C751761E7E1003673A0 /* AlternateGothic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AlternateGothic.ttf; sourceTree = "<group>"; };
 		EAE29A151761D16D00E01E88 /* CircularButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularButton.h; sourceTree = "<group>"; };
 		EAE29A161761D16D00E01E88 /* CircularButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularButton.m; sourceTree = "<group>"; };
 		EAE29A181761D18900E01E88 /* RoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedButton.h; sourceTree = "<group>"; };
@@ -159,6 +173,7 @@
 		4D4B9C1C176140AB003673A0 /* mrburger */ = {
 			isa = PBXGroup;
 			children = (
+				4D4B9C641761D890003673A0 /* Assets */,
 				EAE29A141761D15800E01E88 /* Buttons */,
 				4D4B9C25176140AB003673A0 /* AppDelegate.h */,
 				4D4B9C26176140AB003673A0 /* AppDelegate.m */,
@@ -192,6 +207,36 @@
 				4D4B9C611761D3B2003673A0 /* InfoViewController.m */,
 			);
 			name = Info;
+			sourceTree = "<group>";
+		};
+		4D4B9C641761D890003673A0 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				4D4B9C731761E1D2003673A0 /* Fonts */,
+				4D4B9C651761D89E003673A0 /* Buttons */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		4D4B9C651761D89E003673A0 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				4D4B9C6E1761DDD3003673A0 /* btn_orange_activeNr2.png */,
+				4D4B9C6F1761DDD3003673A0 /* btn_orange_activeNr2@2x.png */,
+				4D4B9C661761D9A3003673A0 /* btn_orange_active.png */,
+				4D4B9C671761D9A3003673A0 /* btn_orange_active@2x.png */,
+				4D4B9C681761D9A3003673A0 /* btn_orange_normal.png */,
+				4D4B9C691761D9A3003673A0 /* btn_orange_normal@2x.png */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
+		4D4B9C731761E1D2003673A0 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4D4B9C751761E7E1003673A0 /* AlternateGothic.ttf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		EAE29A141761D15800E01E88 /* Buttons */ = {
@@ -268,6 +313,13 @@
 				4D4B9C2D176140AB003673A0 /* Default-568h@2x.png in Resources */,
 				4D4B9C5717614176003673A0 /* icon_01.png in Resources */,
 				4D4B9C591761417B003673A0 /* icon_01_nonRetina.png in Resources */,
+				4D4B9C6A1761D9A3003673A0 /* btn_orange_active.png in Resources */,
+				4D4B9C6B1761D9A3003673A0 /* btn_orange_active@2x.png in Resources */,
+				4D4B9C6C1761D9A3003673A0 /* btn_orange_normal.png in Resources */,
+				4D4B9C6D1761D9A3003673A0 /* btn_orange_normal@2x.png in Resources */,
+				4D4B9C701761DDD3003673A0 /* btn_orange_activeNr2.png in Resources */,
+				4D4B9C711761DDD3003673A0 /* btn_orange_activeNr2@2x.png in Resources */,
+				4D4B9C761761E7E1003673A0 /* AlternateGothic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

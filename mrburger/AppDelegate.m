@@ -22,7 +22,7 @@
     InfoViewController *infoVC = [[InfoViewController alloc] initWithNibName:nil bundle:nil];
     self.navCon = [[MainViewController alloc] initWithRootViewController:infoVC];
     [self.window setRootViewController:self.navCon];
-    
+        
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

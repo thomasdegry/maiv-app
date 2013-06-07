@@ -19,10 +19,24 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.roundedButton = [[RoundedButton alloc] initWithFrame:CGRectMake(0, 0, 545, 96)];
+        self.roundedButton = [[RoundedButton alloc] initWithText:@"Mijn button"];
         [self.view addSubview:self.roundedButton];
+        
+        [self enumerateFonts];
     }
     return self;
+}
+
+
+- (void)enumerateFonts {
+    NSLog(@"--Start enumerating font--");
+    for (NSString *fontFamilyStrings in [UIFont familyNames]) {
+        NSLog(@"Font family: %@", fontFamilyStrings);
+        for (NSString *fontStrings in [UIFont
+                                       fontNamesForFamilyName:fontFamilyStrings]) {
+            NSLog(@"-- Font: %@", fontStrings);
+        } }
+    NSLog(@"--End enumerating font--");
 }
 
 - (void)viewDidLoad
