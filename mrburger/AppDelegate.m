@@ -18,6 +18,11 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    InfoViewController *infoVC = [[InfoViewController alloc] initWithNibName:nil bundle:nil];
+    self.navCon = [[MainViewController alloc] initWithRootViewController:infoVC];
+    [self.window setRootViewController:self.navCon];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

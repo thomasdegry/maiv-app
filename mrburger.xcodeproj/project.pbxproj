@@ -32,6 +32,8 @@
 		4D4B9C5717614176003673A0 /* icon_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9C5617614176003673A0 /* icon_01.png */; };
 		4D4B9C591761417B003673A0 /* icon_01_nonRetina.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9C581761417B003673A0 /* icon_01_nonRetina.png */; };
 		4D4B9C5C176142DA003673A0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4B9C5A176142CC003673A0 /* Social.framework */; };
+		4D4B9C5F1761D35A003673A0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4B9C5E1761D35A003673A0 /* MainViewController.m */; };
+		4D4B9C621761D3B2003673A0 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4B9C611761D3B2003673A0 /* InfoViewController.m */; };
 		EAE29A171761D16D00E01E88 /* CircularButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A161761D16D00E01E88 /* CircularButton.m */; };
 		EAE29A1A1761D18900E01E88 /* RoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A191761D18900E01E88 /* RoundedButton.m */; };
 		EAE29A1D1761D19800E01E88 /* RoundedButtonAlternate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A1C1761D19800E01E88 /* RoundedButtonAlternate.m */; };
@@ -69,6 +71,10 @@
 		4D4B9C5617614176003673A0 /* icon_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_01.png; sourceTree = "<group>"; };
 		4D4B9C581761417B003673A0 /* icon_01_nonRetina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_01_nonRetina.png; sourceTree = "<group>"; };
 		4D4B9C5A176142CC003673A0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		4D4B9C5D1761D35A003673A0 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		4D4B9C5E1761D35A003673A0 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		4D4B9C601761D3B2003673A0 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		4D4B9C611761D3B2003673A0 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		EAE29A151761D16D00E01E88 /* CircularButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularButton.h; sourceTree = "<group>"; };
 		EAE29A161761D16D00E01E88 /* CircularButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularButton.m; sourceTree = "<group>"; };
 		EAE29A181761D18900E01E88 /* RoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedButton.h; sourceTree = "<group>"; };
@@ -158,6 +164,9 @@
 				4D4B9C26176140AB003673A0 /* AppDelegate.m */,
 				4D4B9C2E176140AB003673A0 /* mrburger.xcdatamodeld */,
 				4D4B9C1D176140AB003673A0 /* Supporting Files */,
+				4D4B9C5D1761D35A003673A0 /* MainViewController.h */,
+				4D4B9C5E1761D35A003673A0 /* MainViewController.m */,
+				4D4B9C631761D719003673A0 /* Info */,
 			);
 			path = mrburger;
 			sourceTree = "<group>";
@@ -174,6 +183,15 @@
 				4D4B9C2C176140AB003673A0 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4D4B9C631761D719003673A0 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				4D4B9C601761D3B2003673A0 /* InfoViewController.h */,
+				4D4B9C611761D3B2003673A0 /* InfoViewController.m */,
+			);
+			name = Info;
 			sourceTree = "<group>";
 		};
 		EAE29A141761D15800E01E88 /* Buttons */ = {
@@ -268,6 +286,8 @@
 				EAE29A1D1761D19800E01E88 /* RoundedButtonAlternate.m in Sources */,
 				EAE29A201761D1F500E01E88 /* CloseButton.m in Sources */,
 				EAE29A231761D20400E01E88 /* InfoButton.m in Sources */,
+				4D4B9C5F1761D35A003673A0 /* MainViewController.m in Sources */,
+				4D4B9C621761D3B2003673A0 /* InfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,8 +317,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Pieter Beulque (66NL9B7C83)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pieter Beulque (66NL9B7C83)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Thomas Degry (SLJZ9Y88N6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thomas Degry (SLJZ9Y88N6)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -331,8 +351,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Pieter Beulque (66NL9B7C83)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pieter Beulque (66NL9B7C83)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Thomas Degry (SLJZ9Y88N6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thomas Degry (SLJZ9Y88N6)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -350,8 +370,8 @@
 		4D4B9C34176140AB003673A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Pieter Beulque (66NL9B7C83)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pieter Beulque (66NL9B7C83)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Thomas Degry (SLJZ9Y88N6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thomas Degry (SLJZ9Y88N6)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/mrburger\"",
@@ -369,8 +389,8 @@
 		4D4B9C35176140AB003673A0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Pieter Beulque (66NL9B7C83)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pieter Beulque (66NL9B7C83)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Thomas Degry (SLJZ9Y88N6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thomas Degry (SLJZ9Y88N6)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/mrburger\"",
