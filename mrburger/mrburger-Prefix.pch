@@ -14,4 +14,10 @@
     #import <CoreData/CoreData.h>
 
     #import "UIColor+MrBurger.h"
+    #import "CloseButton.h"
+    #import "InfoButton.h"
+    #import "RoundedButton.h"
+    #import "RoundedButtonAlternate.h"
+    #import "RoundedView.h"
+
 #endif

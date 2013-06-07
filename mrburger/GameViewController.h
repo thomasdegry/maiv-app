@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "LoginViewController.h"
+
 @interface GameViewController : UINavigationController
+
+- (id)initGame;
 
 @end

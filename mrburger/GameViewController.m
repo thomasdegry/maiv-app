@@ -19,6 +19,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.navigationBarHidden = YES;
     }
     return self;
 }
@@ -33,6 +34,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (id)initGame
+{
+    LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+    self = [self initWithRootViewController:loginVC];
+    return self;
 }
 
 @end

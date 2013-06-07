@@ -10,6 +10,8 @@
 
 @implementation CloseButton
 
+@synthesize delegate = _delegate;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -18,8 +20,17 @@
         UIImage *closeIcon = [UIImage imageNamed:@"btn_close.png"];
         UIImageView *closeIconIV = [[UIImageView alloc] initWithImage:closeIcon];
         [self addSubview:closeIconIV];
+        
+        [self addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
+}
+
+- (void)click:(id)sender
+{
+    if ( [self.delegate respondsToSelector:@selector(closeButtonClicked:)] ) {
+        [self.delegate closeButtonClicked:self];
+    }
 }
 
 /*

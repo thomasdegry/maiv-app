@@ -44,10 +44,8 @@
 
 - (void)showGame:(id)sender
 {
-    GameViewController *gameVC = [[GameViewController alloc] initWithRootViewController:[[UIViewController alloc] initWithNibName:nil bundle:nil]];
-    
-    gameVC.view.backgroundColor = [UIColor orangeColor];
-    
+    GameViewController *gameVC = [[GameViewController alloc] initGame];
+        
     [self presentViewController:gameVC animated:YES completion:^{}];
 }
 

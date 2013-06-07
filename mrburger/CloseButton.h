@@ -8,6 +8,16 @@
 
 #import "CircularButton.h"
 
+@class CloseButton;
+
+@protocol CloseButtonDelegate
+
+- (void)closeButtonClicked:(CloseButton *)closeButton;
+
+@end
+
 @interface CloseButton : CircularButton
+
+@property (weak, nonatomic) id delegate;
 
 @end

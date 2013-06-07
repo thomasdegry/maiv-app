@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController <CloseButtonDelegate>
+
+@property (strong, nonatomic) CloseButton *btnClose;
+@property (strong, nonatomic) RoundedButtonAlternate *btnLogin;
 
 @end

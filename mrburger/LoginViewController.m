@@ -14,19 +14,35 @@
 
 @implementation LoginViewController
 
+@synthesize btnClose = _btnClose;
+@synthesize btnLogin = _btnLogin;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.btnClose = [[CloseButton alloc] initWithX:280 andY:10];
+        self.btnClose.delegate = self;
+        
     }
     return self;
+}
+
+- (void)closeButtonClicked:(id)closeButton
+{
+    [self.navigationController.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
+}
+
+- (void)loadView
+{
+    self.view = [[RoundedView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	[self.view addSubview:self.btnClose];
 }
 
 - (void)didReceiveMemoryWarning
