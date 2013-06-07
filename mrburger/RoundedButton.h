@@ -13,6 +13,6 @@
 @property (strong, nonatomic) NSString *string;
 @property (strong, nonatomic) UILabel *label;
 
-- (id)initWithText:(NSString *)text;
+- (id)initWithText:(NSString *)text andX:(float)x andY:(float)y;
 
 @end

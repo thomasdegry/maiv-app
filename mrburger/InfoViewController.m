@@ -19,30 +19,29 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.roundedButton = [[RoundedButton alloc] initWithText:@"Mijn button"];
-        [self.view addSubview:self.roundedButton];
         
-        [self enumerateFonts];
     }
     return self;
-}
-
-
-- (void)enumerateFonts {
-    NSLog(@"--Start enumerating font--");
-    for (NSString *fontFamilyStrings in [UIFont familyNames]) {
-        NSLog(@"Font family: %@", fontFamilyStrings);
-        for (NSString *fontStrings in [UIFont
-                                       fontNamesForFamilyName:fontFamilyStrings]) {
-            NSLog(@"-- Font: %@", fontStrings);
-        } }
-    NSLog(@"--End enumerating font--");
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    RoundedButton *roundedButton = [[RoundedButton alloc] initWithText:@"Een oranje knop" andX:25 andY:50];
+    [self.view addSubview:roundedButton];
+    
+    RoundedButtonAlternate *roundedButtonAlternate = [[RoundedButtonAlternate alloc] initWithText:@"Blauweknop" andX:25 andY:110];
+    [self.view addSubview:roundedButtonAlternate];
+    
+    CircularButton *circleButton = [[CircularButton alloc] initWithX:280 andY:10];
+    [self.view addSubview:circleButton];
+    
+    CloseButton *closeButton = [[CloseButton alloc] initWithX:120 andY:180];
+    [self.view addSubview:closeButton];
+    
+    InfoButton *infoButton = [[InfoButton alloc] initWithX:160 andY:180];
+    [self.view addSubview:infoButton];
+    
 }
 
 - (void)didReceiveMemoryWarning

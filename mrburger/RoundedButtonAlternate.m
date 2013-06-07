@@ -15,6 +15,13 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        self.titleLabel.textColor = [UIColor blueColor];
+
+        UIImage *normalState = [UIImage imageNamed:@"btn_blue_normal"];
+        [self setBackgroundImage:normalState  forState:UIControlStateNormal];
+
+        UIImage *activeState = [UIImage imageNamed:@"btn_blue_active"];
+        [self setBackgroundImage:activeState forState:UIControlStateHighlighted];
     }
     return self;
 }

@@ -10,4 +10,6 @@
 
 @interface CircularButton : UIButton
 
+- (id)initWithX:(float)x andY:(float)y;
+
 @end

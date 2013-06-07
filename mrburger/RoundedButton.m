@@ -29,9 +29,9 @@
     return self;
 }
 
-- (id)initWithText:(NSString *)text {
+- (id)initWithText:(NSString *)text andX:(float)x andY:(float)y {
     self.string = text;
-    return [self initWithFrame:CGRectMake(0, 0, 274, 48)];
+    return [self initWithFrame:CGRectMake(x, y, 274, 48)];
 }
 
 /*

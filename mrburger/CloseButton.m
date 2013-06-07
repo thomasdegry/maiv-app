@@ -15,6 +15,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        UIImage *closeIcon = [UIImage imageNamed:@"btn_close.png"];
+        UIImageView *closeIconIV = [[UIImageView alloc] initWithImage:closeIcon];
+        [self addSubview:closeIconIV];
     }
     return self;
 }

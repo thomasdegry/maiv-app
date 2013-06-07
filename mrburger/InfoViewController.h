@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-//Temp
+
 #import "RoundedButton.h"
+#import "RoundedButtonAlternate.h"
+#import "CircularButton.h"
+#import "CloseButton.h"
+#import "InfoButton.h"
 
 @interface InfoViewController : UIViewController
-
-@property (strong, nonatomic) RoundedButton *roundedButton;
 
 @end
