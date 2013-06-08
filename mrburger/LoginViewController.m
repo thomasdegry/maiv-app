@@ -78,6 +78,8 @@
         
         NSLog(@"User initted with device token %@", gameVC.user.deviceToken);
         
+        [gameVC showNextScreen];
+
         //[self saveToServer];
     }];
 }

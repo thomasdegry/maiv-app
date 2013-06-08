@@ -25,7 +25,7 @@
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
     
     [self.window setRootViewController:[[MainViewController alloc] initWithNibName:nil bundle:nil]];
-    
+
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -34,7 +34,6 @@
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
     [currentInstallation saveInBackground];
-    NSLog(@"registered for remote notification with device token: %@", [currentInstallation deviceToken]);
     [[NSUserDefaults standardUserDefaults] setObject:[currentInstallation deviceToken] forKey:@"deviceToken"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

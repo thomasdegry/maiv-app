@@ -15,6 +15,7 @@
 @implementation GameViewController
 
 @synthesize user = _user;
+@synthesize currentScreen = _currentScreen;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,7 +43,42 @@
 {
     LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
     self = [self initWithRootViewController:loginVC];
+    
+    if (self) {
+        self.currentScreen = GameScreenLogin;
+    }
+    
     return self;
+}
+
+- (void)showNextScreen
+{    
+    GameStepViewController *nextScreen = nil;
+    
+    switch (self.currentScreen) {
+        case GameScreenLogin:
+            nextScreen = [[GameStep1ViewController alloc] initWithNibName:nil bundle:nil];
+            self.currentScreen = GameScreenStep1;
+            break;
+        
+        case GameScreenStep1:
+            nextScreen = [[GameStep2ViewController alloc] initWithNibName:nil bundle:nil];
+            self.currentScreen = GameScreenStep2;
+            break;
+            
+        case GameScreenStep2:
+            nextScreen = [[GameStep3ViewController alloc] initWithNibName:nil bundle:nil];
+            self.currentScreen = GameScreenStep3;
+            break;
+            
+        default:
+            break;
+    }
+    
+    if (nextScreen) {
+        [self pushViewController:nextScreen animated:YES];
+    }
+    
 }
 
 @end

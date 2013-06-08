@@ -12,6 +12,8 @@
 #import "MainViewController.h"
 #import "InfoViewController.h"
 
+#import "ModalViewController.h"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
