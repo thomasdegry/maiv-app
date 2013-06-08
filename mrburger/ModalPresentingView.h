@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ModalMainView.h"
+#import "ModalView.h"
+
 @interface ModalPresentingView : UIView
+
+@property (strong, nonatomic) ModalMainView *mainView;
+@property (strong, nonatomic) ModalView *modal;
+
+- (void)showModal;
+- (void)hideModal;
+
+- (id)initWithMain:(ModalMainView *)main andModal:(ModalView *)modal;
 
 @end

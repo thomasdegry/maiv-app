@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ModalMainView : UIView
+@interface ModalMainView : RoundedView
+
+@property (strong, nonatomic) UIButton *btnModal;
 
 @end

@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class ModalView;
+
+@protocol ModalDelegate <NSObject>
+
+- (void)modalView:(ModalView *)modalView isConfirmed:(BOOL)proceed;
+
+@end
+
 @interface ModalView : UIView
+
+@property (assign, nonatomic) id delegate;
+
+- (id)initModal;
 
 @end

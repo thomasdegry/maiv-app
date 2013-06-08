@@ -23,10 +23,38 @@
     return self;
 }
 
+- (void)loadView
+{
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    
+    ModalMainView *main = [[ModalMainView alloc] initWithFrame:bounds];
+    ModalView *modal = [[ModalView alloc] initModal];
+    modal.delegate = self;
+    
+    self.presentingView = [[ModalPresentingView alloc] initWithMain:main andModal:modal];
+    self.view = self.presentingView;
+    
+    [main.btnModal addTarget:self action:@selector(showModal:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)showModal:(id)sender
+{
+    [self.presentingView showModal];
+}
+
+- (void)hideModal:(id)sender
+{
+    [self.presentingView hideModal];
+}
+
+- (void)modalView:(ModalView *)modalView isConfirmed:(BOOL)proceed
+{
+    [self hideModal:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning

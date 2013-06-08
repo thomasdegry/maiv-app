@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ModalViewController : UIViewController
+#import "ModalPresentingView.h"
+#import "ModalMainView.h"
+#import "ModalView.h"
+
+@interface ModalViewController : UIViewController <ModalDelegate>
+
+@property (strong, nonatomic) ModalPresentingView *presentingView;
+@property (strong, nonatomic) ModalMainView *mainView;
+@property (strong, nonatomic) ModalView *modal;
+
+- (void)showModal:(id)sender;
+- (void)hideModal:(id)sender;
+
+- (void)modalView:(ModalView *)modalView isConfirmed:(BOOL)proceed;
 
 @end
