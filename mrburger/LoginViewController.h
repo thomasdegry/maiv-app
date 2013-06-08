@@ -13,6 +13,7 @@
 #import "GameViewController.h"
 
 #import "FacebookButton.h"
+#import "KGStatusBar.h"
 
 @interface LoginViewController : UIViewController <CloseButtonDelegate>
 
