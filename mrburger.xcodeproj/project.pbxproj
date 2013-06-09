@@ -636,6 +636,7 @@
 				9C5A35761764F5BE007A0BA1 /* StartView */,
 				EAB40D2517650AF6007A4106 /* sad_face.png */,
 				EAB40D2617650AF6007A4106 /* sad_face@2x.png */,
+				9C5A35761764F5BE007A0BA1 /* StartView */,
 				4D4B9D391764824C003673A0 /* Tabbar */,
 				4D4B9C731761E1D2003673A0 /* Fonts */,
 				4D4B9C651761D89E003673A0 /* Buttons */,
@@ -1317,6 +1318,8 @@
 				EAB40D231764FBD5007A4106 /* TitledTableAlternate.m in Sources */,
 				EAB40D2B17650E59007A4106 /* UnavailableCell.m in Sources */,
 				EABAB77C17660E3200BBC270 /* GameStep2ConnectingView.m in Sources */,
+				9C5A35731764DE8D007A0BA1 /* SequenceView.m in Sources */,
+				9C5A357D1764F632007A0BA1 /* InfoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
