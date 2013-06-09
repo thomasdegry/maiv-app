@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "AFHTTPClient.h"
 
+
 @interface LoginViewController ()
 
 @end
@@ -17,6 +18,9 @@
 
 @synthesize btnClose = _btnClose;
 @synthesize btnLogin = _btnLogin;
+@synthesize loader = _loader;
+@synthesize loginLabel = _loginLabel;
+@synthesize loginLabel2 = _loginLabel2;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,8 +30,17 @@
         self.btnClose = [[CloseButton alloc] initWithX:280 andY:10];
         self.btnClose.delegate = self;
         
-        self.btnLogin = [[FacebookButton alloc] initWithText:@"Connect with Facebook" andX:23 andY:180];
+        self.btnLogin = [[FacebookButton alloc] initWithText:@"Connect with Facebook" andX:23 andY:190];
         [self.btnLogin addTarget:self action:@selector(loginWithFacebook:) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.loginLabel = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(110, 80, 100, 50) andSize:(FontAlternateSizeGiant) andColor:[UIColor orange]];
+        self.loginLabel.text = @"LOGIN";
+        self.loginLabel2 = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(60, 120, 200, 50) andSize:(FontAlternateSizeGiant) andColor:[UIColor blueDarkened]];
+        self.loginLabel2.text = @"PRETTY PLEASE";
+        
+        
+        self.loader = [[SequenceView alloc] init];
+        self.loader.frame = CGRectMake(130, 200, 50, 50);
     }
     return self;
 }
@@ -40,6 +53,10 @@
 - (void)loginWithFacebook:(id)sender
 {
     if(!self.accountStore) {
+        
+         [self.view addSubview:self.loader];
+        self.btnLogin.hidden = YES;
+        
         [KGStatusBar showWithStatus:@"Connecting to Facebook"];
         self.accountStore = [[ACAccountStore alloc] init];
         
@@ -120,6 +137,8 @@
     [super viewDidLoad];
 	[self.view addSubview:self.btnClose];
     [self.view addSubview:self.btnLogin];
+    [self.view addSubview:self.loginLabel];
+    [self.view addSubview:self.loginLabel2];
 }
 
 - (void)didReceiveMemoryWarning

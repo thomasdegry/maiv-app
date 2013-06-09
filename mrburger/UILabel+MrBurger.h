@@ -13,7 +13,8 @@ typedef enum
     FontAlternateSizeTiny = 17,
     FontAlternateSizeSmall = 19,
     FontAlternateSizeMedium = 23,
-    FontAlternateSizeBig = 30
+    FontAlternateSizeBig = 30,
+    FontAlternateSizeGiant = 37
 } FontAlternateSize;
 
 @interface UILabel (MrBurger)
