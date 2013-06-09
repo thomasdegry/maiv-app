@@ -28,7 +28,6 @@
 }
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
-    NSLog(@"[Appviewcontroller] %i", selectedIndex);
     [super setSelectedIndex:selectedIndex];
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%i", selectedIndex], @"selectedIndex", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SELECTED_INDEX_CHANGE" object:self userInfo:dict];

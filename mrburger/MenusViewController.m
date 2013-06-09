@@ -23,6 +23,14 @@
     return self;
 }
 
+- (void)loadView
+{
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    MenusView *view = [[MenusView alloc] initWithFrame:frame];
+    
+    [self setView:view];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

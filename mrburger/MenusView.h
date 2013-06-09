@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MenusView : UIView
+@interface MenusView : RoundedView
 
 @end

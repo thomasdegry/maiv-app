@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MenusView.h"
 
 @interface MenusViewController : UIViewController
 
