@@ -8,6 +8,7 @@
 
 #import "InfoViewController.h"
 #import "RoundedView.h"
+#import "InfoView.h"
 
 @interface InfoViewController ()
 
@@ -31,24 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    RoundedButton *roundedButton = [[RoundedButton alloc] initWithText:@"Een oranje knop" andX:25 andY:50];
-    [self.view addSubview:roundedButton];
-    
-    RoundedButtonAlternate *roundedButtonAlternate = [[RoundedButtonAlternate alloc] initWithText:@"Blauweknop" andX:25 andY:110];
-    [self.view addSubview:roundedButtonAlternate];
-    
-    CircularButton *circleButton = [[CircularButton alloc] initWithX:280 andY:10];
-    [self.view addSubview:circleButton];
-    
-    CloseButton *closeButton = [[CloseButton alloc] initWithX:120 andY:180];
-    [self.view addSubview:closeButton];
-    
-    InfoButton *infoButton = [[InfoButton alloc] initWithX:160 andY:180];
-    [self.view addSubview:infoButton];
-    
-    FacebookButton *facebook = [[FacebookButton alloc] initWithText:@"Login with Facebook" andX:25 andY:300];
-    [facebook addTarget:self action:@selector(loginWithFacebook:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:facebook];
+   
     
 }
 
@@ -93,7 +77,7 @@
 
 - (void)loadView {
     CGRect frame = [[UIScreen mainScreen] bounds];
-    RoundedView *view = [[RoundedView alloc] initWithFrame:frame];
+    InfoView *view = [[InfoView alloc] initWithFrame:frame];
     [self setView:view];
 }
 
