@@ -47,12 +47,12 @@
 		self.nearbyTVC = [[NearbyTableViewController alloc] initWithSessionManager:self.sessionManager];
 	}
     
-    self.participantsView = [[TitledTable alloc] initWithFrame:CGRectMake(0, 60, 320, 160) andTitle:@"Your burger"];
+    self.participantsView = [[TitledTable alloc] initWithFrame:CGRectMake(15, 60, 290, 160) andTitle:@"Your burger"];
     [self.mainView addSubview:self.participantsView];
     [self.participantsView.tableView setDataSource:self.participantsTVC];
     [self.participantsView.tableView setDelegate:self.participantsTVC];
     
-    self.nearbyView = [[TitledTable alloc] initWithFrame:CGRectMake(0, 280, 320, 160) andTitle:@"Find ingredients"];
+    self.nearbyView = [[TitledTable alloc] initWithFrame:CGRectMake(15, 280, 290, 160) andTitle:@"Find ingredients"];
 	[self.mainView addSubview:self.nearbyView];
     [self.nearbyView.tableView setDataSource:self.nearbyTVC];
     [self.nearbyView.tableView setDelegate:self.nearbyTVC];

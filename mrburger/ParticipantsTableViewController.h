@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ZebraTableViewController.h"
+
 #import "SessionManager.h"
 
 #import "ParticipantCell.h"
 
-@interface ParticipantsTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ParticipantsTableViewController : ZebraTableViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) SessionManager *sessionManager;
 
