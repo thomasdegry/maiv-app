@@ -40,7 +40,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"ParticipantsCellIdentifier"];
+    [self.tableView registerClass:[ParticipantCell class] forCellReuseIdentifier:@"ParticipantsCellIdentifier"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,17 +68,21 @@
 {
 	static NSString *ParticipantsCellIdentifier = @"ParticipantsCellIdentifier";
 	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ParticipantsCellIdentifier];
+	ParticipantCell *cell = [tableView dequeueReusableCellWithIdentifier:ParticipantsCellIdentifier];
 	
     if (!cell) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ParticipantsCellIdentifier];
+		cell = [[ParticipantCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ParticipantsCellIdentifier];
 	}
     
 	NSUInteger row = [indexPath row];
 	
     User *user = [self.sessionManager userForPeerID:[self.participants objectAtIndex:row]];
+    NSData *userImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture", user.id]]];
+    UIImage *userImage = [UIImage imageWithData:userImageData];
     
-    cell.textLabel.text = user.name;
+    cell.textLabel.text = [user.name uppercaseString];
+    cell.detailTextLabel.text = user.gender;
+    cell.imageView.image = userImage;
     
 	return cell;
 }

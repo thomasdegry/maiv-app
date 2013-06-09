@@ -10,6 +10,8 @@
 
 #import "SessionManager.h"
 
+#import "ParticipantCell.h"
+
 @interface ParticipantsTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) SessionManager *sessionManager;
