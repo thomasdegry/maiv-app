@@ -21,7 +21,7 @@
         NSArray *vcs = [[NSArray alloc] initWithObjects:[[InfoViewController alloc] initWithNibName:nil bundle:nil], [[MenusViewController alloc] initWithNibName:nil bundle:nil], nil];
         
         [self setViewControllers:vcs];
-        
+        NSLog(@"Selected index is %i", self.selectedIndex);
         self.tabBar.hidden = YES;
     }
     return self;

@@ -18,16 +18,17 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.btnInfo = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        self.btnInfo.frame = CGRectMake(0, 0, 100, 80);
+        UIImage *bg = [UIImage imageNamed:@"bg.png"];
+        UIImageView *bgIV = [[UIImageView alloc] initWithImage:bg];
+        [self addSubview:bgIV];
+        
+        self.btnInfo = [[TabBarButton alloc] initWithIconName:@"tabbar_truck" frame:CGRectMake(0, 0, 100, 80) andLabel:@"info"];
         [self addSubview:self.btnInfo];
         
-        self.btnGame = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        self.btnGame.frame = CGRectMake(110, 0, 100, 80);
+        self.btnGame = [[GameButton alloc] initWithFrame:CGRectMake(104, -20, 112, 99)];
         [self addSubview:self.btnGame];
         
-        self.btnMenus = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        self.btnMenus.frame = CGRectMake(220, 0, 100, 80);
+        self.btnMenus = [[TabBarButton alloc] initWithIconName:@"tabbar_menu" frame:CGRectMake(220, 0, 100, 80) andLabel:@"menu"];
         [self addSubview:self.btnMenus];
     }
     return self;

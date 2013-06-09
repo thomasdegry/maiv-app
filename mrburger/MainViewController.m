@@ -21,7 +21,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.tabBar = [[TabBar alloc] initWithFrame:CGRectMake(0, 380, 320, 80)];
+        self.tabBar = [[TabBar alloc] initWithFrame:CGRectMake(0, [[UIScreen mainScreen] bounds].size.height - 74 - 20, 320, 74)];
         
         [self.tabBar.btnInfo addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -30,7 +30,7 @@
         [self.tabBar.btnMenus addTarget:self action:@selector(showMenus:) forControlEvents:UIControlEventTouchUpInside];
         
         self.app = [[AppViewController alloc] initWithNibName:nil bundle:nil];
-        [self enumerateFonts];
+        //[self enumerateFonts];
 
     }
     return self;

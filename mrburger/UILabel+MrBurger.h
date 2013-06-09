@@ -10,6 +10,7 @@
 
 typedef enum
 {
+    FontAlternateSizeTiny = 17,
     FontAlternateSizeSmall = 19,
     FontAlternateSizeMedium = 23,
     FontAlternateSizeBig = 30

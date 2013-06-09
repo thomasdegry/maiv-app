@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GameButton.h"
+#import "TabBarButton.h"
 
 @interface TabBar : UIView
 
-@property (strong, nonatomic) UIButton *btnInfo;
-@property (strong, nonatomic) UIButton *btnGame;
-@property (strong, nonatomic) UIButton *btnMenus;
+@property (strong, nonatomic) TabBarButton *btnInfo;
+@property (strong, nonatomic) GameButton *btnGame;
+@property (strong, nonatomic) TabBarButton *btnMenus;
 
 @end
