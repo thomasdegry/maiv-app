@@ -70,6 +70,7 @@
 		4D4B9CCD17625AA3003673A0 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4B9CC417625AA3003673A0 /* UIImageView+AFNetworking.m */; };
 		4D4B9CD11762678F003673A0 /* KGStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4B9CD01762678F003673A0 /* KGStatusBar.m */; };
 		4D4B9CD317645F89003673A0 /* Mission-Script.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9CD217645F89003673A0 /* Mission-Script.otf */; };
+		4D4B9D3817647C42003673A0 /* Traveller.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9D3717647C42003673A0 /* Traveller.otf */; };
 		EAB65B0E1763557000D327ED /* GameStepHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB65B0D1763556F00D327ED /* GameStepHeaderView.m */; };
 		EAB65B111763587200D327ED /* UILabel+MrBurger.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB65B101763587200D327ED /* UILabel+MrBurger.m */; };
 		EAB65B15176375AB00D327ED /* SessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB65B14176375AB00D327ED /* SessionManager.m */; };
@@ -201,6 +202,7 @@
 		4D4B9CCF1762678F003673A0 /* KGStatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGStatusBar.h; sourceTree = "<group>"; };
 		4D4B9CD01762678F003673A0 /* KGStatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGStatusBar.m; sourceTree = "<group>"; };
 		4D4B9CD217645F89003673A0 /* Mission-Script.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mission-Script.otf"; sourceTree = "<group>"; };
+		4D4B9D3717647C42003673A0 /* Traveller.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Traveller.otf; sourceTree = "<group>"; };
 		EAB65B0C1763556F00D327ED /* GameStepHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStepHeaderView.h; sourceTree = "<group>"; };
 		EAB65B0D1763556F00D327ED /* GameStepHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStepHeaderView.m; sourceTree = "<group>"; };
 		EAB65B0F1763587200D327ED /* UILabel+MrBurger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+MrBurger.h"; sourceTree = "<group>"; };
@@ -459,6 +461,7 @@
 		4D4B9C731761E1D2003673A0 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				4D4B9D3717647C42003673A0 /* Traveller.otf */,
 				4D4B9CD217645F89003673A0 /* Mission-Script.otf */,
 				4D4B9C751761E7E1003673A0 /* AlternateGothic.ttf */,
 			);
@@ -787,6 +790,7 @@
 				4D4B9CAF17622A38003673A0 /* btn_fb_normal.png in Resources */,
 				4D4B9CB017622A38003673A0 /* btn_fb_normal@2x.png in Resources */,
 				4D4B9CD317645F89003673A0 /* Mission-Script.otf in Resources */,
+				4D4B9D3817647C42003673A0 /* Traveller.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

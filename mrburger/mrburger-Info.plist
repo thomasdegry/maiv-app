@@ -37,6 +37,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Traveller.otf</string>
 		<string>Mission-Script.otf</string>
 		<string>AlternateGothic.ttf</string>
 	</array>

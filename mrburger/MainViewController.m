@@ -30,7 +30,7 @@
         [self.tabBar.btnMenus addTarget:self action:@selector(showMenus:) forControlEvents:UIControlEventTouchUpInside];
         
         self.app = [[AppViewController alloc] initWithNibName:nil bundle:nil];
-        //[self enumerateFonts];
+        [self enumerateFonts];
 
     }
     return self;
