@@ -52,7 +52,11 @@
 	<key>UIStatusBarHidden</key>
 	<false/>
 	<key>UIStatusBarStyle</key>
+<<<<<<< HEAD
 	<string>UIStatusBarStyleDefault</string>
+=======
+	<string>UIStatusBarStyleBlackTranslucent</string>
+>>>>>>> Splash Screens
 	<key>UIStatusBarTintParameters</key>
 	<dict>
 		<key>UINavigationBar</key>
