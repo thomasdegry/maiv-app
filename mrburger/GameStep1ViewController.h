@@ -14,8 +14,12 @@
 #import "GameStep1MainView.h"
 #import "GameStep1InfoView.h"
 
+#import "Scrollimage.h"
+#import "Ingredient.h"
+
 @interface GameStep1ViewController : GameStepViewController
 
 @property (strong, nonatomic) GameStep1MainView *mainView;
+@property (strong, nonatomic) NSMutableArray *categoryIngredients;
 
 @end
