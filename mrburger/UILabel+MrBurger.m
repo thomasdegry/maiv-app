@@ -24,4 +24,18 @@
     return self;
 }
 
+- (id)initAWithFontMissionAndFrame:(CGRect)frame andSize:(FontAlternateSize)size andColor:(UIColor *)color
+{
+    self = [self initWithFrame:frame];
+    
+    if (self) {
+        self.font = [UIFont fontWithName:@"Mission-Script" size:size];
+        self.textColor = color;
+        self.backgroundColor = [UIColor clearColor];
+        self.textAlignment = NSTextAlignmentCenter;
+    }
+    
+    return self;
+}
+
 @end

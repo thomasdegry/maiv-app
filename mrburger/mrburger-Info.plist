@@ -37,6 +37,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Mission-Script.otf</string>
 		<string>AlternateGothic.ttf</string>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
