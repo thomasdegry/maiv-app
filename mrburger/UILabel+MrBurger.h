@@ -17,8 +17,14 @@ typedef enum
     FontAlternateSizeGiant = 37
 } FontAlternateSize;
 
+typedef enum
+{
+    FontMissionSizeBig = 44
+} FontMissionSize;
+
 @interface UILabel (MrBurger)
 
 - (id)initAWithFontAlternateAndFrame:(CGRect)frame andSize:(FontAlternateSize)size andColor:(UIColor *)color;
+- (id)initAWithFontMissionAndFrame:(CGRect)frame andSize:(FontMissionSize)size andColor:(UIColor *)color;
 
 @end

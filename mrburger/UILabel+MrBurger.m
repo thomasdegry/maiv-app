@@ -24,7 +24,7 @@
     return self;
 }
 
-- (id)initAWithFontMissionAndFrame:(CGRect)frame andSize:(FontAlternateSize)size andColor:(UIColor *)color
+- (id)initAWithFontMissionAndFrame:(CGRect)frame andSize:(FontMissionSize)size andColor:(UIColor *)color
 {
     self = [self initWithFrame:frame];
     

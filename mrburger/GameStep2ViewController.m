@@ -86,10 +86,8 @@
         }
     }];
     
-//    InviteViewController *inviteVC = [[InviteViewController alloc] initWithNibName:nil bundle:nil];
-//    [inviteVC.btnAccept addTarget:self action:@selector(acceptInvitation:) forControlEvents:UIControlEventTouchUpInside];
-    
-//    [self presentViewController:inviteVC animated:YES completion:^{}];
+    self.modal = [[GameStep2InviteView alloc] initModal];
+    [self showModal:nil];
 }
 
 - (void) invitationDidFail:(SessionManager *)session fromPeer:(NSString *)participantID

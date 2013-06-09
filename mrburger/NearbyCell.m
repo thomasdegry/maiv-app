@@ -1,20 +1,20 @@
 //
-//  ParticipantCell.m
+//  NearbyCell.m
 //  mrburger
 //
 //  Created by Pieter Beulque on 9/06/13.
 //  Copyright (c) 2013 devine. All rights reserved.
 //
 
-#import "ParticipantCell.h"
+#import "NearbyCell.h"
 
-@implementation ParticipantCell
+@implementation NearbyCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.textLabel.textColor = [UIColor brownColor];
+        // Initialization code
     }
     return self;
 }
@@ -22,6 +22,8 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
 }
 
 @end

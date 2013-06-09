@@ -1,5 +1,5 @@
 //
-//  ParticipantCell.h
+//  NearbyCell.h
 //  mrburger
 //
 //  Created by Pieter Beulque on 9/06/13.
@@ -10,6 +10,6 @@
 
 #import "PictureCell.h"
 
-@interface ParticipantCell : PictureCell
+@interface NearbyCell : PictureCell
 
 @end

@@ -1,5 +1,5 @@
 //
-//  ParticipantCell.h
+//  PictureCell.h
 //  mrburger
 //
 //  Created by Pieter Beulque on 9/06/13.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "PictureCell.h"
-
-@interface ParticipantCell : PictureCell
+@interface PictureCell : UITableViewCell
 
 @end

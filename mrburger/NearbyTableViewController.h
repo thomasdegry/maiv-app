@@ -10,6 +10,8 @@
 
 #import "ZebraTableViewController.h"
 
+#import "NearbyCell.h"
+
 #import "SessionManager.h"
 
 @interface NearbyTableViewController : ZebraTableViewController <UITableViewDataSource, UITableViewDataSource>

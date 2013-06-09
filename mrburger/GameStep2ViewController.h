@@ -15,6 +15,7 @@
 #import "GameStep2View.h"
 #import "GameStep2MainView.h"
 #import "GameStep2InfoView.h"
+#import "GameStep2InviteView.h"
 
 #import "ParticipantsTableViewController.h"
 #import "NearbyTableViewController.h"

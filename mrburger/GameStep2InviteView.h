@@ -1,15 +1,13 @@
 //
-//  ParticipantCell.h
+//  GameStep2InviteView.h
 //  mrburger
 //
 //  Created by Pieter Beulque on 9/06/13.
 //  Copyright (c) 2013 devine. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "GameStepInfoView.h"
 
-#import "PictureCell.h"
-
-@interface ParticipantCell : PictureCell
+@interface GameStep2InviteView : GameStepInfoView
 
 @end
