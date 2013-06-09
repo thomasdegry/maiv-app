@@ -63,6 +63,7 @@
 
 - (void)showMenus:(id)sender
 {
+    NSLog(@"klik");
     [self.app setSelectedIndex:1];
     [self.app.view setNeedsDisplay];
     [self.app.view setNeedsLayout];

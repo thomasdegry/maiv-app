@@ -13,7 +13,7 @@
 @end
 
 @implementation AppViewController
-
+@synthesize selectedIndex = _selectedIndex;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -25,6 +25,13 @@
         self.tabBar.hidden = YES;
     }
     return self;
+}
+
+- (void)setSelectedIndex:(NSUInteger)selectedIndex {
+    NSLog(@"[Appviewcontroller] %i", selectedIndex);
+    [super setSelectedIndex:selectedIndex];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%i", selectedIndex], @"selectedIndex", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SELECTED_INDEX_CHANGE" object:self userInfo:dict];
 }
 
 - (void)viewDidLoad

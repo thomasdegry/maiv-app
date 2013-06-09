@@ -13,6 +13,7 @@
 @synthesize btnInfo = _btnInfo;
 @synthesize btnGame = _btnGame;
 @synthesize btnMenus = _btnMenus;
+@synthesize driehoek = _driehoek;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -22,6 +23,11 @@
         UIImageView *bgIV = [[UIImageView alloc] initWithImage:bg];
         [self addSubview:bgIV];
         
+        self.drie = [UIImage imageNamed:@"tabbar_arrow.png"];
+        self.driehoek = [[UIImageView alloc] initWithImage:self.drie];
+        self.driehoek.frame = CGRectMake(42, -8, self.drie.size.width, self.drie.size.height);
+        [self addSubview:self.driehoek];
+        
         self.btnInfo = [[TabBarButton alloc] initWithIconName:@"tabbar_truck" frame:CGRectMake(0, 0, 100, 80) andLabel:@"info"];
         [self addSubview:self.btnInfo];
         
@@ -30,8 +36,23 @@
         
         self.btnMenus = [[TabBarButton alloc] initWithIconName:@"tabbar_menu" frame:CGRectMake(220, 0, 100, 80) andLabel:@"menu"];
         [self addSubview:self.btnMenus];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeActiveState:) name:@"SELECTED_INDEX_CHANGE" object:nil];
     }
     return self;
+}
+
+- (void)changeActiveState:(NSNotification *)sender {
+    NSString *selectedIndex = [[sender userInfo] objectForKey:@"selectedIndex"];
+    if([selectedIndex isEqualToString:@"0"]) {
+        [UIView animateWithDuration:.3 animations:^{
+            self.driehoek.frame = CGRectMake(42, -8, self.drie.size.width, self.drie.size.height);
+        }];
+    } else {
+        [UIView animateWithDuration:.3 animations:^{
+            self.driehoek.frame = CGRectMake(260, -8, self.drie.size.width, self.drie.size.height);
+        }];
+    }
 }
 
 /*

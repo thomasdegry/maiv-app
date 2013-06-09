@@ -14,9 +14,6 @@
 		4D4B9C21176140AB003673A0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9C1F176140AB003673A0 /* InfoPlist.strings */; };
 		4D4B9C23176140AB003673A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4B9C22176140AB003673A0 /* main.m */; };
 		4D4B9C27176140AB003673A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4B9C26176140AB003673A0 /* AppDelegate.m */; };
-		4D4B9C29176140AB003673A0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9C28176140AB003673A0 /* Default.png */; };
-		4D4B9C2B176140AB003673A0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9C2A176140AB003673A0 /* Default@2x.png */; };
-		4D4B9C2D176140AB003673A0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9C2C176140AB003673A0 /* Default-568h@2x.png */; };
 		4D4B9C30176140AB003673A0 /* mrburger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D4B9C2E176140AB003673A0 /* mrburger.xcdatamodeld */; };
 		4D4B9C4A17614141003673A0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4B9C3617614131003673A0 /* AudioToolbox.framework */; };
 		4D4B9C4B17614141003673A0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4B9C3717614131003673A0 /* CFNetwork.framework */; };
@@ -89,6 +86,9 @@
 		4D4B9D691764950D003673A0 /* tabbar_circle_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9D671764950D003673A0 /* tabbar_circle_active.png */; };
 		4D4B9D6A1764950D003673A0 /* tabbar_circle_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9D681764950D003673A0 /* tabbar_circle_active@2x.png */; };
 		4D4B9D7017649783003673A0 /* TabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4B9D6F17649782003673A0 /* TabBarButton.m */; };
+		4D4B9D861764B435003673A0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9D851764B433003673A0 /* Default@2x.png */; };
+		4D4B9D881764B43C003673A0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9D871764B43B003673A0 /* Default-568h@2x.png */; };
+		4D4B9D8B1764B485003673A0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9D8A1764B484003673A0 /* Default.png */; };
 		EAB65B0E1763557000D327ED /* GameStepHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB65B0D1763556F00D327ED /* GameStepHeaderView.m */; };
 		EAB65B111763587200D327ED /* UILabel+MrBurger.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB65B101763587200D327ED /* UILabel+MrBurger.m */; };
 		EAB65B15176375AB00D327ED /* SessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB65B14176375AB00D327ED /* SessionManager.m */; };
@@ -241,6 +241,9 @@
 		4D4B9D681764950D003673A0 /* tabbar_circle_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_circle_active@2x.png"; sourceTree = "<group>"; };
 		4D4B9D6E17649781003673A0 /* TabBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarButton.h; sourceTree = "<group>"; };
 		4D4B9D6F17649782003673A0 /* TabBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarButton.m; sourceTree = "<group>"; };
+		4D4B9D851764B433003673A0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		4D4B9D871764B43B003673A0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		4D4B9D8A1764B484003673A0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		EAB65B0C1763556F00D327ED /* GameStepHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStepHeaderView.h; sourceTree = "<group>"; };
 		EAB65B0D1763556F00D327ED /* GameStepHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStepHeaderView.m; sourceTree = "<group>"; };
 		EAB65B0F1763587200D327ED /* UILabel+MrBurger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+MrBurger.h"; sourceTree = "<group>"; };
@@ -368,6 +371,9 @@
 		4D4B9C08176140AB003673A0 = {
 			isa = PBXGroup;
 			children = (
+				4D4B9D8A1764B484003673A0 /* Default.png */,
+				4D4B9D871764B43B003673A0 /* Default-568h@2x.png */,
+				4D4B9D851764B433003673A0 /* Default@2x.png */,
 				4D4B9C581761417B003673A0 /* icon_01_nonRetina.png */,
 				4D4B9C5617614176003673A0 /* icon_01.png */,
 				4D4B9C1C176140AB003673A0 /* mrburger */,
@@ -827,9 +833,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D4B9C21176140AB003673A0 /* InfoPlist.strings in Resources */,
-				4D4B9C29176140AB003673A0 /* Default.png in Resources */,
-				4D4B9C2B176140AB003673A0 /* Default@2x.png in Resources */,
-				4D4B9C2D176140AB003673A0 /* Default-568h@2x.png in Resources */,
 				4D4B9C5717614176003673A0 /* icon_01.png in Resources */,
 				4D4B9C591761417B003673A0 /* icon_01_nonRetina.png in Resources */,
 				4D4B9C6A1761D9A3003673A0 /* btn_orange_active.png in Resources */,
@@ -873,6 +876,9 @@
 				4D4B9D63176482B1003673A0 /* tabbar_truck@2x.png in Resources */,
 				4D4B9D691764950D003673A0 /* tabbar_circle_active.png in Resources */,
 				4D4B9D6A1764950D003673A0 /* tabbar_circle_active@2x.png in Resources */,
+				4D4B9D861764B435003673A0 /* Default@2x.png in Resources */,
+				4D4B9D881764B43C003673A0 /* Default-568h@2x.png in Resources */,
+				4D4B9D8B1764B485003673A0 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
