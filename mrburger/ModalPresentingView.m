@@ -57,7 +57,7 @@
         // 1. Set alpha for 'inactive' feeling
         // 2. Scale photo view down for depth and resetting the rotation transformation
         [UIView animateWithDuration:0.44 animations:^{
-            self.mainView.alpha = .1;
+            self.mainView.alpha = .08;
             self.mainView.transform = CGAffineTransformMakeScale(0.9, 0.9);
         }];
     }];

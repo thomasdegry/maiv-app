@@ -10,8 +10,9 @@
 
 #import "ModalMainView.h"
 #import "ModalView.h"
+#import "RoundedView.h"
 
-@interface ModalPresentingView : UIView
+@interface ModalPresentingView : RoundedView
 
 @property (strong, nonatomic) ModalMainView *mainView;
 @property (strong, nonatomic) ModalView *modal;
