@@ -26,7 +26,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    self.view.backgroundColor = [UIColor blackColor];
+	
+    GameStepMainView *mainView = (GameStepMainView *)self.mainView;
+    mainView.header.btnClose.delegate = self.navigationController;
+    [mainView.header.btnInfo addTarget:self action:@selector(showModal:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning

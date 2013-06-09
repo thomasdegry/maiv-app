@@ -10,4 +10,18 @@
 
 @interface UIColor (MrBurger)
 
++ (UIColor *) orange;
+
++ (UIColor *) orangeDarkened;
+
++ (UIColor *) blue;
+
++ (UIColor *) blueDarkened;
+
++ (UIColor *) blueLightened;
+
++ (UIColor *) white;
+
++ (UIColor *) beige;
+
 @end

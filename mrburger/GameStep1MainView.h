@@ -10,4 +10,6 @@
 
 @interface GameStep1MainView : GameStepMainView
 
+@property (strong, nonatomic) RoundedButton *btnStart;
+
 @end

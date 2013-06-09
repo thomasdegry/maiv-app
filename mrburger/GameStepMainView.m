@@ -10,13 +10,22 @@
 
 @implementation GameStepMainView
 
+@synthesize header = _header;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        self.header = [[GameStepHeaderView alloc] initWithTitle:@"self.header.lblTitle.text"];
+        [self.header.btnInfo addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.header];
     }
     return self;
+}
+
+- (void)showInfo:(id)sender
+{
+    
 }
 
 /*

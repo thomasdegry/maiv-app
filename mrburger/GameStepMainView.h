@@ -8,6 +8,10 @@
 
 #import "ModalMainView.h"
 
+#import "GameStepHeaderView.h"
+
 @interface GameStepMainView : ModalMainView
+
+@property (strong, nonatomic) GameStepHeaderView *header;
 
 @end

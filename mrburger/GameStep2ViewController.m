@@ -10,11 +10,26 @@
 
 @implementation GameStep2ViewController
 
+@synthesize sessionManager = _sessionManager;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.mainView = [[GameStep2MainView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        self.modal = [[GameStep2InfoView alloc] initModal];
+        self.modal.delegate = self;
+        
+        self.presentingView = [[GameStep2View alloc] initWithMain:self.mainView andModal:self.modal];
+    }
+    return self;
+}
+
+- (id)initWithSessionManager:(SessionManager *)sessionManager
+{
+    self = [super init];
+    if (self) {
+        self.sessionManager = sessionManager;
     }
     return self;
 }
@@ -22,13 +37,72 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	
+    if (self.participantsTVC == nil) {
+		self.participantsTVC = [[ParticipantsTableViewController alloc] initWithSessionManager:self.sessionManager];
+	}
+	
+    if (self.nearbyTVC == nil) {
+		self.nearbyTVC = [[NearbyTableViewController alloc] initWithSessionManager:self.sessionManager];
+	}
+    
+    self.participantsView = [[TitledTable alloc] initWithFrame:CGRectMake(0, 0, 320, 160) andTitle:@"Your burger"];
+    [self.view addSubview:self.participantsView];
+    [self.participantsView.tableView setDataSource:self.participantsTVC];
+    [self.participantsView.tableView setDelegate:self.participantsTVC];
+    
+    self.nearbyView = [[TitledTable alloc] initWithFrame:CGRectMake(0, 220, 320, 160) andTitle:@"Find ingredients"];
+	[self.view addSubview:self.nearbyView];
+    [self.nearbyView.tableView setDataSource:self.nearbyTVC];
+    [self.nearbyView.tableView setDelegate:self.nearbyTVC];
+    
+    [self peerListDidChange:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)peerListDidChange:(SessionManager *)session
+{
+	self.participantsTVC.participants = [session.connectedPeers copy];
+    self.nearbyTVC.nearby = [session.availablePeers copy];
+    
+	[self.participantsView.tableView reloadData];
+    [self.nearbyView.tableView reloadData];
+}
+
+- (void) didReceiveInvitation:(SessionManager *)session fromPeer:(NSString *)participantID;
+{
+    NSLog(@" --- DID RECEIVE INVITATION --- ");
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:UIDeviceProximityStateDidChangeNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
+        if ([UIDevice currentDevice].proximityState) {
+            [self acceptInvitation:nil];
+        }
+    }];
+    
+//    InviteViewController *inviteVC = [[InviteViewController alloc] initWithNibName:nil bundle:nil];
+//    [inviteVC.btnAccept addTarget:self action:@selector(acceptInvitation:) forControlEvents:UIControlEventTouchUpInside];
+    
+//    [self presentViewController:inviteVC animated:YES completion:^{}];
+}
+
+- (void) invitationDidFail:(SessionManager *)session fromPeer:(NSString *)participantID
+{
+    NSLog(@"Invitation FAIL");
+}
+
+- (void) acceptInvitation:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+//        [self.navigationController pushViewController:[[ParticipantViewController alloc] initWithNibName:nil bundle:nil] animated:YES];
+    }];
+    [self.sessionManager didAcceptInvitation];
+    [self peerListDidChange:self.sessionManager];
 }
 
 @end

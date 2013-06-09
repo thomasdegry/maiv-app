@@ -14,7 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        self.header.lblTitle.text = [@"Step 2 of 3" uppercaseString];
     }
     return self;
 }

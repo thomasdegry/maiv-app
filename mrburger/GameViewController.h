@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "User.h"
+#import "SessionManager.h"
 
 #import "LoginViewController.h"
 #import "GameStep1ViewController.h"
@@ -24,10 +25,11 @@ typedef enum {
     GameScreenResult = 4
 } GameScreen;
 
-@interface GameViewController : UINavigationController
+@interface GameViewController : UINavigationController <CloseButtonDelegate>
 
 @property (strong, nonatomic) User *user;
 @property GameScreen currentScreen;
+@property (strong, nonatomic) SessionManager *sessionManager;
 
 - (id)initGame;
 

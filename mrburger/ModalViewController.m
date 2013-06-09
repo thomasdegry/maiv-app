@@ -18,23 +18,18 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+//        self.mainView = [[ModalMainView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//        self.modal = [[ModalView alloc] initModal];
+//        self.modal.delegate = self;
     }
     return self;
 }
 
 - (void)loadView
-{
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    
-    ModalMainView *main = [[ModalMainView alloc] initWithFrame:bounds];
-    ModalView *modal = [[ModalView alloc] initModal];
-    modal.delegate = self;
-    
-    self.presentingView = [[ModalPresentingView alloc] initWithMain:main andModal:modal];
+{    
     self.view = self.presentingView;
     
-    [main.btnModal addTarget:self action:@selector(showModal:) forControlEvents:UIControlEventTouchUpInside];
+    [self.mainView.btnModal addTarget:self action:@selector(showModal:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)showModal:(id)sender

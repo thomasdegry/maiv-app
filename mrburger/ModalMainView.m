@@ -17,8 +17,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.btnModal = [[RoundedButton alloc] initWithText:@"Open Modal" andX:20 andY:20];
-        [self addSubview:self.btnModal];
+//        self.btnModal = [[RoundedButton alloc] initWithText:@"Open Modal" andX:20 andY:20];
+//        [self addSubview:self.btnModal];
     }
     return self;
 }

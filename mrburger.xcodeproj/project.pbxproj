@@ -69,13 +69,19 @@
 		4D4B9CCC17625AA3003673A0 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4B9CC217625AA3003673A0 /* AFXMLRequestOperation.m */; };
 		4D4B9CCD17625AA3003673A0 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4B9CC417625AA3003673A0 /* UIImageView+AFNetworking.m */; };
 		4D4B9CD11762678F003673A0 /* KGStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4B9CD01762678F003673A0 /* KGStatusBar.m */; };
+		EAB65B0E1763557000D327ED /* GameStepHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB65B0D1763556F00D327ED /* GameStepHeaderView.m */; };
+		EAB65B111763587200D327ED /* UILabel+MrBurger.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB65B101763587200D327ED /* UILabel+MrBurger.m */; };
+		EAB65B15176375AB00D327ED /* SessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB65B14176375AB00D327ED /* SessionManager.m */; };
+		EAB65B191763766800D327ED /* ParticipantsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB65B181763766800D327ED /* ParticipantsTableViewController.m */; };
+		EAB65B1C1763773400D327ED /* NearbyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB65B1B1763773400D327ED /* NearbyTableViewController.m */; };
+		EAB65B1E1763B2D300D327ED /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB65B1D1763B2D200D327ED /* GameKit.framework */; };
 		EAE29A171761D16D00E01E88 /* CircularButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A161761D16D00E01E88 /* CircularButton.m */; };
 		EAE29A1A1761D18900E01E88 /* RoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A191761D18900E01E88 /* RoundedButton.m */; };
 		EAE29A1D1761D19800E01E88 /* RoundedButtonAlternate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A1C1761D19800E01E88 /* RoundedButtonAlternate.m */; };
 		EAE29A201761D1F500E01E88 /* CloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A1F1761D1F500E01E88 /* CloseButton.m */; };
 		EAE29A231761D20400E01E88 /* InfoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A221761D20400E01E88 /* InfoButton.m */; };
 		EAE29A271761D3B700E01E88 /* RoundedView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A261761D3B700E01E88 /* RoundedView.m */; };
-		EAE29A2B1761D3F800E01E88 /* TitledTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A2A1761D3F800E01E88 /* TitledTableView.m */; };
+		EAE29A2B1761D3F800E01E88 /* TitledTable.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A2A1761D3F800E01E88 /* TitledTable.m */; };
 		EAE29A2E1761D45300E01E88 /* ZebraTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A2D1761D45300E01E88 /* ZebraTableView.m */; };
 		EAE29A311761D46100E01E88 /* ZebraTableViewAlternate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A301761D46100E01E88 /* ZebraTableViewAlternate.m */; };
 		EAE29A351761D50F00E01E88 /* ModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A341761D50F00E01E88 /* ModalViewController.m */; };
@@ -193,6 +199,17 @@
 		4D4B9CC417625AA3003673A0 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		4D4B9CCF1762678F003673A0 /* KGStatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGStatusBar.h; sourceTree = "<group>"; };
 		4D4B9CD01762678F003673A0 /* KGStatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGStatusBar.m; sourceTree = "<group>"; };
+		EAB65B0C1763556F00D327ED /* GameStepHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStepHeaderView.h; sourceTree = "<group>"; };
+		EAB65B0D1763556F00D327ED /* GameStepHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStepHeaderView.m; sourceTree = "<group>"; };
+		EAB65B0F1763587200D327ED /* UILabel+MrBurger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+MrBurger.h"; sourceTree = "<group>"; };
+		EAB65B101763587200D327ED /* UILabel+MrBurger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+MrBurger.m"; sourceTree = "<group>"; };
+		EAB65B13176375AB00D327ED /* SessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionManager.h; sourceTree = "<group>"; };
+		EAB65B14176375AB00D327ED /* SessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionManager.m; sourceTree = "<group>"; };
+		EAB65B171763766800D327ED /* ParticipantsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantsTableViewController.h; sourceTree = "<group>"; };
+		EAB65B181763766800D327ED /* ParticipantsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantsTableViewController.m; sourceTree = "<group>"; };
+		EAB65B1A1763773400D327ED /* NearbyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyTableViewController.h; sourceTree = "<group>"; };
+		EAB65B1B1763773400D327ED /* NearbyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyTableViewController.m; sourceTree = "<group>"; };
+		EAB65B1D1763B2D200D327ED /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		EAE29A151761D16D00E01E88 /* CircularButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularButton.h; sourceTree = "<group>"; };
 		EAE29A161761D16D00E01E88 /* CircularButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularButton.m; sourceTree = "<group>"; };
 		EAE29A181761D18900E01E88 /* RoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedButton.h; sourceTree = "<group>"; };
@@ -205,8 +222,8 @@
 		EAE29A221761D20400E01E88 /* InfoButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoButton.m; sourceTree = "<group>"; };
 		EAE29A251761D3B700E01E88 /* RoundedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedView.h; sourceTree = "<group>"; };
 		EAE29A261761D3B700E01E88 /* RoundedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedView.m; sourceTree = "<group>"; };
-		EAE29A291761D3F800E01E88 /* TitledTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitledTableView.h; sourceTree = "<group>"; };
-		EAE29A2A1761D3F800E01E88 /* TitledTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitledTableView.m; sourceTree = "<group>"; };
+		EAE29A291761D3F800E01E88 /* TitledTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitledTable.h; sourceTree = "<group>"; };
+		EAE29A2A1761D3F800E01E88 /* TitledTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitledTable.m; sourceTree = "<group>"; };
 		EAE29A2C1761D45300E01E88 /* ZebraTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZebraTableView.h; sourceTree = "<group>"; };
 		EAE29A2D1761D45300E01E88 /* ZebraTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZebraTableView.m; sourceTree = "<group>"; };
 		EAE29A2F1761D46100E01E88 /* ZebraTableViewAlternate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZebraTableViewAlternate.h; sourceTree = "<group>"; };
@@ -282,6 +299,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAB65B1E1763B2D300D327ED /* GameKit.framework in Frameworks */,
 				4D4B9CA51762274E003673A0 /* Accounts.framework in Frameworks */,
 				4D4B9C5C176142DA003673A0 /* Social.framework in Frameworks */,
 				4D4B9C1B176140AB003673A0 /* CoreData.framework in Frameworks */,
@@ -327,6 +345,7 @@
 		4D4B9C13176140AB003673A0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EAB65B1D1763B2D200D327ED /* GameKit.framework */,
 				4D4B9CA317622747003673A0 /* Accounts.framework */,
 				4D4B9C5A176142CC003673A0 /* Social.framework */,
 				4D4B9C541761415B003673A0 /* Parse.framework */,
@@ -479,6 +498,26 @@
 			path = KGStatusBar;
 			sourceTree = "<group>";
 		};
+		EAB65B12176374E700D327ED /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				EAB65B13176375AB00D327ED /* SessionManager.h */,
+				EAB65B14176375AB00D327ED /* SessionManager.m */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		EAB65B161763765400D327ED /* Tables */ = {
+			isa = PBXGroup;
+			children = (
+				EAB65B171763766800D327ED /* ParticipantsTableViewController.h */,
+				EAB65B181763766800D327ED /* ParticipantsTableViewController.m */,
+				EAB65B1A1763773400D327ED /* NearbyTableViewController.h */,
+				EAB65B1B1763773400D327ED /* NearbyTableViewController.m */,
+			);
+			name = Tables;
+			sourceTree = "<group>";
+		};
 		EAE29A141761D15800E01E88 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -505,6 +544,8 @@
 				EAE29A261761D3B700E01E88 /* RoundedView.m */,
 				EAE29A911761E59300E01E88 /* UIColor+MrBurger.h */,
 				EAE29A921761E59300E01E88 /* UIColor+MrBurger.m */,
+				EAB65B0F1763587200D327ED /* UILabel+MrBurger.h */,
+				EAB65B101763587200D327ED /* UILabel+MrBurger.m */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -512,8 +553,8 @@
 		EAE29A281761D3E100E01E88 /* Tables */ = {
 			isa = PBXGroup;
 			children = (
-				EAE29A291761D3F800E01E88 /* TitledTableView.h */,
-				EAE29A2A1761D3F800E01E88 /* TitledTableView.m */,
+				EAE29A291761D3F800E01E88 /* TitledTable.h */,
+				EAE29A2A1761D3F800E01E88 /* TitledTable.m */,
 				EAE29A2C1761D45300E01E88 /* ZebraTableView.h */,
 				EAE29A2D1761D45300E01E88 /* ZebraTableView.m */,
 				EAE29A2F1761D46100E01E88 /* ZebraTableViewAlternate.h */,
@@ -555,6 +596,7 @@
 		EAE29A4C1761DAF600E01E88 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				EAB65B12176374E700D327ED /* Networking */,
 				EAE29AE617623FE400E01E88 /* User */,
 				EAE29A5C1761DC8300E01E88 /* Login */,
 				EAE29A601761DCBA00E01E88 /* Step 1 */,
@@ -571,6 +613,8 @@
 				EAE29A571761DC0100E01E88 /* GameStepInfoView.m */,
 				EAE29A591761DC1100E01E88 /* GameStepMainView.h */,
 				EAE29A5A1761DC1100E01E88 /* GameStepMainView.m */,
+				EAB65B0C1763556F00D327ED /* GameStepHeaderView.h */,
+				EAB65B0D1763556F00D327ED /* GameStepHeaderView.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -602,6 +646,7 @@
 		EAE29A701761DDD000E01E88 /* Step 2 */ = {
 			isa = PBXGroup;
 			children = (
+				EAB65B161763765400D327ED /* Tables */,
 				EAE29A7A1761DE3100E01E88 /* GameStep2ViewController.h */,
 				EAE29A7B1761DE3100E01E88 /* GameStep2ViewController.m */,
 				EAE29A771761DE2200E01E88 /* GameStep2View.h */,
@@ -759,7 +804,7 @@
 				4D4B9C5F1761D35A003673A0 /* MainViewController.m in Sources */,
 				4D4B9C621761D3B2003673A0 /* InfoViewController.m in Sources */,
 				EAE29A271761D3B700E01E88 /* RoundedView.m in Sources */,
-				EAE29A2B1761D3F800E01E88 /* TitledTableView.m in Sources */,
+				EAE29A2B1761D3F800E01E88 /* TitledTable.m in Sources */,
 				EAE29A2E1761D45300E01E88 /* ZebraTableView.m in Sources */,
 				EAE29A311761D46100E01E88 /* ZebraTableViewAlternate.m in Sources */,
 				EAE29A351761D50F00E01E88 /* ModalViewController.m in Sources */,
@@ -805,6 +850,11 @@
 				4D4B9CCC17625AA3003673A0 /* AFXMLRequestOperation.m in Sources */,
 				4D4B9CCD17625AA3003673A0 /* UIImageView+AFNetworking.m in Sources */,
 				4D4B9CD11762678F003673A0 /* KGStatusBar.m in Sources */,
+				EAB65B0E1763557000D327ED /* GameStepHeaderView.m in Sources */,
+				EAB65B111763587200D327ED /* UILabel+MrBurger.m in Sources */,
+				EAB65B15176375AB00D327ED /* SessionManager.m in Sources */,
+				EAB65B191763766800D327ED /* ParticipantsTableViewController.m in Sources */,
+				EAB65B1C1763773400D327ED /* NearbyTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

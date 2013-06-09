@@ -41,14 +41,20 @@
 
 - (id)initGame
 {
-    LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+//    LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+    GameStep1ViewController *loginVC = [[GameStep1ViewController alloc] initWithNibName:nil bundle:nil];
     self = [self initWithRootViewController:loginVC];
     
     if (self) {
-        self.currentScreen = GameScreenLogin;
+        self.currentScreen = GameScreenStep1;
     }
     
     return self;
+}
+
+- (void)closeButtonClicked:(CloseButton *)closeButton
+{
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
 }
 
 - (void)showNextScreen
@@ -63,6 +69,10 @@
         
         case GameScreenStep1:
             nextScreen = [[GameStep2ViewController alloc] initWithNibName:nil bundle:nil];
+            self.sessionManager = [[SessionManager alloc] init];
+            self.sessionManager.tableViewControllerDelegate = nextScreen;
+            [self.sessionManager setupSession];
+            
             self.currentScreen = GameScreenStep2;
             break;
             

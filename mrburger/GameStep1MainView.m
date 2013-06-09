@@ -14,7 +14,14 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        self.header.lblTitle.text = [@"Step 1 of 3" uppercaseString];
+        
+        self.btnStart = [[RoundedButton alloc] initWithText:@"Get Started!" andX:20 andY:390];
+        [self addSubview:self.btnStart];
+        
+        UILabel *lblHello = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 60, 320, 55) andSize:FontAlternateSizeBig andColor:[UIColor orange]];
+        lblHello.text = [@"Hello there" uppercaseString];
+        [self addSubview:lblHello];
     }
     return self;
 }
