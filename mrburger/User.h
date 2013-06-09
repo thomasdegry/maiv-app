@@ -17,5 +17,6 @@
 @property (strong, nonatomic) NSString *deviceToken;
 
 - (id)initWithDict:(NSDictionary *)dict;
+- (id)initWithDisplayNameString:(NSString *)displayName;
 
 @end

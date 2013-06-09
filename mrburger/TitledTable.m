@@ -29,6 +29,8 @@
         // Initialization code
         self.title = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 0, frame.size.width, 30) andSize:FontAlternateSizeMedium andColor:[UIColor blue]];
         self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 30, frame.size.width, frame.size.height - 30) style:UITableViewStylePlain];
+        [self addSubview:self.title];
+        [self addSubview:self.tableView];
     }
     return self;
 }

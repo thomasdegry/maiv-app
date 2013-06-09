@@ -30,6 +30,7 @@
     self = [super init];
     if (self) {
         self.sessionManager = sessionManager;
+        self.sessionManager.tableViewControllerDelegate = self;
     }
     return self;
 }
@@ -37,7 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+	    
     if (self.participantsTVC == nil) {
 		self.participantsTVC = [[ParticipantsTableViewController alloc] initWithSessionManager:self.sessionManager];
 	}
@@ -46,17 +47,17 @@
 		self.nearbyTVC = [[NearbyTableViewController alloc] initWithSessionManager:self.sessionManager];
 	}
     
-    self.participantsView = [[TitledTable alloc] initWithFrame:CGRectMake(0, 0, 320, 160) andTitle:@"Your burger"];
-    [self.view addSubview:self.participantsView];
+    self.participantsView = [[TitledTable alloc] initWithFrame:CGRectMake(0, 60, 320, 160) andTitle:@"Your burger"];
+    [self.mainView addSubview:self.participantsView];
     [self.participantsView.tableView setDataSource:self.participantsTVC];
     [self.participantsView.tableView setDelegate:self.participantsTVC];
     
-    self.nearbyView = [[TitledTable alloc] initWithFrame:CGRectMake(0, 220, 320, 160) andTitle:@"Find ingredients"];
-	[self.view addSubview:self.nearbyView];
+    self.nearbyView = [[TitledTable alloc] initWithFrame:CGRectMake(0, 280, 320, 160) andTitle:@"Find ingredients"];
+	[self.mainView addSubview:self.nearbyView];
     [self.nearbyView.tableView setDataSource:self.nearbyTVC];
     [self.nearbyView.tableView setDelegate:self.nearbyTVC];
     
-    [self peerListDidChange:nil];
+    [self peerListDidChange:nil];    
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,9 +68,9 @@
 
 - (void)peerListDidChange:(SessionManager *)session
 {
-	self.participantsTVC.participants = [session.connectedPeers copy];
-    self.nearbyTVC.nearby = [session.availablePeers copy];
-    
+	self.participantsTVC.participants = [self.sessionManager.connectedPeers copy];
+    self.nearbyTVC.nearby = [self.sessionManager.availablePeers copy];
+
 	[self.participantsView.tableView reloadData];
     [self.nearbyView.tableView reloadData];
 }

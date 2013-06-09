@@ -76,7 +76,10 @@
     
 	NSUInteger row = [indexPath row];
 	
-	cell.textLabel.text = [self.sessionManager displayNameForPeer:[self.participants objectAtIndex:row]];
+    User *user = [self.sessionManager userForPeerID:[self.participants objectAtIndex:row]];
+    
+    cell.textLabel.text = user.name;
+    
 	return cell;
 }
 
