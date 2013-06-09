@@ -33,6 +33,7 @@
         }
         
         self.mainView = [[GameStep1MainView alloc] initWithIngredients:self.categoryIngredients andFrame:[[UIScreen mainScreen] bounds]];
+        [self.mainView.btnStart addTarget:self action:@selector(startGame:) forControlEvents:UIControlEventTouchUpInside];
         self.modal = [[GameStep1InfoView alloc] initModal];
         self.modal.delegate = self;
         
