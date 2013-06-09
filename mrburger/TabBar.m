@@ -47,10 +47,14 @@
     if([selectedIndex isEqualToString:@"0"]) {
         [UIView animateWithDuration:.3 animations:^{
             self.driehoek.frame = CGRectMake(42, -8, self.drie.size.width, self.drie.size.height);
+            self.btnInfo.tabbarLabel.textColor = [UIColor orange];
+            self.btnMenus.tabbarLabel.textColor = [UIColor beige];
         }];
     } else {
         [UIView animateWithDuration:.3 animations:^{
             self.driehoek.frame = CGRectMake(260, -8, self.drie.size.width, self.drie.size.height);
+                self.btnInfo.tabbarLabel.textColor = [UIColor beige];
+            self.btnMenus.tabbarLabel.textColor = [UIColor orange];
         }];
     }
 }

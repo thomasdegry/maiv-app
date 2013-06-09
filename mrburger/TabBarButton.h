@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) NSString *iconName;
 @property (strong, nonatomic) NSString *label;
+@property (strong, nonatomic) UILabel *tabbarLabel;
 
 - (id)initWithIconName:(NSString *)iconName frame:(CGRect)frame andLabel:(NSString *)label;
 
