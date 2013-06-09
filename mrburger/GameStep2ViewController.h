@@ -9,6 +9,7 @@
 #import "GameStepViewController.h"
 
 #import "TitledTable.h"
+#import "TitledTableAlternate.h"
 
 #import "SessionManager.h"
 
@@ -26,7 +27,7 @@
 @property (strong, nonatomic) NearbyTableViewController *nearbyTVC;
 
 @property (strong, nonatomic) TitledTable *participantsView;
-@property (strong, nonatomic) TitledTable *nearbyView;
+@property (strong, nonatomic) TitledTableAlternate *nearbyView;
 
 @property (strong, nonatomic) SessionManager *sessionManager;
 

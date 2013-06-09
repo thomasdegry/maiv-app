@@ -16,6 +16,7 @@
 
 @synthesize sessionManager = _sessionManager;
 @synthesize nearby = _nearby;
+@synthesize unavailable = _unavailable;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -41,6 +42,8 @@
 {
     [super viewDidLoad];
     [self.tableView registerClass:[NearbyCell class] forCellReuseIdentifier:@"NearbyCellIdentifier"];
+    self.unavailable = [[UnavailableCell alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 70)];
+    [self.view addSubview:self.unavailable];
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,7 +63,7 @@
     if (self.nearby) {
         return [self.nearby count];
     }
-    
+        
     return 0;
 }
 

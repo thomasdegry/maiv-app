@@ -51,13 +51,17 @@
     [self.mainView addSubview:self.participantsView];
     [self.participantsView.tableView setDataSource:self.participantsTVC];
     [self.participantsView.tableView setDelegate:self.participantsTVC];
+    self.participantsView.tableView.hidden = NO;
+    self.participantsView.unavailable.hidden = YES;
     
-    self.nearbyView = [[TitledTable alloc] initWithFrame:CGRectMake(15, 280, 290, 160) andTitle:@"Find ingredients"];
+    self.nearbyView = [[TitledTableAlternate alloc] initWithFrame:CGRectMake(15, 280, 290, 160) andTitle:@"Find ingredients"];
 	[self.mainView addSubview:self.nearbyView];
     [self.nearbyView.tableView setDataSource:self.nearbyTVC];
     [self.nearbyView.tableView setDelegate:self.nearbyTVC];
-    
-    [self peerListDidChange:nil];    
+    self.nearbyView.tableView.hidden = YES;
+    self.nearbyView.unavailable.hidden = NO;
+
+    [self peerListDidChange:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,6 +75,14 @@
 	self.participantsTVC.participants = [self.sessionManager.connectedPeers copy];
     self.nearbyTVC.nearby = [self.sessionManager.availablePeers copy];
 
+    if ([self.sessionManager.availablePeers count] == 0) {
+        self.nearbyView.tableView.hidden = YES;
+        self.nearbyView.unavailable.hidden = NO;
+    } else {
+        self.nearbyView.tableView.hidden = NO;
+        self.nearbyView.unavailable.hidden = YES;
+    }
+    
 	[self.participantsView.tableView reloadData];
     [self.nearbyView.tableView reloadData];
 }

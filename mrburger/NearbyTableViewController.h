@@ -11,6 +11,7 @@
 #import "ZebraTableViewController.h"
 
 #import "NearbyCell.h"
+#import "UnavailableCell.h"
 
 #import "SessionManager.h"
 
@@ -19,6 +20,7 @@
 @property (strong, nonatomic) SessionManager *sessionManager;
 
 @property (strong, nonatomic) NSMutableArray *nearby;
+@property (strong, nonatomic) UnavailableCell *unavailable;
 
 - (id)initWithSessionManager:(SessionManager *)sessionManager;
 
