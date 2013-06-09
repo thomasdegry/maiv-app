@@ -78,6 +78,12 @@
         
         NSLog(@"User initted with device token %@", gameVC.user.deviceToken);
         
+        //Save user data to user defaults
+        [[NSUserDefaults standardUserDefaults] setObject:gameVC.user.id forKey:@"facebook_id"];
+        [[NSUserDefaults standardUserDefaults] setObject:gameVC.user.name forKey:@"facebook_name"];
+        [[NSUserDefaults standardUserDefaults] setObject:gameVC.user.gender forKey:@"facebook_gender"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
         [gameVC showNextScreen];
 
         //[self saveToServer];
