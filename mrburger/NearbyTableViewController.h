@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ZebraTableViewController.h"
+
 #import "SessionManager.h"
 
-@interface NearbyTableViewController : UITableViewController <UITableViewDataSource, UITableViewDataSource>
+@interface NearbyTableViewController : ZebraTableViewController <UITableViewDataSource, UITableViewDataSource>
 
 @property (strong, nonatomic) SessionManager *sessionManager;
 

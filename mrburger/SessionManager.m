@@ -12,6 +12,7 @@
 
 @synthesize sessionID = _sessionID;
 @synthesize session = _session;
+@synthesize user = _user;
 @synthesize currentConfPeerID = _currentConfPeerID;
 @synthesize connectedPeers = _connectedPeers;
 @synthesize availablePeers = _availablePeers;
@@ -36,6 +37,17 @@
 	return self;
 }
 
+- (id)initWithUser:(User *)user
+{
+    self = [self init];
+    
+    if (self) {
+        self.user = user;
+    }
+    
+    return self;
+}
+
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -48,9 +60,11 @@
 
 // Creates a GKSession and advertises availability to Peers
 - (void) setupSession
-{
+{    
 	// GKSession will default to using the device name as the display name
-	self.session = [[GKSession alloc] initWithSessionID:self.sessionID displayName:@"Pieter£Test" sessionMode:GKSessionModePeer];
+    NSString *displayName = [NSString stringWithFormat:@"%@£%@£%@", self.user.id, self.user.name, self.user.gender];
+        
+	self.session = [[GKSession alloc] initWithSessionID:self.sessionID displayName:displayName sessionMode:GKSessionModePeer];
     self.session.delegate = self;
 	[self.session setDataReceiveHandler:self withContext:nil];
     self.session.disconnectTimeout = 3600.0;
@@ -263,10 +277,9 @@
 //    }
 //}
 
-- (NSString *) displayNameForPeer:(NSString *)peerID
+- (User *)userForPeerID:(NSString *)peerID
 {
-    NSLog(@"PEER ID -- %@", peerID);
-	return [[[self.session displayNameForPeer:peerID] componentsSeparatedByString:@"£"] objectAtIndex:0];
+    return [[User alloc] initWithDisplayNameString:[self.session displayNameForPeer:peerID]];
 }
 
 @end

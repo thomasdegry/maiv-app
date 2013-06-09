@@ -27,4 +27,16 @@
     return self;
 }
 
+- (id)initWithDisplayNameString:(NSString *)displayName
+{
+    self = [super init];
+    if (self) {
+        NSArray *userInfo = [displayName componentsSeparatedByString:@"£"];
+        self.id = [userInfo objectAtIndex:0];
+        self.name = [userInfo objectAtIndex:1];
+        self.gender = [userInfo objectAtIndex:2];
+    }
+    return self;
+}
+
 @end

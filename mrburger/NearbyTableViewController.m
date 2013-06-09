@@ -76,7 +76,9 @@
     
 	NSUInteger row = [indexPath row];
 	
-	cell.textLabel.text = [self.sessionManager displayNameForPeer:[self.nearby objectAtIndex:row]];
+    User *user = [self.sessionManager userForPeerID:[self.nearby objectAtIndex:row]];
+    
+    cell.textLabel.text = user.name;
     
 	return cell;
 }

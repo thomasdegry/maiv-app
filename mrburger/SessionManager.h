@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
 
+#import "User.h"
+
 typedef enum {
     ConnectionStateDisconnected,
     ConnectionStateConnecting,
@@ -20,6 +22,8 @@ typedef enum {
 @property (strong, nonatomic) NSString *sessionID;
 @property (strong, nonatomic) GKSession *session;
 
+@property (strong, nonatomic) User *user;
+
 @property (strong, nonatomic) NSString *currentConfPeerID;
 @property (strong, nonatomic) NSMutableArray *connectedPeers;
 @property (strong, nonatomic) NSMutableArray *availablePeers;
@@ -27,13 +31,15 @@ typedef enum {
 
 @property (assign, nonatomic) ConnectionState sessionState;
 
+- (id)initWithUser:(User *)user;
+
 - (void) setupSession;
 - (void) connect:(NSString *)peerID;
 - (BOOL) didAcceptInvitation;
 - (void) didDeclineInvitation;
 //- (void) sendPacket:(NSData*)data ofType:(PacketType)type;
 //- (void) disconnectCurrentCall;
-- (NSString *) displayNameForPeer:(NSString *)peerID;
+- (User *)userForPeerID:(NSString *)peerID;
 
 @end
 
