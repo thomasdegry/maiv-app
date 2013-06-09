@@ -47,8 +47,10 @@
         self = [self initWithRootViewController:startVC];
         if (self) {
             self.currentScreen = GameScreenLogin;
+        
         }
-    } else {
+    }
+        else {
         //User is logged in with facebook
         self.user = [[User alloc] init];
         self.user.id = [[NSUserDefaults standardUserDefaults] objectForKey:@"facebook_id"];

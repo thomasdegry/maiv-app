@@ -89,6 +89,8 @@
 		4D4B9D8B1764B485003673A0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9D8A1764B484003673A0 /* Default.png */; };
 		4D4B9D8D1764B7A3003673A0 /* INYOURFACE@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9D8C1764B7A2003673A0 /* INYOURFACE@2x.png */; };
 		4D4B9D8F1764B7A7003673A0 /* INYOURFACE.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9D8E1764B7A6003673A0 /* INYOURFACE.png */; };
+		9C5A35731764DE8D007A0BA1 /* SequenceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5A35721764DE8D007A0BA1 /* SequenceView.m */; };
+		9C5A35751764E12A007A0BA1 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 9C5A35741764E12A007A0BA1 /* images */; };
 		EAB40D121764A749007A4106 /* ParticipantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB40D111764A749007A4106 /* ParticipantCell.m */; };
 		EAB40D171764B520007A4106 /* ZebraTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB40D161764B520007A4106 /* ZebraTableViewController.m */; };
 		EAB65B0E1763557000D327ED /* GameStepHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB65B0D1763556F00D327ED /* GameStepHeaderView.m */; };
@@ -248,6 +250,9 @@
 		4D4B9D8A1764B484003673A0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4D4B9D8C1764B7A2003673A0 /* INYOURFACE@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "INYOURFACE@2x.png"; sourceTree = "<group>"; };
 		4D4B9D8E1764B7A6003673A0 /* INYOURFACE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = INYOURFACE.png; sourceTree = "<group>"; };
+		9C5A35711764DE8D007A0BA1 /* SequenceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceView.h; sourceTree = "<group>"; };
+		9C5A35721764DE8D007A0BA1 /* SequenceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceView.m; sourceTree = "<group>"; };
+		9C5A35741764E12A007A0BA1 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		EAB40D101764A749007A4106 /* ParticipantCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantCell.h; sourceTree = "<group>"; };
 		EAB40D111764A749007A4106 /* ParticipantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantCell.m; sourceTree = "<group>"; };
 		EAB40D151764B520007A4106 /* ZebraTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZebraTableViewController.h; sourceTree = "<group>"; };
@@ -428,6 +433,7 @@
 		4D4B9C1C176140AB003673A0 /* mrburger */ = {
 			isa = PBXGroup;
 			children = (
+				9C5A35741764E12A007A0BA1 /* images */,
 				4D4B9CCE1762678F003673A0 /* KGStatusBar */,
 				4D4B9CB117625AA3003673A0 /* AFNetworking */,
 				EAE29AE217621B4B00E01E88 /* Tabbar */,
@@ -435,6 +441,7 @@
 				EAE29A141761D15800E01E88 /* Buttons */,
 				EAE29A4C1761DAF600E01E88 /* Game */,
 				EAE29A241761D37D00E01E88 /* General */,
+				9C5A35701764DE41007A0BA1 /* Loader */,
 				EAE29A3F1761D87600E01E88 /* Menus */,
 				EAE29A321761D4F200E01E88 /* Modal */,
 				EAE29A281761D3E100E01E88 /* Tables */,
@@ -580,6 +587,15 @@
 				4D4B9D55176482B1003673A0 /* tabbar_truck@2x.png */,
 			);
 			name = Tabbar;
+			sourceTree = "<group>";
+		};
+		9C5A35701764DE41007A0BA1 /* Loader */ = {
+			isa = PBXGroup;
+			children = (
+				9C5A35711764DE8D007A0BA1 /* SequenceView.h */,
+				9C5A35721764DE8D007A0BA1 /* SequenceView.m */,
+			);
+			name = Loader;
 			sourceTree = "<group>";
 		};
 		EAB65B12176374E700D327ED /* Networking */ = {
@@ -893,6 +909,7 @@
 				4D4B9D8B1764B485003673A0 /* Default.png in Resources */,
 				4D4B9D8D1764B7A3003673A0 /* INYOURFACE@2x.png in Resources */,
 				4D4B9D8F1764B7A7003673A0 /* INYOURFACE.png in Resources */,
+				9C5A35751764E12A007A0BA1 /* images in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -969,6 +986,7 @@
 				4D4B9D7017649783003673A0 /* TabBarButton.m in Sources */,
 				EAB40D121764A749007A4106 /* ParticipantCell.m in Sources */,
 				EAB40D171764B520007A4106 /* ZebraTableViewController.m in Sources */,
+				9C5A35731764DE8D007A0BA1 /* SequenceView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
