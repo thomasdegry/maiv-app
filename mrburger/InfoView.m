@@ -18,8 +18,11 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.headerImg = [UIImage imageNamed:@"home_logo.png"];
+       
+        
+        self.headerImg = [UIImage imageNamed:@"homelogo2.png"];
         UIImageView* headerView = [[UIImageView alloc] initWithImage:self.headerImg];
+        headerView.frame = CGRectMake(0, -300, 320, 498);
         [self addSubview: headerView];
         
         self.headerTypo = [UIImage imageNamed:@"hometypo"];
@@ -31,6 +34,13 @@
         UIImageView* arrowView = [[UIImageView alloc] initWithImage:arrowDown];
         arrowView.frame = CGRectMake(155, 365, 7, 122);
         [self addSubview: arrowView];
+        
+        
+        UIImage *scrollImage = [UIImage imageNamed:@"scrollview2"];
+        UIImageView* scrollImageView = [[UIImageView alloc] initWithImage:scrollImage];
+        scrollImageView.frame = CGRectMake(0, 510, 320, 1213);
+        [self addSubview: scrollImageView];
+        
     }
     return self;
 }

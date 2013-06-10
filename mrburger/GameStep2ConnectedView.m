@@ -1,19 +1,20 @@
 //
-//  GameStep2InviteView.m
+//  GameStep2ConnectedView.m
 //  mrburger
 //
-//  Created by Pieter Beulque on 9/06/13.
+//  Created by Pieter Beulque on 10/06/13.
 //  Copyright (c) 2013 devine. All rights reserved.
 //
 
-#import "GameStep2InviteView.h"
+#import "GameStep2ConnectedView.h"
 
-@implementation GameStep2InviteView
+@implementation GameStep2ConnectedView
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        // Initialization code
     }
     return self;
 }
@@ -21,11 +22,11 @@
 - (id)initModal
 {
     self = [super initModal];
-    if (self) {            
-        self.title.text = @"Someone wants you!";
+    if (self) {
+        self.title.text = @"Put me back!";
         
         UILabel *paragraph = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(130, 75, 160, 120) andSize:FontAlternateSizeSmall andColor:[UIColor blueDarkened]];
-        paragraph.text = [@"Build a burger with your iPhones! Put your iPhone underneath the other to accept the invitation!" uppercaseString];
+        paragraph.text = [@"If you could keep your iPhones together until you made your burger, that would be awesome" uppercaseString];
         [paragraph makeParagraph];
         [self addSubview:paragraph];
     }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>ingredients</key>
+		<array>
+			<string>Tomato Sauce</string>
+			<string>Mayonnaise</string>
+			<string>Mustard</string>
+			<string>Pickle</string>
+			<string>Onion</string>
+			<string>Tomato</string>
+			<string>Lettuce</string>
+			<string>Cheese</string>
+			<string>Beef</string>
+		</array>
+		<key>name</key>
+		<string>Mr Burger</string>
+		<key>price</key>
+		<string>9</string>
+		<key>image</key>
+		<string>icon_mrburger</string>
+	</dict>
+	<dict>
+		<key>ingredients</key>
+		<array>
+			<string>Beef</string>
+			<string>Cheese</string>
+			<string>Lettuce</string>
+			<string>Bacon</string>
+			<string>Caramelised</string>
+			<string>Onions</string>
+			<string>Pickle</string>
+			<string>BBQ Sauce</string>
+			<string>Mayonnaise</string>
+		</array>
+		<key>name</key>
+		<string>Mr Meat</string>
+		<key>price</key>
+		<string>10</string>
+		<key>image</key>
+		<string>icon_mrmeat</string>
+	</dict>
+	<dict>
+		<key>ingredients</key>
+		<array>
+			<string>Falafel</string>
+			<string>Cheese</string>
+			<string>Lettuce</string>
+			<string>Tomato</string>
+			<string>Onion</string>
+			<string>Pickle</string>
+			<string>Mustard</string>
+			<string>Mayonnaise</string>
+			<string>Tomato Sauce</string>
+		</array>
+		<key>name</key>
+		<string>Mr Veg</string>
+		<key>price</key>
+		<string>9</string>
+		<key>image</key>
+		<string>icon_mrveg</string>
+	</dict>
+</array>
+</plist>

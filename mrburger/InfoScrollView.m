@@ -1,14 +1,14 @@
 //
-//  GameStep2ConnectingView.m
+//  InfoScrollView.m
 //  mrburger
 //
-//  Created by Pieter Beulque on 10/06/13.
+//  Created by tatsBookPro on 10/06/13.
 //  Copyright (c) 2013 devine. All rights reserved.
 //
 
-#import "GameStep2ConnectingView.h"
+#import "InfoScrollView.h"
 
-@implementation GameStep2ConnectingView
+@implementation InfoScrollView
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -16,19 +16,6 @@
     if (self) {
         // Initialization code
     }
-    return self;
-}
-
-- (id)initModal
-{
-    self = [super initModal];
-    if (self) {        
-        self.title.text = @"Connecting!";
-        
-        Loader *loader = [[Loader alloc] initWithFrame:CGRectMake(135, 75, 50, 50)];
-        [self addSubview:loader];
-    }
-    
     return self;
 }
 

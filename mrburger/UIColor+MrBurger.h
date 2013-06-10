@@ -24,4 +24,6 @@
 
 + (UIColor *) beige;
 
++ (UIColor *) brown;
+
 @end

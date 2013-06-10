@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
-@interface InfoView : RoundedView
+@interface InfoView : UIScrollView
 
 @property (nonatomic, strong) UIImage *headerImg;
 @property (nonatomic, strong) UIImage *headerTypo;

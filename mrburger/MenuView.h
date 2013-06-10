@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Menu.h"
 
 @interface MenuView : UIView
+
+@property (strong, nonatomic) Menu *burger;
+@property (strong, nonatomic) UIImage *icon;
+@property (strong, nonatomic) NSMutableArray *labels;
+@property (strong, nonatomic) UILabel *price;
+
+
+- (id)initWithFrame:(CGRect)frame andBurger:(Menu*)burger;
+- (void)animate;
 
 @end
