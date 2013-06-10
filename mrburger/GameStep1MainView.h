@@ -12,7 +12,7 @@
 #import "Scrollimage.h"
 #import "Ingredient.h"
 
-@interface GameStep1MainView : GameStepMainView
+@interface GameStep1MainView : GameStepMainView <UIScrollViewDelegate>
 
 @property (strong, nonatomic) RoundedButton *btnStart;
 
@@ -22,6 +22,10 @@
 
 @property (nonatomic,strong) CMMotionManager *motMan;
 @property (nonatomic) CMAcceleration acceleration;
+
+@property (strong, nonatomic) UIImageView *arrowLeft;
+@property (strong, nonatomic) UIImageView *arrowRight;
+@property (strong, nonatomic) UILabel *label;
 
 - (id)initWithIngredients:(NSMutableArray *)ingredients andFrame:(CGRect)frame;
 - (void) stopMotionUpdates;

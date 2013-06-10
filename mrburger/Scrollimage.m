@@ -27,7 +27,7 @@
         
         UIImage *shadow = [UIImage imageNamed:@"shadow.png"];
         UIImageView *shadowIV = [[UIImageView alloc] initWithImage:shadow];
-        shadowIV.frame = CGRectMake((frame.size.width - shadow.size.width) /2, 40, shadow.size.width, shadow.size.height);
+        shadowIV.frame = CGRectMake((frame.size.width - shadow.size.width) /2, 70 , shadow.size.width, shadow.size.height);
         [self addSubview:shadowIV];
     }
     return self;

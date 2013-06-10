@@ -1,11 +1,3 @@
-//
-//  GameStep1MainView.m
-//  mrburger
-//
-//  Created by Pieter Beulque on 7/06/13.
-//  Copyright (c) 2013 devine. All rights reserved.
-//
-
 #import "GameStep1MainView.h"
 
 @implementation GameStep1MainView
@@ -16,7 +8,7 @@
 
 #define kFilteringFactor 0.1
 
-static UIAccelerationValue rollingX=0, rollingY=0, rollingZ=0;
+static UIAccelerationValue rollingX=0;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -40,6 +32,22 @@ static UIAccelerationValue rollingX=0, rollingY=0, rollingZ=0;
     
     if (self) {
         self.categoryIngredients = ingredients;
+        
+        Ingredient *ingredient = [self.categoryIngredients objectAtIndex:0];
+        UILabel *greeting;
+        NSString *gender = @"";
+        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"facebook_gender"] isEqualToString:@"femal"]) {
+            gender = @"Mr.";
+            greeting = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 100, frame.size.width, 40) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
+            greeting.text = [[NSString stringWithFormat:@"%@ %@", gender, ingredient.type] uppercaseString];
+        } else {
+            gender = @"Ms.";
+            greeting = [[UILabel alloc] initAWithFontMissionAndFrame:CGRectMake(0, 100, frame.size.width, 40) andSize:FontMissionSizeBig andColor:[UIColor blue]];
+            greeting.text = [NSString stringWithFormat:@"%@ %@", gender, ingredient.type];
+        }
+
+        [self addSubview:greeting];
+        
         [self createScrollView];
     }
     
@@ -50,6 +58,7 @@ static UIAccelerationValue rollingX=0, rollingY=0, rollingZ=0;
 {
     self.scrollImages = [[NSMutableArray alloc] init];
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 100, [[UIScreen mainScreen] bounds].size.width, 235)];
+    self.scrollView.delegate = self;
     
     int xPos = 0;
     for (Ingredient *ingredient in self.categoryIngredients) {
@@ -64,26 +73,31 @@ static UIAccelerationValue rollingX=0, rollingY=0, rollingZ=0;
     float width = [self.scrollImages count] * [[UIScreen mainScreen] bounds].size.width;
     self.scrollView.contentSize = CGSizeMake(width, 235);
     [self.scrollView setShowsHorizontalScrollIndicator:NO];
-    
     [self addSubview:self.scrollView];
     
     int middleIndex = ceil([self.scrollImages count] / 2);
-    NSLog(@"Middle index is %i en er zijn %i items in de array", middleIndex, [self.scrollImages count]);
+    Ingredient *middleIngredient = [self.categoryIngredients objectAtIndex:middleIndex-1];
     [self.scrollView setContentOffset:CGPointMake((middleIndex - 1) * [[UIScreen mainScreen] bounds].size.width, 0) animated:NO];
     
     
     //Arrows
     UIImage *arrowLeft = [UIImage imageNamed:@"arrow.png"];
-    UIImageView *arrowLeftIV = [[UIImageView alloc] initWithImage:arrowLeft];
-    arrowLeftIV.frame = CGRectMake(19, 183, arrowLeft.size.width, arrowLeft.size.height);
-    [self addSubview:arrowLeftIV];
+    self.arrowLeft = [[UIImageView alloc] initWithImage:arrowLeft];
+    self.arrowLeft.frame = CGRectMake(19, 183, arrowLeft.size.width, arrowLeft.size.height);
+    [self addSubview:self.arrowLeft];
     
-    UIImageView *arrowRightIV = [[UIImageView alloc] initWithImage:arrowLeft];
-    arrowRightIV.transform = CGAffineTransformMakeRotation(3.14159265);
-    arrowRightIV.frame = CGRectMake(292, 183, arrowLeft.size.width, arrowLeft.size.height);
-    [self addSubview:arrowRightIV];
+    self.arrowRight = [[UIImageView alloc] initWithImage:arrowLeft];
+    self.arrowRight.transform = CGAffineTransformMakeRotation(3.14159265);
+    self.arrowRight.frame = CGRectMake(292, 183, arrowLeft.size.width, arrowLeft.size.height);
+    [self addSubview:self.arrowRight];
     
     [self startGyroLogging];
+    
+    
+    //Label
+    self.label = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 310, [[UIScreen mainScreen] bounds].size.width, 50) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
+    self.label.text = [middleIngredient.name uppercaseString];
+    [self addSubview:self.label];
 }
 
 -(void) startGyroLogging
@@ -102,36 +116,41 @@ static UIAccelerationValue rollingX=0, rollingY=0, rollingZ=0;
 - (void) moveByMotion:(CMAccelerometerData *)motion andExtraMovement:(float)extraMov
 {
     rollingX = (motion.acceleration.x * kFilteringFactor) + (rollingX * (1.0 - kFilteringFactor));
-    NSLog(@"%f", rollingX);
     //if(abs(rollingX) > 0.2) {
-        NSLog(@"hallo");
         float xOffSet = self.scrollView.contentOffset.x;
         xOffSet = xOffSet - (rollingX * 10);
         if(xOffSet < 0) {
             xOffSet = 0;
-        } else if(xOffSet > 1280) {
-            xOffSet = 1280;
+        } else if(xOffSet > ([self.scrollImages count] - 1) * [[UIScreen mainScreen] bounds].size.width) {
+            xOffSet = ([self.scrollImages count] - 1) * [[UIScreen mainScreen] bounds].size.width;
         }
         
         [self.scrollView setContentOffset:CGPointMake(xOffSet, 0) animated:NO];
     //}
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    int index = (((self.scrollView.contentOffset.x) + 80)) / [UIScreen mainScreen].bounds.size.width;
+    if(index == 0) {
+        self.arrowLeft.hidden = YES;
+        self.arrowRight.hidden = NO;
+    } else if(index == ([self.scrollImages count] - 1)) {
+        self.arrowLeft.hidden = NO;
+        self.arrowRight.hidden = YES;
+    } else {
+        self.arrowLeft.hidden = NO;
+        self.arrowRight.hidden = NO;
+    }
+    
+    Ingredient *currentIngredient = [self.categoryIngredients objectAtIndex:index];
+    self.label.text = [currentIngredient.name uppercaseString];
+    
+}
+
 - (void) stopMotionUpdates
 {
-    NSLog(@"AKKAKAKAKAKKAAK");
     [self.motMan stopDeviceMotionUpdates];
     [self.motMan stopAccelerometerUpdates];
 }
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end
