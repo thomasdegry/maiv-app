@@ -16,6 +16,7 @@
 
 @synthesize app = _app;
 @synthesize tabBar = _tabBar;
+@synthesize gameVC = _gameVC;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -56,9 +57,16 @@
 
 - (void)showGame:(id)sender
 {
-    GameViewController *gameVC = [[GameViewController alloc] initGame];
+    self.gameVC = [[GameViewController alloc] initGame];
     //LoginViewController *gameVC = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
-    [self presentViewController:gameVC animated:YES completion:^{}];
+    [self presentViewController:self.gameVC animated:YES completion:^{}];
+}
+
+- (void)dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion
+{
+    [super dismissViewControllerAnimated:flag completion:completion];
+    NSLog(@"Dismissing view controller");
+    self.gameVC = nil;
 }
 
 - (void)showMenus:(id)sender

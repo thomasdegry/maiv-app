@@ -12,6 +12,11 @@
 
 @synthesize scrollView = _scrollView;
 @synthesize scrollImages = _scrollImages;
+@synthesize motMan = _motMan;
+
+#define kFilteringFactor 0.1
+
+static UIAccelerationValue rollingX=0, rollingY=0, rollingZ=0;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -62,6 +67,10 @@
     
     [self addSubview:self.scrollView];
     
+    int middleIndex = ceil([self.scrollImages count] / 2);
+    NSLog(@"Middle index is %i en er zijn %i items in de array", middleIndex, [self.scrollImages count]);
+    [self.scrollView setContentOffset:CGPointMake((middleIndex - 1) * [[UIScreen mainScreen] bounds].size.width, 0) animated:NO];
+    
     
     //Arrows
     UIImage *arrowLeft = [UIImage imageNamed:@"arrow.png"];
@@ -81,7 +90,40 @@
 {
     self.motMan = [[CMMotionManager alloc] init];
     self.motMan.accelerometerUpdateInterval = 10/60;
+    
+    if(self.motMan.accelerometerAvailable){
+        [self.motMan startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
+            [self moveByMotion:accelerometerData andExtraMovement:0];
+        }];
+        
+    }
 }
+
+- (void) moveByMotion:(CMAccelerometerData *)motion andExtraMovement:(float)extraMov
+{
+    rollingX = (motion.acceleration.x * kFilteringFactor) + (rollingX * (1.0 - kFilteringFactor));
+    NSLog(@"%f", rollingX);
+    //if(abs(rollingX) > 0.2) {
+        NSLog(@"hallo");
+        float xOffSet = self.scrollView.contentOffset.x;
+        xOffSet = xOffSet - (rollingX * 10);
+        if(xOffSet < 0) {
+            xOffSet = 0;
+        } else if(xOffSet > 1280) {
+            xOffSet = 1280;
+        }
+        
+        [self.scrollView setContentOffset:CGPointMake(xOffSet, 0) animated:NO];
+    //}
+}
+
+- (void) stopMotionUpdates
+{
+    NSLog(@"AKKAKAKAKAKKAAK");
+    [self.motMan stopDeviceMotionUpdates];
+    [self.motMan stopAccelerometerUpdates];
+}
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

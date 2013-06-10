@@ -24,5 +24,6 @@
 @property (nonatomic) CMAcceleration acceleration;
 
 - (id)initWithIngredients:(NSMutableArray *)ingredients andFrame:(CGRect)frame;
+- (void) stopMotionUpdates;
 
 @end

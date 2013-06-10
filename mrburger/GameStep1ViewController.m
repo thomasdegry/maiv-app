@@ -42,6 +42,11 @@
     return self;
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    NSLog(@"[VC] ******* VIEW WILL DISAPPEAR");
+    [self.mainView stopMotionUpdates];
+}
+
 
 
 - (void)startGame:(id)sender

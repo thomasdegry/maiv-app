@@ -18,4 +18,6 @@
 @property (strong, nonatomic) AppViewController *app;
 @property (strong, nonatomic) TabBar *tabBar;
 
+@property (strong, nonatomic) GameViewController *gameVC;
+
 @end
