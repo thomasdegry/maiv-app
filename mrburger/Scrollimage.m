@@ -42,7 +42,7 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSString stringWithFormat:@"%i", self.order], @"ingredientID", nil];
+    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSString stringWithFormat:@"%i", self.order], @"order", self.id, @"id", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SLIDE_TOUCH" object:self userInfo:dict];
 }
 

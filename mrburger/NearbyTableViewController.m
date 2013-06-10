@@ -83,8 +83,16 @@
     NSData *userImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=104&height=104", user.id]]];
     UIImage *userImage = [UIImage imageWithData:userImageData scale:0.5f];
     
-    cell.textLabel.text = [user.name uppercaseString];
-    cell.detailTextLabel.text = user.gender;
+    NSString *prefix;
+    
+    if ([user.gender isEqualToString:@"m"]) {
+        prefix = @"Mr";
+    } else {
+        prefix = @"Ms";
+    }
+    
+    cell.textLabel.text = [[NSString stringWithFormat:@"%@. %@", prefix, user.ingredient.name] uppercaseString];
+    cell.detailTextLabel.text = user.name;
     cell.imageView.image = userImage;
     
 	return cell;

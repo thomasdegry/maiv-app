@@ -20,6 +20,7 @@ static UIAccelerationValue rollingX=0;
         
         self.btnStart = [[RoundedButton alloc] initWithText:@"Add to burger!" andX:20 andY:(frame.size.height - 85)];
         [self addSubview:self.btnStart];
+        self.btnStart.hidden = YES;
         
         UILabel *lblHello = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 60, 320, 55) andSize:FontAlternateSizeBig andColor:[UIColor orange]];
         lblHello.text = [@"Hello there" uppercaseString];
@@ -45,7 +46,7 @@ static UIAccelerationValue rollingX=0;
         Ingredient *ingredient = [self.categoryIngredients objectAtIndex:0];
         UILabel *greeting;
         NSString *gender = @"";
-        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"facebook_gender"] isEqualToString:@"male"]) {
+        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"facebook_gender"] isEqualToString:@"m"]) {
             gender = @"Mr.";
             greeting = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 100, frame.size.width, 40) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
             greeting.text = [[NSString stringWithFormat:@"%@ %@", gender, ingredient.type] uppercaseString];
@@ -186,6 +187,8 @@ static UIAccelerationValue rollingX=0;
         self.isScrolling = NO;
         self.scrollView.scrollEnabled = NO;
         
+        self.btnStart.hidden = NO;
+        
         [UIView animateWithDuration:.3 animations:^{
             self.locked.frame = CGRectMake(245, 140, 23, 23);
             self.locked.alpha = 1;
@@ -195,6 +198,8 @@ static UIAccelerationValue rollingX=0;
         [self startGyroLogging];
         self.isScrolling = YES;
         self.scrollView.scrollEnabled = YES;
+        
+        self.btnStart.hidden = YES;
         
         [UIView animateWithDuration:.3 animations:^{
             self.locked.frame = CGRectMake(245, 140, 30, 30);

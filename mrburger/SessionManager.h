@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
 
+#import "Ingredient.h"
 #import "User.h"
 
 typedef enum {

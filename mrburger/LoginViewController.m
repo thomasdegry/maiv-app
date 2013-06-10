@@ -85,7 +85,15 @@
     [merequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
         [KGStatusBar dismiss];
         
-        NSDictionary *userInfo = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&error];
+        NSDictionary *facebookInfo = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&error];
+        
+        NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
+        
+        NSArray *cutName = [[facebookInfo objectForKey:@"name"] componentsSeparatedByString:@" "];
+        
+        [userInfo setObject:[cutName objectAtIndex:0] forKey:@"name"];
+        [userInfo setObject:[facebookInfo objectForKey:@"id"] forKey:@"id"];
+        [userInfo setObject:[[facebookInfo objectForKey:@"gender"] substringWithRange:NSMakeRange(0, 1)] forKey:@"gender"];
         
         GameViewController *gameVC = (GameViewController *)self.navigationController;
         gameVC.user = [[User alloc] initWithDict:userInfo];
