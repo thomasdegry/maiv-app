@@ -38,8 +38,7 @@
         self.loginLabel2 = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(60, 120, 200, 50) andSize:(FontAlternateSizeGiant) andColor:[UIColor blueDarkened]];
         self.loginLabel2.text = @"PRETTY PLEASE";
         
-        
-        self.loader = [[SequenceView alloc] init];
+        self.loader = [[Loader alloc] init];
         self.loader.frame = CGRectMake(130, 200, 50, 50);
     }
     return self;

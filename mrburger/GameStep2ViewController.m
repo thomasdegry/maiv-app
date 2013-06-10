@@ -11,6 +11,7 @@
 @implementation GameStep2ViewController
 
 @synthesize sessionManager = _sessionManager;
+@synthesize connected = _connected;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -19,6 +20,8 @@
         self.mainView = [[GameStep2MainView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         self.modal = [[GameStep2InfoView alloc] initModal];
         self.modal.delegate = self;
+        
+        self.connected = 0;
         
         self.presentingView = [[GameStep2View alloc] initWithMain:self.mainView andModal:self.modal];
     }
@@ -45,6 +48,7 @@
 	
     if (self.nearbyTVC == nil) {
 		self.nearbyTVC = [[NearbyTableViewController alloc] initWithSessionManager:self.sessionManager];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showConnecting:) name:@"SENT_INVITE" object:self.nearbyTVC];
 	}
     
     self.participantsView = [[TitledTable alloc] initWithFrame:CGRectMake(15, 60, 290, 160) andTitle:@"Your burger"];
@@ -70,6 +74,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)showConnecting:(id)sender
+{
+    self.modal = [[GameStep2ConnectingView alloc] initModal];
+    
+    [self showModal:nil];
+}
+
 - (void)peerListDidChange:(SessionManager *)session
 {
 	self.participantsTVC.participants = [self.sessionManager.connectedPeers copy];
@@ -82,6 +93,12 @@
         self.nearbyView.tableView.hidden = NO;
         self.nearbyView.unavailable.hidden = YES;
     }
+    
+    if (self.connected > [self.sessionManager.connectedPeers count]) {
+        [self hideModal:nil];
+    }
+    
+    self.connected = [self.sessionManager.connectedPeers count];
     
 	[self.participantsView.tableView reloadData];
     [self.nearbyView.tableView reloadData];
@@ -99,6 +116,7 @@
     }];
     
     self.modal = [[GameStep2InviteView alloc] initModal];
+
     [self showModal:nil];
 }
 
@@ -109,9 +127,8 @@
 
 - (void) acceptInvitation:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:^{
-//        [self.navigationController pushViewController:[[ParticipantViewController alloc] initWithNibName:nil bundle:nil] animated:YES];
-    }];
+    [self hideModal:nil];
+    
     [self.sessionManager didAcceptInvitation];
     [self peerListDidChange:self.sessionManager];
 }

@@ -32,6 +32,15 @@
     [self.mainView.btnModal addTarget:self action:@selector(showModal:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)setModal:(ModalView *)modal
+{
+    _modal = modal;
+    if (self.presentingView) {
+        NSLog(@"Setting modal on presenting view");
+        self.presentingView.modal = self.modal;
+    }
+}
+
 - (void)showModal:(id)sender
 {
     [self.presentingView showModal];
