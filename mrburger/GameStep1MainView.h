@@ -26,8 +26,12 @@
 @property (strong, nonatomic) UIImageView *arrowLeft;
 @property (strong, nonatomic) UIImageView *arrowRight;
 @property (strong, nonatomic) UILabel *label;
+@property (strong, nonatomic) UIImageView *locked;
+
+@property (assign) BOOL isScrolling;
 
 - (id)initWithIngredients:(NSMutableArray *)ingredients andFrame:(CGRect)frame;
 - (void) stopMotionUpdates;
+- (void)lockAndScrollTo:(int)index;
 
 @end

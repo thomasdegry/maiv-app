@@ -38,15 +38,21 @@
         self.modal.delegate = self;
         
         self.presentingView = [[GameStep1View alloc] initWithMain:self.mainView andModal:self.modal];
+        
+        //Listen to event on touch on ingredient
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopScrollView:) name:@"SLIDE_TOUCH" object:nil];
     }
     return self;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    NSLog(@"[VC] ******* VIEW WILL DISAPPEAR");
     [self.mainView stopMotionUpdates];
 }
 
+- (void)stopScrollView:(NSNotification *)sender {
+    NSString *id = [sender.userInfo objectForKey:@"ingredientID"];
+    [self.mainView lockAndScrollTo:[id intValue]];
+}
 
 
 - (void)startGame:(id)sender

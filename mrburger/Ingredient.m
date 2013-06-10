@@ -14,6 +14,7 @@
 @synthesize name = _name;
 @synthesize type = _type;
 @synthesize image = _image;
+@synthesize order = _order;
 
 - (id)initWithDict:(NSDictionary *)dict
 {

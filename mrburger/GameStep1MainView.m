@@ -5,6 +5,8 @@
 @synthesize scrollView = _scrollView;
 @synthesize scrollImages = _scrollImages;
 @synthesize motMan = _motMan;
+@synthesize isScrolling = _isScrolling;
+
 
 #define kFilteringFactor 0.1
 
@@ -16,12 +18,19 @@ static UIAccelerationValue rollingX=0;
     if (self) {
         self.header.lblTitle.text = [@"Step 1 of 3" uppercaseString];
         
-        self.btnStart = [[RoundedButton alloc] initWithText:@"Get Started!" andX:20 andY:390];
+        self.btnStart = [[RoundedButton alloc] initWithText:@"Add to burger!" andX:20 andY:390];
         [self addSubview:self.btnStart];
         
         UILabel *lblHello = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 60, 320, 55) andSize:FontAlternateSizeBig andColor:[UIColor orange]];
         lblHello.text = [@"Hello there" uppercaseString];
         [self addSubview:lblHello];
+        
+        //Check on lock
+        UIImage *lockImage = [UIImage imageNamed:@"vingkske.png"];
+        self.locked = [[UIImageView alloc] initWithImage:lockImage];
+        self.locked.frame = CGRectMake(245, 140, 30, 30);
+        self.locked.alpha = 0;
+        [self addSubview:self.locked];
     }
     return self;
 }
@@ -36,14 +45,14 @@ static UIAccelerationValue rollingX=0;
         Ingredient *ingredient = [self.categoryIngredients objectAtIndex:0];
         UILabel *greeting;
         NSString *gender = @"";
-        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"facebook_gender"] isEqualToString:@"femal"]) {
+        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"facebook_gender"] isEqualToString:@"male"]) {
             gender = @"Mr.";
             greeting = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 100, frame.size.width, 40) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
             greeting.text = [[NSString stringWithFormat:@"%@ %@", gender, ingredient.type] uppercaseString];
         } else {
             gender = @"Ms.";
-            greeting = [[UILabel alloc] initAWithFontMissionAndFrame:CGRectMake(0, 100, frame.size.width, 40) andSize:FontMissionSizeBig andColor:[UIColor blue]];
-            greeting.text = [NSString stringWithFormat:@"%@ %@", gender, ingredient.type];
+            greeting = [[UILabel alloc] initAWithFontMissionAndFrame:CGRectMake(0, 104, frame.size.width, 40) andSize:FontMissionSizeSmall andColor:[UIColor blue]];
+            greeting.text = [[NSString stringWithFormat:@"%@ %@", gender, ingredient.type] capitalizedString];
         }
 
         [self addSubview:greeting];
@@ -61,13 +70,16 @@ static UIAccelerationValue rollingX=0;
     self.scrollView.delegate = self;
     
     int xPos = 0;
+    int i = 0;
     for (Ingredient *ingredient in self.categoryIngredients) {
+        ingredient.order = i;
         Scrollimage *scrollImage = [[Scrollimage alloc] initWithIngredient:ingredient andFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 235)];
         
         scrollImage.frame = CGRectMake(xPos, 70, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
         [self.scrollImages addObject:scrollImage];
         [self.scrollView addSubview:scrollImage];
         xPos = xPos + scrollImage.frame.size.width;
+        i++;
     }
     
     float width = [self.scrollImages count] * [[UIScreen mainScreen] bounds].size.width;
@@ -106,6 +118,7 @@ static UIAccelerationValue rollingX=0;
     self.motMan.accelerometerUpdateInterval = 10/60;
     
     if(self.motMan.accelerometerAvailable){
+        self.isScrolling = YES;
         [self.motMan startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
             [self moveByMotion:accelerometerData andExtraMovement:0];
         }];
@@ -147,10 +160,36 @@ static UIAccelerationValue rollingX=0;
     
 }
 
-- (void) stopMotionUpdates
+- (void)stopMotionUpdates
 {
     [self.motMan stopDeviceMotionUpdates];
     [self.motMan stopAccelerometerUpdates];
+}
+
+- (void)lockAndScrollTo:(int)index
+{
+    NSLog(@"LockAndScrollTo with index %i", index);
+    if(self.isScrolling) {
+        NSLog(@"self.isScrolling = true");
+        int xOffset = index * 320;
+        [self.scrollView setContentOffset:CGPointMake(xOffset, 0) animated:YES];
+        [self stopMotionUpdates];
+        self.isScrolling = NO;
+        
+        [UIView animateWithDuration:.3 animations:^{
+            self.locked.frame = CGRectMake(245, 140, 23, 23);
+            self.locked.alpha = 1;
+        }completion:nil];
+    } else {
+        NSLog(@"self.isScrolling = false");
+        [self startGyroLogging];
+        self.isScrolling = YES;
+        
+        [UIView animateWithDuration:.3 animations:^{
+            self.locked.frame = CGRectMake(245, 140, 30, 30);
+            self.locked.alpha = 0;
+        }completion:nil];
+    }
 }
 
 @end

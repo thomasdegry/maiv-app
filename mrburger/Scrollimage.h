@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 #import "Ingredient.h"
 
@@ -16,6 +17,7 @@
 @property (strong, nonatomic) NSString *type;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *id;
+@property (assign) int order;
 
 - (id)initWithIngredient:(Ingredient *)ingredient andFrame:(CGRect)frame;
 

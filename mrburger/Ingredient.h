@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *type;
 @property (strong, nonatomic) NSString *image;
+@property (assign) int order;
 
 - (id)initWithDict:(NSDictionary *)dict;
 
