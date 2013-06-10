@@ -10,6 +10,7 @@
 #import "InfoView.h"
 
 @interface InfoMainView : RoundedView
+
 @property (strong, nonatomic) InfoView *infoView;
 
 @end

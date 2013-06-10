@@ -30,8 +30,6 @@
         }
         
         self.infoView.contentSize = CGSizeMake(320, sizeOfContent - 160);
-
-        
     }
     return self;
 }
