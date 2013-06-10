@@ -53,10 +53,14 @@
 	<false/>
 	<key>UIStatusBarStyle</key>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<string>UIStatusBarStyleDefault</string>
 =======
 	<string>UIStatusBarStyleBlackTranslucent</string>
 >>>>>>> Splash Screens
+=======
+	<string>UIStatusBarStyleDefault</string>
+>>>>>>> Menu, Info + Rounded Corners fix
 	<key>UIStatusBarTintParameters</key>
 	<dict>
 		<key>UINavigationBar</key>

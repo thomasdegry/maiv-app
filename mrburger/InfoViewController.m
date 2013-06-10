@@ -8,7 +8,7 @@
 
 #import "InfoViewController.h"
 #import "RoundedView.h"
-#import "InfoView.h"
+#import "InfoScrollView.h"
 
 @interface InfoViewController ()
 
@@ -24,6 +24,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.view.backgroundColor = [UIColor beige];
         
     }
     return self;
@@ -77,8 +78,8 @@
 
 - (void)loadView {
     CGRect frame = [[UIScreen mainScreen] bounds];
-    InfoView *view = [[InfoView alloc] initWithFrame:frame];
-    [self setView:view];
+    InfoMainView *mainView = [[InfoMainView alloc] initWithFrame:frame];
+    [self setView:mainView];
 }
 
 - (void)didReceiveMemoryWarning

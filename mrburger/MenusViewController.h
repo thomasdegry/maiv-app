@@ -11,4 +11,8 @@
 
 @interface MenusViewController : UIViewController
 
+@property (strong, nonatomic) NSMutableArray *rawBurgers;
+@property (strong, nonatomic) NSMutableArray *burgers;
+@property (strong, nonatomic) MenusView *view;
+
 @end

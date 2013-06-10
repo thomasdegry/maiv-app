@@ -14,6 +14,7 @@
 #import "CloseButton.h"
 #import "InfoButton.h"
 #import "FacebookButton.h"
+#import "InfoMainView.h"
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
 
