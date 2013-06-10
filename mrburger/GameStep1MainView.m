@@ -18,7 +18,7 @@ static UIAccelerationValue rollingX=0;
     if (self) {
         self.header.lblTitle.text = [@"Step 1 of 3" uppercaseString];
         
-        self.btnStart = [[RoundedButton alloc] initWithText:@"Add to burger!" andX:20 andY:390];
+        self.btnStart = [[RoundedButton alloc] initWithText:@"Add to burger!" andX:20 andY:(frame.size.height - 85)];
         [self addSubview:self.btnStart];
         
         UILabel *lblHello = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 60, 320, 55) andSize:FontAlternateSizeBig andColor:[UIColor orange]];
@@ -110,6 +110,15 @@ static UIAccelerationValue rollingX=0;
     self.label = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 310, [[UIScreen mainScreen] bounds].size.width, 50) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
     self.label.text = [middleIngredient.name uppercaseString];
     [self addSubview:self.label];
+    
+    
+    //iPhone 5 styling
+    if([[UIScreen mainScreen] bounds].size.height >= 568) {
+        self.scrollView.frame = CGRectMake(0, 170, [[UIScreen mainScreen] bounds].size.width, 235);
+        self.arrowLeft.frame = CGRectMake(19, 253, arrowLeft.size.width, arrowLeft.size.height);
+        self.arrowRight.frame = CGRectMake(292, 253, arrowLeft.size.width, arrowLeft.size.height);
+        self.label.frame = CGRectMake(0, 380, [[UIScreen mainScreen] bounds].size.width, 50);
+    }
 }
 
 -(void) startGyroLogging
@@ -175,6 +184,7 @@ static UIAccelerationValue rollingX=0;
         [self.scrollView setContentOffset:CGPointMake(xOffset, 0) animated:YES];
         [self stopMotionUpdates];
         self.isScrolling = NO;
+        self.scrollView.scrollEnabled = NO;
         
         [UIView animateWithDuration:.3 animations:^{
             self.locked.frame = CGRectMake(245, 140, 23, 23);
@@ -184,6 +194,7 @@ static UIAccelerationValue rollingX=0;
         NSLog(@"self.isScrolling = false");
         [self startGyroLogging];
         self.isScrolling = YES;
+        self.scrollView.scrollEnabled = YES;
         
         [UIView animateWithDuration:.3 animations:^{
             self.locked.frame = CGRectMake(245, 140, 30, 30);
