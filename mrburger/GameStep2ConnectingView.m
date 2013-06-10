@@ -22,9 +22,7 @@
 - (id)initModal
 {
     self = [super initModal];
-    if (self) {
-        NSLog(@"Invite - Init Modal");
-        
+    if (self) {        
         self.title.text = @"Connecting!";
         
         Loader *loader = [[Loader alloc] initWithFrame:CGRectMake(135, 75, 50, 50)];

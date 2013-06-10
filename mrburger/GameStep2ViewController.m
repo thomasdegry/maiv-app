@@ -21,7 +21,7 @@
         self.modal = [[GameStep2InfoView alloc] initModal];
         self.modal.delegate = self;
         
-        self.connected = 0;
+        self.connected = 1; // Self makes it 1
         
         self.presentingView = [[GameStep2View alloc] initWithMain:self.mainView andModal:self.modal];
     }
@@ -94,7 +94,8 @@
         self.nearbyView.unavailable.hidden = YES;
     }
     
-    if (self.connected > [self.sessionManager.connectedPeers count]) {
+    
+    if (self.connected < [self.sessionManager.connectedPeers count]) {
         [self hideModal:nil];
     }
     
@@ -128,6 +129,9 @@
 - (void) acceptInvitation:(id)sender
 {
     [self hideModal:nil];
+    
+    self.modal = [[GameStep2ConnectedView alloc] initModal];
+    [self showModal:nil];
     
     [self.sessionManager didAcceptInvitation];
     [self peerListDidChange:self.sessionManager];
