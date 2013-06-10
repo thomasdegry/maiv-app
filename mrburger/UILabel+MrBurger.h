@@ -19,6 +19,7 @@ typedef enum
 
 typedef enum
 {
+    FontMissionSizeMedium = 37,
     FontMissionSizeBig = 44
 } FontMissionSize;
 
@@ -26,5 +27,7 @@ typedef enum
 
 - (id)initAWithFontAlternateAndFrame:(CGRect)frame andSize:(FontAlternateSize)size andColor:(UIColor *)color;
 - (id)initAWithFontMissionAndFrame:(CGRect)frame andSize:(FontMissionSize)size andColor:(UIColor *)color;
+
+- (void)makeParagraph;
 
 @end

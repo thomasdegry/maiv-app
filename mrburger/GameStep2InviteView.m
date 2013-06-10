@@ -14,9 +14,24 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        UILabel *title = [[UILabel alloc] initAWithFontMissionAndFrame:CGRectMake(0, 20, 320, 50) andSize:FontMissionSizeBig andColor:[UIColor orange]];
-        [self addSubview:title];
     }
+    return self;
+}
+
+- (id)initModal
+{
+    self = [super initModal];
+    if (self) {    
+        NSLog(@"Invite - Init Modal");
+        
+        self.title.text = @"Someone wants you!";
+        
+        UILabel *paragraph = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(130, 75, 160, 120) andSize:FontAlternateSizeSmall andColor:[UIColor blueDarkened]];
+        paragraph.text = [@"Build a burger with your iPhones! Put your iPhone underneath the other to accept the invitation!" uppercaseString];
+        [paragraph makeParagraph];
+        [self addSubview:paragraph];
+    }
+    
     return self;
 }
 

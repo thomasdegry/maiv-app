@@ -10,11 +10,14 @@
 
 @implementation GameStepInfoView
 
+@synthesize title = _title;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        self.title = [[UILabel alloc] initAWithFontMissionAndFrame:CGRectMake(0, 20, 320, 50) andSize:FontMissionSizeMedium andColor:[UIColor orange]];
+        [self addSubview:self.title];
     }
     return self;
 }

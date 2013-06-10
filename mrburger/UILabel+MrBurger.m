@@ -52,4 +52,11 @@
     return self;
 }
 
+- (void)makeParagraph
+{
+    self.adjustsFontSizeToFitWidth = NO;
+    self.numberOfLines = 0;
+    self.textAlignment = NSTextAlignmentLeft;
+}
+
 @end

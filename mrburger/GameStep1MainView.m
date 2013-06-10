@@ -68,7 +68,6 @@ static UIAccelerationValue rollingX=0, rollingY=0, rollingZ=0;
     [self addSubview:self.scrollView];
     
     int middleIndex = ceil([self.scrollImages count] / 2);
-    NSLog(@"Middle index is %i en er zijn %i items in de array", middleIndex, [self.scrollImages count]);
     [self.scrollView setContentOffset:CGPointMake((middleIndex - 1) * [[UIScreen mainScreen] bounds].size.width, 0) animated:NO];
     
     
@@ -102,9 +101,7 @@ static UIAccelerationValue rollingX=0, rollingY=0, rollingZ=0;
 - (void) moveByMotion:(CMAccelerometerData *)motion andExtraMovement:(float)extraMov
 {
     rollingX = (motion.acceleration.x * kFilteringFactor) + (rollingX * (1.0 - kFilteringFactor));
-    NSLog(@"%f", rollingX);
     //if(abs(rollingX) > 0.2) {
-        NSLog(@"hallo");
         float xOffSet = self.scrollView.contentOffset.x;
         xOffSet = xOffSet - (rollingX * 10);
         if(xOffSet < 0) {
@@ -119,7 +116,6 @@ static UIAccelerationValue rollingX=0, rollingY=0, rollingZ=0;
 
 - (void) stopMotionUpdates
 {
-    NSLog(@"AKKAKAKAKAKKAAK");
     [self.motMan stopDeviceMotionUpdates];
     [self.motMan stopAccelerometerUpdates];
 }

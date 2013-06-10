@@ -10,4 +10,6 @@
 
 @interface GameStepInfoView : ModalView
 
+@property (strong, nonatomic) UILabel *title;
+
 @end

@@ -15,14 +15,14 @@
 #import "FacebookButton.h"
 #import "KGStatusBar.h"
 
-#import "SequenceView.h"
+#import "Loader.h"
 #import "UILabel+MrBurger.h"
 
 @interface LoginViewController : UIViewController <CloseButtonDelegate>
 
 @property (strong, nonatomic) CloseButton *btnClose;
 @property (strong, nonatomic) FacebookButton *btnLogin;
-@property (strong, nonatomic) SequenceView *loader;
+@property (strong, nonatomic) Loader *loader;
 @property (strong, nonatomic) UILabel *loginLabel;
 @property (strong, nonatomic) UILabel *loginLabel2;
 

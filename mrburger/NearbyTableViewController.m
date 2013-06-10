@@ -94,6 +94,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SENT_INVITE" object:self];
     [self.sessionManager connect:[self.nearby objectAtIndex:[indexPath row]]];
 }
 

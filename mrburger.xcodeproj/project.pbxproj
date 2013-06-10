@@ -140,7 +140,7 @@
 		4D4B9DFC17650E83003673A0 /* ingredients.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9DFB17650E83003673A0 /* ingredients.plist */; };
 		4D4B9DFF176510B6003673A0 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9DFD176510B6003673A0 /* arrow.png */; };
 		4D4B9E00176510B6003673A0 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9DFE176510B6003673A0 /* arrow@2x.png */; };
-		9C5A35731764DE8D007A0BA1 /* SequenceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5A35721764DE8D007A0BA1 /* SequenceView.m */; };
+		9C5A35731764DE8D007A0BA1 /* Loader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5A35721764DE8D007A0BA1 /* Loader.m */; };
 		9C5A35751764E12A007A0BA1 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 9C5A35741764E12A007A0BA1 /* images */; };
 		9C5A35791764F5CE007A0BA1 /* home_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5A35771764F5CE007A0BA1 /* home_logo.png */; };
 		9C5A357A1764F5CE007A0BA1 /* home_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5A35781764F5CE007A0BA1 /* home_logo@2x.png */; };
@@ -166,6 +166,7 @@
 		EAB65B191763766800D327ED /* ParticipantsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB65B181763766800D327ED /* ParticipantsTableViewController.m */; };
 		EAB65B1C1763773400D327ED /* NearbyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB65B1B1763773400D327ED /* NearbyTableViewController.m */; };
 		EAB65B1E1763B2D300D327ED /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB65B1D1763B2D200D327ED /* GameKit.framework */; };
+		EABAB77C17660E3200BBC270 /* GameStep2ConnectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EABAB77B17660E3200BBC270 /* GameStep2ConnectingView.m */; };
 		EAE29A171761D16D00E01E88 /* CircularButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A161761D16D00E01E88 /* CircularButton.m */; };
 		EAE29A1A1761D18900E01E88 /* RoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A191761D18900E01E88 /* RoundedButton.m */; };
 		EAE29A1D1761D19800E01E88 /* RoundedButtonAlternate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A1C1761D19800E01E88 /* RoundedButtonAlternate.m */; };
@@ -372,8 +373,8 @@
 		4D4B9DFB17650E83003673A0 /* ingredients.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ingredients.plist; sourceTree = "<group>"; };
 		4D4B9DFD176510B6003673A0 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		4D4B9DFE176510B6003673A0 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
-		9C5A35711764DE8D007A0BA1 /* SequenceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequenceView.h; sourceTree = "<group>"; };
-		9C5A35721764DE8D007A0BA1 /* SequenceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SequenceView.m; sourceTree = "<group>"; };
+		9C5A35711764DE8D007A0BA1 /* Loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loader.h; sourceTree = "<group>"; };
+		9C5A35721764DE8D007A0BA1 /* Loader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Loader.m; sourceTree = "<group>"; };
 		9C5A35741764E12A007A0BA1 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		9C5A35771764F5CE007A0BA1 /* home_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_logo.png; sourceTree = "<group>"; };
 		9C5A35781764F5CE007A0BA1 /* home_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_logo@2x.png"; sourceTree = "<group>"; };
@@ -410,6 +411,8 @@
 		EAB65B1A1763773400D327ED /* NearbyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyTableViewController.h; sourceTree = "<group>"; };
 		EAB65B1B1763773400D327ED /* NearbyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyTableViewController.m; sourceTree = "<group>"; };
 		EAB65B1D1763B2D200D327ED /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		EABAB77A17660E3200BBC270 /* GameStep2ConnectingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep2ConnectingView.h; sourceTree = "<group>"; };
+		EABAB77B17660E3200BBC270 /* GameStep2ConnectingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep2ConnectingView.m; sourceTree = "<group>"; };
 		EAE29A151761D16D00E01E88 /* CircularButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularButton.h; sourceTree = "<group>"; };
 		EAE29A161761D16D00E01E88 /* CircularButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularButton.m; sourceTree = "<group>"; };
 		EAE29A181761D18900E01E88 /* RoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedButton.h; sourceTree = "<group>"; };
@@ -576,7 +579,6 @@
 			isa = PBXGroup;
 			children = (
 				4D4B9D901764EAC7003673A0 /* Resources */,
-				9C5A35741764E12A007A0BA1 /* images */,
 				4D4B9CCE1762678F003673A0 /* KGStatusBar */,
 				4D4B9CB117625AA3003673A0 /* AFNetworking */,
 				EAE29AE217621B4B00E01E88 /* Tabbar */,
@@ -629,6 +631,7 @@
 		4D4B9C641761D890003673A0 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				EABAB77D176610F300BBC270 /* Loader */,
 				4D4B9D961764F69D003673A0 /* Ingredients */,
 				9C5A35761764F5BE007A0BA1 /* StartView */,
 				EAB40D2517650AF6007A4106 /* sad_face.png */,
@@ -815,8 +818,8 @@
 		9C5A35701764DE41007A0BA1 /* Loader */ = {
 			isa = PBXGroup;
 			children = (
-				9C5A35711764DE8D007A0BA1 /* SequenceView.h */,
-				9C5A35721764DE8D007A0BA1 /* SequenceView.m */,
+				9C5A35711764DE8D007A0BA1 /* Loader.h */,
+				9C5A35721764DE8D007A0BA1 /* Loader.m */,
 			);
 			name = Loader;
 			sourceTree = "<group>";
@@ -860,6 +863,14 @@
 				EAB40D2A17650E58007A4106 /* UnavailableCell.m */,
 			);
 			name = Tables;
+			sourceTree = "<group>";
+		};
+		EABAB77D176610F300BBC270 /* Loader */ = {
+			isa = PBXGroup;
+			children = (
+				9C5A35741764E12A007A0BA1 /* images */,
+			);
+			name = Loader;
 			sourceTree = "<group>";
 		};
 		EAE29A141761D15800E01E88 /* Buttons */ = {
@@ -1008,6 +1019,8 @@
 				EAE29A721761DDE500E01E88 /* GameStep2InfoView.m */,
 				EAB40D1E1764E4D2007A4106 /* GameStep2InviteView.h */,
 				EAB40D1F1764E4D2007A4106 /* GameStep2InviteView.m */,
+				EABAB77A17660E3200BBC270 /* GameStep2ConnectingView.h */,
+				EABAB77B17660E3200BBC270 /* GameStep2ConnectingView.m */,
 			);
 			name = "Step 2";
 			sourceTree = "<group>";
@@ -1296,13 +1309,14 @@
 				EAB40D171764B520007A4106 /* ZebraTableViewController.m in Sources */,
 				4D4B9D951764F539003673A0 /* Scrollimage.m in Sources */,
 				4D4B9DFA1764FCBE003673A0 /* Ingredient.m in Sources */,
-				9C5A35731764DE8D007A0BA1 /* SequenceView.m in Sources */,
+				9C5A35731764DE8D007A0BA1 /* Loader.m in Sources */,
 				9C5A357D1764F632007A0BA1 /* InfoView.m in Sources */,
 				EAB40D1A1764DE07007A4106 /* NearbyCell.m in Sources */,
 				EAB40D1D1764DE6C007A4106 /* PictureCell.m in Sources */,
 				EAB40D201764E4D2007A4106 /* GameStep2InviteView.m in Sources */,
 				EAB40D231764FBD5007A4106 /* TitledTableAlternate.m in Sources */,
 				EAB40D2B17650E59007A4106 /* UnavailableCell.m in Sources */,
+				EABAB77C17660E3200BBC270 /* GameStep2ConnectingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

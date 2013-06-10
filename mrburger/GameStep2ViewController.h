@@ -17,6 +17,7 @@
 #import "GameStep2MainView.h"
 #import "GameStep2InfoView.h"
 #import "GameStep2InviteView.h"
+#import "GameStep2ConnectingView.h"
 
 #import "ParticipantsTableViewController.h"
 #import "NearbyTableViewController.h"
@@ -25,6 +26,7 @@
 
 @property (strong, nonatomic) ParticipantsTableViewController *participantsTVC;
 @property (strong, nonatomic) NearbyTableViewController *nearbyTVC;
+@property int connected;
 
 @property (strong, nonatomic) TitledTable *participantsView;
 @property (strong, nonatomic) TitledTableAlternate *nearbyView;

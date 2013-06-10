@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SequenceView : UIView
+@interface Loader : UIView
 
-@property (nonatomic, strong) NSMutableArray *paden;
-@property (nonatomic, strong) NSArray *paden_array;
+@property (nonatomic, strong) NSMutableArray *paths;
 
 @end

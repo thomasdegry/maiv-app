@@ -38,6 +38,15 @@
     return self;
 }
 
+- (void)setModal:(ModalView *)modal
+{
+    [[self subviews] makeObjectsPerformSelector: @selector(removeFromSuperview)];
+    _modal = modal;
+    
+    [self addSubview:self.mainView];
+    [self addSubview:self.modal];
+}
+
 - (void)showModal
 {
     self.modal.hidden = NO;
