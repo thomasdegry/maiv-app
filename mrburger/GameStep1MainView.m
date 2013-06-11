@@ -32,6 +32,7 @@ static UIAccelerationValue rollingX=0;
         self.locked.frame = CGRectMake(245, 140, 30, 30);
         self.locked.alpha = 0;
         [self addSubview:self.locked];
+    
     }
     return self;
 }
@@ -105,6 +106,7 @@ static UIAccelerationValue rollingX=0;
     [self addSubview:self.arrowRight];
     
     [self startGyroLogging];
+    NSLog(@"Go to startGyroLogging");
     
     
     //Label
@@ -124,13 +126,16 @@ static UIAccelerationValue rollingX=0;
 
 -(void) startGyroLogging
 {
+    NSLog(@"Start gyrologging");
     if( !self.motMan ){
-        NSLog(@"MOTION ALLOC");
+        NSLog(@"No self.motMan");
         self.motMan = [[CMMotionManager alloc] init];
         self.motMan.accelerometerUpdateInterval = 1/4;
+        NSLog(@"MotionMangager initted");
     }
     
     if(self.motMan.accelerometerAvailable){
+        NSLog(@"Accelerometer available");
         self.isScrolling = YES;
         [self.motMan startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
             [self moveByMotion:accelerometerData andExtraMovement:0];
@@ -141,7 +146,6 @@ static UIAccelerationValue rollingX=0;
 
 - (void) moveByMotion:(CMAccelerometerData *)motion andExtraMovement:(float)extraMov
 {
-    NSLog(@"UPDATE");
     if( self.isScrolling ){
         rollingX = (motion.acceleration.x * kFilteringFactor) + (rollingX * (1.0 - kFilteringFactor));
         //if(abs(rollingX) > 0.2) {

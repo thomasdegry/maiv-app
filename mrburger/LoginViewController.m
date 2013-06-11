@@ -96,7 +96,7 @@
         GameViewController *gameVC = (GameViewController *)self.navigationController;
         gameVC.user = [[User alloc] initWithDict:userInfo];
         NSLog(@"Device token %@", [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"]]);
-        gameVC.user.deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
+        gameVC.user.deviceToken = [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"]];
         
         NSLog(@"User initted with device token %@", gameVC.user.deviceToken);
         
@@ -106,10 +106,6 @@
         [[NSUserDefaults standardUserDefaults] setObject:gameVC.user.gender forKey:@"facebook_gender"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        [KGStatusBar dismiss];
-
-        [gameVC showNextScreen];
-
         [self saveToServer];
     }];
 }
@@ -127,10 +123,11 @@
                             gameVC.user.deviceToken, @"device_token",
                             nil];
     
-    NSLog(@"name %@", [params objectForKey:@"name"]);
     [httpClient postPath:@"users" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSLog(@"Request Successful, response '%@'", responseStr);
+        [KGStatusBar dismiss];
+        [gameVC showNextScreen];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
     }];
