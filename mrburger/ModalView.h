@@ -16,7 +16,7 @@
 
 @end
 
-@interface ModalView : UIView
+@interface ModalView : RoundedView
 
 @property (assign, nonatomic) id delegate;
 
