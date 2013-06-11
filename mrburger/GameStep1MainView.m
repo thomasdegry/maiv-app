@@ -18,16 +18,16 @@ static UIAccelerationValue rollingX=0;
     if (self) {
         self.header.lblTitle.text = [@"Step 1 of 3" uppercaseString];
         
+        self.tabInstructions = [[UILabel alloc] initAWithFontTravelerAndFrame:CGRectMake(40, (frame.size.height - 65), 240, 20) andSize:FontTravelerSizeSmall andColor:[UIColor colorWithRed:0.678 green:0.675 blue:0.624 alpha:1.000]];
+        self.tabInstructions.text = @"Tap to lock your ingredient!";
+        self.tabInstructions.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:self.tabInstructions];
+        
         self.btnStart = [[RoundedButton alloc] initWithText:@"Add to burger!" andX:20 andY:(frame.size.height - 85)];
         [self addSubview:self.btnStart];
-        self.btnStart.hidden = YES;
-        
-        UILabel *tapInstructions = [[UILabel alloc] initAWithFontTravelerAndFrame:CGRectMake(40, (frame.size.height - 65), 240, 20) andSize:FontTravelerSizeSmall andColor:[UIColor colorWithRed:0.678 green:0.675 blue:0.624 alpha:1.000]];
-        
-        tapInstructions.text = @"Tap to lock your ingredient!";
-        tapInstructions.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:tapInstructions];
-
+        //self.btnStart.hidden = YES;
+        self.btnStart.frame = CGRectMake(self.btnStart.frame.origin.x, ([[UIScreen mainScreen] bounds].size.height), self.btnStart.frame.size.width, self.btnStart.frame.size.height);
+        self.btnStart.alpha = 0;
         
         UILabel *lblHello = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 60, 320, 55) andSize:FontAlternateSizeBig andColor:[UIColor orange]];
         lblHello.text = [@"Hello there" uppercaseString];
@@ -38,6 +38,7 @@ static UIAccelerationValue rollingX=0;
         self.locked = [[UIImageView alloc] initWithImage:lockImage];
         self.locked.frame = CGRectMake(245, 140, 30, 30);
         self.locked.alpha = 0;
+        self.locked.layer.anchorPoint = CGPointMake(self.locked.frame.size.width / 2, self.locked.frame.size.height / 2);
         [self addSubview:self.locked];
     
     }
@@ -115,7 +116,6 @@ static UIAccelerationValue rollingX=0;
     [self addSubview:self.arrowRight];
     
     [self startGyroLogging];
-    NSLog(@"Go to startGyroLogging");
     
     
     //Label
@@ -135,16 +135,12 @@ static UIAccelerationValue rollingX=0;
 
 -(void) startGyroLogging
 {
-    NSLog(@"Start gyrologging");
     if( !self.motMan ){
-        NSLog(@"No self.motMan");
         self.motMan = [[CMMotionManager alloc] init];
         self.motMan.accelerometerUpdateInterval = 1/4;
-        NSLog(@"MotionMangager initted");
     }
     
     if(self.motMan.accelerometerAvailable){
-        NSLog(@"Accelerometer available");
         self.isScrolling = YES;
         [self.motMan startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
             [self moveByMotion:accelerometerData andExtraMovement:0];
@@ -200,31 +196,43 @@ static UIAccelerationValue rollingX=0;
 
 - (void)lockAndScrollTo:(int)index
 {
-    NSLog(@"LockAndScrollTo with index %i", index);
     if(self.isScrolling) {
-        NSLog(@"self.isScrolling = true");
         self.isScrolling = NO;
         [self stopMotionUpdates];
         
         int xOffset = index * 320;
-        NSLog(@"xoffset = %i", xOffset);
 
         [self.scrollView setContentOffset:CGPointMake(xOffset, 0) animated:YES];
-        self.btnStart.hidden = NO;
+        //self.btnStart.hidden = NO;
+        [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            self.btnStart.frame = CGRectMake(self.btnStart.frame.origin.x, (self.btnStart.frame.origin.y - 90), self.btnStart.frame.size.width, self.btnStart.frame.size.height);
+            self.btnStart.alpha = 1;
+            self.tabInstructions.frame = CGRectMake(self.tabInstructions.frame.origin.x, (self.tabInstructions.frame.origin.y + 10), self.tabInstructions.frame.size.width, self.tabInstructions.frame.size.height);
+            self.tabInstructions.alpha = 0;
+        }completion:nil];
+        
+        CGSize textSize = [[self.label text] sizeWithFont:[self.label font] forWidth:self.label.bounds.size.width lineBreakMode:NSLineBreakByWordWrapping];
+        int positionX = ([[UIScreen mainScreen] bounds].size.width / 2) + (textSize.width / 2) + 10;
+        self.locked.frame = CGRectMake(positionX, (self.label.frame.origin.y - 5), self.locked.frame.size.width, self.locked.frame.size.height);
+        NSLog(@"%f", textSize.width);
         
         [UIView animateWithDuration:.3 animations:^{
-            self.locked.frame = CGRectMake(245, 140, 23, 23);
+            self.locked.frame = CGRectMake(self.locked.frame.origin.x, self.locked.frame.origin.y, 23, 23);
             self.locked.alpha = 1;
         }completion:nil];
     } else {
-        NSLog(@"self.isScrolling = false");
         [self startGyroLogging];
-        //self.isScrolling = YES;
         
-        self.btnStart.hidden = YES;
+        //self.btnStart.hidden = YES;
+        [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            self.btnStart.frame = CGRectMake(self.btnStart.frame.origin.x, (self.btnStart.frame.origin.y + 90), self.btnStart.frame.size.width, self.btnStart.frame.size.height);
+            self.btnStart.alpha = 0;
+            self.tabInstructions.frame = CGRectMake(self.tabInstructions.frame.origin.x, (self.tabInstructions.frame.origin.y - 10), self.tabInstructions.frame.size.width, self.tabInstructions.frame.size.height);
+            self.tabInstructions.alpha = 1;
+        }completion:nil];
         
         [UIView animateWithDuration:.3 animations:^{
-            self.locked.frame = CGRectMake(245, 140, 30, 30);
+            self.locked.frame = CGRectMake(self.locked.frame.origin.x, self.locked.frame.origin.y, 30, 30);
             self.locked.alpha = 0;
         }completion:nil];
     }

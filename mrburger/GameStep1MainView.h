@@ -27,6 +27,7 @@
 @property (strong, nonatomic) UIImageView *arrowRight;
 @property (strong, nonatomic) UILabel *label;
 @property (strong, nonatomic) UIImageView *locked;
+@property (strong, nonatomic) UILabel *tabInstructions;
 
 @property (assign) BOOL isScrolling;
 
