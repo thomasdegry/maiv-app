@@ -69,6 +69,8 @@ static UIAccelerationValue rollingX=0;
 {
     self.scrollImages = [[NSMutableArray alloc] init];
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 100, [[UIScreen mainScreen] bounds].size.width, 235)];
+    self.scrollView.scrollEnabled = NO;
+
     self.scrollView.delegate = self;
     
     int xPos = 0;
@@ -196,9 +198,6 @@ static UIAccelerationValue rollingX=0;
         NSLog(@"self.isScrolling = true");
         self.isScrolling = NO;
         [self stopMotionUpdates];
-
-        self.scrollView.scrollEnabled = NO;
-        
         
         int xOffset = index * 320;
         NSLog(@"xoffset = %i", xOffset);
@@ -214,7 +213,6 @@ static UIAccelerationValue rollingX=0;
         NSLog(@"self.isScrolling = false");
         [self startGyroLogging];
         //self.isScrolling = YES;
-        self.scrollView.scrollEnabled = YES;
         
         self.btnStart.hidden = YES;
         
