@@ -24,8 +24,13 @@
     NSLog(@"Modal - Init Modal");
     CGRect screen = [[UIScreen mainScreen] bounds];
     self = [self initWithFrame:CGRectMake(0, screen.size.height - 355, screen.size.width, 355)];
+   // self = [self initWithFrame:CGRectMake(0, 0, screen.size.width, screen.size.height)];
     if (self) {
-        self.backgroundColor = [UIColor colorWithRed:0.93f green:0.93f blue:0.87f alpha:1.00f];
+        self.backgroundColor = [UIColor beige];
+//        RoundedView *modal = [[RoundedView alloc] initWithFrame:CGRectMake(0, screen.size.height - 355, screen.size.width, 355)];
+//        modal.backgroundColor = [UIColor beige];
+//        [self insertSubview:modal atIndex:0];
+        
     }
     return self;
 }

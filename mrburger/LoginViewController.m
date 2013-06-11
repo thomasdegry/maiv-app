@@ -82,9 +82,7 @@
     
     merequest.account = _facebookAccount;
     
-    [merequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-        [KGStatusBar dismiss];
-        
+    [merequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {        
         NSDictionary *facebookInfo = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&error];
         
         NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
@@ -108,6 +106,8 @@
         [[NSUserDefaults standardUserDefaults] setObject:gameVC.user.gender forKey:@"facebook_gender"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
+        [KGStatusBar dismiss];
+
         [gameVC showNextScreen];
 
         [self saveToServer];

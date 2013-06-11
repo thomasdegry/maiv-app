@@ -11,5 +11,7 @@
 @interface GameStepInfoView : ModalView
 
 @property (strong, nonatomic) UILabel *title;
+@property (strong, nonatomic) UILabel *message;
+@property (strong, nonatomic) RoundedButton *confirmBtn;
 
 @end

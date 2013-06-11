@@ -34,6 +34,9 @@
     GameStepMainView *mainView = (GameStepMainView *)self.mainView;
     mainView.header.btnClose.delegate = self.navigationController;
     [mainView.header.btnInfo addTarget:self action:@selector(showModal:) forControlEvents:UIControlEventTouchUpInside];
+    
+    GameStepInfoView *modal = (GameStepInfoView *)self.modal;
+    [modal.confirmBtn addTarget:self action:@selector(hideModal:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning
