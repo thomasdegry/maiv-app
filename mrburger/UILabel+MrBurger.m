@@ -38,7 +38,7 @@
     return self;
 }
 
-- (id)initAWithFontTravellerAndFrame:(CGRect)frame andSize:(FontAlternateSize)size andColor:(UIColor *)color
+- (id)initAWithFontTravelerAndFrame:(CGRect)frame andSize:(FontTravelerSize)size andColor:(UIColor *)color
 {
     self = [self initWithFrame:frame];
     

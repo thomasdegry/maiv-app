@@ -57,8 +57,9 @@
         unavailableImage.layer.borderColor = [UIColor white].CGColor;
         [self.unavailable addSubview:unavailableImage];
         
-        UILabel *unavailableTextLabel = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(74, 27, 240, 20) andSize:FontAlternateSizeSmall andColor:[UIColor white]];
-        unavailableTextLabel.text = [@"There's noone around!" uppercaseString];
+        UILabel *unavailableTextLabel = [[UILabel alloc] initAWithFontTravelerAndFrame:CGRectMake(74, 27, 240, 20) andSize:FontTravelerSizeSmall andColor:[UIColor beige]];
+        
+        unavailableTextLabel.text = @"Poor you. There's no one around...";
         unavailableTextLabel.textAlignment = NSTextAlignmentLeft;
         [self.unavailable addSubview:unavailableTextLabel];
         

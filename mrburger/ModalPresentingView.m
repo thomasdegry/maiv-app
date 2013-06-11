@@ -6,12 +6,16 @@
 //  Copyright (c) 2013 devine. All rights reserved.
 //
 
+
 #import "ModalPresentingView.h"
+
 
 @implementation ModalPresentingView
 {
     CGRect _modalFrame;
 }
+
+@synthesize overlay = _overlay;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -30,10 +34,17 @@
         self.modal = modal;
         _modalFrame = self.modal.frame;
         
+        self.overlay = [CAShapeLayer layer];
+        self.overlay.path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height)].CGPath;
+        self.overlay.fillColor = [UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:0.640].CGColor;
+        self.overlay.opacity = 0;
+        [self.layer addSublayer:self.overlay];
+        
         self.modal.hidden = YES;
         
         [self addSubview:self.mainView];
         [self addSubview:self.modal];
+   
     }
     return self;
 }
@@ -55,7 +66,16 @@
     hideFrame.origin.y = self.frame.size.height;
     self.modal.frame = hideFrame;
     
-    [UIView animateWithDuration:0.22 animations:^{
+    CABasicAnimation *animationOverlay = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    animationOverlay.duration = .3;
+    animationOverlay.fromValue = [NSNumber numberWithFloat:0.0f];
+    animationOverlay.toValue = [NSNumber numberWithFloat:1.0f];
+    animationOverlay.removedOnCompletion = NO;
+    [self.overlay addAnimation:animationOverlay forKey:@"overlay"];
+    self.overlay.opacity = 1;
+
+    
+    [UIView animateWithDuration:0.22 delay:.4 options:UIViewAnimationOptionCurveLinear animations:^{
         
         self.mainView.layer.zPosition = -1000;
         CATransform3D trRotate = CATransform3DIdentity;
@@ -66,7 +86,7 @@
         // 1. Set alpha for 'inactive' feeling
         // 2. Scale photo view down for depth and resetting the rotation transformation
         [UIView animateWithDuration:0.44 animations:^{
-            self.mainView.alpha = .08;
+     
             self.mainView.transform = CGAffineTransformMakeScale(0.9, 0.9);
         }];
     }];
@@ -93,8 +113,14 @@
         
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.44 animations:^{
-            self.mainView.alpha = 1;
             self.mainView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+            CABasicAnimation *animationFadeOutOverlay = [CABasicAnimation animationWithKeyPath:@"opacity"];
+            animationFadeOutOverlay.duration = 1;
+            animationFadeOutOverlay.fromValue = [NSNumber numberWithFloat:0.0f];
+            animationFadeOutOverlay.toValue = [NSNumber numberWithFloat:0.5f];
+            [self.overlay addAnimation:animationFadeOutOverlay forKey:@"overlay"];
+            self.overlay.opacity = 0.5;
+            
         } completion:^(BOOL finished) {
             self.modal.hidden = YES;
         }];

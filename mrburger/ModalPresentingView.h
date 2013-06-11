@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 #import "ModalMainView.h"
 #import "ModalView.h"
@@ -16,6 +17,7 @@
 
 @property (strong, nonatomic) ModalMainView *mainView;
 @property (strong, nonatomic) ModalView *modal;
+@property (strong, nonatomic) CAShapeLayer *overlay;
 
 - (void)showModal;
 - (void)hideModal;
