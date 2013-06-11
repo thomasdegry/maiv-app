@@ -22,6 +22,13 @@ static UIAccelerationValue rollingX=0;
         [self addSubview:self.btnStart];
         self.btnStart.hidden = YES;
         
+        UILabel *tapInstructions = [[UILabel alloc] initAWithFontTravelerAndFrame:CGRectMake(40, (frame.size.height - 65), 240, 20) andSize:FontTravelerSizeSmall andColor:[UIColor colorWithRed:0.678 green:0.675 blue:0.624 alpha:1.000]];
+        
+        tapInstructions.text = @"Tap to lock your ingredient!";
+        tapInstructions.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:tapInstructions];
+
+        
         UILabel *lblHello = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 60, 320, 55) andSize:FontAlternateSizeBig andColor:[UIColor orange]];
         lblHello.text = [@"Hello there" uppercaseString];
         [self addSubview:lblHello];
