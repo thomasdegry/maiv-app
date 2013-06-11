@@ -123,8 +123,11 @@ static UIAccelerationValue rollingX=0;
 
 -(void) startGyroLogging
 {
-    self.motMan = [[CMMotionManager alloc] init];
-    self.motMan.accelerometerUpdateInterval = 10/60;
+    if( !self.motMan ){
+        NSLog(@"MOTION ALLOC");
+        self.motMan = [[CMMotionManager alloc] init];
+        self.motMan.accelerometerUpdateInterval = 1/4;
+    }
     
     if(self.motMan.accelerometerAvailable){
         self.isScrolling = YES;
@@ -137,8 +140,10 @@ static UIAccelerationValue rollingX=0;
 
 - (void) moveByMotion:(CMAccelerometerData *)motion andExtraMovement:(float)extraMov
 {
-    rollingX = (motion.acceleration.x * kFilteringFactor) + (rollingX * (1.0 - kFilteringFactor));
-    //if(abs(rollingX) > 0.2) {
+    NSLog(@"UPDATE");
+    if( self.isScrolling ){
+        rollingX = (motion.acceleration.x * kFilteringFactor) + (rollingX * (1.0 - kFilteringFactor));
+        //if(abs(rollingX) > 0.2) {
         float xOffSet = self.scrollView.contentOffset.x;
         xOffSet = xOffSet - (rollingX * 10);
         if(xOffSet < 0) {
@@ -148,7 +153,9 @@ static UIAccelerationValue rollingX=0;
         }
         
         [self.scrollView setContentOffset:CGPointMake(xOffSet, 0) animated:NO];
-    //}
+        //}
+        
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -171,8 +178,11 @@ static UIAccelerationValue rollingX=0;
 
 - (void)stopMotionUpdates
 {
-    [self.motMan stopDeviceMotionUpdates];
+    [[NSOperationQueue currentQueue] cancelAllOperations];
+    
     [self.motMan stopAccelerometerUpdates];
+    [self.motMan stopDeviceMotionUpdates];
+
 }
 
 - (void)lockAndScrollTo:(int)index
@@ -180,11 +190,16 @@ static UIAccelerationValue rollingX=0;
     NSLog(@"LockAndScrollTo with index %i", index);
     if(self.isScrolling) {
         NSLog(@"self.isScrolling = true");
-        int xOffset = index * 320;
-        [self.scrollView setContentOffset:CGPointMake(xOffset, 0) animated:YES];
-        [self stopMotionUpdates];
         self.isScrolling = NO;
+        [self stopMotionUpdates];
+
         self.scrollView.scrollEnabled = NO;
+        
+        
+        int xOffset = index * 320;
+        NSLog(@"xoffset = %i", xOffset);
+
+        [self.scrollView setContentOffset:CGPointMake(xOffset, 0) animated:YES];
         
         [UIView animateWithDuration:.3 animations:^{
             self.locked.frame = CGRectMake(245, 140, 23, 23);
@@ -193,7 +208,7 @@ static UIAccelerationValue rollingX=0;
     } else {
         NSLog(@"self.isScrolling = false");
         [self startGyroLogging];
-        self.isScrolling = YES;
+        //self.isScrolling = YES;
         self.scrollView.scrollEnabled = YES;
         
         [UIView animateWithDuration:.3 animations:^{

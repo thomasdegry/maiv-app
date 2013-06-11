@@ -102,7 +102,7 @@
         
         [gameVC showNextScreen];
 
-        //[self saveToServer];
+        [self saveToServer];
     }];
 }
 
@@ -118,7 +118,9 @@
                             gameVC.user.gender, @"gender",
                             gameVC.user.deviceToken, @"device_token",
                             nil];
-    [httpClient postPath:@"/users" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    
+    NSLog(@"name %@", [params objectForKey:@"name"]);
+    [httpClient postPath:@"users" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
