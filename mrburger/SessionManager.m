@@ -255,24 +255,13 @@
 }
 
 //// Called when voice or game data is received over the network from the peer
-//- (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context
-//{
-//    PacketType header;
-//    uint32_t swappedHeader;
-//    if ([data length] >= sizeof(uint32_t)) {
-//        [data getBytes:&swappedHeader length:sizeof(uint32_t)];
-//        header = (PacketType)CFSwapInt32BigToHost(swappedHeader);
-//        NSRange payloadRange = {sizeof(uint32_t), [data length]-sizeof(uint32_t)};
-//        NSData* payload = [data subdataWithRange:payloadRange];
-//
-//        // Check the header to see if this is a voice or a game packet
-//        if (header == PacketTypeVoice) {
-//            [[GKVoiceChatService defaultVoiceChatService] receivedData:payload fromParticipantID:peer];
-//        } else {
-//            [gameDelegate session:self didReceivePacket:payload ofType:header];
-//        }
-//    }
-//}
+- (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context
+{
+    NSString *code = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"received - %@", code);
+    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:code, @"code", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"RECEIVED_CODE" object:self userInfo:dict];
+}
 
 - (User *)userForPeerID:(NSString *)peerID
 {

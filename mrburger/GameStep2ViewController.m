@@ -30,7 +30,7 @@
 
 - (id)initWithSessionManager:(SessionManager *)sessionManager
 {
-    self = [super init];
+    self = [self initWithNibName:nil bundle:nil];
     if (self) {
         self.sessionManager = sessionManager;
         [self.sessionManager setupSession];
@@ -52,14 +52,21 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showConnecting:) name:@"SENT_INVITE" object:self.nearbyTVC];
 	}
     
-    self.participantsView = [[TitledTable alloc] initWithFrame:CGRectMake(15, 60, 290, 160) andTitle:@"Your burger"];
+    self.btnSave = [[RoundedButtonAlternate alloc] initWithText:@"Save my burger" andX:15 andY:200];
+    CGRect btnSaveFrame = self.btnSave.frame;
+    btnSaveFrame.size.width = 290;
+    self.btnSave.frame = btnSaveFrame;
+    [self.mainView addSubview:self.btnSave];
+    [self.btnSave addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.participantsView = [[TitledTable alloc] initWithFrame:CGRectMake(15, 60, 290, 130) andTitle:@"Your burger"];
     [self.mainView addSubview:self.participantsView];
     [self.participantsView.tableView setDataSource:self.participantsTVC];
     [self.participantsView.tableView setDelegate:self.participantsTVC];
     self.participantsView.tableView.hidden = NO;
     self.participantsView.unavailable.hidden = YES;
     
-    self.nearbyView = [[TitledTableAlternate alloc] initWithFrame:CGRectMake(15, 280, 290, 160) andTitle:@"Find ingredients"];
+    self.nearbyView = [[TitledTableAlternate alloc] initWithFrame:CGRectMake(15, 280, 290, 130) andTitle:@"Find ingredients"];
 	[self.mainView addSubview:self.nearbyView];
     [self.nearbyView.tableView setDataSource:self.nearbyTVC];
     [self.nearbyView.tableView setDelegate:self.nearbyTVC];
@@ -67,6 +74,20 @@
     self.nearbyView.unavailable.hidden = NO;
 
     [self peerListDidChange:nil];
+}
+
+- (void)save:(id)sender
+{
+    NSLog(@"saving");
+    GameViewController *gameVC = (GameViewController *)self.navigationController;
+    [gameVC calculateCode];
+    
+    NSData *packet = [gameVC.sharedCode dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error = nil;
+    
+    [self.sessionManager.session sendData:packet toPeers:self.sessionManager.connectedPeers withDataMode:GKSendDataReliable error:&error];
+
+    [gameVC showResult];
 }
 
 - (void)didReceiveMemoryWarning

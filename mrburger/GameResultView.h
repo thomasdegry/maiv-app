@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GameResultView : UIView
+@interface GameResultView : RoundedView
+
+@property (strong, nonatomic) UIView *participants;
 
 @end

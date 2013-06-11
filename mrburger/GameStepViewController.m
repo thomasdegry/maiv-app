@@ -26,9 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
-    NSLog(@"Step general viewDidLoad");
-
+    
     self.view.backgroundColor = [UIColor blackColor];
 	
     GameStepMainView *mainView = (GameStepMainView *)self.mainView;

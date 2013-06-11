@@ -30,9 +30,13 @@ typedef enum {
 @property (strong, nonatomic) User *user;
 @property GameScreen currentScreen;
 @property (strong, nonatomic) SessionManager *sessionManager;
+@property (strong, nonatomic) NSString *sharedCode;
 
 - (id)initGame;
 
+- (void)calculateCode;
+
 - (void)showNextScreen;
+- (void)showResult;
 
 @end

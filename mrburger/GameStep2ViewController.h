@@ -8,6 +8,8 @@
 
 #import "GameStepViewController.h"
 
+#import "GameViewController.h"
+
 #import "TitledTable.h"
 #import "TitledTableAlternate.h"
 
@@ -31,6 +33,7 @@
 
 @property (strong, nonatomic) TitledTable *participantsView;
 @property (strong, nonatomic) TitledTableAlternate *nearbyView;
+@property (strong, nonatomic) RoundedButtonAlternate *btnSave;
 
 @property (strong, nonatomic) SessionManager *sessionManager;
 

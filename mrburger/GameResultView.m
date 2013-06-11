@@ -14,7 +14,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        self.participants = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 72)];
+        self.participants.backgroundColor = [UIColor orange];
+        [self addSubview:self.participants];
     }
     return self;
 }

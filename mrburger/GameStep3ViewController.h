@@ -8,6 +8,16 @@
 
 #import "GameStepViewController.h"
 
+#import "GameStep3InfoView.h"
+#import "GameStep3MainView.h"
+#import "GameStep3View.h"
+
+#import "SessionManager.h"
+
 @interface GameStep3ViewController : GameStepViewController
+
+@property (strong, nonatomic) SessionManager *sessionManager;
+
+- (id)initWithSessionManager:(SessionManager *)sessionManager;
 
 @end

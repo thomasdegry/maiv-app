@@ -18,8 +18,23 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.mainView = [[GameStep3MainView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        self.modal = [[GameStep3InfoView alloc] initModal];
+        self.modal.delegate = self;
+                
+        self.presentingView = [[GameStep3View alloc] initWithMain:self.mainView andModal:self.modal];
     }
+    return self;
+}
+
+- (id)initWithSessionManager:(SessionManager *)sessionManager
+{
+    self = [self initWithNibName:nil bundle:nil];
+    
+    if (self) {
+        self.sessionManager = sessionManager;
+    }
+    
     return self;
 }
 

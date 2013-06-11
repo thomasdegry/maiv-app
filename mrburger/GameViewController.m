@@ -16,6 +16,7 @@
 
 @synthesize user = _user;
 @synthesize currentScreen = _currentScreen;
+@synthesize sharedCode = _sharedCode;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -85,12 +86,13 @@
         case GameScreenStep1:
             self.sessionManager = [[SessionManager alloc] initWithUser:self.user];
             nextScreen = [[GameStep2ViewController alloc] initWithSessionManager:self.sessionManager];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedCode:) name:@"RECEIVED_CODE" object:nil];
 
             self.currentScreen = GameScreenStep2;
             break;
             
         case GameScreenStep2:
-            nextScreen = [[GameStep3ViewController alloc] initWithNibName:nil bundle:nil];
+            nextScreen = [[GameStep3ViewController alloc] initWithSessionManager:self.sessionManager];
             self.currentScreen = GameScreenStep3;
             break;
             
@@ -103,6 +105,27 @@
         [self pushViewController:nextScreen animated:YES];
     }
     
+}
+
+- (void)receivedCode:(NSNotification *)notification
+{
+    NSLog(@"received");
+    if (!self.sharedCode) {
+        NSLog(@"received in if");
+        self.sharedCode = [notification.userInfo objectForKey:@"code"];
+        [self showResult];
+    }
+}
+
+- (void)calculateCode
+{
+    self.sharedCode = @"9d41f1xye";
+}
+
+- (void)showResult
+{
+    self.currentScreen = GameScreenResult;
+    [self pushViewController:[[GameResultViewController alloc] initWithSessionManager:self.sessionManager andSharedCode:self.sharedCode] animated:YES];
 }
 
 @end
