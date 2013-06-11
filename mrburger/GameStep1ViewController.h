@@ -22,4 +22,6 @@
 @property (strong, nonatomic) GameStep1MainView *mainView;
 @property (strong, nonatomic) NSMutableArray *categoryIngredients;
 
+@property (strong, nonatomic) Ingredient *currentIngredient;
+
 @end

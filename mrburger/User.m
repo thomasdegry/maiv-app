@@ -15,6 +15,7 @@
 @synthesize gender = _gender;
 @synthesize profilePicture = _profilePicture;
 @synthesize deviceToken = _deviceToken;
+@synthesize ingredient = _ingredient;
 
 - (id)initWithDict:(NSDictionary *)dict
 {
@@ -23,6 +24,7 @@
         self.id = [dict objectForKey:@"id"];
         self.name = [dict objectForKey:@"name"];
         self.gender = [dict objectForKey:@"gender"];
+        self.ingredient = [[Ingredient alloc] init];
     }
     return self;
 }
@@ -35,6 +37,11 @@
         self.id = [userInfo objectAtIndex:0];
         self.name = [userInfo objectAtIndex:1];
         self.gender = [userInfo objectAtIndex:2];
+        
+        NSDictionary *ingredientDict = [[NSDictionary alloc] initWithObjectsAndKeys:[userInfo objectAtIndex:3], @"id", [userInfo objectAtIndex:4], @"name", nil];
+                
+        self.ingredient = [[Ingredient alloc] initWithDict:ingredientDict];
+        
     }
     return self;
 }

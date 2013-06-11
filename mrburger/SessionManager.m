@@ -62,7 +62,7 @@
 - (void) setupSession
 {    
 	// GKSession will default to using the device name as the display name
-    NSString *displayName = [NSString stringWithFormat:@"%@£%@£%@", self.user.id, self.user.name, self.user.gender];
+    NSString *displayName = [NSString stringWithFormat:@"%@£%@£%@£%@£%@", self.user.id, self.user.name, self.user.gender, self.user.ingredient.id, self.user.ingredient.name];
         
 	self.session = [[GKSession alloc] initWithSessionID:self.sessionID displayName:displayName sessionMode:GKSessionModePeer];
     self.session.delegate = self;
@@ -219,8 +219,6 @@
 // React to some activity from other peers on the network.
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state
 {
-    NSLog(@"SWITCHING TO STATE: %u", state);
-    
 	switch (state) {
 		case GKPeerStateAvailable:
             // A peer became available by starting app, exiting settings, or ending a call.
@@ -235,7 +233,6 @@
             [self.tableViewControllerDelegate peerListDidChange:self];
 			break;
 		case GKPeerStateConnected:
-            NSLog(@"SWITCHING TO STATE: connected");
             // Connection was accepted, set up the voice chat.
             self.currentConfPeerID = peerID;
             self.session.available = NO;

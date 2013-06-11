@@ -47,16 +47,15 @@
         self = [self initWithRootViewController:startVC];
         if (self) {
             self.currentScreen = GameScreenLogin;
-        
         }
-    }
-        else {
+    } else {
         //User is logged in with facebook
         self.user = [[User alloc] init];
         self.user.id = [[NSUserDefaults standardUserDefaults] objectForKey:@"facebook_id"];
         self.user.name = [[NSUserDefaults standardUserDefaults] objectForKey:@"facebook_name"];
         self.user.gender = [[NSUserDefaults standardUserDefaults] objectForKey:@"facebook_gender"];
         self.user.deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
+        self.user.ingredient = [[Ingredient alloc] init];
         
         GameStep1ViewController *startVC = [[GameStep1ViewController alloc] initWithNibName:nil bundle:nil];
         self = [self initWithRootViewController:startVC];

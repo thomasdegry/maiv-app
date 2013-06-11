@@ -14,6 +14,8 @@
 
 @implementation GameStep1ViewController
 
+@synthesize currentIngredient = _currentIngredient;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -50,15 +52,21 @@
 }
 
 - (void)stopScrollView:(NSNotification *)sender {
-    NSString *id = [sender.userInfo objectForKey:@"ingredientID"];
-    [self.mainView lockAndScrollTo:[id intValue]];
+    int order = [[sender.userInfo objectForKey:@"order"] intValue];
+    self.currentIngredient = [self.categoryIngredients objectAtIndex:order];
+    [self.mainView lockAndScrollTo:order];
 }
 
 
 - (void)startGame:(id)sender
 {
-    GameViewController *gameVC = (GameViewController *)self.navigationController;
-    [gameVC showNextScreen];
+    if (self.currentIngredient) {
+        GameViewController *gameVC = (GameViewController *)self.navigationController;
+        
+        gameVC.user.ingredient.id = self.currentIngredient.id;
+        gameVC.user.ingredient.name = self.currentIngredient.name;
+        [gameVC showNextScreen];
+    }
 }
 
 - (void)viewDidLoad
