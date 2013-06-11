@@ -106,6 +106,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:gameVC.user.gender forKey:@"facebook_gender"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
+        [gameVC showNextScreen];
         [self saveToServer];
     }];
 }

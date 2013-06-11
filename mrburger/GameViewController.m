@@ -84,9 +84,8 @@
         
         case GameScreenStep1:
             self.sessionManager = [[SessionManager alloc] initWithUser:self.user];
-            [self.sessionManager setupSession];
             nextScreen = [[GameStep2ViewController alloc] initWithSessionManager:self.sessionManager];
-            
+
             self.currentScreen = GameScreenStep2;
             break;
             
@@ -100,6 +99,7 @@
     }
     
     if (nextScreen) {
+        [KGStatusBar dismiss];
         [self pushViewController:nextScreen animated:YES];
     }
     

@@ -33,6 +33,7 @@
     self = [super init];
     if (self) {
         self.sessionManager = sessionManager;
+        [self.sessionManager setupSession];
         self.sessionManager.tableViewControllerDelegate = self;
     }
     return self;
