@@ -160,7 +160,7 @@ static UIAccelerationValue rollingX=0;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    int index = (((self.scrollView.contentOffset.x) + 80)) / [UIScreen mainScreen].bounds.size.width;
+    int index = (((self.scrollView.contentOffset.x) + 160)) / [UIScreen mainScreen].bounds.size.width;
     if(index == 0) {
         self.arrowLeft.hidden = YES;
         self.arrowRight.hidden = NO;
@@ -174,7 +174,6 @@ static UIAccelerationValue rollingX=0;
     
     Ingredient *currentIngredient = [self.categoryIngredients objectAtIndex:index];
     self.label.text = [currentIngredient.name uppercaseString];
-    
 }
 
 - (void)stopMotionUpdates
