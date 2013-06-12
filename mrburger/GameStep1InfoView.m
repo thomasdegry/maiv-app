@@ -15,7 +15,14 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor blue];
+        
+        self.title.text = @"Choose an ingredient!" ;
+        self.title.font = [UIFont fontWithName:@"Mission-Script" size:FontMissionSizeSmall];
+        self.message.text = [@"within your catogory" uppercaseString];
+        self.message.frame = CGRectMake(60, 63, 200, 30);
+        
+        RotatePhone *rotatePhoneAnimation = [[RotatePhone alloc] initWithFrame:CGRectMake(75, 75, 160, 201)];
+        [self addSubview:rotatePhoneAnimation];
     }
     return self;
 }

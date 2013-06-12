@@ -7,6 +7,7 @@
 //
 
 #import "GameStepInfoView.h"
+#import "RotatePhone.h"
 
 @interface GameStep1InfoView : GameStepInfoView
 

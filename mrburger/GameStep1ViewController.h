@@ -23,5 +23,6 @@
 @property (strong, nonatomic) NSMutableArray *categoryIngredients;
 
 @property (strong, nonatomic) Ingredient *currentIngredient;
+@property (strong, nonatomic) NSTimer *timer;
 
 @end

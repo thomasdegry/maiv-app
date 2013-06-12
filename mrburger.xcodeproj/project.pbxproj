@@ -169,6 +169,10 @@
 		9C5A35BF176636E8007A0BA1 /* scrollview2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5A35BD176636E8007A0BA1 /* scrollview2.png */; };
 		9C5A35C0176636E8007A0BA1 /* scrollview2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5A35BE176636E8007A0BA1 /* scrollview2@2x.png */; };
 		9C5D6F411766855E00F47185 /* homelogo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5D6F401766855E00F47185 /* homelogo2.png */; };
+		9C5D6F451767741600F47185 /* RotatePhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5D6F441767741600F47185 /* RotatePhone.m */; };
+		9C5D6F4A176774D300F47185 /* iphone_rotate in Resources */ = {isa = PBXBuildFile; fileRef = 9C5D6F49176774D300F47185 /* iphone_rotate */; };
+		9C5D6F4C17677E8000F47185 /* iphoneloop in Resources */ = {isa = PBXBuildFile; fileRef = 9C5D6F4B17677E8000F47185 /* iphoneloop */; };
+		9C5D6F4F17677E8D00F47185 /* IphoneLoop.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5D6F4E17677E8D00F47185 /* IphoneLoop.m */; };
 		EAB40D121764A749007A4106 /* ParticipantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB40D111764A749007A4106 /* ParticipantCell.m */; };
 		EAB40D171764B520007A4106 /* ZebraTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB40D161764B520007A4106 /* ZebraTableViewController.m */; };
 		EAB40D1A1764DE07007A4106 /* NearbyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB40D191764DE07007A4106 /* NearbyCell.m */; };
@@ -422,6 +426,12 @@
 		9C5A35BD176636E8007A0BA1 /* scrollview2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollview2.png; sourceTree = "<group>"; };
 		9C5A35BE176636E8007A0BA1 /* scrollview2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrollview2@2x.png"; sourceTree = "<group>"; };
 		9C5D6F401766855E00F47185 /* homelogo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homelogo2.png; sourceTree = "<group>"; };
+		9C5D6F431767741600F47185 /* RotatePhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotatePhone.h; sourceTree = "<group>"; };
+		9C5D6F441767741600F47185 /* RotatePhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotatePhone.m; sourceTree = "<group>"; };
+		9C5D6F49176774D300F47185 /* iphone_rotate */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iphone_rotate; sourceTree = "<group>"; };
+		9C5D6F4B17677E8000F47185 /* iphoneloop */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iphoneloop; sourceTree = "<group>"; };
+		9C5D6F4D17677E8D00F47185 /* IphoneLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IphoneLoop.h; sourceTree = "<group>"; };
+		9C5D6F4E17677E8D00F47185 /* IphoneLoop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IphoneLoop.m; sourceTree = "<group>"; };
 		EAB40D101764A749007A4106 /* ParticipantCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantCell.h; sourceTree = "<group>"; };
 		EAB40D111764A749007A4106 /* ParticipantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantCell.m; sourceTree = "<group>"; };
 		EAB40D151764B520007A4106 /* ZebraTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZebraTableViewController.h; sourceTree = "<group>"; };
@@ -619,6 +629,7 @@
 		4D4B9C1C176140AB003673A0 /* mrburger */ = {
 			isa = PBXGroup;
 			children = (
+				9C5D6F42176773FB00F47185 /* Instructions */,
 				4D4B9D901764EAC7003673A0 /* Resources */,
 				4D4B9CCE1762678F003673A0 /* KGStatusBar */,
 				4D4B9CB117625AA3003673A0 /* AFNetworking */,
@@ -674,6 +685,7 @@
 		4D4B9C641761D890003673A0 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				9C5D6F481767746800F47185 /* Instructions */,
 				EABAB77D176610F300BBC270 /* Loader */,
 				4D4B9D961764F69D003673A0 /* Ingredients */,
 				9C5A35761764F5BE007A0BA1 /* StartView */,
@@ -911,6 +923,26 @@
 				9C5A35A7176624FF007A0BA1 /* scrollview@2x.png */,
 			);
 			name = Info;
+			sourceTree = "<group>";
+		};
+		9C5D6F42176773FB00F47185 /* Instructions */ = {
+			isa = PBXGroup;
+			children = (
+				9C5D6F431767741600F47185 /* RotatePhone.h */,
+				9C5D6F441767741600F47185 /* RotatePhone.m */,
+				9C5D6F4D17677E8D00F47185 /* IphoneLoop.h */,
+				9C5D6F4E17677E8D00F47185 /* IphoneLoop.m */,
+			);
+			name = Instructions;
+			sourceTree = "<group>";
+		};
+		9C5D6F481767746800F47185 /* Instructions */ = {
+			isa = PBXGroup;
+			children = (
+				9C5D6F4B17677E8000F47185 /* iphoneloop */,
+				9C5D6F49176774D300F47185 /* iphone_rotate */,
+			);
+			name = Instructions;
 			sourceTree = "<group>";
 		};
 		EAB65B12176374E700D327ED /* Networking */ = {
@@ -1326,6 +1358,8 @@
 				4D9EC97F17669FE20028C737 /* arrow.png in Resources */,
 				4D9EC98017669FE20028C737 /* arrow@2x.png in Resources */,
 				9C5D6F411766855E00F47185 /* homelogo2.png in Resources */,
+				9C5D6F4A176774D300F47185 /* iphone_rotate in Resources */,
+				9C5D6F4C17677E8000F47185 /* iphoneloop in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1414,6 +1448,8 @@
 				9C5A357D1764F632007A0BA1 /* InfoView.m in Sources */,
 				9C5A35BC1766300D007A0BA1 /* InfoMainView.m in Sources */,
 				EABAB7801766323600BBC270 /* GameStep2ConnectedView.m in Sources */,
+				9C5D6F451767741600F47185 /* RotatePhone.m in Sources */,
+				9C5D6F4F17677E8D00F47185 /* IphoneLoop.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
