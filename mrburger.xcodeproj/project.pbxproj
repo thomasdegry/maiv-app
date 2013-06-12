@@ -379,8 +379,6 @@
 		9C5D6F4A176774D300F47185 /* iphone_rotate in Resources */ = {isa = PBXBuildFile; fileRef = 9C5D6F49176774D300F47185 /* iphone_rotate */; };
 		9C5D6F4C17677E8000F47185 /* iphoneloop in Resources */ = {isa = PBXBuildFile; fileRef = 9C5D6F4B17677E8000F47185 /* iphoneloop */; };
 		9C5D6F4F17677E8D00F47185 /* IphoneLoop.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5D6F4E17677E8D00F47185 /* IphoneLoop.m */; };
-		EA39C1161768754600EA8EC6 /* happy_face.png in Resources */ = {isa = PBXBuildFile; fileRef = EA39C1141768754600EA8EC6 /* happy_face.png */; };
-		EA39C1171768754600EA8EC6 /* happy_face@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA39C1151768754600EA8EC6 /* happy_face@2x.png */; };
 		9C5D6F521768C82E00F47185 /* InfoPartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5D6F511768C82E00F47185 /* InfoPartView.m */; };
 		9C5D6F561768C94600F47185 /* InfoStep1View.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5D6F551768C94600F47185 /* InfoStep1View.m */; };
 		9C5D6F591768C95400F47185 /* InfoStep2View.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5D6F581768C95400F47185 /* InfoStep2View.m */; };
@@ -392,6 +390,8 @@
 		9C5D6F691768D45700F47185 /* start_step2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5D6F631768D45700F47185 /* start_step2@2x.png */; };
 		9C5D6F6A1768D45700F47185 /* start_step3.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5D6F641768D45700F47185 /* start_step3.png */; };
 		9C5D6F6B1768D45700F47185 /* start_step3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5D6F651768D45700F47185 /* start_step3@2x.png */; };
+		EA39C1161768754600EA8EC6 /* happy_face.png in Resources */ = {isa = PBXBuildFile; fileRef = EA39C1141768754600EA8EC6 /* happy_face.png */; };
+		EA39C1171768754600EA8EC6 /* happy_face@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA39C1151768754600EA8EC6 /* happy_face@2x.png */; };
 		EAB40D121764A749007A4106 /* ParticipantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB40D111764A749007A4106 /* ParticipantCell.m */; };
 		EAB40D171764B520007A4106 /* ZebraTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB40D161764B520007A4106 /* ZebraTableViewController.m */; };
 		EAB40D1A1764DE07007A4106 /* NearbyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB40D191764DE07007A4106 /* NearbyCell.m */; };
@@ -420,7 +420,6 @@
 		EAE29A311761D46100E01E88 /* ZebraTableViewAlternate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A301761D46100E01E88 /* ZebraTableViewAlternate.m */; };
 		EAE29A351761D50F00E01E88 /* ModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A341761D50F00E01E88 /* ModalViewController.m */; };
 		EAE29A381761D52400E01E88 /* ModalPresentingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A371761D52400E01E88 /* ModalPresentingView.m */; };
-		EAE29A3B1761D53800E01E88 /* ModalMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A3A1761D53800E01E88 /* ModalMainView.m */; };
 		EAE29A3E1761D55200E01E88 /* ModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A3D1761D55200E01E88 /* ModalView.m */; };
 		EAE29A421761D8A300E01E88 /* MenusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A411761D8A300E01E88 /* MenusViewController.m */; };
 		EAE29A451761D8B200E01E88 /* MenusView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A441761D8B200E01E88 /* MenusView.m */; };
@@ -1071,8 +1070,6 @@
 		9C5D6F4B17677E8000F47185 /* iphoneloop */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iphoneloop; sourceTree = "<group>"; };
 		9C5D6F4D17677E8D00F47185 /* IphoneLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IphoneLoop.h; sourceTree = "<group>"; };
 		9C5D6F4E17677E8D00F47185 /* IphoneLoop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IphoneLoop.m; sourceTree = "<group>"; };
-		EA39C1141768754600EA8EC6 /* happy_face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = happy_face.png; sourceTree = "<group>"; };
-		EA39C1151768754600EA8EC6 /* happy_face@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "happy_face@2x.png"; sourceTree = "<group>"; };
 		9C5D6F501768C82E00F47185 /* InfoPartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPartView.h; sourceTree = "<group>"; };
 		9C5D6F511768C82E00F47185 /* InfoPartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoPartView.m; sourceTree = "<group>"; };
 		9C5D6F541768C94600F47185 /* InfoStep1View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoStep1View.h; sourceTree = "<group>"; };
@@ -1089,6 +1086,8 @@
 		9C5D6F631768D45700F47185 /* start_step2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_step2@2x.png"; sourceTree = "<group>"; };
 		9C5D6F641768D45700F47185 /* start_step3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start_step3.png; sourceTree = "<group>"; };
 		9C5D6F651768D45700F47185 /* start_step3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start_step3@2x.png"; sourceTree = "<group>"; };
+		EA39C1141768754600EA8EC6 /* happy_face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = happy_face.png; sourceTree = "<group>"; };
+		EA39C1151768754600EA8EC6 /* happy_face@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "happy_face@2x.png"; sourceTree = "<group>"; };
 		EAB40D101764A749007A4106 /* ParticipantCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantCell.h; sourceTree = "<group>"; };
 		EAB40D111764A749007A4106 /* ParticipantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantCell.m; sourceTree = "<group>"; };
 		EAB40D151764B520007A4106 /* ZebraTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZebraTableViewController.h; sourceTree = "<group>"; };
@@ -1142,8 +1141,6 @@
 		EAE29A341761D50F00E01E88 /* ModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalViewController.m; sourceTree = "<group>"; };
 		EAE29A361761D52400E01E88 /* ModalPresentingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalPresentingView.h; sourceTree = "<group>"; };
 		EAE29A371761D52400E01E88 /* ModalPresentingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalPresentingView.m; sourceTree = "<group>"; };
-		EAE29A391761D53800E01E88 /* ModalMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalMainView.h; sourceTree = "<group>"; };
-		EAE29A3A1761D53800E01E88 /* ModalMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalMainView.m; sourceTree = "<group>"; };
 		EAE29A3C1761D55100E01E88 /* ModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalView.h; sourceTree = "<group>"; };
 		EAE29A3D1761D55200E01E88 /* ModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalView.m; sourceTree = "<group>"; };
 		EAE29A401761D8A300E01E88 /* MenusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenusViewController.h; sourceTree = "<group>"; };
@@ -2400,8 +2397,6 @@
 				EAE29A341761D50F00E01E88 /* ModalViewController.m */,
 				EAE29A361761D52400E01E88 /* ModalPresentingView.h */,
 				EAE29A371761D52400E01E88 /* ModalPresentingView.m */,
-				EAE29A391761D53800E01E88 /* ModalMainView.h */,
-				EAE29A3A1761D53800E01E88 /* ModalMainView.m */,
 				EAE29A3C1761D55100E01E88 /* ModalView.h */,
 				EAE29A3D1761D55200E01E88 /* ModalView.m */,
 			);
@@ -2757,7 +2752,6 @@
 				EAE29A311761D46100E01E88 /* ZebraTableViewAlternate.m in Sources */,
 				EAE29A351761D50F00E01E88 /* ModalViewController.m in Sources */,
 				EAE29A381761D52400E01E88 /* ModalPresentingView.m in Sources */,
-				EAE29A3B1761D53800E01E88 /* ModalMainView.m in Sources */,
 				EAE29A3E1761D55200E01E88 /* ModalView.m in Sources */,
 				EAE29A421761D8A300E01E88 /* MenusViewController.m in Sources */,
 				EAE29A451761D8B200E01E88 /* MenusView.m in Sources */,

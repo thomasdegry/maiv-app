@@ -6,11 +6,9 @@
 //  Copyright (c) 2013 devine. All rights reserved.
 //
 
-#import "ModalMainView.h"
-
 #import "GameStepHeaderView.h"
 
-@interface GameStepMainView : ModalMainView
+@interface GameStepMainView : RoundedView
 
 @property (strong, nonatomic) GameStepHeaderView *header;
 

@@ -9,19 +9,18 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-#import "ModalMainView.h"
 #import "ModalView.h"
 #import "RoundedView.h"
 
 @interface ModalPresentingView : RoundedView
 
-@property (strong, nonatomic) ModalMainView *mainView;
+@property (strong, nonatomic) UIView *mainView;
 @property (strong, nonatomic) ModalView *modal;
 @property (strong, nonatomic) CAShapeLayer *overlay;
 
 - (void)showModal;
 - (void)hideModal;
 
-- (id)initWithMain:(ModalMainView *)main andModal:(ModalView *)modal;
+- (id)initWithMain:(UIView *)main andModal:(ModalView *)modal;
 
 @end

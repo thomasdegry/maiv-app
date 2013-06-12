@@ -23,7 +23,7 @@
     return self;
 }
 
-- (id)initWithMain:(ModalMainView *)main andModal:(ModalView *)modal
+- (id)initWithMain:(UIView *)main andModal:(ModalView *)modal
 {
     self = [self initWithFrame:[[UIScreen mainScreen] bounds]];
     if (self) {
