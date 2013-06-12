@@ -22,7 +22,7 @@
         self.title.frame = CGRectMake(30, 20, 320, 50);
         self.title.textAlignment = NSTextAlignmentLeft;
         
-        self.description = [[UILabel alloc] initAParagraphWithFontTravelerAndFrame:CGRectMake(-230, 40, 170, 200) andSize:FontTravelerSizeMedium :[UIColor blue] andText:@"Now you will be assigned an ingredient-type. So hello there Mr. or Ms. Topping!  Choose your favorite topping!"];
+        self.description = [[UILabel alloc] initAParagraphWithFontTravelerAndFrame:CGRectMake(-230, 40, 170, 200) andSize:FontTravelerSizeMedium andColor:[UIColor blue] andText:@"Now you will be assigned an ingredient-type. So hello there Mr. or Ms. Topping!  Choose your favorite topping!"];
         [self.description makeParagraph];
         [self addSubview:self.description];
         self.description.textAlignment = NSTextAlignmentLeft;

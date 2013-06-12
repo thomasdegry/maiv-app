@@ -52,22 +52,21 @@
     return self;
 }
 
-- (id)initAParagraphWithFontTravelerAndFrame:(CGRect)frame andSize:(FontTravelerSize) andColor:(UIColor *)color andText:(NSString *)text
+- (id)initAParagraphWithFontTravelerAndFrame:(CGRect)frame andSize:(FontTravelerSize)size andColor:(UIColor *)color andText:(NSString *)text
 {
     self = [self initWithFrame:frame];
     
-    if(self) {
+    if (self) {
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         paragraphStyle.minimumLineHeight = 22.f;
         paragraphStyle.maximumLineHeight = 22.f;
         
         UIFont *font = [UIFont fontWithName:@"Traveler-Medium" size:FontTravelerSizeMedium];
-        NSString *string = text;
         NSDictionary *attributtes = @{NSParagraphStyleAttributeName : paragraphStyle,};
         
         self.font = font;
         self.backgroundColor = [UIColor clearColor];
-        self.attributedText = [[NSAttributedString alloc] initWithString:string  attributes:attributtes];
+        self.attributedText = [[NSAttributedString alloc] initWithString:text  attributes:attributtes];
     }
     
     return self;

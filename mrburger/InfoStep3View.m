@@ -24,7 +24,7 @@
         self.title.textAlignment = NSTextAlignmentRight;
         
         
-        self.description = [[UILabel alloc] initAParagraphWithFontTravelerAndFrame:CGRectMake(320, 90, 180, 200) andSize:FontTravelerSizeMedium :[UIColor blue] andText:@"Go look for other ingrediënts nearby our truck. Connect with them and create a hamburger together."];
+        self.description = [[UILabel alloc] initAParagraphWithFontTravelerAndFrame:CGRectMake(320, 90, 180, 200) andSize:FontTravelerSizeMedium andColor:[UIColor blue] andText:@"Go look for other ingrediënts nearby our truck. Connect with them and create a hamburger together."];
         [self.description makeParagraph];
         [self addSubview:self.description];
         self.description.textAlignment = NSTextAlignmentRight;

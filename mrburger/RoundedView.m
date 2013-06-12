@@ -14,13 +14,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
         [self setBackgroundColor:[UIColor colorWithRed:0.925 green:0.929 blue:0.878 alpha:1.000]];
-        //[self.layer setCornerRadius:15.0f];
-        
         
         CAShapeLayer * maskLayer = [CAShapeLayer layer];
-        maskLayer.path = [UIBezierPath bezierPathWithRoundedRect: self.bounds byRoundingCorners: UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii: (CGSize){13.0, 13.}].CGPath;
+        maskLayer.path = [UIBezierPath bezierPathWithRoundedRect: self.bounds byRoundingCorners: UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:(CGSize){13.0, 13.0}].CGPath;
         
         self.layer.mask = maskLayer;
     }
