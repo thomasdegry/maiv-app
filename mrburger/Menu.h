@@ -12,11 +12,9 @@
 
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *price;
-@property (strong, nonatomic) NSMutableArray *ingredients;
+@property (strong, nonatomic) NSArray *ingredients;
 @property (strong, nonatomic) NSString *image;
 
-
 - (id)initWithDict:(NSDictionary *)dict;
-
 
 @end

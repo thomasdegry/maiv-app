@@ -15,7 +15,6 @@
 
 @implementation MenusViewController
 
-@synthesize rawBurgers = _rawBurgers;
 @synthesize burgers = _burgers;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -25,25 +24,21 @@
         // Custom initialization
                 
         NSString *path = [[NSBundle mainBundle] pathForResource:@"menuList" ofType:@"plist"];
-        self.rawBurgers = [NSMutableArray arrayWithContentsOfFile:path];
+        NSArray *rawBurgers = [NSMutableArray arrayWithContentsOfFile:path];
      
         self.burgers = [[NSMutableArray alloc] init];
         
-        for (NSDictionary *dict in self.rawBurgers) {            
+        for (NSDictionary *dict in rawBurgers) {            
             Menu *burger = [[Menu alloc] initWithDict:dict];
             [self.burgers addObject:burger];
         }
-        
-
-        
     }
     return self;
 }
 
 - (void)loadView
 {
-    CGRect frame = [[UIScreen mainScreen] bounds];
-     self.view = [[MenusView alloc] initWithFrame:frame andBurgers:self.burgers];
+    self.view = [[MenusView alloc] initWithFrame:[[UIScreen mainScreen] bounds] andBurgers:self.burgers];
     
     [self setView:self.view];
 }

@@ -21,11 +21,9 @@
         self.name = [dict objectForKey:@"name"];
         self.image = [dict objectForKey:@"image"];
         self.price = [dict objectForKey:@"price"];
-        self.ingredients =  [dict objectForKey:@"ingredients"];
-        
+        self.ingredients = [dict objectForKey:@"ingredients"];
     }
     return self;
 }
-
 
 @end

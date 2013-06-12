@@ -10,8 +10,7 @@
 
 @interface MenusView : RoundedView
 
-@property (nonatomic, strong) NSMutableArray *burgers;
-@property (nonatomic, strong) UIImage *headerImg;
+@property (strong, nonatomic) NSArray *burgers;
 
 -(id)initWithFrame:(CGRect)frame andBurgers:(NSMutableArray*)burgers;
 
