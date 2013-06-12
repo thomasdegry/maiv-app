@@ -173,6 +173,8 @@
 		9C5D6F4A176774D300F47185 /* iphone_rotate in Resources */ = {isa = PBXBuildFile; fileRef = 9C5D6F49176774D300F47185 /* iphone_rotate */; };
 		9C5D6F4C17677E8000F47185 /* iphoneloop in Resources */ = {isa = PBXBuildFile; fileRef = 9C5D6F4B17677E8000F47185 /* iphoneloop */; };
 		9C5D6F4F17677E8D00F47185 /* IphoneLoop.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5D6F4E17677E8D00F47185 /* IphoneLoop.m */; };
+		EA39C1161768754600EA8EC6 /* happy_face.png in Resources */ = {isa = PBXBuildFile; fileRef = EA39C1141768754600EA8EC6 /* happy_face.png */; };
+		EA39C1171768754600EA8EC6 /* happy_face@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA39C1151768754600EA8EC6 /* happy_face@2x.png */; };
 		EAB40D121764A749007A4106 /* ParticipantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB40D111764A749007A4106 /* ParticipantCell.m */; };
 		EAB40D171764B520007A4106 /* ZebraTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB40D161764B520007A4106 /* ZebraTableViewController.m */; };
 		EAB40D1A1764DE07007A4106 /* NearbyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB40D191764DE07007A4106 /* NearbyCell.m */; };
@@ -432,6 +434,8 @@
 		9C5D6F4B17677E8000F47185 /* iphoneloop */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iphoneloop; sourceTree = "<group>"; };
 		9C5D6F4D17677E8D00F47185 /* IphoneLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IphoneLoop.h; sourceTree = "<group>"; };
 		9C5D6F4E17677E8D00F47185 /* IphoneLoop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IphoneLoop.m; sourceTree = "<group>"; };
+		EA39C1141768754600EA8EC6 /* happy_face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = happy_face.png; sourceTree = "<group>"; };
+		EA39C1151768754600EA8EC6 /* happy_face@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "happy_face@2x.png"; sourceTree = "<group>"; };
 		EAB40D101764A749007A4106 /* ParticipantCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantCell.h; sourceTree = "<group>"; };
 		EAB40D111764A749007A4106 /* ParticipantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantCell.m; sourceTree = "<group>"; };
 		EAB40D151764B520007A4106 /* ZebraTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZebraTableViewController.h; sourceTree = "<group>"; };
@@ -685,6 +689,8 @@
 		4D4B9C641761D890003673A0 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				EA39C1141768754600EA8EC6 /* happy_face.png */,
+				EA39C1151768754600EA8EC6 /* happy_face@2x.png */,
 				9C5D6F481767746800F47185 /* Instructions */,
 				EABAB77D176610F300BBC270 /* Loader */,
 				4D4B9D961764F69D003673A0 /* Ingredients */,
@@ -1360,6 +1366,8 @@
 				9C5D6F411766855E00F47185 /* homelogo2.png in Resources */,
 				9C5D6F4A176774D300F47185 /* iphone_rotate in Resources */,
 				9C5D6F4C17677E8000F47185 /* iphoneloop in Resources */,
+				EA39C1161768754600EA8EC6 /* happy_face.png in Resources */,
+				EA39C1171768754600EA8EC6 /* happy_face@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

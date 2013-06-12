@@ -77,9 +77,7 @@
 	NSUInteger row = [indexPath row];
 	
     User *user = [self.sessionManager userForPeerID:[self.participants objectAtIndex:row]];
-    NSData *userImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=104&height=104", user.id]]];
-    UIImage *userImage = [UIImage imageWithData:userImageData scale:0.5f];
-    
+        
     NSString *prefix;
     
     if ([user.gender isEqualToString:@"m"]) {
@@ -90,7 +88,8 @@
     
     cell.textLabel.text = [[NSString stringWithFormat:@"%@. %@", prefix, user.ingredient.name] uppercaseString];
     cell.detailTextLabel.text = user.name;
-    cell.imageView.image = userImage;
+    cell.picturePath = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=104&height=104", user.id];
+    cell.imageView.image = [UIImage imageNamed:@"happy_face"];
     
 	return cell;
 }
