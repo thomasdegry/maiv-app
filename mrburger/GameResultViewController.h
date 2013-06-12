@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "GameResultView.h"
+#import "ZXingObjC.h"
 
 #import "SessionManager.h"
 

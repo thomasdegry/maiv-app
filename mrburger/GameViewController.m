@@ -24,6 +24,7 @@
     if (self) {
         // Custom initialization
         self.navigationBarHidden = YES;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissScreen:) name:@"DISMISS_ME" object:nil];
     }
     return self;
 }
@@ -73,6 +74,12 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
 }
 
+- (void)dismissScreen:(NSNotification *)sender
+{
+    NSLog(@"dismiss screen");
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
+}
+
 - (void)showNextScreen
 {    
     GameStepViewController *nextScreen = nil;
@@ -112,7 +119,7 @@
     NSLog(@"received");
     if (!self.sharedCode) {
         NSLog(@"received in if");
-        self.sharedCode = [notification.userInfo objectForKey:@"code"];
+        self.sharedCode = [NSString stringWithFormat:@"%@-%@", [notification.userInfo objectForKey:@"code"], self.user.id];
         [self showResult];
     }
 }
@@ -139,16 +146,15 @@
     [httpClient postPath:@"burgers" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSLog(@"Request Successful, response '%@'", responseStr);
-        self.sharedCode = responseStr;
+        self.sharedCode = [NSString stringWithFormat:@"%@-%@", responseStr, self.user.id];
         
-        GameViewController *gameVC = (GameViewController *)self.navigationController;
         NSData *packet = [responseStr dataUsingEncoding:NSUTF8StringEncoding];
         NSError *error = nil;
         
         [self.sessionManager.session sendData:packet toPeers:self.sessionManager.connectedPeers withDataMode:GKSendDataReliable error:&error];
         
         [KGStatusBar dismiss];
-        [gameVC showResult];
+        [self showResult];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
     }];

@@ -77,6 +77,27 @@
     tempCode.text = self.sharedCode;
     
     [self.view addSubview:tempCode];
+    
+    
+    NSError* error = nil;
+    ZXMultiFormatWriter* writer = [ZXMultiFormatWriter writer];
+    ZXBitMatrix* result = [writer encode:self.sharedCode
+                                  format:kBarcodeFormatQRCode
+                                   width:200
+                                  height:200
+                                   error:&error];
+    if (result) {
+        CGImageRef image = [[ZXImage imageWithMatrix:result] cgimage];
+        UIImage *code = [[UIImage alloc] initWithCGImage:image];
+        UIImageView *codeIV = [[UIImageView alloc] initWithImage:code];
+        [self.view addSubview:codeIV];
+        
+        
+        // This CGImageRef image can be placed in a UIImage, NSImage, or written to a file.
+    } else {
+        NSString* errorMessage = [error localizedDescription];
+        NSLog(@"Error %@", errorMessage);
+    }
 }
 
 - (void)createQRCodeFromID:(NSString *)identifier

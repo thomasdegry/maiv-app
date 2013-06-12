@@ -123,12 +123,6 @@ static UIAccelerationValue rollingX=0;
     self.label.text = [middleIngredient.name uppercaseString];
     [self addSubview:self.label];
     
-    //Place locked next to label for first time
-    CGSize textSize = [[self.label text] sizeWithFont:[self.label font] forWidth:self.label.bounds.size.width lineBreakMode:NSLineBreakByWordWrapping];
-    int positionX = ([[UIScreen mainScreen] bounds].size.width / 2) + (textSize.width / 2) + 10;
-    self.locked.frame = CGRectMake(positionX, (self.label.frame.origin.y - 5), self.locked.frame.size.width, self.locked.frame.size.height);
-    NSLog(@"%f", textSize.width);
-    
     
     //iPhone 5 styling
     if([[UIScreen mainScreen] bounds].size.height >= 568) {
@@ -137,6 +131,12 @@ static UIAccelerationValue rollingX=0;
         self.arrowRight.frame = CGRectMake(292, 253, arrowLeft.size.width, arrowLeft.size.height);
         self.label.frame = CGRectMake(0, 380, [[UIScreen mainScreen] bounds].size.width, 50);
     }
+    
+    //Place locked next to label for first time
+    CGSize textSize = [[self.label text] sizeWithFont:[self.label font] forWidth:self.label.bounds.size.width lineBreakMode:NSLineBreakByWordWrapping];
+    int positionX = ([[UIScreen mainScreen] bounds].size.width / 2) + (textSize.width / 2) + 10;
+    self.locked.frame = CGRectMake(positionX, (self.label.frame.origin.y - 5), self.locked.frame.size.width, self.locked.frame.size.height);
+    NSLog(@"%f", textSize.width);
 }
 
 - (void)startGyroLogging
