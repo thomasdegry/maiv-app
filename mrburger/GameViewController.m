@@ -1,6 +1,6 @@
 //
 //  GameViewController.m
-//  mrburger
+//
 //
 //  Created by Pieter Beulque on 7/06/13.
 //  Copyright (c) 2013 devine. All rights reserved.
@@ -124,9 +124,29 @@
 
 - (void)postBurgerToServer
 {
+    NSMutableString *JSONObject = [[NSMutableString alloc] initWithString:@"{\"ingredients\":["];
     for (NSString *peerID in self.sessionManager.connectedPeers) {
         User *user = [self.sessionManager userForPeerID:peerID];
+        NSString *object = [NSString stringWithFormat:@"{\"user_id\": \"%@\", \"ingredient_id\": \"%@\"}, ", user.id, user.ingredient.id];
+        [JSONObject appendString:object];
     }
+    [JSONObject deleteCharactersInRange:NSMakeRange([JSONObject length]-2, 2)];
+    [JSONObject appendString:@"]}"];        
+        
+    NSURL *url = [NSURL URLWithString:@"http://student.howest.be/thomas.degry/20122013/MAIV/FOOD/api"];
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+    
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            JSONObject, @"ingredients",
+                            nil];
+    
+    [httpClient postPath:@"burgers" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"Request Successful, response '%@'", responseStr);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
+    }];
+    
 }
 
 - (void)showResult
