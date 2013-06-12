@@ -10,6 +10,4 @@
 
 @interface Loader : UIView
 
-@property (nonatomic, strong) NSMutableArray *paths;
-
 @end
