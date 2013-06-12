@@ -25,7 +25,7 @@
         burgerIV.frame = CGRectMake(35, 14, burger.size.width, burger.size.height);
         [self addSubview:burgerIV];
         
-        UILabel *label = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 25, frame.size.width, frame.size.height) andSize:FontAlternateSizeTiny andColor:[UIColor beige]];
+        UILabel *label = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(0, 25, frame.size.width, frame.size.height) andSize:FontAlternateSizeTiny andColor:[UIColor beige]];
         label.text = [@"Create" uppercaseString];
         [self addSubview:label];
         

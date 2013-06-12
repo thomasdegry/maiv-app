@@ -10,7 +10,7 @@
 
 @implementation UILabel (MrBurger)
 
-- (id)initAWithFontAlternateAndFrame:(CGRect)frame andSize:(FontAlternateSize)size andColor:(UIColor *)color
+- (id)initWithFontAlternateAndFrame:(CGRect)frame andSize:(FontAlternateSize)size andColor:(UIColor *)color
 {
     self = [self initWithFrame:frame];
     
@@ -24,7 +24,7 @@
     return self;
 }
 
-- (id)initAWithFontMissionAndFrame:(CGRect)frame andSize:(FontMissionSize)size andColor:(UIColor *)color
+- (id)initWithFontMissionAndFrame:(CGRect)frame andSize:(FontMissionSize)size andColor:(UIColor *)color
 {
     self = [self initWithFrame:frame];
     
@@ -38,7 +38,7 @@
     return self;
 }
 
-- (id)initAWithFontTravelerAndFrame:(CGRect)frame andSize:(FontTravelerSize)size andColor:(UIColor *)color
+- (id)initWithFontTravelerAndFrame:(CGRect)frame andSize:(FontTravelerSize)size andColor:(UIColor *)color
 {
     self = [self initWithFrame:frame];
     
@@ -52,7 +52,7 @@
     return self;
 }
 
-- (id)initAParagraphWithFontTravelerAndFrame:(CGRect)frame andSize:(FontTravelerSize)size andColor:(UIColor *)color andText:(NSString *)text
+- (id)initParagraphWithFontTravelerAndFrame:(CGRect)frame andSize:(FontTravelerSize)size andColor:(UIColor *)color andText:(NSString *)text
 {
     self = [self initWithFrame:frame];
     

@@ -73,7 +73,7 @@
 	
     [self.view addSubview:faces];
     
-    UILabel *tempCode = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(20, 80, 280, 60) andSize:FontAlternateSizeGiant andColor:[UIColor blue]];
+    UILabel *tempCode = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(20, 80, 280, 60) andSize:FontAlternateSizeGiant andColor:[UIColor blue]];
     tempCode.text = self.sharedCode;
     
     [self.view addSubview:tempCode];

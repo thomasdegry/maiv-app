@@ -19,7 +19,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.title = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 20, 320, 50) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
+        self.title = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(0, 20, 320, 50) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
 
         [self addSubview:self.title];
         

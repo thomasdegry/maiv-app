@@ -35,7 +35,7 @@
     [self addSubview:iconView];
     
     // Show menu title
-    UILabel *title = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 40, 100, 50) andSize:FontAlternateSizeMedium andColor:[UIColor blueDarkened]];
+    UILabel *title = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(0, 40, 100, 50) andSize:FontAlternateSizeMedium andColor:[UIColor blueDarkened]];
     title.text = [self.burger.name uppercaseString];
     [self addSubview:title];
     
@@ -44,7 +44,7 @@
     int yPos = 90;
     
     for (NSString *ingredient in self.burger.ingredients) {
-        UILabel *ingredientName = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, yPos, 100, 17) andSize:FontAlternateSizeTiny andColor:[UIColor brown]];
+        UILabel *ingredientName = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(0, yPos, 100, 17) andSize:FontAlternateSizeTiny andColor:[UIColor brown]];
         ingredientName.text = [ingredient uppercaseString];
         
         [self.labels addObject:ingredientName];
@@ -56,7 +56,7 @@
         }
     }
    
-    self.price = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, yPos + 15 , 100, 17) andSize:FontAlternateSizeMedium andColor:[UIColor orange]];
+    self.price = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(0, yPos + 15 , 100, 17) andSize:FontAlternateSizeMedium andColor:[UIColor orange]];
     self.price.text = [NSString stringWithFormat:@"$%@", [self.burger.price uppercaseString]];
     [self addSubview:self.price];
     

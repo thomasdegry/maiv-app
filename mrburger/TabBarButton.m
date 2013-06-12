@@ -32,7 +32,7 @@
         imageIV.frame = CGRectMake(((frame.size.width - image.size.width) / 2), 12, image.size.width, image.size.height);
         [self addSubview:imageIV];
         
-        self.tabbarLabel = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 14, frame.size.width, frame.size.height) andSize:FontAlternateSizeTiny andColor:[UIColor beige]];
+        self.tabbarLabel = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(0, 14, frame.size.width, frame.size.height) andSize:FontAlternateSizeTiny andColor:[UIColor beige]];
         self.tabbarLabel.textColor = [UIColor beige];
         self.tabbarLabel.text = [self.label uppercaseString];
         [self addSubview:self.tabbarLabel];

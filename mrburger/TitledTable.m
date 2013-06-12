@@ -32,7 +32,7 @@
         self.titleBackground.backgroundColor = [UIColor orange];
         [self addSubview:self.titleBackground];
         
-        self.title = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 0, frame.size.width, 40) andSize:FontAlternateSizeMedium andColor:[UIColor white]];
+        self.title = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(0, 0, frame.size.width, 40) andSize:FontAlternateSizeMedium andColor:[UIColor white]];
         self.title.text = [title uppercaseString];
         [self addSubview:self.title];
 
@@ -56,7 +56,7 @@
         unavailableImage.layer.borderColor = [UIColor white].CGColor;
         [self.unavailable addSubview:unavailableImage];
         
-        UILabel *unavailableTextLabel = [[UILabel alloc] initAWithFontTravelerAndFrame:CGRectMake(74, 21, 240, 20) andSize:FontTravelerSizeSmall andColor:[UIColor beige]];
+        UILabel *unavailableTextLabel = [[UILabel alloc] initWithFontTravelerAndFrame:CGRectMake(74, 21, 240, 20) andSize:FontTravelerSizeSmall andColor:[UIColor beige]];
         
         unavailableTextLabel.text = @"Poor you. There's no one around...";
         unavailableTextLabel.textAlignment = NSTextAlignmentLeft;

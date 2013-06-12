@@ -33,9 +33,9 @@
         self.btnLogin = [[FacebookButton alloc] initWithText:@"Connect with Facebook" andX:23 andY:190];
         [self.btnLogin addTarget:self action:@selector(loginWithFacebook:) forControlEvents:UIControlEventTouchUpInside];
         
-        self.loginLabel = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(110, 80, 100, 50) andSize:(FontAlternateSizeGiant) andColor:[UIColor orange]];
+        self.loginLabel = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(110, 80, 100, 50) andSize:(FontAlternateSizeGiant) andColor:[UIColor orange]];
         self.loginLabel.text = @"LOGIN";
-        self.loginLabel2 = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(60, 120, 200, 50) andSize:(FontAlternateSizeGiant) andColor:[UIColor blueDarkened]];
+        self.loginLabel2 = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(60, 120, 200, 50) andSize:(FontAlternateSizeGiant) andColor:[UIColor blueDarkened]];
         self.loginLabel2.text = @"PRETTY PLEASE";
         
         self.loader = [[Loader alloc] init];

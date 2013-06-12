@@ -25,7 +25,7 @@
     if (self) {
         self.title.text = @"Put me back!";
         
-        UILabel *paragraph = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(130, 75, 160, 120) andSize:FontAlternateSizeSmall andColor:[UIColor blueDarkened]];
+        UILabel *paragraph = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(130, 75, 160, 120) andSize:FontAlternateSizeSmall andColor:[UIColor blueDarkened]];
         paragraph.text = [@"If you could keep your iPhones together until you made your burger, that would be awesome" uppercaseString];
         [paragraph makeParagraph];
         [self addSubview:paragraph];

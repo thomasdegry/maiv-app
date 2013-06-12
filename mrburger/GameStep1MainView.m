@@ -17,7 +17,7 @@ static UIAccelerationValue rollingX=0;
     if (self) {
         self.header.lblTitle.text = [@"Step 1 of 3" uppercaseString];
         
-        self.tabInstructions = [[UILabel alloc] initAWithFontTravelerAndFrame:CGRectMake(40, (frame.size.height - 65), 240, 20) andSize:FontTravelerSizeSmall andColor:[UIColor colorWithRed:0.678 green:0.675 blue:0.624 alpha:1.000]];
+        self.tabInstructions = [[UILabel alloc] initWithFontTravelerAndFrame:CGRectMake(40, (frame.size.height - 65), 240, 20) andSize:FontTravelerSizeSmall andColor:[UIColor colorWithRed:0.678 green:0.675 blue:0.624 alpha:1.000]];
         self.tabInstructions.text = @"Tap to lock your ingredient!";
         self.tabInstructions.textAlignment = NSTextAlignmentCenter;
         [self addSubview:self.tabInstructions];
@@ -28,7 +28,7 @@ static UIAccelerationValue rollingX=0;
         self.btnStart.frame = CGRectMake(self.btnStart.frame.origin.x, ([[UIScreen mainScreen] bounds].size.height), self.btnStart.frame.size.width, self.btnStart.frame.size.height);
         self.btnStart.alpha = 0;
         
-        UILabel *lblHello = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 60, 320, 55) andSize:FontAlternateSizeBig andColor:[UIColor orange]];
+        UILabel *lblHello = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(0, 60, 320, 55) andSize:FontAlternateSizeBig andColor:[UIColor orange]];
         lblHello.text = [@"Hello there" uppercaseString];
         [self addSubview:lblHello];
         
@@ -56,11 +56,11 @@ static UIAccelerationValue rollingX=0;
         NSString *gender = @"";
         if([[[NSUserDefaults standardUserDefaults] objectForKey:@"facebook_gender"] isEqualToString:@"m"]) {
             gender = @"Mr.";
-            greeting = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 100, frame.size.width, 40) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
+            greeting = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(0, 100, frame.size.width, 40) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
             greeting.text = [[NSString stringWithFormat:@"%@ %@", gender, ingredient.type] uppercaseString];
         } else {
             gender = @"Ms.";
-            greeting = [[UILabel alloc] initAWithFontMissionAndFrame:CGRectMake(0, 104, frame.size.width, 40) andSize:FontMissionSizeSmall andColor:[UIColor blue]];
+            greeting = [[UILabel alloc] initWithFontMissionAndFrame:CGRectMake(0, 104, frame.size.width, 40) andSize:FontMissionSizeSmall andColor:[UIColor blue]];
             greeting.text = [[NSString stringWithFormat:@"%@ %@", gender, ingredient.type] capitalizedString];
         }
 
@@ -118,7 +118,7 @@ static UIAccelerationValue rollingX=0;
     
     
     //Label
-    self.label = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 310, [[UIScreen mainScreen] bounds].size.width, 50) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
+    self.label = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(0, 310, [[UIScreen mainScreen] bounds].size.width, 50) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
     self.label.text = [middleIngredient.name uppercaseString];
     [self addSubview:self.label];
     

@@ -40,7 +40,7 @@
     self = [self initWithFrame:CGRectMake(0, 0, 320, 48)];
     
     if (self) {
-        self.lblTitle = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(40, 5, 240, 38) andSize:FontAlternateSizeMedium andColor:[UIColor beige]];
+        self.lblTitle = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(40, 5, 240, 38) andSize:FontAlternateSizeMedium andColor:[UIColor beige]];
         self.lblTitle.text = title;
         [self addSubview:self.lblTitle];
         

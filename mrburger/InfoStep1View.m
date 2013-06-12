@@ -22,7 +22,7 @@
         self.title.frame = CGRectMake(40,20, 250, 50);
         
         
-        self.description = [[UILabel alloc] initAParagraphWithFontTravelerAndFrame:CGRectMake(320, 60, 150, 200) andSize:FontTravelerSizeMedium andColor:[UIColor blue] andText:@"Start the burger quest by clicking on the ‘create’ button. Now you will be able to login with your Facebook account"];
+        self.description = [[UILabel alloc] initParagraphWithFontTravelerAndFrame:CGRectMake(320, 60, 150, 200) andSize:FontTravelerSizeMedium andColor:[UIColor blue] andText:@"Start the burger quest by clicking on the ‘create’ button. Now you will be able to login with your Facebook account"];
         [self.description makeParagraph];
         [self addSubview:self.description];
         self.description.textAlignment = NSTextAlignmentRight;
