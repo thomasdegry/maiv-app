@@ -10,8 +10,4 @@
 
 @interface RotatePhone : UIView
 
-@property (nonatomic, strong) NSMutableArray *paths;
-
-- (void)startAnimation;
-
 @end

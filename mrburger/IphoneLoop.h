@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface IphoneLoop : UIView
-@property (nonatomic, strong) NSMutableArray *paths;
 
 @end
