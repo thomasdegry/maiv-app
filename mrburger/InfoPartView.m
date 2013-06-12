@@ -22,20 +22,18 @@
         self.title = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(0, 20, 320, 50) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
 
         [self addSubview:self.title];
-        
-
-        
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)animateIn
 {
-    // Drawing code
+    
 }
-*/
+
+- (void)animateOut
+{
+    
+}
 
 @end

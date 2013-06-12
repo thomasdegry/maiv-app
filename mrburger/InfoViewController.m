@@ -20,9 +20,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
         self.view.backgroundColor = [UIColor beige];
-      
     }
     return self;
 }
@@ -32,7 +30,8 @@
     [super viewDidLoad];
 }
 
-- (void)loadView {
+- (void)loadView
+{
     CGRect frame = [[UIScreen mainScreen] bounds];
     self.mainView = [[InfoMainView alloc] initWithFrame:frame];
 
@@ -47,7 +46,6 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    NSLog(@"fuck dees");
     self.mainView.infoView = nil;
     self.mainView = nil;
 }
@@ -56,7 +54,5 @@
 {
     [self loadView];
 }
-
-
 
 @end

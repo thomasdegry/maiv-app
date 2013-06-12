@@ -1314,7 +1314,7 @@
 		4D4B9C631761D719003673A0 /* Info */ = {
 			isa = PBXGroup;
 			children = (
-				9C5D6F531768C93600F47185 /* steps */,
+				9C5D6F531768C93600F47185 /* Steps */,
 				4D4B9C601761D3B2003673A0 /* InfoViewController.h */,
 				4D4B9C611761D3B2003673A0 /* InfoViewController.m */,
 				9C5A357B1764F632007A0BA1 /* InfoView.h */,
@@ -2269,7 +2269,7 @@
 			name = Instructions;
 			sourceTree = "<group>";
 		};
-		9C5D6F531768C93600F47185 /* steps */ = {
+		9C5D6F531768C93600F47185 /* Steps */ = {
 			isa = PBXGroup;
 			children = (
 				9C5D6F541768C94600F47185 /* InfoStep1View.h */,
@@ -2281,7 +2281,7 @@
 				9C5D6F5D1768C96D00F47185 /* InfoStep4View.h */,
 				9C5D6F5E1768C96D00F47185 /* InfoStep4View.m */,
 			);
-			name = steps;
+			name = Steps;
 			sourceTree = "<group>";
 		};
 		EAB65B12176374E700D327ED /* Networking */ = {

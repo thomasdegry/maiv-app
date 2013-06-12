@@ -9,9 +9,7 @@
 #import "InfoPartView.h"
 
 @interface InfoStep4View : InfoPartView
-@property (strong, nonatomic) UIImageView* iconView;
 
-- (void)animateIn;
-- (void)animateOut;
+@property (strong, nonatomic) UIImageView* iconView;
 
 @end

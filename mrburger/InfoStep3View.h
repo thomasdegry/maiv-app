@@ -12,7 +12,4 @@
 
 @property (strong, nonatomic) UIImageView* iconView;
 
-- (void)animateIn;
-- (void)animateOut;
-
 @end

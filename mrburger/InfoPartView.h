@@ -14,5 +14,7 @@
 @property (strong, nonatomic) UILabel *description;
 @property (strong, nonatomic) UIImage *icon;
 
+- (void)animateIn;
+- (void)animateOut;
 
 @end
