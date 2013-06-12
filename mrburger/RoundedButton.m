@@ -32,7 +32,7 @@
     self = [self initWithFrame:CGRectMake(x, y, 274, 48)];
     
     if (self) {
-        [self setTitle:[self.string uppercaseString] forState:UIControlStateNormal];
+        [self setTitle:[text uppercaseString] forState:UIControlStateNormal];
     }
     
     return self;
