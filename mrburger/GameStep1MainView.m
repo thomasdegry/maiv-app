@@ -183,6 +183,12 @@ static UIAccelerationValue rollingX=0;
     
     Ingredient *currentIngredient = [self.categoryIngredients objectAtIndex:index];
     self.label.text = [currentIngredient.name uppercaseString];
+    
+    //Positioneren vinkje
+    CGSize textSize = [[self.label text] sizeWithFont:[self.label font] forWidth:self.label.bounds.size.width lineBreakMode:NSLineBreakByWordWrapping];
+    int positionX = ([[UIScreen mainScreen] bounds].size.width / 2) + (textSize.width / 2) + 10;
+    self.locked.frame = CGRectMake(positionX, (self.label.frame.origin.y - 5), self.locked.frame.size.width, self.locked.frame.size.height);
+    NSLog(@"%f", textSize.width);
 }
 
 - (void)stopMotionUpdates
@@ -211,15 +217,12 @@ static UIAccelerationValue rollingX=0;
             self.tabInstructions.alpha = 0;
         }completion:nil];
         
-        CGSize textSize = [[self.label text] sizeWithFont:[self.label font] forWidth:self.label.bounds.size.width lineBreakMode:NSLineBreakByWordWrapping];
-        int positionX = ([[UIScreen mainScreen] bounds].size.width / 2) + (textSize.width / 2) + 10;
-        self.locked.frame = CGRectMake(positionX, (self.label.frame.origin.y - 5), self.locked.frame.size.width, self.locked.frame.size.height);
-        NSLog(@"%f", textSize.width);
-        
         [UIView animateWithDuration:.3 animations:^{
             self.locked.frame = CGRectMake(self.locked.frame.origin.x, self.locked.frame.origin.y, 23, 23);
             self.locked.alpha = 1;
         }completion:nil];
+        
+        
     } else {
         [self startGyroLogging];
         
