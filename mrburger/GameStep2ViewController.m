@@ -81,15 +81,7 @@
 {
     NSLog(@"saving");
     GameViewController *gameVC = (GameViewController *)self.navigationController;
-    [gameVC calculateCode];
     [gameVC postBurgerToServer];
-    
-    NSData *packet = [gameVC.sharedCode dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *error = nil;
-    
-    [self.sessionManager.session sendData:packet toPeers:self.sessionManager.connectedPeers withDataMode:GKSendDataReliable error:&error];
-
-    [gameVC showResult];
 }
 
 - (void)didReceiveMemoryWarning

@@ -117,13 +117,9 @@
     }
 }
 
-- (void)calculateCode
-{
-    self.sharedCode = @"9d41f1xye";
-}
-
 - (void)postBurgerToServer
 {
+    [KGStatusBar showWithStatus: @"Saving your burger"];
     NSMutableString *JSONObject = [[NSMutableString alloc] initWithString:@"{\"ingredients\":["];
     for (NSString *peerID in self.sessionManager.connectedPeers) {
         User *user = [self.sessionManager userForPeerID:peerID];
@@ -143,6 +139,16 @@
     [httpClient postPath:@"burgers" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSLog(@"Request Successful, response '%@'", responseStr);
+        self.sharedCode = responseStr;
+        
+        GameViewController *gameVC = (GameViewController *)self.navigationController;
+        NSData *packet = [responseStr dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *error = nil;
+        
+        [self.sessionManager.session sendData:packet toPeers:self.sessionManager.connectedPeers withDataMode:GKSendDataReliable error:&error];
+        
+        [KGStatusBar dismiss];
+        [gameVC showResult];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
     }];
