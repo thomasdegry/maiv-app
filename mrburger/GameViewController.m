@@ -122,6 +122,13 @@
     self.sharedCode = @"9d41f1xye";
 }
 
+- (void)postBurgerToServer
+{
+    for (NSString *peerID in self.sessionManager.connectedPeers) {
+        User *user = [self.sessionManager userForPeerID:peerID];
+    }
+}
+
 - (void)showResult
 {
     self.currentScreen = GameScreenResult;

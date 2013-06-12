@@ -73,7 +73,7 @@
     }
 }
 
-- (void)showModal:(id)sender {
+- (void)showModal:(id)sender {  
     [self.mainView stopMotionUpdates];
     [super showModal:nil];
 }

@@ -82,6 +82,7 @@
     NSLog(@"saving");
     GameViewController *gameVC = (GameViewController *)self.navigationController;
     [gameVC calculateCode];
+    [gameVC postBurgerToServer];
     
     NSData *packet = [gameVC.sharedCode dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error = nil;

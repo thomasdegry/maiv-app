@@ -35,6 +35,7 @@ typedef enum {
 - (id)initGame;
 
 - (void)calculateCode;
+- (void)postBurgerToServer;
 
 - (void)showNextScreen;
 - (void)showResult;
