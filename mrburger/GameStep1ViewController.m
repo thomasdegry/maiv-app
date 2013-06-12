@@ -39,7 +39,8 @@
         [self.mainView.btnStart addTarget:self action:@selector(startGame:) forControlEvents:UIControlEventTouchUpInside];
         self.modal = [[GameStep1InfoView alloc] initModal];
         self.modal.delegate = self;
-        
+        [self.mainView stopMotionUpdates];
+
         self.presentingView = [[GameStep1View alloc] initWithMain:self.mainView andModal:self.modal];
         
         [self performSelector:@selector(showModal:) withObject:nil afterDelay:.6];
