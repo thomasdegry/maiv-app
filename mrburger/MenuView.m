@@ -40,6 +40,8 @@
     title.textAlignment  = NSTextAlignmentCenter;
     [self addSubview: title];
     
+    
+    
     int yPos = 90;
     
     self.labels = [[NSMutableArray alloc] init];
