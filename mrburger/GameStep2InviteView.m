@@ -25,7 +25,6 @@
     if (self) {            
         self.title.text = @"Someone wants you!";
        
-        
         UILabel *paragraph = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(130, 75, 160, 120) andSize:FontAlternateSizeSmall andColor:[UIColor blueDarkened]];
         paragraph.text = [@"Build a burger with your iPhones! Put your iPhone underneath the other to accept the invitation!" uppercaseString];
         [paragraph makeParagraph];
@@ -33,9 +32,7 @@
         
         IphoneLoop *iphoneLoopAnimation = [[IphoneLoop alloc] initWithFrame:CGRectMake(-15, -50, 160, 259)];
         [self addSubview:iphoneLoopAnimation];
-
     }
-    
     return self;
 }
 

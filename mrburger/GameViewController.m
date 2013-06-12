@@ -97,12 +97,7 @@
 
             self.currentScreen = GameScreenStep2;
             break;
-            
-        case GameScreenStep2:
-            nextScreen = [[GameStep3ViewController alloc] initWithSessionManager:self.sessionManager];
-            self.currentScreen = GameScreenStep3;
-            break;
-            
+                        
         default:
             break;
     }

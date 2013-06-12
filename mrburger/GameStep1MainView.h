@@ -9,7 +9,7 @@
 #import <CoreMotion/CoreMotion.h>
 
 #import "GameStepMainView.h"
-#import "Scrollimage.h"
+#import "ScrollImage.h"
 #import "Ingredient.h"
 
 @interface GameStep1MainView : GameStepMainView <UIScrollViewDelegate>

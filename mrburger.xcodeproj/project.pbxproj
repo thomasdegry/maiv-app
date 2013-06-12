@@ -427,22 +427,15 @@
 		EAE29A4B1761D90800E01E88 /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A4A1761D90800E01E88 /* Menu.m */; };
 		EAE29A4F1761DB1800E01E88 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A4E1761DB1800E01E88 /* GameViewController.m */; };
 		EAE29A521761DBCB00E01E88 /* GameStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A511761DBCB00E01E88 /* GameStepViewController.m */; };
-		EAE29A551761DBEF00E01E88 /* GameStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A541761DBEF00E01E88 /* GameStepView.m */; };
 		EAE29A581761DC0100E01E88 /* GameStepInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A571761DC0100E01E88 /* GameStepInfoView.m */; };
 		EAE29A5B1761DC1100E01E88 /* GameStepMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A5A1761DC1100E01E88 /* GameStepMainView.m */; };
 		EAE29A5F1761DC9900E01E88 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A5E1761DC9900E01E88 /* LoginViewController.m */; };
 		EAE29A631761DD2600E01E88 /* GameStep1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A621761DD2600E01E88 /* GameStep1ViewController.m */; };
-		EAE29A661761DD3600E01E88 /* GameStep1View.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A651761DD3600E01E88 /* GameStep1View.m */; };
 		EAE29A6C1761DDA500E01E88 /* GameStep1MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A6B1761DDA500E01E88 /* GameStep1MainView.m */; };
 		EAE29A6F1761DDB800E01E88 /* GameStep1InfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A6E1761DDB800E01E88 /* GameStep1InfoView.m */; };
 		EAE29A731761DDE500E01E88 /* GameStep2InfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A721761DDE500E01E88 /* GameStep2InfoView.m */; };
 		EAE29A761761DDFA00E01E88 /* GameStep2MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A751761DDFA00E01E88 /* GameStep2MainView.m */; };
-		EAE29A791761DE2200E01E88 /* GameStep2View.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A781761DE2200E01E88 /* GameStep2View.m */; };
 		EAE29A7C1761DE3100E01E88 /* GameStep2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A7B1761DE3100E01E88 /* GameStep2ViewController.m */; };
-		EAE29A801761DE8200E01E88 /* GameStep3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A7F1761DE8200E01E88 /* GameStep3ViewController.m */; };
-		EAE29A831761DE9200E01E88 /* GameStep3View.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A821761DE9200E01E88 /* GameStep3View.m */; };
-		EAE29A861761DEA000E01E88 /* GameStep3MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A851761DEA000E01E88 /* GameStep3MainView.m */; };
-		EAE29A891761DEAE00E01E88 /* GameStep3InfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A881761DEAE00E01E88 /* GameStep3InfoView.m */; };
 		EAE29A8D1761DEE000E01E88 /* GameResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A8C1761DEE000E01E88 /* GameResultViewController.m */; };
 		EAE29A901761DF4500E01E88 /* GameResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A8F1761DF4500E01E88 /* GameResultView.m */; };
 		EAE29A931761E59300E01E88 /* UIColor+MrBurger.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE29A921761E59300E01E88 /* UIColor+MrBurger.m */; };
@@ -1155,8 +1148,6 @@
 		EAE29A4E1761DB1800E01E88 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		EAE29A501761DBCB00E01E88 /* GameStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStepViewController.h; sourceTree = "<group>"; };
 		EAE29A511761DBCB00E01E88 /* GameStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStepViewController.m; sourceTree = "<group>"; };
-		EAE29A531761DBEF00E01E88 /* GameStepView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStepView.h; sourceTree = "<group>"; };
-		EAE29A541761DBEF00E01E88 /* GameStepView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStepView.m; sourceTree = "<group>"; };
 		EAE29A561761DC0100E01E88 /* GameStepInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStepInfoView.h; sourceTree = "<group>"; };
 		EAE29A571761DC0100E01E88 /* GameStepInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStepInfoView.m; sourceTree = "<group>"; };
 		EAE29A591761DC1100E01E88 /* GameStepMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStepMainView.h; sourceTree = "<group>"; };
@@ -1165,8 +1156,6 @@
 		EAE29A5E1761DC9900E01E88 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		EAE29A611761DD2600E01E88 /* GameStep1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep1ViewController.h; sourceTree = "<group>"; };
 		EAE29A621761DD2600E01E88 /* GameStep1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep1ViewController.m; sourceTree = "<group>"; };
-		EAE29A641761DD3600E01E88 /* GameStep1View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep1View.h; sourceTree = "<group>"; };
-		EAE29A651761DD3600E01E88 /* GameStep1View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep1View.m; sourceTree = "<group>"; };
 		EAE29A6A1761DDA500E01E88 /* GameStep1MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep1MainView.h; sourceTree = "<group>"; };
 		EAE29A6B1761DDA500E01E88 /* GameStep1MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep1MainView.m; sourceTree = "<group>"; };
 		EAE29A6D1761DDB800E01E88 /* GameStep1InfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep1InfoView.h; sourceTree = "<group>"; };
@@ -1175,18 +1164,8 @@
 		EAE29A721761DDE500E01E88 /* GameStep2InfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep2InfoView.m; sourceTree = "<group>"; };
 		EAE29A741761DDFA00E01E88 /* GameStep2MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep2MainView.h; sourceTree = "<group>"; };
 		EAE29A751761DDFA00E01E88 /* GameStep2MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep2MainView.m; sourceTree = "<group>"; };
-		EAE29A771761DE2200E01E88 /* GameStep2View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep2View.h; sourceTree = "<group>"; };
-		EAE29A781761DE2200E01E88 /* GameStep2View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep2View.m; sourceTree = "<group>"; };
 		EAE29A7A1761DE3100E01E88 /* GameStep2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep2ViewController.h; sourceTree = "<group>"; };
 		EAE29A7B1761DE3100E01E88 /* GameStep2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep2ViewController.m; sourceTree = "<group>"; };
-		EAE29A7E1761DE8200E01E88 /* GameStep3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep3ViewController.h; sourceTree = "<group>"; };
-		EAE29A7F1761DE8200E01E88 /* GameStep3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep3ViewController.m; sourceTree = "<group>"; };
-		EAE29A811761DE9200E01E88 /* GameStep3View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep3View.h; sourceTree = "<group>"; };
-		EAE29A821761DE9200E01E88 /* GameStep3View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep3View.m; sourceTree = "<group>"; };
-		EAE29A841761DEA000E01E88 /* GameStep3MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep3MainView.h; sourceTree = "<group>"; };
-		EAE29A851761DEA000E01E88 /* GameStep3MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep3MainView.m; sourceTree = "<group>"; };
-		EAE29A871761DEAE00E01E88 /* GameStep3InfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStep3InfoView.h; sourceTree = "<group>"; };
-		EAE29A881761DEAE00E01E88 /* GameStep3InfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStep3InfoView.m; sourceTree = "<group>"; };
 		EAE29A8B1761DEE000E01E88 /* GameResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameResultViewController.h; sourceTree = "<group>"; };
 		EAE29A8C1761DEE000E01E88 /* GameResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameResultViewController.m; sourceTree = "<group>"; };
 		EAE29A8E1761DF4500E01E88 /* GameResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameResultView.h; sourceTree = "<group>"; };
@@ -2426,14 +2405,11 @@
 				EAE29A5C1761DC8300E01E88 /* Login */,
 				EAE29A601761DCBA00E01E88 /* Step 1 */,
 				EAE29A701761DDD000E01E88 /* Step 2 */,
-				EAE29A7D1761DE4400E01E88 /* Step 3 */,
 				EAE29A8A1761DEC500E01E88 /* Result */,
 				EAE29A4D1761DB1800E01E88 /* GameViewController.h */,
 				EAE29A4E1761DB1800E01E88 /* GameViewController.m */,
 				EAE29A501761DBCB00E01E88 /* GameStepViewController.h */,
 				EAE29A511761DBCB00E01E88 /* GameStepViewController.m */,
-				EAE29A531761DBEF00E01E88 /* GameStepView.h */,
-				EAE29A541761DBEF00E01E88 /* GameStepView.m */,
 				EAE29A561761DC0100E01E88 /* GameStepInfoView.h */,
 				EAE29A571761DC0100E01E88 /* GameStepInfoView.m */,
 				EAE29A591761DC1100E01E88 /* GameStepMainView.h */,
@@ -2459,8 +2435,6 @@
 				4D4B9DF71764FC95003673A0 /* Ingredient */,
 				EAE29A611761DD2600E01E88 /* GameStep1ViewController.h */,
 				EAE29A621761DD2600E01E88 /* GameStep1ViewController.m */,
-				EAE29A641761DD3600E01E88 /* GameStep1View.h */,
-				EAE29A651761DD3600E01E88 /* GameStep1View.m */,
 				EAE29A6A1761DDA500E01E88 /* GameStep1MainView.h */,
 				EAE29A6B1761DDA500E01E88 /* GameStep1MainView.m */,
 				EAE29A6D1761DDB800E01E88 /* GameStep1InfoView.h */,
@@ -2477,8 +2451,6 @@
 				EAB65B161763765400D327ED /* Tables */,
 				EAE29A7A1761DE3100E01E88 /* GameStep2ViewController.h */,
 				EAE29A7B1761DE3100E01E88 /* GameStep2ViewController.m */,
-				EAE29A771761DE2200E01E88 /* GameStep2View.h */,
-				EAE29A781761DE2200E01E88 /* GameStep2View.m */,
 				EAE29A741761DDFA00E01E88 /* GameStep2MainView.h */,
 				EAE29A751761DDFA00E01E88 /* GameStep2MainView.m */,
 				EAE29A711761DDE500E01E88 /* GameStep2InfoView.h */,
@@ -2491,21 +2463,6 @@
 				EABAB77F1766323500BBC270 /* GameStep2ConnectedView.m */,
 			);
 			name = "Step 2";
-			sourceTree = "<group>";
-		};
-		EAE29A7D1761DE4400E01E88 /* Step 3 */ = {
-			isa = PBXGroup;
-			children = (
-				EAE29A7E1761DE8200E01E88 /* GameStep3ViewController.h */,
-				EAE29A7F1761DE8200E01E88 /* GameStep3ViewController.m */,
-				EAE29A811761DE9200E01E88 /* GameStep3View.h */,
-				EAE29A821761DE9200E01E88 /* GameStep3View.m */,
-				EAE29A841761DEA000E01E88 /* GameStep3MainView.h */,
-				EAE29A851761DEA000E01E88 /* GameStep3MainView.m */,
-				EAE29A871761DEAE00E01E88 /* GameStep3InfoView.h */,
-				EAE29A881761DEAE00E01E88 /* GameStep3InfoView.m */,
-			);
-			name = "Step 3";
 			sourceTree = "<group>";
 		};
 		EAE29A8A1761DEC500E01E88 /* Result */ = {
@@ -2759,22 +2716,15 @@
 				EAE29A4B1761D90800E01E88 /* Menu.m in Sources */,
 				EAE29A4F1761DB1800E01E88 /* GameViewController.m in Sources */,
 				EAE29A521761DBCB00E01E88 /* GameStepViewController.m in Sources */,
-				EAE29A551761DBEF00E01E88 /* GameStepView.m in Sources */,
 				EAE29A581761DC0100E01E88 /* GameStepInfoView.m in Sources */,
 				EAE29A5B1761DC1100E01E88 /* GameStepMainView.m in Sources */,
 				EAE29A5F1761DC9900E01E88 /* LoginViewController.m in Sources */,
 				EAE29A631761DD2600E01E88 /* GameStep1ViewController.m in Sources */,
-				EAE29A661761DD3600E01E88 /* GameStep1View.m in Sources */,
 				EAE29A6C1761DDA500E01E88 /* GameStep1MainView.m in Sources */,
 				EAE29A6F1761DDB800E01E88 /* GameStep1InfoView.m in Sources */,
 				EAE29A731761DDE500E01E88 /* GameStep2InfoView.m in Sources */,
 				EAE29A761761DDFA00E01E88 /* GameStep2MainView.m in Sources */,
-				EAE29A791761DE2200E01E88 /* GameStep2View.m in Sources */,
 				EAE29A7C1761DE3100E01E88 /* GameStep2ViewController.m in Sources */,
-				EAE29A801761DE8200E01E88 /* GameStep3ViewController.m in Sources */,
-				EAE29A831761DE9200E01E88 /* GameStep3View.m in Sources */,
-				EAE29A861761DEA000E01E88 /* GameStep3MainView.m in Sources */,
-				EAE29A891761DEAE00E01E88 /* GameStep3InfoView.m in Sources */,
 				EAE29A8D1761DEE000E01E88 /* GameResultViewController.m in Sources */,
 				EAE29A901761DF4500E01E88 /* GameResultView.m in Sources */,
 				EAE29A931761E59300E01E88 /* UIColor+MrBurger.m in Sources */,

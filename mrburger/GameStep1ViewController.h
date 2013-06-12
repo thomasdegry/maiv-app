@@ -10,11 +10,10 @@
 
 #import "GameViewController.h"
 
-#import "GameStep1View.h"
 #import "GameStep1MainView.h"
 #import "GameStep1InfoView.h"
 
-#import "Scrollimage.h"
+#import "ScrollImage.h"
 #import "Ingredient.h"
 
 @interface GameStep1ViewController : GameStepViewController

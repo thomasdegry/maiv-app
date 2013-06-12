@@ -11,7 +11,7 @@
 
 #import "Ingredient.h"
 
-@interface Scrollimage : UIView
+@interface ScrollImage : UIView
 
 @property (strong, nonatomic) NSString *image;
 @property (strong, nonatomic) NSString *type;

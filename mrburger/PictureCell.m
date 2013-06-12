@@ -28,7 +28,6 @@
 
 - (void)layoutSubviews
 {
-    NSLog(@"layout subviews");
     [super layoutSubviews];
     self.imageView.frame = CGRectMake(8, 6, 52, 52);
     self.imageView.layer.cornerRadius = 26.0f;
@@ -43,7 +42,7 @@
     NSURL *url = [NSURL URLWithString:_picturePath];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];    
+    (void)[[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response

@@ -8,8 +8,10 @@
 
 #import "ModalViewController.h"
 
+#import "ModalPresentingView.h"
+
 #import "GameStepMainView.h"
-#import "GameStep1InfoView.h"
+#import "GameStepInfoView.h"
 
 @interface GameStepViewController : ModalViewController
 

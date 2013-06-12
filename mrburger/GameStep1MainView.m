@@ -7,7 +7,6 @@
 @synthesize motMan = _motMan;
 @synthesize isScrolling = _isScrolling;
 
-
 #define kFilteringFactor 0.1
 
 static UIAccelerationValue rollingX=0;
@@ -85,7 +84,7 @@ static UIAccelerationValue rollingX=0;
     int i = 0;
     for (Ingredient *ingredient in self.categoryIngredients) {
         ingredient.order = i;
-        Scrollimage *scrollImage = [[Scrollimage alloc] initWithIngredient:ingredient andFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 235)];
+        ScrollImage *scrollImage = [[ScrollImage alloc] initWithIngredient:ingredient andFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 235)];
         
         scrollImage.frame = CGRectMake(xPos, 70, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
         [self.scrollImages addObject:scrollImage];
@@ -136,7 +135,6 @@ static UIAccelerationValue rollingX=0;
     CGSize textSize = [[self.label text] sizeWithFont:[self.label font] forWidth:self.label.bounds.size.width lineBreakMode:NSLineBreakByWordWrapping];
     int positionX = ([[UIScreen mainScreen] bounds].size.width / 2) + (textSize.width / 2) + 10;
     self.locked.frame = CGRectMake(positionX, (self.label.frame.origin.y - 5), self.locked.frame.size.width, self.locked.frame.size.height);
-    NSLog(@"%f", textSize.width);
 }
 
 - (void)startGyroLogging
@@ -194,7 +192,6 @@ static UIAccelerationValue rollingX=0;
     CGSize textSize = [[self.label text] sizeWithFont:[self.label font] forWidth:self.label.bounds.size.width lineBreakMode:NSLineBreakByWordWrapping];
     int positionX = ([[UIScreen mainScreen] bounds].size.width / 2) + (textSize.width / 2) + 10;
     self.locked.frame = CGRectMake(positionX, (self.label.frame.origin.y - 5), self.locked.frame.size.width, self.locked.frame.size.height);
-    NSLog(@"%f", textSize.width);
 }
 
 - (void)stopMotionUpdates

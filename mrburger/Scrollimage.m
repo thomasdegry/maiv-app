@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 devine. All rights reserved.
 //
 
-#import "Scrollimage.h"
+#import "ScrollImage.h"
 
-@implementation Scrollimage
+@implementation ScrollImage
 
 @synthesize id = _id;
 @synthesize name = _name;
@@ -20,12 +20,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
         CAShapeLayer *temp = [CAShapeLayer layer];
         temp.path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)].CGPath;
         temp.fillColor = [UIColor redColor].CGColor;
-        //[self.layer addSublayer:temp];
-        
         
         UIImage *image = [UIImage imageNamed:self.image];
         UIImageView *imageIV = [[UIImageView alloc] initWithImage:image];
@@ -58,14 +55,5 @@
     
     return [self initWithFrame:frame];
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

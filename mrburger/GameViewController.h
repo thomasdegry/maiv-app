@@ -14,7 +14,6 @@
 #import "LoginViewController.h"
 #import "GameStep1ViewController.h"
 #import "GameStep2ViewController.h"
-#import "GameStep3ViewController.h"
 #import "GameResultViewController.h"
 #import "AFHTTPClient.h"
 
@@ -22,8 +21,7 @@ typedef enum {
     GameScreenLogin = 0,
     GameScreenStep1 = 1,
     GameScreenStep2 = 2,
-    GameScreenStep3 = 3,
-    GameScreenResult = 4
+    GameScreenResult = 3
 } GameScreen;
 
 @interface GameViewController : UINavigationController <CloseButtonDelegate>
