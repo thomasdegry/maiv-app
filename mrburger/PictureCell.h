@@ -10,4 +10,6 @@
 
 @interface PictureCell : UITableViewCell
 
+@property (strong, nonatomic) NSString *picturePath;
+
 @end
