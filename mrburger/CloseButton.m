@@ -16,10 +16,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-        UIImage *closeIcon = [UIImage imageNamed:@"btn_close.png"];
-        UIImageView *closeIconIV = [[UIImageView alloc] initWithImage:closeIcon];
-        [self addSubview:closeIconIV];
+        UIImageView *closeIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btn_close.png"]];
+        [self addSubview:closeIcon];
         
         [self addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -28,18 +26,9 @@
 
 - (void)click:(id)sender
 {
-    if ( [self.delegate respondsToSelector:@selector(closeButtonClicked:)] ) {
+    if ([self.delegate respondsToSelector:@selector(closeButtonClicked:)]) {
         [self.delegate closeButtonClicked:self];
     }
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

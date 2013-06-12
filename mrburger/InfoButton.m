@@ -14,10 +14,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-        UIImage *infoIcon = [UIImage imageNamed:@"btn_info.png"];
-        UIImageView *infoIconIV = [[UIImageView alloc] initWithImage:infoIcon];
-        [self addSubview:infoIconIV];
+        UIImageView *infoIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btn_info.png"]];
+        [self addSubview:infoIcon];
     }
     return self;
 }

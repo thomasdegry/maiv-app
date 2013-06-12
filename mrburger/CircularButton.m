@@ -14,7 +14,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
         UIImage *normalState = [UIImage imageNamed:@"btn_circle_normal"];
         [self setBackgroundImage:normalState  forState:UIControlStateNormal];
         
@@ -24,8 +23,9 @@
     return self;
 }
 
-- (id)initWithX:(float)x andY:(float)y {
-    return [self initWithFrame:CGRectMake(x, y, 29, 29 )];
+- (id)initWithX:(float)x andY:(float)y
+{
+    return [self initWithFrame:CGRectMake(x, y, 29, 29)];
 }
 
 /*

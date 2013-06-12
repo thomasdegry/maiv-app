@@ -16,10 +16,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
         UIImage *normalState = [UIImage imageNamed:@"btn_orange_normal.png"];
         [self setBackgroundImage:normalState  forState:UIControlStateNormal];
-        [self setTitle:[self.string uppercaseString] forState:UIControlStateNormal];
         self.titleLabel.font = [UIFont fontWithName:@"AlternateGothicCom-No2" size:23];
         self.titleLabel.textColor = [UIColor whiteColor];
 
@@ -29,18 +27,15 @@
     return self;
 }
 
-- (id)initWithText:(NSString *)text andX:(float)x andY:(float)y {
-    self.string = text;
-    return [self initWithFrame:CGRectMake(x, y, 274, 48)];
-}
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (id)initWithText:(NSString *)text andX:(float)x andY:(float)y
 {
-    // Drawing code
+    self = [self initWithFrame:CGRectMake(x, y, 274, 48)];
+    
+    if (self) {
+        [self setTitle:[self.string uppercaseString] forState:UIControlStateNormal];
+    }
+    
+    return self;
 }
-*/
 
 @end
