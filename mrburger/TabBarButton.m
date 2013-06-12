@@ -18,15 +18,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", self.iconName]];
-        UIImageView *imageIV = [[UIImageView alloc] initWithImage:image];
-        imageIV.frame = CGRectMake(((frame.size.width - image.size.width) / 2), 12, image.size.width, image.size.height);
-        [self addSubview:imageIV];
-        
-        self.tabbarLabel = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 14, frame.size.width, frame.size.height) andSize:FontAlternateSizeTiny andColor:[UIColor beige]];
-        self.tabbarLabel.textColor = [UIColor beige];
-        self.tabbarLabel.text = [self.label uppercaseString];
-        [self addSubview:self.tabbarLabel];
     }
     return self;
 }
@@ -35,7 +26,16 @@
     self = [self initWithFrame:frame];
     if (self) {
         self.label = label;
-        self.iconName = iconName;
+        
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", iconName]];
+        UIImageView *imageIV = [[UIImageView alloc] initWithImage:image];
+        imageIV.frame = CGRectMake(((frame.size.width - image.size.width) / 2), 12, image.size.width, image.size.height);
+        [self addSubview:imageIV];
+        
+        self.tabbarLabel = [[UILabel alloc] initAWithFontAlternateAndFrame:CGRectMake(0, 14, frame.size.width, frame.size.height) andSize:FontAlternateSizeTiny andColor:[UIColor beige]];
+        self.tabbarLabel.textColor = [UIColor beige];
+        self.tabbarLabel.text = [self.label uppercaseString];
+        [self addSubview:self.tabbarLabel];
     }
     return self;
 }
