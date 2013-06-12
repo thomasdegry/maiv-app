@@ -15,7 +15,6 @@
 @property (strong, nonatomic) TabBarButton *btnInfo;
 @property (strong, nonatomic) GameButton *btnGame;
 @property (strong, nonatomic) TabBarButton *btnMenus;
-@property (strong, nonatomic) UIImageView *driehoek;
-@property (strong, nonatomic) UIImage *drie;
+@property (strong, nonatomic) UIImageView *activeMarker;
 
 @end

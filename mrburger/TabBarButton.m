@@ -18,7 +18,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", self.iconName]];
         UIImageView *imageIV = [[UIImageView alloc] initWithImage:image];
         imageIV.frame = CGRectMake(((frame.size.width - image.size.width) / 2), 12, image.size.width, image.size.height);
@@ -28,27 +27,17 @@
         self.tabbarLabel.textColor = [UIColor beige];
         self.tabbarLabel.text = [self.label uppercaseString];
         [self addSubview:self.tabbarLabel];
-        
-        
     }
     return self;
 }
 
 - (id)initWithIconName:(NSString *)iconName frame:(CGRect)frame andLabel:(NSString *)label {
-    if(self) {
+    self = [self initWithFrame:frame];
+    if (self) {
         self.label = label;
         self.iconName = iconName;
     }
-    return [self initWithFrame:frame];
+    return self;
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

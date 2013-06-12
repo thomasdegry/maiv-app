@@ -14,12 +14,11 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
         UIImage *bg = [UIImage imageNamed:@"tabbar_circle.png"];
         [self setBackgroundImage:bg  forState:UIControlStateNormal];
         
-        UIImage *bg_active = [UIImage imageNamed:@"tabbar_circle_active.png"];
-        [self setBackgroundImage:bg_active forState:UIControlStateHighlighted];
+        UIImage *bgActive = [UIImage imageNamed:@"tabbar_circle_active.png"];
+        [self setBackgroundImage:bgActive forState:UIControlStateHighlighted];
         
         UIImage *burger = [UIImage imageNamed:@"tabbar_burger.png"];
         UIImageView *burgerIV = [[UIImageView alloc] initWithImage:burger];
@@ -33,14 +32,5 @@
     }
     return self;
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

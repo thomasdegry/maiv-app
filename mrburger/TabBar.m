@@ -13,7 +13,7 @@
 @synthesize btnInfo = _btnInfo;
 @synthesize btnGame = _btnGame;
 @synthesize btnMenus = _btnMenus;
-@synthesize driehoek = _driehoek;
+@synthesize activeMarker = _driehoek;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -23,10 +23,10 @@
         UIImageView *bgIV = [[UIImageView alloc] initWithImage:bg];
         [self addSubview:bgIV];
         
-        self.drie = [UIImage imageNamed:@"tabbar_arrow.png"];
-        self.driehoek = [[UIImageView alloc] initWithImage:self.drie];
-        self.driehoek.frame = CGRectMake(42, -8, self.drie.size.width, self.drie.size.height);
-        [self addSubview:self.driehoek];
+        UIImage *markerImage = [UIImage imageNamed:@"tabbar_arrow.png"];
+        self.activeMarker = [[UIImageView alloc] initWithImage:markerImage];
+        self.activeMarker.frame = CGRectMake(42, -8, markerImage.size.width, markerImage.size.height);
+        [self addSubview:self.activeMarker];
         
         self.btnInfo = [[TabBarButton alloc] initWithIconName:@"tabbar_truck" frame:CGRectMake(0, 0, 100, 80) andLabel:@"info"];
         [self addSubview:self.btnInfo];
@@ -46,26 +46,17 @@
     NSString *selectedIndex = [[sender userInfo] objectForKey:@"selectedIndex"];
     if([selectedIndex isEqualToString:@"0"]) {
         [UIView animateWithDuration:.3 animations:^{
-            self.driehoek.frame = CGRectMake(42, -8, self.drie.size.width, self.drie.size.height);
+            self.activeMarker.frame = CGRectMake(42, -8, self.activeMarker.frame.size.width, self.activeMarker.frame.size.height);
             self.btnInfo.tabbarLabel.textColor = [UIColor orange];
             self.btnMenus.tabbarLabel.textColor = [UIColor beige];
         }];
     } else {
         [UIView animateWithDuration:.3 animations:^{
-            self.driehoek.frame = CGRectMake(260, -8, self.drie.size.width, self.drie.size.height);
+            self.activeMarker.frame = CGRectMake(260, -8, self.activeMarker.frame.size.width, self.activeMarker.frame.size.height);
                 self.btnInfo.tabbarLabel.textColor = [UIColor beige];
             self.btnMenus.tabbarLabel.textColor = [UIColor orange];
         }];
     }
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end
