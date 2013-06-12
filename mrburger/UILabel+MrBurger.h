@@ -27,8 +27,8 @@ typedef enum
 typedef enum
 {
     FontTravelerSizeSmall = 12,
-    FontTravelerSizeMedium = 37,
-    FontTravelerSizeBig = 44
+    FontTravelerSizeMedium = 16,
+    FontTravelerSizeBig = 40
 } FontTravelerSize;
 
 @interface UILabel (MrBurger)
@@ -36,6 +36,7 @@ typedef enum
 - (id)initAWithFontAlternateAndFrame:(CGRect)frame andSize:(FontAlternateSize)size andColor:(UIColor *)color;
 - (id)initAWithFontMissionAndFrame:(CGRect)frame andSize:(FontMissionSize)size andColor:(UIColor *)color;
 - (id)initAWithFontTravelerAndFrame:(CGRect)frame andSize:(FontTravelerSize)size andColor:(UIColor *)color;
+- (id)initAParagraphWithFontTravelerAndFrame:(CGRect)frame andSize:(FontTravelerSize) andColor:(UIColor *)color andText:(NSString *)text;
 
 - (void)makeParagraph;
 

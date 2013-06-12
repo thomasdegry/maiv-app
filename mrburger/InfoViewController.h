@@ -14,4 +14,6 @@
 
 @interface InfoViewController : UIViewController
 
+@property (strong, nonatomic) InfoMainView *mainView;
+
 @end
