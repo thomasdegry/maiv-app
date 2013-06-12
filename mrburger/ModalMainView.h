@@ -10,6 +10,4 @@
 
 @interface ModalMainView : RoundedView
 
-@property (strong, nonatomic) UIButton *btnModal;
-
 @end

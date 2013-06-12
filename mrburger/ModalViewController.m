@@ -17,26 +17,18 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-//        self.mainView = [[ModalMainView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//        self.modal = [[ModalView alloc] initModal];
-//        self.modal.delegate = self;
-    }
     return self;
 }
 
 - (void)loadView
 {    
     self.view = self.presentingView;
-    
-    [self.mainView.btnModal addTarget:self action:@selector(showModal:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setModal:(ModalView *)modal
 {
     _modal = modal;
     if (self.presentingView) {
-        NSLog(@"Setting modal on presenting view");
         self.presentingView.modal = self.modal;
     }
 }

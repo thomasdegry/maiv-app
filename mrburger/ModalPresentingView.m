@@ -20,9 +20,6 @@
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
     return self;
 }
 
@@ -36,7 +33,7 @@
         
         self.overlay = [CAShapeLayer layer];
         self.overlay.path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height)].CGPath;
-        self.overlay.fillColor = [UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:0.640].CGColor;
+        self.overlay.fillColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.64f].CGColor;
         self.overlay.opacity = 0;
         [self.layer addSublayer:self.overlay];
         
@@ -44,7 +41,6 @@
         
         [self addSubview:self.mainView];
         [self addSubview:self.modal];
-   
     }
     return self;
 }
@@ -73,28 +69,21 @@
     animationOverlay.removedOnCompletion = NO;
     [self.overlay addAnimation:animationOverlay forKey:@"overlay"];
     self.overlay.opacity = 1;
-
     
     [UIView animateWithDuration:0.22 delay:.4 options:UIViewAnimationOptionCurveLinear animations:^{
-        
         self.mainView.layer.zPosition = -1000;
         CATransform3D trRotate = CATransform3DIdentity;
         trRotate.m34 = 1.0 / -2000;
         self.mainView.layer.transform = CATransform3DRotate(trRotate, 10 * (M_PI / 180), 1, 0, 0);
-        
     } completion:^(BOOL finished) {
-        // 1. Set alpha for 'inactive' feeling
-        // 2. Scale photo view down for depth and resetting the rotation transformation
         [UIView animateWithDuration:0.44 animations:^{
-     
             self.mainView.transform = CGAffineTransformMakeScale(0.9, 0.9);
         }];
     }];
     
     [UIView animateWithDuration:0.36 delay:0.22 options:UIViewAnimationOptionCurveLinear animations:^{
         self.modal.frame = _modalFrame;
-    } completion:^(BOOL finished) {}];
-
+    } completion:nil];
 }
 
 - (void)hideModal
@@ -103,14 +92,12 @@
     hideFrame.origin.y = self.frame.size.height;
     
     [UIView animateWithDuration:0.22 animations:^{
-        
         self.modal.frame = hideFrame;
         
         self.mainView.layer.zPosition = 0;
         CATransform3D trRotate = CATransform3DIdentity;
         trRotate.m34 = 1.0 / 2000;
         self.mainView.layer.transform = CATransform3DRotate(trRotate, -10 * (M_PI / 180), 1, 0, 0);
-        
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.44 animations:^{
             self.mainView.transform = CGAffineTransformMakeScale(1.0, 1.0);
@@ -120,20 +107,10 @@
             animationFadeOutOverlay.toValue = [NSNumber numberWithFloat:0.5f];
             [self.overlay addAnimation:animationFadeOutOverlay forKey:@"overlay"];
             self.overlay.opacity = 0.5;
-            
         } completion:^(BOOL finished) {
             self.modal.hidden = YES;
         }];
     }];
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end
