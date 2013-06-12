@@ -133,7 +133,7 @@ static UIAccelerationValue rollingX=0;
     }
 }
 
--(void) startGyroLogging
+- (void)startGyroLogging
 {
     if( !self.motMan ){
         self.motMan = [[CMMotionManager alloc] init];
@@ -149,7 +149,7 @@ static UIAccelerationValue rollingX=0;
     }
 }
 
-- (void) moveByMotion:(CMAccelerometerData *)motion andExtraMovement:(float)extraMov
+- (void)moveByMotion:(CMAccelerometerData *)motion andExtraMovement:(float)extraMov
 {
     if( self.isScrolling ){
         rollingX = (motion.acceleration.x * kFilteringFactor) + (rollingX * (1.0 - kFilteringFactor));

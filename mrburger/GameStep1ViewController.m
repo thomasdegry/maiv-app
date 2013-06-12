@@ -73,6 +73,16 @@
     }
 }
 
+- (void)showModal:(id)sender {
+    [self.mainView stopMotionUpdates];
+    [super showModal:nil];
+}
+
+- (void)hideModal:(id)sender {
+    [self.mainView startGyroLogging];
+    [super hideModal:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
