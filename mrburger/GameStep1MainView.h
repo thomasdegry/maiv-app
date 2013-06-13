@@ -32,7 +32,8 @@
 @property (assign) BOOL isScrolling;
 
 - (id)initWithIngredients:(NSMutableArray *)ingredients andFrame:(CGRect)frame;
-- (void) stopMotionUpdates;
+- (void)stopMotionUpdates;
+- (void)startGyroLogging;
 - (void)lockAndScrollTo:(int)index;
 
 @end

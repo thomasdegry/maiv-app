@@ -16,6 +16,7 @@
 #import "GameStep2ViewController.h"
 #import "GameStep3ViewController.h"
 #import "GameResultViewController.h"
+#import "AFHTTPClient.h"
 
 typedef enum {
     GameScreenLogin = 0,
@@ -35,6 +36,7 @@ typedef enum {
 - (id)initGame;
 
 - (void)calculateCode;
+- (void)postBurgerToServer;
 
 - (void)showNextScreen;
 - (void)showResult;

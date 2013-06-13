@@ -16,22 +16,28 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.paths = [[NSMutableArray alloc] init];
         
-        for (int i = 0; i <= 74; i++) {
-            NSString *resource = (i < 10) ? [NSString stringWithFormat:@"iphoneRotate_0000%i", i] : [NSString stringWithFormat:@"iphoneRotate_000%i", i];
+        self.paths = [NSMutableArray arrayWithCapacity:86];
+        
+        for (int i = 4; i <= 41; i++) {
+            NSString *resource = [NSString stringWithFormat:@"iphoneRotate_000%i", i];
             
-            NSString *path = [[NSBundle mainBundle] pathForResource:resource ofType:@"png" inDirectory:@"iphone_rotate"];
-            UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
-            
+            UIImage *image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:resource ofType:@"png" inDirectory:@"iphone_rotate"]];
+        
             [self.paths addObject:image];
         }
         
-        UIImageView *sequenceView = [[UIImageView alloc] initWithFrame:frame];
+        for (int i = 41; i >= 4; i--) {
+            NSLog(@"%i", i);
+            [self.paths addObject:[self.paths objectAtIndex:(i - 4)]];
+        }
+        
+        NSLog(@"count %i", [self.paths count]);
+        
+        UIImageView *sequenceView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 133, 146)];
         
         // load all the frames of our animation
         sequenceView.animationImages = self.paths;
-        sequenceView.frame = CGRectMake(0, 0, 160, 201);
         sequenceView.animationDuration = 3;
         sequenceView.animationRepeatCount = 0;
         [sequenceView startAnimating];

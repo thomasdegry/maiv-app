@@ -79,6 +79,11 @@
     [self.view addSubview:tempCode];
 }
 
+- (void)createQRCodeFromID:(NSString *)identifier
+{
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

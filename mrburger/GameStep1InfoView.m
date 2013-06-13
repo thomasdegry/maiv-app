@@ -18,10 +18,10 @@
         
         self.title.text = @"Choose an ingredient!" ;
         self.title.font = [UIFont fontWithName:@"Mission-Script" size:FontMissionSizeSmall];
-        self.message.text = [@"within your catogory" uppercaseString];
+        self.message.text = [@"within your category" uppercaseString];
         self.message.frame = CGRectMake(60, 63, 200, 30);
         
-        RotatePhone *rotatePhoneAnimation = [[RotatePhone alloc] initWithFrame:CGRectMake(75, 75, 160, 201)];
+        RotatePhone *rotatePhoneAnimation = [[RotatePhone alloc] initWithFrame:CGRectMake(90, 102, 133, 146)];
         [self addSubview:rotatePhoneAnimation];
     }
     return self;
