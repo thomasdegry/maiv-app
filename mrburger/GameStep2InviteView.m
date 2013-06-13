@@ -32,6 +32,12 @@
         
         IphoneLoop *iphoneLoopAnimation = [[IphoneLoop alloc] initWithFrame:CGRectMake(-15, -50, 160, 259)];
         [self addSubview:iphoneLoopAnimation];
+        
+        self.confirmBtn.hidden = YES;
+        
+        RoundedButtonAlternate *btnCancel = [[RoundedButtonAlternate alloc] initWithText:@"Cancel" andX:23 andY:(self.frame.size.height - 87)];
+        [self addSubview:btnCancel];
+
     }
     return self;
 }

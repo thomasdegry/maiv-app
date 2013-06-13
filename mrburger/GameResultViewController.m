@@ -39,7 +39,9 @@
             NSLog(@"GameresultVC in for");
             User *user = [self.sessionManager userForPeerID:peerID];
             [self.users addObject:user];
+            [self.sessionManager.session disconnectPeerFromAllPeers:peerID];
         }
+        
     }
     
     return self;
