@@ -17,6 +17,7 @@
     self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
     if (self) {
         self.textLabel.font = [UIFont fontWithName:@"AlternateGothicCom-No2" size:FontAlternateSizeSmall];
+        self.backgroundColor = [UIColor colorWithRed:0.949 green:0.275 blue:0.125 alpha:1.000];
     }
     return self;
 }

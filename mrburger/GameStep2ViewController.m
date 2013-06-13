@@ -53,11 +53,15 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showConnecting:) name:@"SENT_INVITE" object:self.nearbyTVC];
 	}
     
-    self.btnSave = [[RoundedButtonAlternate alloc] initWithText:@"Save my burger" andX:15 andY:200];
+    self.btnSave = [[RoundedButtonAlternate alloc] initWithText:@"Save my burger" andX:15 andY:197];
+    self.btnSave.titleLabel.font  = [UIFont fontWithName:@"Mission-Script" size:FontMissionSizeTiny];
+    [self.btnSave setTitle:@"Save my burger" forState:UIControlStateNormal];
+
     CGRect btnSaveFrame = self.btnSave.frame;
     btnSaveFrame.size.width = 290;
     self.btnSave.frame = btnSaveFrame;
-    [self.mainView addSubview:self.btnSave];
+    //[self.mainView addSubview:self.btnSave];
+    [self.mainView insertSubview:self.btnSave atIndex:0];
     [self.btnSave addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
     
     self.participantsView = [[TitledTable alloc] initWithFrame:CGRectMake(15, 60, 290, 130) andTitle:@"Your burger"];

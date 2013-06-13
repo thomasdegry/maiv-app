@@ -42,10 +42,10 @@
 
         self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, frame.size.width, frame.size.height - 30) style:UITableViewStylePlain];
         
-        CAShapeLayer *tableMask = [CAShapeLayer layer];
-        tableMask.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, frame.size.width, frame.size.height - 30) byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:(CGSize){13.0f, 13.0f}].CGPath;
-        
-        self.tableView.layer.mask = tableMask;
+//        CAShapeLayer *tableMask = [CAShapeLayer layer];
+//        tableMask.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, frame.size.width, frame.size.height - 30) byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:(CGSize){13.0f, 13.0f}].CGPath;
+//        
+//        self.tableView.layer.mask = tableMask;
         
         [self addSubview:self.tableView];
         
