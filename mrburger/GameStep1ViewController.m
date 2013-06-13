@@ -42,6 +42,19 @@
             }
         }
         
+        for (int i = 0; i < floor([_ingredients count] * .5); i++) {
+            int replaceIndex = (arc4random() % [_ingredients count]);
+            
+            while (replaceIndex == i) {
+                replaceIndex = (arc4random() % [_ingredients count]);
+            }
+            
+            Ingredient *tempIngredientWR = [_ingredients objectAtIndex:i];
+            Ingredient *tempIngredientTBR = [_ingredients objectAtIndex:replaceIndex];
+            [_ingredients replaceObjectAtIndex:i withObject:tempIngredientTBR];
+            [_ingredients replaceObjectAtIndex:replaceIndex withObject:tempIngredientWR];
+        }
+        
         path = nil;
         ingredients = nil;
         
