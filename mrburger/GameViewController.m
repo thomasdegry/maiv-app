@@ -111,9 +111,7 @@
 
 - (void)receivedCode:(NSNotification *)notification
 {
-    NSLog(@"received");
     if (!self.sharedCode) {
-        NSLog(@"received in if");
         self.sharedCode = [NSString stringWithFormat:@"%@-%@", [notification.userInfo objectForKey:@"code"], self.user.id];
         [self showResult];
     }

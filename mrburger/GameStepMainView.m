@@ -23,9 +23,4 @@
     return self;
 }
 
-- (void)showInfo:(id)sender
-{
-    
-}
-
 @end

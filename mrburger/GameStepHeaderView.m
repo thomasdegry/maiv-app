@@ -20,11 +20,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        CAShapeLayer * maskLayer = [CAShapeLayer layer];
+        CAShapeLayer *maskLayer = [CAShapeLayer layer];
         maskLayer.path = [UIBezierPath bezierPathWithRoundedRect: self.bounds byRoundingCorners: UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii: (CGSize){13.0, 13.}].CGPath;
         
         self.layer.mask = maskLayer;
-        
         
         self.btnInfo = [[InfoButton alloc] initWithX:10 andY:10];
         [self addSubview:self.btnInfo];
