@@ -25,15 +25,28 @@
         headerView.frame = CGRectMake(0, -300, 320, 498);
         [self addSubview: headerView];
         
+     
         self.headerTypo = [UIImage imageNamed:@"hometypo"];
         UIImageView* headerTypoView = [[UIImageView alloc] initWithImage:self.headerTypo];
         headerTypoView.frame = CGRectMake(65, 220, 179, 129);
+        headerTypoView.alpha = 0;
         [self addSubview: headerTypoView];
+        
+        [UIView animateWithDuration:1 delay:.2 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            headerTypoView.alpha = 1;
+        } completion:nil];
+        
         
         UIImage *arrowDown = [UIImage imageNamed:@"arrow_down"];
         UIImageView* arrowView = [[UIImageView alloc] initWithImage:arrowDown];
         arrowView.frame = CGRectMake(155, 365, 7, 122);
+        arrowView.alpha = 0;
         [self addSubview: arrowView];
+        
+        [UIView animateWithDuration:1 delay:.4 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            arrowView.alpha = 1;
+        } completion:nil];
+        
         
         
        

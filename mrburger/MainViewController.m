@@ -32,7 +32,41 @@
         
         self.app = [[AppViewController alloc] initWithNibName:nil bundle:nil];
         //[self enumerateFonts];
+       
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(detectOrientation) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+        
+        
+        UIImage *drips = [UIImage imageNamed:@"drippingsauce"];
+        self.dripsViewLeft = [[UIImageView alloc] initWithImage:drips];
+        if([UIScreen mainScreen].bounds.size.height < 568){
+            self.dripsViewLeft.frame = CGRectMake(100, -50, 568, 242);
 
+        }else{
+            self.dripsViewLeft.frame = CGRectMake(100, 180, 568, 242);
+
+        }
+          
+      
+        CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI_2);
+        self.dripsViewLeft.transform = transform;
+       
+        [self.view addSubview: self.dripsViewLeft];
+        
+        UIImage *dripsRight = [UIImage imageNamed:@"drippingsauce2"];
+        self.dripsViewRight = [[UIImageView alloc] initWithImage:dripsRight];
+        if([UIScreen mainScreen].bounds.size.height < 568){
+            self.dripsViewRight.frame = CGRectMake(-400, -50, 568, 242);
+        }else{
+            self.dripsViewRight.frame = CGRectMake(-400, 180, 568, 242);
+        }
+ 
+        
+        
+        CGAffineTransform transform2 = CGAffineTransformMakeRotation((-1)*M_PI_2);
+        self.dripsViewRight.transform = transform2;
+        
+        [self.view addSubview: self.dripsViewRight];
+             
     }
     return self;
 }
@@ -90,6 +124,80 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) detectOrientation
+{
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft)
+    {
+        [self resetAnimation];
+        self.dripsViewLeft.alpha = 1;
+        [UIView animateWithDuration:.6 delay:.3 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            
+            if([UIScreen mainScreen].bounds.size.height < 568){
+                self.dripsViewLeft.frame = CGRectMake(80, -50, 242, 568);
+            }else{
+                self.dripsViewLeft.frame = CGRectMake(80, 0, 242, 568);
+            }
+       
+        }completion:^(BOOL finished) {
+            
+        }];
+        
+        
+    } else if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)
+    {
+
+        [self resetAnimation];
+        self.isRight = YES;
+        self.dripsViewRight.alpha = 1;
+
+        [UIView animateWithDuration:.6 delay:.3 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            if([UIScreen mainScreen].bounds.size.height < 568){
+                  self.dripsViewRight.frame = CGRectMake(0, -50, 242, 568);
+            }else{
+                  self.dripsViewRight.frame = CGRectMake(0, 0, 242, 568);
+            }
+          
+
+        }completion:^(BOOL finished) {
+            
+        }];
+    } else if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait || [[UIDevice currentDevice] orientation] == UIDeviceOrientationPortraitUpsideDown)
+    {
+        [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            self.dripsViewLeft.alpha = 0;
+            if([UIScreen mainScreen].bounds.size.height <568){
+                 self.dripsViewLeft.frame = CGRectMake(320, -50, 242,568);
+                  self.dripsViewRight.frame = CGRectMake(-250, -50, 242, 568 );
+            }else{
+                 self.dripsViewLeft.frame = CGRectMake(320, 0, 242,568);
+                 self.dripsViewRight.frame = CGRectMake(-250, 0, 242, 568 );
+            }
+            self.dripsViewRight.alpha = 0;
+        
+        }completion:^(BOOL finished) {
+             
+        }];
+         
+    }
+}
+-(void)resetAnimation {
+    [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    self.dripsViewLeft.alpha = 0;
+    self.dripsViewRight.alpha = 0;
+        
+    if([UIScreen mainScreen].bounds.size.height < 568){
+        self.dripsViewLeft.frame = CGRectMake(320, -50, 242,568);
+        self.dripsViewRight.frame = CGRectMake(-250, -50, 242, 568 );
+    }else{
+        self.dripsViewLeft.frame = CGRectMake(320, 0, 242,568);
+        self.dripsViewRight.frame = CGRectMake(-250, 0, 242, 568 );
+    }
+    
+    }completion:^(BOOL finished) {
+          
+    }];
 }
 
 @end

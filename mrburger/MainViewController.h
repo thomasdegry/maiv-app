@@ -17,6 +17,11 @@
 
 @property (strong, nonatomic) AppViewController *app;
 @property (strong, nonatomic) TabBar *tabBar;
+@property (strong, nonatomic)  UIImageView* dripsViewLeft;
+@property (strong, nonatomic)  UIImageView* dripsViewRight;
+@property (strong, nonatomic)  UIView* rotateMessage;
+@property (nonatomic) BOOL isRight;
+@property (strong, nonatomic) UILabel *message;
 
 @property (strong, nonatomic) GameViewController *gameVC;
 
