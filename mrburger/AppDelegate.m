@@ -27,6 +27,8 @@
     [self.window setRootViewController:[[MainViewController alloc] initWithNibName:nil bundle:nil]];
 
     [self.window makeKeyAndVisible];
+    
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications]; 
     return YES;
 }
 
