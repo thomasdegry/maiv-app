@@ -17,7 +17,6 @@
     self = [super initWithFrame:frame];
     if (self) {        
         self.header = [[GameStepHeaderView alloc] initWithTitle:@"self.header.lblTitle.text"];
-        [self.header.btnInfo addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.header];
     }
     return self;

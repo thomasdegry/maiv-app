@@ -91,6 +91,7 @@
         NSLog(@"%@",[error localizedDescription]);
     }
     
+    [self.availablePeers removeObject:self.session.peerID];
     self.session.available = NO;
     [self.tableViewControllerDelegate peerListDidChange:self];
     
@@ -105,11 +106,9 @@
     if (self.sessionState != ConnectionStateDisconnected) {
         [self.session denyConnectionFromPeer:self.currentConfPeerID];
         self.currentConfPeerID = nil;
+        self.session.available = YES;
         self.sessionState = ConnectionStateDisconnected;
-    }
-    
-    //    // Go back to the lobby if the game screen is open.
-    //    [gameDelegate willDisconnect:self];
+    }    
 }
 
 -(BOOL) comparePeerID:(NSString*)peerID
@@ -219,7 +218,7 @@
 			break;
 		case GKPeerStateDisconnected:
             // The call ended either manually or due to failure somewhere.
-            self.session.available = NO;
+            self.session.available = YES;
             [self.availablePeers removeObject:peerID];
 			break;
         case GKPeerStateConnecting:
@@ -231,7 +230,7 @@
     [self.tableViewControllerDelegate peerListDidChange:self];
 }
 
-//// Called when voice or game data is received over the network from the peer
+// Called when voice or game data is received over the network from the peer
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context
 {
     NSString *code = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
