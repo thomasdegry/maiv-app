@@ -17,6 +17,7 @@
 @property (strong, nonatomic) UIView *participants;
 @property (strong, nonatomic) NSArray *users;
 @property (strong, nonatomic) NSString *sharedCode;
+@property (strong, nonatomic) NSMutableArray *burgerIngredients;
 
 - (id)initWithFrame:(CGRect)frame sharedCode:(NSString *)code andUsers:(NSMutableArray *)users;
 

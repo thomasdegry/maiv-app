@@ -26,13 +26,14 @@
         NSString *category = [categories objectAtIndex:randomIndex];
         
         NSString *path = [[NSBundle mainBundle] pathForResource:@"ingredients" ofType:@"plist"];
-        NSDictionary *ingredients = [[NSDictionary alloc] initWithContentsOfFile:path];
-        NSArray *category_ingredients = [[NSArray alloc] initWithArray:[ingredients objectForKey:category]];
+        NSArray *ingredients = [[NSArray alloc] initWithContentsOfFile:path];
         
         self.categoryIngredients = [[NSMutableArray alloc] init];
-        for (NSDictionary *ingredient in category_ingredients) {
-            Ingredient *tempIngredient = [[Ingredient alloc] initWithDict:ingredient];
-            [self.categoryIngredients addObject:tempIngredient];
+        for (NSDictionary *ingredient in ingredients) {
+            if([[ingredient objectForKey:@"type"] isEqualToString:category]) {
+                Ingredient *tempIngredient = [[Ingredient alloc] initWithDict:ingredient];
+                [self.categoryIngredients addObject:tempIngredient];
+            }
         }
         
         self.mainView = [[GameStep1MainView alloc] initWithIngredients:self.categoryIngredients andFrame:[[UIScreen mainScreen] bounds]];

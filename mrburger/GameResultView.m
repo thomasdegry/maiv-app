@@ -2,6 +2,8 @@
 
 @implementation GameResultView
 
+@synthesize burgerIngredients = _burgerIngredients;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -58,7 +60,39 @@
 
 - (void)buildBurger
 {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"ingredients" ofType:@"plist"];
+    NSArray *ingredients = [[NSArray alloc] initWithContentsOfFile:path];
     
+    UIImage *top = [UIImage imageNamed:@"bread_top.png"];
+    UIImageView *topIV = [[UIImageView alloc] initWithImage:top];
+    float xPos = (([[UIScreen mainScreen] bounds].size.width - top.size.width) / 2);
+    topIV.frame = CGRectMake(xPos, 0, top.size.width, top.size.height);
+    [self addSubview:topIV];
+    
+    self.burgerIngredients = [[NSMutableArray alloc] init];
+    int yPos = top.size.width + 10;
+    for(User *user in self.users) {
+        for (NSDictionary *ingredient in ingredients) {
+            if([[ingredient objectForKey:@"id"] isEqualToString:user.ingredient.id]) {
+                Ingredient *tempIngredient = [[Ingredient alloc] initWithDict:ingredient];
+                [self.burgerIngredients addObject:tempIngredient];
+                
+                UIImage *burgerObject = [UIImage imageNamed:tempIngredient.image];
+                UIImageView *burgerObjectIV = [[UIImageView alloc] initWithImage:burgerObject];
+                float xPos = (([[UIScreen mainScreen] bounds].size.width - burgerObject.size.width) / 2);
+                burgerObjectIV.frame = CGRectMake(xPos, yPos, burgerObject.size.width, burgerObject.size.height);
+                [self addSubview:burgerObjectIV];
+                
+                yPos += burgerObject.size.height + 10;
+            }
+        }
+    }
+    
+    UIImage *bottom = [UIImage imageNamed:@"bread_bottom.png"];
+    UIImageView *bottomIV = [[UIImageView alloc] initWithImage:bottom];
+    xPos = (([[UIScreen mainScreen] bounds].size.width - bottom.size.width) / 2);
+    bottomIV.frame = CGRectMake(xPos, yPos, bottom.size.width, bottom.size.height);
+    [self addSubview:topIV];
 }
 
 - (void)generateCode
