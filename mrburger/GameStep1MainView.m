@@ -9,63 +9,62 @@
 
 #define kFilteringFactor 0.1
 
-static UIAccelerationValue rollingX=0;
+static UIAccelerationValue rollingX = 0;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        // Set header text
         self.header.lblTitle.text = [@"Step 1 of 3" uppercaseString];
         
-        self.tabInstructions = [[UILabel alloc] initWithFontTravelerAndFrame:CGRectMake(40, (frame.size.height - 65), 240, 20) andSize:FontTravelerSizeSmall andColor:[UIColor colorWithRed:0.678 green:0.675 blue:0.624 alpha:1.000]];
-        self.tabInstructions.text = @"Tap to lock your ingredient!";
-        self.tabInstructions.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:self.tabInstructions];
+        // Set instruction instead of button
+        self.tapInstructions = [[UILabel alloc] initWithFontTravelerAndFrame:CGRectMake(40, (frame.size.height - 65), 240, 20) andSize:FontTravelerSizeSmall andColor:[UIColor colorWithRed:0.678 green:0.675 blue:0.624 alpha:1.000]];
+        self.tapInstructions.text = @"Tap to lock your ingredient!";
+        self.tapInstructions.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:self.tapInstructions];
         
+        // Set button to start game but hide it
         self.btnStart = [[RoundedButton alloc] initWithText:@"Add to burger!" andX:20 andY:(frame.size.height - 85)];
-        [self addSubview:self.btnStart];
-        //self.btnStart.hidden = YES;
         self.btnStart.frame = CGRectMake(self.btnStart.frame.origin.x, ([[UIScreen mainScreen] bounds].size.height), self.btnStart.frame.size.width, self.btnStart.frame.size.height);
         self.btnStart.alpha = 0;
-        
+        [self addSubview:self.btnStart];
+
+        // Set title
         UILabel *lblHello = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(0, 60, 320, 55) andSize:FontAlternateSizeBig andColor:[UIColor orange]];
         lblHello.text = [@"Hello there" uppercaseString];
         [self addSubview:lblHello];
         
-        //Check on lock
-        UIImage *lockImage = [UIImage imageNamed:@"vingkske.png"];
-        self.locked = [[UIImageView alloc] initWithImage:lockImage];
+        // Add lock marker
+        self.locked = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"vingkske.png"]];
         self.locked.frame = CGRectMake(245, 140, 30, 30);
         self.locked.alpha = 0;
         self.locked.layer.anchorPoint = CGPointMake(self.locked.frame.size.width / 2, self.locked.frame.size.height / 2);
         [self addSubview:self.locked];
-    
     }
     return self;
 }
 
 - (id)initWithIngredients:(NSMutableArray *)ingredients andFrame:(CGRect)frame
 {
-    self =  [self initWithFrame:frame];
+    self = [self initWithFrame:frame];
     
     if (self) {
         self.categoryIngredients = ingredients;
         
         Ingredient *ingredient = [self.categoryIngredients objectAtIndex:0];
+        
         UILabel *greeting;
-        NSString *gender = @"";
-        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"facebook_gender"] isEqualToString:@"m"]) {
-            gender = @"Mr.";
+        
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"facebook_gender"] isEqualToString:@"m"]) {
             greeting = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(0, 100, frame.size.width, 40) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
-            greeting.text = [[NSString stringWithFormat:@"%@ %@", gender, ingredient.type] uppercaseString];
+            greeting.text = [[NSString stringWithFormat:@"%@ %@", @"Mr.", ingredient.type] uppercaseString];
         } else {
-            gender = @"Ms.";
             greeting = [[UILabel alloc] initWithFontMissionAndFrame:CGRectMake(0, 104, frame.size.width, 40) andSize:FontMissionSizeSmall andColor:[UIColor blue]];
-            greeting.text = [[NSString stringWithFormat:@"%@ %@", gender, ingredient.type] capitalizedString];
+            greeting.text = [[NSString stringWithFormat:@"%@ %@", @"Ms.", ingredient.type] capitalizedString];
         }
 
         [self addSubview:greeting];
-        
         [self createScrollView];
     }
     
@@ -74,22 +73,24 @@ static UIAccelerationValue rollingX=0;
 
 - (void)createScrollView
 {
-    self.scrollImages = [[NSMutableArray alloc] init];
+    self.scrollImages = [NSMutableArray arrayWithCapacity:5];
+    
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 100, [[UIScreen mainScreen] bounds].size.width, 235)];
     self.scrollView.scrollEnabled = NO;
-
     self.scrollView.delegate = self;
     
     int xPos = 0;
     int i = 0;
     for (Ingredient *ingredient in self.categoryIngredients) {
         ingredient.order = i;
-        ScrollImage *scrollImage = [[ScrollImage alloc] initWithIngredient:ingredient andFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 235)];
         
+        ScrollImage *scrollImage = [[ScrollImage alloc] initWithIngredient:ingredient andFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 235)];
         scrollImage.frame = CGRectMake(xPos, 70, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+        
         [self.scrollImages addObject:scrollImage];
         [self.scrollView addSubview:scrollImage];
-        xPos = xPos + scrollImage.frame.size.width;
+        
+        xPos += scrollImage.frame.size.width;
         i++;
     }
     
@@ -102,32 +103,28 @@ static UIAccelerationValue rollingX=0;
     Ingredient *middleIngredient = [self.categoryIngredients objectAtIndex:middleIndex-1];
     [self.scrollView setContentOffset:CGPointMake((middleIndex - 1) * [[UIScreen mainScreen] bounds].size.width, 0) animated:NO];
     
-    
-    //Arrows
-    UIImage *arrowLeft = [UIImage imageNamed:@"arrow.png"];
-    self.arrowLeft = [[UIImageView alloc] initWithImage:arrowLeft];
-    self.arrowLeft.frame = CGRectMake(19, 183, arrowLeft.size.width, arrowLeft.size.height);
+    UIImage *arrow = [UIImage imageNamed:@"arrow.png"];
+    self.arrowLeft = [[UIImageView alloc] initWithImage:arrow];
+    self.arrowLeft.frame = CGRectMake(19, 183, arrow.size.width, arrow.size.height);
     [self addSubview:self.arrowLeft];
     
-    self.arrowRight = [[UIImageView alloc] initWithImage:arrowLeft];
+    self.arrowRight = [[UIImageView alloc] initWithImage:arrow];
     self.arrowRight.transform = CGAffineTransformMakeRotation(3.14159265);
-    self.arrowRight.frame = CGRectMake(292, 183, arrowLeft.size.width, arrowLeft.size.height);
+    self.arrowRight.frame = CGRectMake(292, 183, arrow.size.width, arrow.size.height);
     [self addSubview:self.arrowRight];
     
     [self startGyroLogging];
-    
     
     //Label
     self.label = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(0, 310, [[UIScreen mainScreen] bounds].size.width, 50) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
     self.label.text = [middleIngredient.name uppercaseString];
     [self addSubview:self.label];
     
-    
     //iPhone 5 styling
-    if([[UIScreen mainScreen] bounds].size.height >= 568) {
+    if ([[UIScreen mainScreen] bounds].size.height >= 568) {
         self.scrollView.frame = CGRectMake(0, 170, [[UIScreen mainScreen] bounds].size.width, 235);
-        self.arrowLeft.frame = CGRectMake(19, 253, arrowLeft.size.width, arrowLeft.size.height);
-        self.arrowRight.frame = CGRectMake(292, 253, arrowLeft.size.width, arrowLeft.size.height);
+        self.arrowLeft.frame = CGRectMake(19, 253, arrow.size.width, arrow.size.height);
+        self.arrowRight.frame = CGRectMake(292, 253, arrow.size.width, arrow.size.height);
         self.label.frame = CGRectMake(0, 380, [[UIScreen mainScreen] bounds].size.width, 50);
     }
     
@@ -139,23 +136,22 @@ static UIAccelerationValue rollingX=0;
 
 - (void)startGyroLogging
 {
-    if( !self.motMan ){
+    if (!self.motMan) {
         self.motMan = [[CMMotionManager alloc] init];
         self.motMan.accelerometerUpdateInterval = 1/4;
     }
     
-    if(self.motMan.accelerometerAvailable){
+    if (self.motMan.accelerometerAvailable) {
         self.isScrolling = YES;
         [self.motMan startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
             [self moveByMotion:accelerometerData andExtraMovement:0];
         }];
-        
     }
 }
 
 - (void)moveByMotion:(CMAccelerometerData *)motion andExtraMovement:(float)extraMov
 {
-    if( self.isScrolling ){
+    if (self.isScrolling) {
         rollingX = (motion.acceleration.x * kFilteringFactor) + (rollingX * (1.0 - kFilteringFactor));
 
         float xOffSet = (float)self.scrollView.contentOffset.x - (rollingX * 10);
@@ -206,8 +202,8 @@ static UIAccelerationValue rollingX=0;
             self.btnStart.frame = CGRectMake(self.btnStart.frame.origin.x, (self.btnStart.frame.origin.y - 90), self.btnStart.frame.size.width, self.btnStart.frame.size.height);
             self.btnStart.alpha = 1;
             
-            self.tabInstructions.frame = CGRectMake(self.tabInstructions.frame.origin.x, (self.tabInstructions.frame.origin.y + 10), self.tabInstructions.frame.size.width, self.tabInstructions.frame.size.height);
-            self.tabInstructions.alpha = 0;
+            self.tapInstructions.frame = CGRectMake(self.tapInstructions.frame.origin.x, (self.tapInstructions.frame.origin.y + 10), self.tapInstructions.frame.size.width, self.tapInstructions.frame.size.height);
+            self.tapInstructions.alpha = 0;
             
             self.locked.frame = CGRectMake(self.locked.frame.origin.x, self.locked.frame.origin.y, 23, 23);
             self.locked.alpha = 1;
@@ -220,8 +216,8 @@ static UIAccelerationValue rollingX=0;
             self.btnStart.frame = CGRectMake(self.btnStart.frame.origin.x, (self.btnStart.frame.origin.y + 90), self.btnStart.frame.size.width, self.btnStart.frame.size.height);
             self.btnStart.alpha = 0;
             
-            self.tabInstructions.frame = CGRectMake(self.tabInstructions.frame.origin.x, (self.tabInstructions.frame.origin.y - 10), self.tabInstructions.frame.size.width, self.tabInstructions.frame.size.height);
-            self.tabInstructions.alpha = 1;
+            self.tapInstructions.frame = CGRectMake(self.tapInstructions.frame.origin.x, (self.tapInstructions.frame.origin.y - 10), self.tapInstructions.frame.size.width, self.tapInstructions.frame.size.height);
+            self.tapInstructions.alpha = 1;
             
             self.locked.frame = CGRectMake(self.locked.frame.origin.x, self.locked.frame.origin.y, 30, 30);
             self.locked.alpha = 0;

@@ -42,6 +42,9 @@
             }
         }
         
+        path = nil;
+        ingredients = nil;
+        
         self.mainView = [[GameStep1MainView alloc] initWithIngredients:_ingredients andFrame:[[UIScreen mainScreen] bounds]];
         [self.mainView.btnStart addTarget:self action:@selector(startGame:) forControlEvents:UIControlEventTouchUpInside];
         self.modal = [[GameStep1InfoView alloc] initModal];
