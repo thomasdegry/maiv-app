@@ -19,7 +19,7 @@
         self.users = [[NSArray alloc] initWithArray:users];
         self.sharedCode = code;
         
-        UILabel *tempCode = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(20, 80, 280, 60) andSize:FontAlternateSizeMedium andColor:[UIColor blue]];
+        UILabel *tempCode = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(20, 80, 280, 60) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
         tempCode.text = [@"Get your free burger" uppercaseString];
         
         [self addSubview:tempCode];
@@ -63,7 +63,7 @@
     NSArray *ingredients = [[NSArray alloc] initWithContentsOfFile:path];
     
     
-    int yPos = 120;
+    int yPos = 150;
     
     
     UIImage *top = [UIImage imageNamed:@"bread_top.png"];
@@ -72,7 +72,7 @@
     topIV.frame = CGRectMake(xPos, yPos, top.size.width, top.size.height);
     [self addSubview:topIV];
     
-    yPos += top.size.height + 10;
+    yPos += top.size.height;
     
     self.burgerIngredients = [[NSMutableArray alloc] initWithCapacity:[self.users count]];
     for(User *user in self.users) {
@@ -98,7 +98,7 @@
         burgerObjectIV.frame = CGRectMake(xPos, yPos, burgerObject.size.width, burgerObject.size.height);
         [self addSubview:burgerObjectIV];
         
-        yPos += burgerObject.size.height + 10;
+        yPos += burgerObject.size.height - 5;
     }
     
     UIImage *bottom = [UIImage imageNamed:@"bread_bottom.png"];

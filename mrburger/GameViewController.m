@@ -77,6 +77,7 @@
 - (void)dismissScreen:(NSNotification *)sender
 {
     NSLog(@"dismiss screen");
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
 }
 
