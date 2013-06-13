@@ -67,7 +67,7 @@
 	self.session = [[GKSession alloc] initWithSessionID:self.sessionID displayName:displayName sessionMode:GKSessionModePeer];
     self.session.delegate = self;
 	[self.session setDataReceiveHandler:self withContext:nil];
-    self.session.disconnectTimeout = 3600.0;
+    self.session.disconnectTimeout = 36000.0;
 	self.session.available = YES;
     self.sessionState = ConnectionStateDisconnected;
     [self.availablePeers setArray:[self.session peersWithConnectionState:GKPeerStateConnected]];
@@ -78,7 +78,7 @@
 // Initiates a GKSession connection to a selected peer.
 -(void) connect:(NSString *) peerID
 {
-	[self.session connectToPeer:peerID withTimeout:30.0];
+	[self.session connectToPeer:peerID withTimeout:60.0];
     self.currentConfPeerID = peerID;
     self.sessionState = ConnectionStateConnecting;
 }
@@ -91,6 +91,7 @@
         NSLog(@"%@",[error localizedDescription]);
     }
     
+    [self.availablePeers removeObject:self.session.peerID];
     self.session.available = NO;
     [self.tableViewControllerDelegate peerListDidChange:self];
     
@@ -103,13 +104,13 @@
 {
     // Deny the peer.
     if (self.sessionState != ConnectionStateDisconnected) {
-        [self.session denyConnectionFromPeer:self.currentConfPeerID];
+        if (self.currentConfPeerID) {
+            [self.session denyConnectionFromPeer:self.currentConfPeerID];
+        }
         self.currentConfPeerID = nil;
+        self.session.available = YES;
         self.sessionState = ConnectionStateDisconnected;
-    }
-    
-    //    // Go back to the lobby if the game screen is open.
-    //    [gameDelegate willDisconnect:self];
+    }    
 }
 
 -(BOOL) comparePeerID:(NSString*)peerID
@@ -123,32 +124,9 @@
     return self.sessionState == ConnectionStateConnected;
 }
 
-//// When the voice chat starts, tell the game it can begin.
-//-(void) voiceChatDidStart
-//{
-//    [gameDelegate session:self didConnectAsInitiator:![self comparePeerID:currentConfPeerID]];
-//}
-
-// Called by RocketController and VoiceManager to send data to the peer
-//-(void) sendPacket:(NSData*)data ofType:(PacketType)type
-//{
-//    NSMutableData * newPacket = [NSMutableData dataWithCapacity:([data length]+sizeof(uint32_t))];
-//    // Both game and voice data is prefixed with the PacketType so the peer knows where to send it.
-//    uint32_t swappedType = CFSwapInt32HostToBig((uint32_t)type);
-//    [newPacket appendBytes:&swappedType length:sizeof(uint32_t)];
-//    [newPacket appendData:data];
-//    NSError *error;
-//    if (currentConfPeerID) {
-//        if (![myGKSession sendData:newPacket toPeers:[NSArray arrayWithObject:currentConfPeerID] withDataMode:GKSendDataReliable error:&error]) {
-//            NSLog(@"%@",[error localizedDescription]);
-//        }
-//    }
-//}
-
 // Clear the connection states in the event of leaving a call or error.
 -(void) disconnectCurrentCall
 {
-    //    [gameDelegate willDisconnect:self];
     if (self.sessionState != ConnectionStateDisconnected) {
         // Don't leave a peer hangin'
         if (self.sessionState == ConnectionStateConnecting) {
@@ -189,6 +167,7 @@
 - (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID
 {
     if (self.sessionState == ConnectionStateDisconnected) {
+        self.session.available = NO;
         self.currentConfPeerID = peerID;
         self.sessionState = ConnectionStateConnecting;
         [self.tableViewControllerDelegate didReceiveInvitation:self fromPeer:[self.session displayNameForPeer:peerID]];
@@ -222,15 +201,14 @@
 	switch (state) {
 		case GKPeerStateAvailable:
             // A peer became available by starting app, exiting settings, or ending a call.
-			if (![self.availablePeers containsObject:peerID]) {
+			if (![self.availablePeers containsObject:peerID] && peerID != self.session.peerID) {
+                self.session.available = YES;
 				[self.availablePeers addObject:peerID];
 			}
- 			[self.tableViewControllerDelegate peerListDidChange:self];
 			break;
 		case GKPeerStateUnavailable:
-            // Peer unavailable due to joining a call, leaving app, or entering settings.
+            self.session.available = NO;
             [self.availablePeers removeObject:peerID];
-            [self.tableViewControllerDelegate peerListDidChange:self];
 			break;
 		case GKPeerStateConnected:
             // Connection was accepted, set up the voice chat.
@@ -239,12 +217,11 @@
             [self.connectedPeers addObject:peerID];
             [self.availablePeers removeObject:peerID];
             self.sessionState = ConnectionStateConnected;
-            [self.tableViewControllerDelegate peerListDidChange:self];
 			break;
 		case GKPeerStateDisconnected:
             // The call ended either manually or due to failure somewhere.
+            self.session.available = YES;
             [self.availablePeers removeObject:peerID];
-            [self.tableViewControllerDelegate peerListDidChange:self];
 			break;
         case GKPeerStateConnecting:
             // Peer is attempting to connect to the session.
@@ -252,9 +229,10 @@
 		default:
 			break;
 	}
+    [self.tableViewControllerDelegate peerListDidChange:self];
 }
 
-//// Called when voice or game data is received over the network from the peer
+// Called when voice or game data is received over the network from the peer
 - (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context
 {
     NSString *code = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];

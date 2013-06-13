@@ -36,10 +36,11 @@
         
         self.users = [[NSMutableArray alloc] init];
         for (NSString *peerID in self.sessionManager.connectedPeers) {
-            NSLog(@"GameresultVC in for");
             User *user = [self.sessionManager userForPeerID:peerID];
             [self.users addObject:user];
+            [self.sessionManager.session disconnectPeerFromAllPeers:peerID];
         }
+        
     }
     
     return self;
