@@ -56,7 +56,7 @@
     self.btnSave = [[RoundedButtonAlternate alloc] initWithText:@"Save my burger" andX:15 andY:197];
     self.btnSave.titleLabel.font  = [UIFont fontWithName:@"Mission-Script" size:FontMissionSizeTiny];
     [self.btnSave setTitle:@"Save my burger" forState:UIControlStateNormal];
-
+    self.btnSave.hidden = YES;
     CGRect btnSaveFrame = self.btnSave.frame;
     btnSaveFrame.size.width = 290;
     self.btnSave.frame = btnSaveFrame;
@@ -113,14 +113,21 @@
         self.nearbyView.tableView.hidden = NO;
         self.nearbyView.unavailable.hidden = YES;
     }
-    
+  
+   
     
     if (self.connected < [self.sessionManager.connectedPeers count]) {
         [self hideModal:nil];
     }
     
+    
     self.connected = [self.sessionManager.connectedPeers count];
     
+    if (self.connected == 2) {
+        NSLog(@"participants %i", self.connected);
+        self.btnSave.hidden = NO;
+    }
+
 	[self.participantsView.tableView reloadData];
     [self.nearbyView.tableView reloadData];
 }
