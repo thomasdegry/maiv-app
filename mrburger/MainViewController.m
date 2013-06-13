@@ -25,27 +25,12 @@
         self.tabBar = [[TabBar alloc] initWithFrame:CGRectMake(0, [[UIScreen mainScreen] bounds].size.height - 74 - 20, 320, 74)];
         
         [self.tabBar.btnInfo addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
-        
         [self.tabBar.btnGame addTarget:self action:@selector(showGame:) forControlEvents:UIControlEventTouchUpInside];
-        
         [self.tabBar.btnMenus addTarget:self action:@selector(showMenus:) forControlEvents:UIControlEventTouchUpInside];
         
         self.app = [[AppViewController alloc] initWithNibName:nil bundle:nil];
-        //[self enumerateFonts];
-
     }
     return self;
-}
-
-- (void)enumerateFonts {
-    NSLog(@"--Start enumerating font--");
-    for (NSString *fontFamilyStrings in [UIFont familyNames]) {
-        NSLog(@"Font family: %@", fontFamilyStrings);
-        for (NSString *fontStrings in [UIFont
-                                       fontNamesForFamilyName:fontFamilyStrings]) {
-            NSLog(@"-- Font: %@", fontStrings);
-        } }
-    NSLog(@"--End enumerating font--");
 }
 
 - (void)showInfo:(id)sender
@@ -58,7 +43,6 @@
 - (void)showGame:(id)sender
 {
     self.gameVC = [[GameViewController alloc] initGame];
-    //LoginViewController *gameVC = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
     [self presentViewController:self.gameVC animated:YES completion:^{}];
 }
 

@@ -53,7 +53,7 @@
     } else {
         [UIView animateWithDuration:.3 animations:^{
             self.activeMarker.frame = CGRectMake(260, -8, self.activeMarker.frame.size.width, self.activeMarker.frame.size.height);
-                self.btnInfo.tabbarLabel.textColor = [UIColor beige];
+            self.btnInfo.tabbarLabel.textColor = [UIColor beige];
             self.btnMenus.tabbarLabel.textColor = [UIColor orange];
         }];
     }
