@@ -123,32 +123,9 @@
     return self.sessionState == ConnectionStateConnected;
 }
 
-//// When the voice chat starts, tell the game it can begin.
-//-(void) voiceChatDidStart
-//{
-//    [gameDelegate session:self didConnectAsInitiator:![self comparePeerID:currentConfPeerID]];
-//}
-
-// Called by RocketController and VoiceManager to send data to the peer
-//-(void) sendPacket:(NSData*)data ofType:(PacketType)type
-//{
-//    NSMutableData * newPacket = [NSMutableData dataWithCapacity:([data length]+sizeof(uint32_t))];
-//    // Both game and voice data is prefixed with the PacketType so the peer knows where to send it.
-//    uint32_t swappedType = CFSwapInt32HostToBig((uint32_t)type);
-//    [newPacket appendBytes:&swappedType length:sizeof(uint32_t)];
-//    [newPacket appendData:data];
-//    NSError *error;
-//    if (currentConfPeerID) {
-//        if (![myGKSession sendData:newPacket toPeers:[NSArray arrayWithObject:currentConfPeerID] withDataMode:GKSendDataReliable error:&error]) {
-//            NSLog(@"%@",[error localizedDescription]);
-//        }
-//    }
-//}
-
 // Clear the connection states in the event of leaving a call or error.
 -(void) disconnectCurrentCall
 {
-    //    [gameDelegate willDisconnect:self];
     if (self.sessionState != ConnectionStateDisconnected) {
         // Don't leave a peer hangin'
         if (self.sessionState == ConnectionStateConnecting) {
@@ -189,6 +166,7 @@
 - (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID
 {
     if (self.sessionState == ConnectionStateDisconnected) {
+        self.session.available = NO;
         self.currentConfPeerID = peerID;
         self.sessionState = ConnectionStateConnecting;
         [self.tableViewControllerDelegate didReceiveInvitation:self fromPeer:[self.session displayNameForPeer:peerID]];
@@ -223,11 +201,12 @@
 		case GKPeerStateAvailable:
             // A peer became available by starting app, exiting settings, or ending a call.
 			if (![self.availablePeers containsObject:peerID] && peerID != self.session.peerID) {
+                self.session.available = YES;
 				[self.availablePeers addObject:peerID];
 			}
 			break;
 		case GKPeerStateUnavailable:
-            // Peer unavailable due to joining a call, leaving app, or entering settings.
+            self.session.available = NO;
             [self.availablePeers removeObject:peerID];
 			break;
 		case GKPeerStateConnected:
@@ -240,6 +219,7 @@
 			break;
 		case GKPeerStateDisconnected:
             // The call ended either manually or due to failure somewhere.
+            self.session.available = NO;
             [self.availablePeers removeObject:peerID];
 			break;
         case GKPeerStateConnecting:
