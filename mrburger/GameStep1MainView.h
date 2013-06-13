@@ -21,13 +21,12 @@
 @property (strong, nonatomic) NSMutableArray *categoryIngredients;
 
 @property (nonatomic,strong) CMMotionManager *motMan;
-@property (nonatomic) CMAcceleration acceleration;
 
 @property (strong, nonatomic) UIImageView *arrowLeft;
 @property (strong, nonatomic) UIImageView *arrowRight;
 @property (strong, nonatomic) UILabel *label;
 @property (strong, nonatomic) UIImageView *locked;
-@property (strong, nonatomic) UILabel *tabInstructions;
+@property (strong, nonatomic) UILabel *tapInstructions;
 
 @property (assign) BOOL isScrolling;
 
