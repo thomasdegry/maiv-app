@@ -222,15 +222,13 @@
 	switch (state) {
 		case GKPeerStateAvailable:
             // A peer became available by starting app, exiting settings, or ending a call.
-			if (![self.availablePeers containsObject:peerID]) {
+			if (![self.availablePeers containsObject:peerID] && peerID != self.session.peerID) {
 				[self.availablePeers addObject:peerID];
 			}
- 			[self.tableViewControllerDelegate peerListDidChange:self];
 			break;
 		case GKPeerStateUnavailable:
             // Peer unavailable due to joining a call, leaving app, or entering settings.
             [self.availablePeers removeObject:peerID];
-            [self.tableViewControllerDelegate peerListDidChange:self];
 			break;
 		case GKPeerStateConnected:
             // Connection was accepted, set up the voice chat.
@@ -239,12 +237,10 @@
             [self.connectedPeers addObject:peerID];
             [self.availablePeers removeObject:peerID];
             self.sessionState = ConnectionStateConnected;
-            [self.tableViewControllerDelegate peerListDidChange:self];
 			break;
 		case GKPeerStateDisconnected:
             // The call ended either manually or due to failure somewhere.
             [self.availablePeers removeObject:peerID];
-            [self.tableViewControllerDelegate peerListDidChange:self];
 			break;
         case GKPeerStateConnecting:
             // Peer is attempting to connect to the session.
@@ -252,6 +248,7 @@
 		default:
 			break;
 	}
+    [self.tableViewControllerDelegate peerListDidChange:self];
 }
 
 //// Called when voice or game data is received over the network from the peer
