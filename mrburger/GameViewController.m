@@ -158,6 +158,7 @@
 
 - (void)showResult
 {
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
     self.currentScreen = GameScreenResult;
     [self pushViewController:[[GameResultViewController alloc] initWithSessionManager:self.sessionManager andSharedCode:self.sharedCode] animated:YES];
 }

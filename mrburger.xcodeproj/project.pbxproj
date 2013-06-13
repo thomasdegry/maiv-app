@@ -348,6 +348,10 @@
 		4D9ECEB0176908D90028C737 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D9ECC0E1768E60B0028C737 /* CoreVideo.framework */; };
 		4D9ECEB1176908E40028C737 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D9ECC101768E61B0028C737 /* ImageIO.framework */; };
 		4D9ECEB31769092D0028C737 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D9ECEB21769092D0028C737 /* CoreMedia.framework */; };
+		4D9ECEB81769B4CC0028C737 /* bread_bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D9ECEB41769B4CC0028C737 /* bread_bottom.png */; };
+		4D9ECEB91769B4CC0028C737 /* bread_bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D9ECEB51769B4CC0028C737 /* bread_bottom@2x.png */; };
+		4D9ECEBA1769B4CC0028C737 /* bread_top.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D9ECEB61769B4CC0028C737 /* bread_top.png */; };
+		4D9ECEBB1769B4CC0028C737 /* bread_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D9ECEB71769B4CC0028C737 /* bread_top@2x.png */; };
 		9C5A35731764DE8D007A0BA1 /* Loader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5A35721764DE8D007A0BA1 /* Loader.m */; };
 		9C5A35751764E12A007A0BA1 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 9C5A35741764E12A007A0BA1 /* images */; };
 		9C5A35791764F5CE007A0BA1 /* home_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5A35771764F5CE007A0BA1 /* home_logo.png */; };
@@ -1029,6 +1033,10 @@
 		4D9ECDE3176906240028C737 /* ZXRGBLuminanceSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRGBLuminanceSource.m; sourceTree = "<group>"; };
 		4D9ECDE4176906240028C737 /* ZXWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXWriter.h; sourceTree = "<group>"; };
 		4D9ECEB21769092D0028C737 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		4D9ECEB41769B4CC0028C737 /* bread_bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bread_bottom.png; sourceTree = "<group>"; };
+		4D9ECEB51769B4CC0028C737 /* bread_bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bread_bottom@2x.png"; sourceTree = "<group>"; };
+		4D9ECEB61769B4CC0028C737 /* bread_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bread_top.png; sourceTree = "<group>"; };
+		4D9ECEB71769B4CC0028C737 /* bread_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bread_top@2x.png"; sourceTree = "<group>"; };
 		9C5A35711764DE8D007A0BA1 /* Loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loader.h; sourceTree = "<group>"; };
 		9C5A35721764DE8D007A0BA1 /* Loader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Loader.m; sourceTree = "<group>"; };
 		9C5A35741764E12A007A0BA1 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
@@ -1457,6 +1465,10 @@
 		4D4B9D961764F69D003673A0 /* Ingredients */ = {
 			isa = PBXGroup;
 			children = (
+				4D9ECEB41769B4CC0028C737 /* bread_bottom.png */,
+				4D9ECEB51769B4CC0028C737 /* bread_bottom@2x.png */,
+				4D9ECEB61769B4CC0028C737 /* bread_top.png */,
+				4D9ECEB71769B4CC0028C737 /* bread_top@2x.png */,
 				4D4B9E1117666BF2003673A0 /* vingkske.png */,
 				4D4B9E1217666BF2003673A0 /* vingkske@2x.png */,
 				4D4B9D971764F6E7003673A0 /* meat_01.png */,
@@ -2683,6 +2695,10 @@
 				9C5D6F691768D45700F47185 /* start_step2@2x.png in Resources */,
 				9C5D6F6A1768D45700F47185 /* start_step3.png in Resources */,
 				9C5D6F6B1768D45700F47185 /* start_step3@2x.png in Resources */,
+				4D9ECEB81769B4CC0028C737 /* bread_bottom.png in Resources */,
+				4D9ECEB91769B4CC0028C737 /* bread_bottom@2x.png in Resources */,
+				4D9ECEBA1769B4CC0028C737 /* bread_top.png in Resources */,
+				4D9ECEBB1769B4CC0028C737 /* bread_top@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+#import "User.h"
+
+#import "ZXingObjC.h"
+
 @interface GameResultView : RoundedView
 
 @property (strong, nonatomic) UIView *participants;
+@property (strong, nonatomic) NSArray *users;
+@property (strong, nonatomic) NSString *sharedCode;
+
+- (id)initWithFrame:(CGRect)frame sharedCode:(NSString *)code andUsers:(NSMutableArray *)users;
 
 @end

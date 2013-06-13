@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 #import "GameResultView.h"
-#import "ZXingObjC.h"
 
 #import "SessionManager.h"
 
@@ -17,6 +16,7 @@
 
 @property (strong, nonatomic) SessionManager *sessionManager;
 @property (strong, nonatomic) NSString *sharedCode;
+@property (strong, nonatomic) NSMutableArray *users;
 
 - (id)initWithSessionManager:(SessionManager *)sessionManager andSharedCode:(NSString *)sharedCode;
 
