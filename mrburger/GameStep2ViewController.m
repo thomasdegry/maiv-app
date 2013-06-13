@@ -53,7 +53,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showConnecting:) name:@"SENT_INVITE" object:self.nearbyTVC];
 	}
     
-    self.btnSave = [[RoundedButtonAlternate alloc] initWithText:@"Save my burger" andX:15 andY:197];
+    self.btnSave = [[RoundedButtonAlternate alloc] initWithText:@"Save my burger" andX:15 andY:230];
     self.btnSave.titleLabel.font  = [UIFont fontWithName:@"Mission-Script" size:FontMissionSizeTiny];
     [self.btnSave setTitle:@"Save my burger" forState:UIControlStateNormal];
     self.btnSave.hidden = YES;
@@ -64,14 +64,14 @@
     [self.mainView insertSubview:self.btnSave atIndex:0];
     [self.btnSave addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.participantsView = [[TitledTable alloc] initWithFrame:CGRectMake(15, 60, 290, 130) andTitle:@"Your burger"];
+    self.participantsView = [[TitledTable alloc] initWithFrame:CGRectMake(15, 60, 290, 162) andTitle:@"Your burger"];
     [self.mainView addSubview:self.participantsView];
     [self.participantsView.tableView setDataSource:self.participantsTVC];
     [self.participantsView.tableView setDelegate:self.participantsTVC];
     self.participantsView.tableView.hidden = NO;
     self.participantsView.unavailable.hidden = YES;
     
-    self.nearbyView = [[TitledTableAlternate alloc] initWithFrame:CGRectMake(15, 280, 290, 130) andTitle:@"Find ingredients"];
+    self.nearbyView = [[TitledTableAlternate alloc] initWithFrame:CGRectMake(15, 290, 290, 130) andTitle:@"Find ingredients"];
 	[self.mainView addSubview:self.nearbyView];
     [self.nearbyView.tableView setDataSource:self.nearbyTVC];
     [self.nearbyView.tableView setDelegate:self.nearbyTVC];
@@ -123,11 +123,15 @@
     
     self.connected = [self.sessionManager.connectedPeers count];
     
-    if (self.connected == 2) {
+    if (self.connected > 1) {
         NSLog(@"participants %i", self.connected);
         self.btnSave.hidden = NO;
+        self.nearbyView.title.text = @"ADD MORE INGREDIENTS";
+    }else {
+        self.btnSave.hidden = YES;
+        self.nearbyView.title.text = @"FIND INGREDIENTS";
     }
-
+    
 	[self.participantsView.tableView reloadData];
     [self.nearbyView.tableView reloadData];
 }
