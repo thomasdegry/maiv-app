@@ -22,12 +22,6 @@
     if (self) {
         // Custom initialization
         NSLog(@"GameresultVC init");
-        self.users = [[NSMutableArray alloc] init];
-        for (NSString *peerID in self.sessionManager.connectedPeers) {
-            NSLog(@"GameresultVC in for");
-            User *user = [self.sessionManager userForPeerID:peerID];
-            [self.users addObject:user];
-        }
     }
     return self;
 }
@@ -39,6 +33,13 @@
     if (self) {
         self.sessionManager = sessionManager;
         self.sharedCode = sharedCode;
+        
+        self.users = [[NSMutableArray alloc] init];
+        for (NSString *peerID in self.sessionManager.connectedPeers) {
+            NSLog(@"GameresultVC in for");
+            User *user = [self.sessionManager userForPeerID:peerID];
+            [self.users addObject:user];
+        }
     }
     
     return self;
