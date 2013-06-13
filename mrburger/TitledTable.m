@@ -27,9 +27,13 @@
 {
     self = [self initWithFrame:frame];
     if (self) {
-        self.titleBackground = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 60)];
-        self.titleBackground.layer.cornerRadius = 11.0f;
+        self.titleBackground = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 40)];
         self.titleBackground.backgroundColor = [UIColor orange];
+        
+        CAShapeLayer *titleMask = [CAShapeLayer layer];
+        titleMask.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, frame.size.width, 40) byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:(CGSize){13.0f, 13.0f}].CGPath;
+        self.titleBackground.layer.mask = titleMask;
+
         [self addSubview:self.titleBackground];
         
         self.title = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(0, 0, frame.size.width, 40) andSize:FontAlternateSizeMedium andColor:[UIColor white]];
@@ -37,41 +41,44 @@
         [self addSubview:self.title];
 
         self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, frame.size.width, frame.size.height - 30) style:UITableViewStylePlain];
+        
+        CAShapeLayer *tableMask = [CAShapeLayer layer];
+        tableMask.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, frame.size.width, frame.size.height - 30) byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:(CGSize){13.0f, 13.0f}].CGPath;
+        
+        self.tableView.layer.mask = tableMask;
+        
         [self addSubview:self.tableView];
-    
-        self.unavailable = [[UIView alloc] initWithFrame:CGRectMake(0, 40, frame.size.width, 70)];
-        self.unavailable.layer.cornerRadius = 11.0f;
-        self.unavailable.backgroundColor = [UIColor orangeDarkened];
-        [self addSubview:self.unavailable];
         
-        UIView *unavailableMask = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 8)];
-        unavailableMask.backgroundColor = [UIColor orangeDarkened];
-        [self.unavailable addSubview:unavailableMask];
-        
-        UIImageView *unavailableImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sad_face"]];
-        unavailableImage.frame = CGRectMake(11, 8, 52, 52);
-        unavailableImage.layer.cornerRadius = 26.0f;
-        unavailableImage.layer.masksToBounds = YES;
-        unavailableImage.layer.borderWidth = 4.0f;
-        unavailableImage.layer.borderColor = [UIColor white].CGColor;
-        [self.unavailable addSubview:unavailableImage];
-        
-        UILabel *unavailableTextLabel = [[UILabel alloc] initWithFontTravelerAndFrame:CGRectMake(74, 21, 240, 20) andSize:FontTravelerSizeSmall andColor:[UIColor beige]];
-        
-        unavailableTextLabel.text = @"Poor you. There's no one around...";
-        unavailableTextLabel.textAlignment = NSTextAlignmentLeft;
-        [self.unavailable addSubview:unavailableTextLabel];
+        [self showUnavailable];
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)showUnavailable
 {
-    // Drawing code
+    self.unavailable = [[UIView alloc] initWithFrame:CGRectMake(0, 40, self.frame.size.width, 70)];
+    self.unavailable.backgroundColor = [UIColor orangeDarkened];
+    
+    CAShapeLayer *unavailableMask = [CAShapeLayer layer];
+    unavailableMask.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, self.frame.size.width, 70) byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:(CGSize){13.0f, 13.0f}].CGPath;
+
+    self.unavailable.layer.mask = unavailableMask;
+
+    [self addSubview:self.unavailable];
+        
+    UIImageView *unavailableImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sad_face"]];
+    unavailableImage.frame = CGRectMake(11, 8, 52, 52);
+    unavailableImage.layer.cornerRadius = 26.0f;
+    unavailableImage.layer.masksToBounds = YES;
+    unavailableImage.layer.borderWidth = 4.0f;
+    unavailableImage.layer.borderColor = [UIColor white].CGColor;
+    [self.unavailable addSubview:unavailableImage];
+    
+    UILabel *unavailableTextLabel = [[UILabel alloc] initWithFontTravelerAndFrame:CGRectMake(74, 21, 240, 20) andSize:FontTravelerSizeSmall andColor:[UIColor beige]];
+    
+    unavailableTextLabel.text = @"Poor you. There's no one around...";
+    unavailableTextLabel.textAlignment = NSTextAlignmentLeft;
+    [self.unavailable addSubview:unavailableTextLabel];
 }
-*/
 
 @end

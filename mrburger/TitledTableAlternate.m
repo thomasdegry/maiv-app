@@ -25,11 +25,7 @@
     
     if (self) {
         self.titleBackground.backgroundColor = [UIColor blueDarkened];
-        self.unavailable.backgroundColor = [UIColor blue];
-    
-        UIView *unavailableMask = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 8)];
-        unavailableMask.backgroundColor = [UIColor blue];
-        [self.unavailable addSubview:unavailableMask];
+        self.unavailable.backgroundColor = [UIColor blue];    
     }
     
     return self;

@@ -19,5 +19,6 @@
 @property (strong, nonatomic) UIView *unavailable;
 
 - (id)initWithFrame:(CGRect)frame andTitle:(NSString *)title;
+- (void)showUnavailable;
 
 @end
