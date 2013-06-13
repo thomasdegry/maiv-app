@@ -60,14 +60,14 @@
     self.unavailable.backgroundColor = [UIColor orangeDarkened];
     
     CAShapeLayer *unavailableMask = [CAShapeLayer layer];
-    unavailableMask.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, self.frame.size.width, 70) byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:(CGSize){13.0f, 13.0f}].CGPath;
+    unavailableMask.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, self.frame.size.width, 65) byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:(CGSize){13.0f, 13.0f}].CGPath;
 
     self.unavailable.layer.mask = unavailableMask;
 
     [self addSubview:self.unavailable];
         
     UIImageView *unavailableImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sad_face"]];
-    unavailableImage.frame = CGRectMake(11, 8, 52, 52);
+    unavailableImage.frame = CGRectMake(8, 6, 52, 52);
     unavailableImage.layer.cornerRadius = 26.0f;
     unavailableImage.layer.masksToBounds = YES;
     unavailableImage.layer.borderWidth = 4.0f;
