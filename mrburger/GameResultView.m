@@ -41,15 +41,9 @@
     int xPos = 0;
     
     for (User *user in self.users) {
-        NSData *userImageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=104&height=104", user.id]]];
-        UIImage *userImage = [UIImage imageWithData:userImageData scale:0.5f];
-        UIImageView *face = [[UIImageView alloc] initWithImage:userImage];
+        CircularPicture *face = [[CircularPicture alloc] initWithPicturePath:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=104&height=104", user.id]];
         
         face.frame = CGRectMake(xPos, 6, 52, 52);
-        face.layer.cornerRadius = 26.0f;
-        face.layer.masksToBounds = YES;
-        face.layer.borderWidth = 4.0f;
-        face.layer.borderColor = [UIColor white].CGColor;
         
         [faces addSubview:face];
         

@@ -20,5 +20,6 @@
     #import "RoundedButton.h"
     #import "RoundedButtonAlternate.h"
     #import "RoundedView.h"
+    #import "CircularPicture.h"
 
 #endif
