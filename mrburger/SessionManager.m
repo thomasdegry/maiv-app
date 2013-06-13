@@ -67,7 +67,7 @@
 	self.session = [[GKSession alloc] initWithSessionID:self.sessionID displayName:displayName sessionMode:GKSessionModePeer];
     self.session.delegate = self;
 	[self.session setDataReceiveHandler:self withContext:nil];
-    self.session.disconnectTimeout = 3600.0;
+    self.session.disconnectTimeout = 36000.0;
 	self.session.available = YES;
     self.sessionState = ConnectionStateDisconnected;
     [self.availablePeers setArray:[self.session peersWithConnectionState:GKPeerStateConnected]];
@@ -78,7 +78,7 @@
 // Initiates a GKSession connection to a selected peer.
 -(void) connect:(NSString *) peerID
 {
-	[self.session connectToPeer:peerID withTimeout:30.0];
+	[self.session connectToPeer:peerID withTimeout:60.0];
     self.currentConfPeerID = peerID;
     self.sessionState = ConnectionStateConnecting;
 }
@@ -104,7 +104,9 @@
 {
     // Deny the peer.
     if (self.sessionState != ConnectionStateDisconnected) {
-        [self.session denyConnectionFromPeer:self.currentConfPeerID];
+        if (self.currentConfPeerID) {
+            [self.session denyConnectionFromPeer:self.currentConfPeerID];
+        }
         self.currentConfPeerID = nil;
         self.session.available = YES;
         self.sessionState = ConnectionStateDisconnected;

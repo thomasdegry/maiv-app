@@ -127,7 +127,6 @@
 
 - (void) didReceiveInvitation:(SessionManager *)session fromPeer:(NSString *)participantID;
 {
-    NSLog(@" --- DID RECEIVE INVITATION --- ");
     [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:UIDeviceProximityStateDidChangeNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
@@ -136,14 +135,23 @@
         }
     }];
     
-    self.modal = [[GameStep2InviteView alloc] initModal];
-
+    GameStep2InviteView *inviteView = [[GameStep2InviteView alloc] initModal];
+    [inviteView.declineBtn addTarget:self action:@selector(declineInvitation:) forControlEvents:UIControlEventTouchUpInside];
+    self.modal = inviteView;
     [self showModal:nil];
+}
+
+- (void)declineInvitation:(id)sender
+{
+    [self.sessionManager didDeclineInvitation];
+    [self hideModal:nil];
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
 }
 
 - (void) invitationDidFail:(SessionManager *)session fromPeer:(NSString *)participantID
 {
-    NSLog(@"Invitation FAIL");
+    [self.sessionManager didDeclineInvitation];
+    [self hideModal:nil];
 }
 
 - (void) acceptInvitation:(id)sender

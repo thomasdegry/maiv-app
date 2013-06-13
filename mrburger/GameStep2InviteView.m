@@ -35,8 +35,8 @@
         
         self.confirmBtn.hidden = YES;
         
-        RoundedButtonAlternate *btnCancel = [[RoundedButtonAlternate alloc] initWithText:@"Cancel" andX:23 andY:(self.frame.size.height - 87)];
-        [self addSubview:btnCancel];
+        self.declineBtn = [[RoundedButtonAlternate alloc] initWithText:@"Decline" andX:23 andY:(self.frame.size.height - 87)];
+        [self addSubview:self.declineBtn];
 
     }
     return self;
