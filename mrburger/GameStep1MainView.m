@@ -157,41 +157,29 @@ static UIAccelerationValue rollingX=0;
 {
     if( self.isScrolling ){
         rollingX = (motion.acceleration.x * kFilteringFactor) + (rollingX * (1.0 - kFilteringFactor));
-        //if(abs(rollingX) > 0.2) {
-        float xOffSet = self.scrollView.contentOffset.x;
-        xOffSet = xOffSet - (rollingX * 10);
-        if(xOffSet < 0) {
-            xOffSet = 0;
-        } else if(xOffSet > ([self.scrollImages count] - 1) * [[UIScreen mainScreen] bounds].size.width) {
-            xOffSet = ([self.scrollImages count] - 1) * [[UIScreen mainScreen] bounds].size.width;
+
+        float xOffSet = (float)self.scrollView.contentOffset.x - (rollingX * 10);
+        float min = 0;
+        float max = ([self.scrollImages count] - 1) * [[UIScreen mainScreen] bounds].size.width;
+        
+        if (xOffSet < min) {
+            xOffSet = min;
+        } else if (xOffSet > max) {
+            xOffSet = max;
         }
         
         [self.scrollView setContentOffset:CGPointMake(xOffSet, 0) animated:NO];
-        //}
-        
     }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     int index = (((self.scrollView.contentOffset.x) + 160)) / [UIScreen mainScreen].bounds.size.width;
-    if(index == 0) {
-        self.arrowLeft.hidden = YES;
-        self.arrowRight.hidden = NO;
-    } else if(index == ([self.scrollImages count] - 1)) {
-        self.arrowLeft.hidden = NO;
-        self.arrowRight.hidden = YES;
-    } else {
-        self.arrowLeft.hidden = NO;
-        self.arrowRight.hidden = NO;
-    }
+
+    self.arrowLeft.hidden = (index == 0);
+    self.arrowRight.hidden = (index == [self.scrollImages count] - 1);
     
     Ingredient *currentIngredient = [self.categoryIngredients objectAtIndex:index];
     self.label.text = [currentIngredient.name uppercaseString];
-    
-    //Positioneren vinkje
-    CGSize textSize = [[self.label text] sizeWithFont:[self.label font] forWidth:self.label.bounds.size.width lineBreakMode:NSLineBreakByWordWrapping];
-    int positionX = ([[UIScreen mainScreen] bounds].size.width / 2) + (textSize.width / 2) + 10;
-    self.locked.frame = CGRectMake(positionX, (self.label.frame.origin.y - 5), self.locked.frame.size.width, self.locked.frame.size.height);
 }
 
 - (void)stopMotionUpdates
@@ -200,7 +188,6 @@ static UIAccelerationValue rollingX=0;
     
     [self.motMan stopAccelerometerUpdates];
     [self.motMan stopDeviceMotionUpdates];
-
 }
 
 - (void)lockAndScrollTo:(int)index
@@ -209,38 +196,36 @@ static UIAccelerationValue rollingX=0;
         self.isScrolling = NO;
         [self stopMotionUpdates];
         
-        int xOffset = index * 320;
+        CGSize textSize = [[self.label text] sizeWithFont:[self.label font] forWidth:self.label.bounds.size.width lineBreakMode:NSLineBreakByWordWrapping];
+        int positionX = ([[UIScreen mainScreen] bounds].size.width / 2) + (textSize.width / 2) + 10;
+        self.locked.frame = CGRectMake(positionX, (self.label.frame.origin.y - 5), self.locked.frame.size.width, self.locked.frame.size.height);
 
-        [self.scrollView setContentOffset:CGPointMake(xOffset, 0) animated:YES];
-        //self.btnStart.hidden = NO;
+        [self.scrollView setContentOffset:CGPointMake(index * 320, 0) animated:YES];
+
         [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             self.btnStart.frame = CGRectMake(self.btnStart.frame.origin.x, (self.btnStart.frame.origin.y - 90), self.btnStart.frame.size.width, self.btnStart.frame.size.height);
             self.btnStart.alpha = 1;
+            
             self.tabInstructions.frame = CGRectMake(self.tabInstructions.frame.origin.x, (self.tabInstructions.frame.origin.y + 10), self.tabInstructions.frame.size.width, self.tabInstructions.frame.size.height);
             self.tabInstructions.alpha = 0;
-        }completion:nil];
-        
-        [UIView animateWithDuration:.3 animations:^{
+            
             self.locked.frame = CGRectMake(self.locked.frame.origin.x, self.locked.frame.origin.y, 23, 23);
             self.locked.alpha = 1;
-        }completion:nil];
-        
-        
+        } completion:nil];
+                
     } else {
         [self startGyroLogging];
         
-        //self.btnStart.hidden = YES;
         [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             self.btnStart.frame = CGRectMake(self.btnStart.frame.origin.x, (self.btnStart.frame.origin.y + 90), self.btnStart.frame.size.width, self.btnStart.frame.size.height);
             self.btnStart.alpha = 0;
+            
             self.tabInstructions.frame = CGRectMake(self.tabInstructions.frame.origin.x, (self.tabInstructions.frame.origin.y - 10), self.tabInstructions.frame.size.width, self.tabInstructions.frame.size.height);
             self.tabInstructions.alpha = 1;
-        }completion:nil];
-        
-        [UIView animateWithDuration:.3 animations:^{
+            
             self.locked.frame = CGRectMake(self.locked.frame.origin.x, self.locked.frame.origin.y, 30, 30);
             self.locked.alpha = 0;
-        }completion:nil];
+        } completion:nil];
     }
 }
 

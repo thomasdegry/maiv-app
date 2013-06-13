@@ -13,30 +13,36 @@
 @end
 
 @implementation GameStep1ViewController
+{
+    NSMutableArray *_ingredients;
+}
 
 @synthesize currentIngredient = _currentIngredient;
-@synthesize timer = _timer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        NSArray *categories = [[NSArray alloc] initWithObjects:@"meat", @"sauce", @"topping", @"vegetable", nil];
-        NSUInteger randomIndex = arc4random() % [categories count];
-        NSString *category = [categories objectAtIndex:randomIndex];
+        _ingredients = [[NSMutableArray alloc] initWithCapacity:5];
+        
+        NSString *categories[4];
+        categories[0] = @"meat";
+        categories[1] = @"sauce";
+        categories[2] = @"topping";
+        categories[3] = @"vegetable";
+
+        NSString *category = [[NSArray arrayWithObjects:categories count:4] objectAtIndex:(arc4random() % 4)];
         
         NSString *path = [[NSBundle mainBundle] pathForResource:@"ingredients" ofType:@"plist"];
-        NSArray *ingredients = [[NSArray alloc] initWithContentsOfFile:path];
+        NSArray *ingredients = [NSArray arrayWithContentsOfFile:path];
         
-        self.categoryIngredients = [[NSMutableArray alloc] init];
         for (NSDictionary *ingredient in ingredients) {
-            if([[ingredient objectForKey:@"type"] isEqualToString:category]) {
-                Ingredient *tempIngredient = [[Ingredient alloc] initWithDict:ingredient];
-                [self.categoryIngredients addObject:tempIngredient];
+            if ([[ingredient objectForKey:@"type"] isEqualToString:category]) {
+                [_ingredients addObject:[[Ingredient alloc] initWithDict:ingredient]];
             }
         }
         
-        self.mainView = [[GameStep1MainView alloc] initWithIngredients:self.categoryIngredients andFrame:[[UIScreen mainScreen] bounds]];
+        self.mainView = [[GameStep1MainView alloc] initWithIngredients:_ingredients andFrame:[[UIScreen mainScreen] bounds]];
         [self.mainView.btnStart addTarget:self action:@selector(startGame:) forControlEvents:UIControlEventTouchUpInside];
         self.modal = [[GameStep1InfoView alloc] initModal];
         self.modal.delegate = self;
@@ -59,7 +65,7 @@
 
 - (void)stopScrollView:(NSNotification *)sender {
     int order = [[sender.userInfo objectForKey:@"order"] intValue];
-    self.currentIngredient = [self.categoryIngredients objectAtIndex:order];
+    self.currentIngredient = [_ingredients objectAtIndex:order];
     [self.mainView lockAndScrollTo:order];
 }
 

@@ -19,9 +19,6 @@
 @interface GameStep1ViewController : GameStepViewController
 
 @property (strong, nonatomic) GameStep1MainView *mainView;
-@property (strong, nonatomic) NSMutableArray *categoryIngredients;
-
 @property (strong, nonatomic) Ingredient *currentIngredient;
-@property (strong, nonatomic) NSTimer *timer;
 
 @end
