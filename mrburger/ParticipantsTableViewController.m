@@ -41,6 +41,7 @@
 {
     [super viewDidLoad];
     [self.tableView registerClass:[ParticipantCell class] forCellReuseIdentifier:@"ParticipantsCellIdentifier"];
+   
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,6 +75,10 @@
 		cell = [[ParticipantCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ParticipantsCellIdentifier];
 	}
     
+    self.tableView.backgroundColor = [UIColor orange];
+    self.tableView.separatorColor = [UIColor clearColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
 	NSUInteger row = [indexPath row];
 	
     User *user = [self.sessionManager userForPeerID:[self.participants objectAtIndex:row]];
@@ -91,6 +96,14 @@
     cell.picturePath = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=104&height=104", user.id];
     cell.imageView.image = [UIImage imageNamed:@"happy_face"];
     
+    UIView *myView = [[UIView alloc] init];
+    if (indexPath.row % 2) {
+        myView.backgroundColor = [UIColor colorWithRed:0.99f green:0.41f blue:0.14f alpha:0.90f];
+    } else {
+        myView.backgroundColor = [UIColor colorWithRed:0.99f green:0.41f blue:0.14f alpha:0.80f];
+
+    }
+    cell.backgroundView = myView;
 	return cell;
 }
 

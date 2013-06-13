@@ -15,6 +15,11 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        self.textLabel.textColor = [UIColor whiteColor];
+        self.textLabel.backgroundColor = [UIColor clearColor];
+        self.detailTextLabel.textColor = [UIColor beige];
+        self.detailTextLabel.font = [UIFont fontWithName:@"Traveler-Medium" size:FontTravelerSizeSmall];
+        self.detailTextLabel.backgroundColor = [UIColor clearColor];
     }
     return self;
 }

@@ -12,7 +12,8 @@
 
 + (UIColor *) orange
 {
-    return [UIColor colorWithRed:0.99f green:0.41f blue:0.14f alpha:1.00f];;
+    return [UIColor colorWithRed:0.99f green:0.41f blue:0.14f alpha:1.00f];
+    
 }
 
 + (UIColor *) orangeDarkened

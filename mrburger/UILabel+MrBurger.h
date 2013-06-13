@@ -19,6 +19,7 @@ typedef enum
 
 typedef enum
 {
+    FontMissionSizeTiny = 25,
     FontMissionSizeSmall = 30,
     FontMissionSizeMedium = 37,
     FontMissionSizeBig = 44

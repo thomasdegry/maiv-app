@@ -14,7 +14,12 @@
 {
     self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.textLabel.textColor = [UIColor brownColor];
+        self.textLabel.textColor = [UIColor brown];
+        self.textLabel.backgroundColor = [UIColor clearColor];
+        self.detailTextLabel.textColor = [UIColor beige];
+        self.detailTextLabel.font = [UIFont fontWithName:@"Traveler-Medium" size:FontTravelerSizeSmall];
+        self.detailTextLabel.backgroundColor = [UIColor clearColor];
+        
     }
     return self;
 }
