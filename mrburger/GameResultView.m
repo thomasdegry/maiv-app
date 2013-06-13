@@ -65,7 +65,8 @@
     self.burgerIngredients = [[NSMutableArray alloc] initWithCapacity:[self.users count]];
     self.burgerParts = [[NSMutableArray alloc] init];
     
-    int yPos = 160;
+    //int yPos = 160;
+    int yPos = -30;
     
     UIImage *top = [UIImage imageNamed:@"bread_top.png"];
     UIImageView *topIV = [[UIImageView alloc] initWithImage:top];
@@ -74,7 +75,7 @@
     [self.burgerParts addObject:topIV];
     [self addSubview:topIV];
     
-    yPos += top.size.height + 10;
+    //yPos += top.size.height + 10;
     
     for(User *user in self.users) {
         NSLog(@"User with ingredient id %@", user.ingredient.id);
@@ -101,7 +102,7 @@
         [self addSubview:burgerObjectIV];
         [self.burgerParts addObject:burgerObjectIV];
         
-        yPos += burgerObject.size.height + 10;
+        //yPos += burgerObject.size.height + 10;
     }
     
     [topIV bringSubviewToFront:topIV];
@@ -154,6 +155,7 @@
             bottomOffset += 5;
         }
     }
+    
 }
 
 - (void)generateCode
