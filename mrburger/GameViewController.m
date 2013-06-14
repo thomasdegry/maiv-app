@@ -25,6 +25,7 @@
         // Custom initialization
         self.navigationBarHidden = YES;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showEnjoyYourBurger:) name:@"SHOW_ENJOY" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self.sessionManager selector:@selector(destroySession) name:@"DESTROY_SESSION" object:nil];
     }
     return self;
 }
@@ -71,6 +72,12 @@
 
 - (void)closeButtonClicked:(CloseButton *)closeButton
 {
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+    
+    if (self.sessionManager) {
+        [self.sessionManager destroySession];
+    }
+    
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
 }
 
