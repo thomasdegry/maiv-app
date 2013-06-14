@@ -32,6 +32,12 @@
         
         IphoneLoop *iphoneLoopAnimation = [[IphoneLoop alloc] initWithFrame:CGRectMake(-15, -50, 160, 259)];
         [self addSubview:iphoneLoopAnimation];
+        
+        self.confirmBtn.hidden = YES;
+        
+        self.declineBtn = [[RoundedButtonAlternate alloc] initWithText:@"Decline" andX:23 andY:(self.frame.size.height - 87)];
+        [self addSubview:self.declineBtn];
+
     }
     return self;
 }

@@ -41,7 +41,12 @@
 {
     [super viewDidLoad];
     [self.tableView registerClass:[ParticipantCell class] forCellReuseIdentifier:@"ParticipantsCellIdentifier"];
-   
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+    view.backgroundColor = [UIColor clearColor];
+    
+    [self.tableView setTableFooterView:view];
+    self.tableView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -104,6 +109,7 @@
 
     }
     cell.backgroundView = myView;
+
 	return cell;
 }
 

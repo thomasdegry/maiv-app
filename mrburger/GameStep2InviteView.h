@@ -10,4 +10,6 @@
 
 @interface GameStep2InviteView : GameStepInfoView
 
+@property (strong, nonatomic) RoundedButtonAlternate *declineBtn;
+
 @end

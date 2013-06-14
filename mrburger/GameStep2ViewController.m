@@ -53,10 +53,10 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showConnecting:) name:@"SENT_INVITE" object:self.nearbyTVC];
 	}
     
-    self.btnSave = [[RoundedButtonAlternate alloc] initWithText:@"Save my burger" andX:15 andY:197];
+    self.btnSave = [[RoundedButtonAlternate alloc] initWithText:@"Save my burger" andX:15 andY:230];
     self.btnSave.titleLabel.font  = [UIFont fontWithName:@"Mission-Script" size:FontMissionSizeTiny];
     [self.btnSave setTitle:@"Save my burger" forState:UIControlStateNormal];
-
+    self.btnSave.hidden = YES;
     CGRect btnSaveFrame = self.btnSave.frame;
     btnSaveFrame.size.width = 290;
     self.btnSave.frame = btnSaveFrame;
@@ -64,14 +64,14 @@
     [self.mainView insertSubview:self.btnSave atIndex:0];
     [self.btnSave addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.participantsView = [[TitledTable alloc] initWithFrame:CGRectMake(15, 60, 290, 130) andTitle:@"Your burger"];
+    self.participantsView = [[TitledTable alloc] initWithFrame:CGRectMake(15, 60, 290, 162) andTitle:@"Your burger"];
     [self.mainView addSubview:self.participantsView];
     [self.participantsView.tableView setDataSource:self.participantsTVC];
     [self.participantsView.tableView setDelegate:self.participantsTVC];
     self.participantsView.tableView.hidden = NO;
     self.participantsView.unavailable.hidden = YES;
     
-    self.nearbyView = [[TitledTableAlternate alloc] initWithFrame:CGRectMake(15, 280, 290, 130) andTitle:@"Find ingredients"];
+    self.nearbyView = [[TitledTableAlternate alloc] initWithFrame:CGRectMake(15, 290, 290, 130) andTitle:@"Find ingredients"];
 	[self.mainView addSubview:self.nearbyView];
     [self.nearbyView.tableView setDataSource:self.nearbyTVC];
     [self.nearbyView.tableView setDelegate:self.nearbyTVC];
@@ -113,13 +113,24 @@
         self.nearbyView.tableView.hidden = NO;
         self.nearbyView.unavailable.hidden = YES;
     }
-    
+  
+   
     
     if (self.connected < [self.sessionManager.connectedPeers count]) {
         [self hideModal:nil];
     }
     
+    
     self.connected = [self.sessionManager.connectedPeers count];
+    
+    if (self.connected > 1) {
+        NSLog(@"participants %i", self.connected);
+        self.btnSave.hidden = NO;
+        self.nearbyView.title.text = @"ADD MORE INGREDIENTS";
+    }else {
+        self.btnSave.hidden = YES;
+        self.nearbyView.title.text = @"FIND INGREDIENTS";
+    }
     
 	[self.participantsView.tableView reloadData];
     [self.nearbyView.tableView reloadData];
@@ -127,7 +138,6 @@
 
 - (void) didReceiveInvitation:(SessionManager *)session fromPeer:(NSString *)participantID;
 {
-    NSLog(@" --- DID RECEIVE INVITATION --- ");
     [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:UIDeviceProximityStateDidChangeNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
@@ -136,14 +146,23 @@
         }
     }];
     
-    self.modal = [[GameStep2InviteView alloc] initModal];
-
+    GameStep2InviteView *inviteView = [[GameStep2InviteView alloc] initModal];
+    [inviteView.declineBtn addTarget:self action:@selector(declineInvitation:) forControlEvents:UIControlEventTouchUpInside];
+    self.modal = inviteView;
     [self showModal:nil];
+}
+
+- (void)declineInvitation:(id)sender
+{
+    [self.sessionManager didDeclineInvitation];
+    [self hideModal:nil];
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
 }
 
 - (void) invitationDidFail:(SessionManager *)session fromPeer:(NSString *)participantID
 {
-    NSLog(@"Invitation FAIL");
+    [self.sessionManager didDeclineInvitation];
+    [self hideModal:nil];
 }
 
 - (void) acceptInvitation:(id)sender

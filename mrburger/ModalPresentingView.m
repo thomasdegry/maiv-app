@@ -41,6 +41,8 @@
         
         [self addSubview:self.mainView];
         [self addSubview:self.modal];
+        
+      
     }
     return self;
 }
@@ -57,8 +59,8 @@
 - (void)showModal
 {
     self.modal.hidden = NO;
+    [self.mainView setUserInteractionEnabled:NO];    CGRect hideFrame = _modalFrame;
     
-    CGRect hideFrame = _modalFrame;
     hideFrame.origin.y = self.frame.size.height;
     self.modal.frame = hideFrame;
     
@@ -88,6 +90,8 @@
 
 - (void)hideModal
 {
+    [self.mainView setUserInteractionEnabled:YES];
+    
     CGRect hideFrame = _modalFrame;
     hideFrame.origin.y = self.frame.size.height;
     
