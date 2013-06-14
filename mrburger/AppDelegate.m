@@ -49,7 +49,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSLog(@"Notification received");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"DISMISS_ME" object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SHOW_ENJOY" object:self];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

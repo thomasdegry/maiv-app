@@ -26,21 +26,34 @@
     return self;
 }
 
-- (id)initWithSessionManager:(SessionManager *)sessionManager andSharedCode:(NSString *)sharedCode
+//- (id)initWithSessionManager:(SessionManager *)sessionManager andSharedCode:(NSString *)sharedCode
+//{
+//    self = [self initWithNibName:nil bundle:nil];
+//    
+//    if (self) {
+//        self.sessionManager = sessionManager;
+//        self.sharedCode = sharedCode;
+//        
+//        self.users = [[NSMutableArray alloc] init];
+//        for (NSString *peerID in self.sessionManager.connectedPeers) {
+//            User *user = [self.sessionManager userForPeerID:peerID];
+//            [self.users addObject:user];
+//            [self.sessionManager.session disconnectPeerFromAllPeers:peerID];
+//        }
+//        
+//    }
+//    
+//    return self;
+//}
+
+- (id)initWithIngredients:(NSMutableArray *)ingredients users:(NSMutableArray *)users andSharedCode:(NSString *)sharedCode
 {
     self = [self initWithNibName:nil bundle:nil];
     
     if (self) {
-        self.sessionManager = sessionManager;
         self.sharedCode = sharedCode;
-        
-        self.users = [[NSMutableArray alloc] init];
-        for (NSString *peerID in self.sessionManager.connectedPeers) {
-            User *user = [self.sessionManager userForPeerID:peerID];
-            [self.users addObject:user];
-            [self.sessionManager.session disconnectPeerFromAllPeers:peerID];
-        }
-        
+        self.ingredients = ingredients;
+        self.users = users;
     }
     
     return self;
@@ -50,7 +63,8 @@
 {
     NSLog(@"GameresultVC loadView");
     CGRect frame = [[UIScreen mainScreen] bounds];
-    GameResultView *view = [[GameResultView alloc] initWithFrame:frame sharedCode:self.sharedCode andUsers:self.users];
+    //GameResultView *view = [[GameResultView alloc] initWithFrame:frame sharedCode:self.sharedCode andUsers:self.users];
+    GameResultView *view = [[GameResultView alloc] initWithFrame:frame sharedCode:self.sharedCode users:self.users andIngredients:self.ingredients];
     [self setView:view];
 }
 
@@ -68,8 +82,10 @@
     NSLog(@"Store burger");
     
     GameResultView *view = (GameResultView *)self.view;
+    NSArray *ingredients = [[NSArray alloc] initWithArray:view.ingredients];
     
     [[NSUserDefaults standardUserDefaults] setObject:UIImagePNGRepresentation(view.qr) forKey:@"QRCode"];
+    [[NSUserDefaults standardUserDefaults] setObject:ingredients forKey:@"ingredients"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     [self.navigationController.presentingViewController dismissViewControllerAnimated:YES completion:^{}];

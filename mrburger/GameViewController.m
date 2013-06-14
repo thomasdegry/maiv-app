@@ -24,7 +24,7 @@
     if (self) {
         // Custom initialization
         self.navigationBarHidden = YES;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissScreen:) name:@"DISMISS_ME" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showEnjoyYourBurger:) name:@"SHOW_ENJOY" object:nil];
     }
     return self;
 }
@@ -156,9 +156,45 @@
 
 - (void)showResult
 {
+    [self createIngredientsAndUsers];
     [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
     self.currentScreen = GameScreenResult;
-    [self pushViewController:[[GameResultViewController alloc] initWithSessionManager:self.sessionManager andSharedCode:self.sharedCode] animated:YES];
+    //[self pushViewController:[[GameResultViewController alloc] initWithSessionManager:self.sessionManager andSharedCode:self.sharedCode] animated:YES];
+    [self pushViewController:[[GameResultViewController alloc] initWithIngredients:self.ingredients users:self.users andSharedCode:self.sharedCode] animated:YES];
+}
+
+- (void)createIngredientsAndUsers
+{
+    self.users = [[NSMutableArray alloc] init];
+    for (NSString *peerID in self.sessionManager.connectedPeers) {
+        User *user = [self.sessionManager userForPeerID:peerID];
+        [self.users addObject:user];
+        [self.sessionManager.session disconnectPeerFromAllPeers:peerID];
+    }
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"ingredients" ofType:@"plist"];
+    NSArray *ingredients = [[NSArray alloc] initWithContentsOfFile:path];
+    
+    self.ingredients = [[NSMutableArray alloc] init];
+    for(User *user in self.users) {
+        for (NSDictionary *ingredient in ingredients) {
+            if([[ingredient objectForKey:@"id"] isEqualToString:user.ingredient.id]) {
+                Ingredient *tempIngredient = [[Ingredient alloc] initWithDict:ingredient];
+                
+                if([[ingredient objectForKey:@"type"] isEqualToString:@"sauce"]) {
+                    [self.ingredients insertObject:tempIngredient atIndex:0];
+                } else {
+                    [self.ingredients addObject:tempIngredient];
+                }
+            }
+        }
+    }
+}
+
+- (void)showEnjoyYourBurger:(id)sender
+{
+    self.currentScreen = GameScreenEnjoy;
+    [self pushViewController:[[EnjoyViewController alloc] initWithNibName:nil bundle:nil] animated:YES];
 }
 
 @end

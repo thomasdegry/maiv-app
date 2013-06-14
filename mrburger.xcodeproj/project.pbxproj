@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D05E95E176B0A4500AD0585 /* EnjoyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D05E95D176B0A4500AD0585 /* EnjoyViewController.m */; };
+		4D05E961176B0A5B00AD0585 /* EnjoyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D05E960176B0A5B00AD0585 /* EnjoyView.m */; };
 		4D4B9C15176140AB003673A0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4B9C14176140AB003673A0 /* UIKit.framework */; };
 		4D4B9C17176140AB003673A0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4B9C16176140AB003673A0 /* Foundation.framework */; };
 		4D4B9C19176140AB003673A0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4B9C18176140AB003673A0 /* CoreGraphics.framework */; };
@@ -500,6 +502,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D05E95C176B0A4500AD0585 /* EnjoyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnjoyViewController.h; sourceTree = "<group>"; };
+		4D05E95D176B0A4500AD0585 /* EnjoyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnjoyViewController.m; sourceTree = "<group>"; };
+		4D05E95F176B0A5B00AD0585 /* EnjoyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnjoyView.h; sourceTree = "<group>"; };
+		4D05E960176B0A5B00AD0585 /* EnjoyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnjoyView.m; sourceTree = "<group>"; };
 		4D4B9C11176140AB003673A0 /* mrburger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mrburger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D4B9C14176140AB003673A0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4D4B9C16176140AB003673A0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1324,6 +1330,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D05E95B176B0A3200AD0585 /* Enjoy */ = {
+			isa = PBXGroup;
+			children = (
+				4D05E95C176B0A4500AD0585 /* EnjoyViewController.h */,
+				4D05E95D176B0A4500AD0585 /* EnjoyViewController.m */,
+				4D05E95F176B0A5B00AD0585 /* EnjoyView.h */,
+				4D05E960176B0A5B00AD0585 /* EnjoyView.m */,
+			);
+			name = Enjoy;
+			sourceTree = "<group>";
+		};
 		4D4B9C08176140AB003673A0 = {
 			isa = PBXGroup;
 			children = (
@@ -2581,6 +2598,7 @@
 				EAE29A601761DCBA00E01E88 /* Step 1 */,
 				EAE29A701761DDD000E01E88 /* Step 2 */,
 				EAE29A8A1761DEC500E01E88 /* Result */,
+				4D05E95B176B0A3200AD0585 /* Enjoy */,
 				EAE29A4D1761DB1800E01E88 /* GameViewController.h */,
 				EAE29A4E1761DB1800E01E88 /* GameViewController.m */,
 				EAE29A501761DBCB00E01E88 /* GameStepViewController.h */,
@@ -3202,6 +3220,8 @@
 				9C5D6F5C1768C96300F47185 /* InfoStep3View.m in Sources */,
 				9C5D6F5F1768C96D00F47185 /* InfoStep4View.m in Sources */,
 				EA25684D1769E44200A121D3 /* CircularPicture.m in Sources */,
+				4D05E95E176B0A4500AD0585 /* EnjoyViewController.m in Sources */,
+				4D05E961176B0A5B00AD0585 /* EnjoyView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

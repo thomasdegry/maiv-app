@@ -17,12 +17,15 @@
 @property (strong, nonatomic) UIView *participants;
 @property (strong, nonatomic) NSArray *users;
 @property (strong, nonatomic) NSString *sharedCode;
-@property (strong, nonatomic) NSMutableArray *burgerIngredients;
-@property (strong, nonatomic) NSMutableArray *burgerParts;
+@property (strong, nonatomic) NSArray *ingredients;
+//@property (strong, nonatomic) NSMutableArray *cleanIngredients;
+//@property (strong, nonatomic) NSMutableArray *burgerIngredients;
+//@property (strong, nonatomic) NSMutableArray *burgerParts;
 @property (strong, nonatomic) UIView *burger;
 @property (strong, nonatomic) UIImage *qr;
 @property (strong, nonatomic) RoundedButton *saveForLater;
 
 - (id)initWithFrame:(CGRect)frame sharedCode:(NSString *)code andUsers:(NSMutableArray *)users;
+- (id)initWithFrame:(CGRect)frame sharedCode:(NSString *)code users:(NSMutableArray *)users andIngredients:(NSMutableArray *)ingredients;
 
 @end
