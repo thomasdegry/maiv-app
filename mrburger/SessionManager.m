@@ -142,6 +142,7 @@
 // Application is exiting or becoming inactive, end the session.
 - (void)destroySession
 {
+    NSLog(@"destroying session");
 	self.session.delegate = nil;
 	[self.session setDataReceiveHandler:nil withContext:nil];
     [self.connectedPeers removeAllObjects];
