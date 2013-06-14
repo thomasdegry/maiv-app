@@ -67,7 +67,7 @@
 	self.session = [[GKSession alloc] initWithSessionID:self.sessionID displayName:displayName sessionMode:GKSessionModePeer];
     self.session.delegate = self;
 	[self.session setDataReceiveHandler:self withContext:nil];
-    self.session.disconnectTimeout = 36000.0;
+    self.session.disconnectTimeout = 600.0;
 	self.session.available = YES;
     self.sessionState = ConnectionStateDisconnected;
     [self.availablePeers setArray:[self.session peersWithConnectionState:GKPeerStateConnected]];

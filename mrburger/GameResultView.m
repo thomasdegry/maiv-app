@@ -29,7 +29,9 @@
         [self addSubview:self.saveForLater];
         
         [self buildBurger];
-        [self generatefaces];
+        if(self.users) {
+            [self generatefaces];
+        }
     }
     
     return self;

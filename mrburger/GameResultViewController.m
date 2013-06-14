@@ -63,11 +63,25 @@
     GameResultView *view = (GameResultView *)self.view;
     NSArray *ingredients = [[NSArray alloc] initWithArray:view.ingredients];
     
-    [[NSUserDefaults standardUserDefaults] setObject:UIImagePNGRepresentation(view.qr) forKey:@"QRCode"];
-    [[NSUserDefaults standardUserDefaults] setObject:ingredients forKey:@"ingredients"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.sharedCode forKey:@"QRCode"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    BOOL gelukt = [self save];
+    NSLog(gelukt ? @"Save gelukt" : @"Save failed");
     
     [self.navigationController.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
+}
+
+-(BOOL)save {
+    NSString *path = [self mrburgerArchivePath];
+    NSLog(@"[GameResultViewControlller] Save to path %@", path);
+    return [NSKeyedArchiver archiveRootObject:self.ingredients toFile:path];
+}
+
+- (NSString *)mrburgerArchivePath
+{
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [documentDirectories objectAtIndex:0];
+    return [documentDirectory stringByAppendingPathComponent:@"mrburger.archive"];
 }
 
 - (void)didReceiveMemoryWarning

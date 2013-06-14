@@ -28,4 +28,21 @@
     return self;
 }
 
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeObject:self.id forKey:@"id"];
+    [encoder encodeObject:self.name forKey:@"name"];
+    [encoder encodeObject:self.type forKey:@"type"];
+    [encoder encodeObject:self.image forKey:@"image"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if((self = [super init])) {
+        self.id = [decoder decodeObjectForKey:@"id"];
+        self.name = [decoder decodeObjectForKey:@"name"];
+        self.type = [decoder decodeObjectForKey:@"type"];
+        self.image = [decoder decodeObjectForKey:@"image"];
+    }
+    return self;
+}
+
 @end

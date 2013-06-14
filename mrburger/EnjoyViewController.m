@@ -31,12 +31,20 @@
     if(self) {
         self.ingredients = ingredients;
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"QRCode"];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ingredients"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        BOOL delete = [self delete];
+        NSLog(delete ? @"Leeg gemaakt" : @"Niet leeg gemaakt");
     }
     
     return self;
 }
+
+-(BOOL)delete {
+    NSString *path = [self mrburgerArchivePath];
+    NSLog(@"[GameResultViewControlller] Save to path %@", path);
+    return [NSKeyedArchiver archiveRootObject:[[NSMutableArray alloc] init] toFile:path];
+}
+
 
 - (void)loadView
 {
@@ -88,6 +96,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSString *)mrburgerArchivePath
+{
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [documentDirectories objectAtIndex:0];
+    return [documentDirectory stringByAppendingPathComponent:@"mrburger.archive"];
 }
 
 @end

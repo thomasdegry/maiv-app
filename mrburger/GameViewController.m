@@ -60,11 +60,34 @@
         self.user.deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
         self.user.ingredient = [[Ingredient alloc] init];
         
-        GameStep1ViewController *startVC = [[GameStep1ViewController alloc] initWithNibName:nil bundle:nil];
-        self = [self initWithRootViewController:startVC];
-        if (self) {
-            self.currentScreen = GameScreenStep1;
+        
+        //Check if ingredients stored in NSArchive
+        if(![[NSUserDefaults standardUserDefaults] objectForKey:@"QRCode"]) {
+            //Geen data in archive
+            NSLog(@"Start from clean slate no data found in archive, lauching step 1");
+            GameStep1ViewController *startVC = [[GameStep1ViewController alloc] initWithNibName:nil bundle:nil];
+            self = [self initWithRootViewController:startVC];
+            if (self) {
+                self.currentScreen = GameScreenStep1;
+            }
+        } else {
+            NSLog(@"Start again with existing data");
+            NSArray *ingredients = [NSKeyedUnarchiver unarchiveObjectWithFile:[self mrburgerArchivePath]];
+            self.ingredients = [[NSMutableArray alloc] initWithArray:ingredients];
+            self.sharedCode = [[NSUserDefaults standardUserDefaults] objectForKey:@"QRCode"];
+            NSLog(@"Code uit de userdefaults: %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"QRCode"]);
+            
+            [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+            self.users = [[NSMutableArray alloc] init];
+            GameResultViewController *vc = [[GameResultViewController alloc] initWithIngredients:self.ingredients users:self.users andSharedCode:self.sharedCode];
+            self = [self initWithRootViewController:vc];
+            self.currentScreen = GameScreenResult;
+
         }
+        
+        
+        
+        
     }
     
     return self;
@@ -119,8 +142,9 @@
 - (void)receivedCode:(NSNotification *)notification
 {
     if (!self.sharedCode) {
+        [self createIngredientsAndUsers];
         self.sharedCode = [NSString stringWithFormat:@"%@-%@", [notification.userInfo objectForKey:@"code"], self.user.id];
-        [self showResult];
+        [self showResultWithIngredients:self.ingredients users:self.users andSharedCode:self.sharedCode];
     }
 }
 
@@ -154,20 +178,20 @@
         [self.sessionManager.session sendData:packet toPeers:self.sessionManager.connectedPeers withDataMode:GKSendDataReliable error:&error];
         
         [KGStatusBar dismiss];
-        [self showResult];
+        [self createIngredientsAndUsers];
+        [self showResultWithIngredients:self.ingredients users:self.users andSharedCode:self.sharedCode];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
     }];
     
 }
 
-- (void)showResult
+- (void)showResultWithIngredients:(NSMutableArray *)ingredients users:(NSMutableArray *)users andSharedCode:(NSString *)sharedcode
 {
-    [self createIngredientsAndUsers];
     [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
     self.currentScreen = GameScreenResult;
     //[self pushViewController:[[GameResultViewController alloc] initWithSessionManager:self.sessionManager andSharedCode:self.sharedCode] animated:YES];
-    [self pushViewController:[[GameResultViewController alloc] initWithIngredients:self.ingredients users:self.users andSharedCode:self.sharedCode] animated:YES];
+    [self pushViewController:[[GameResultViewController alloc] initWithIngredients:ingredients users:users andSharedCode:sharedcode] animated:YES];
 }
 
 - (void)createIngredientsAndUsers
@@ -202,6 +226,13 @@
 {
     self.currentScreen = GameScreenEnjoy;
     [self pushViewController:[[EnjoyViewController alloc] initWithIngredients:self.ingredients] animated:YES];
+}
+
+- (NSString *)mrburgerArchivePath
+{
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [documentDirectories objectAtIndex:0];
+    return [documentDirectory stringByAppendingPathComponent:@"mrburger.archive"];
 }
 
 @end
