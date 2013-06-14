@@ -400,6 +400,8 @@
 		4D9ECF72176A06CA0028C737 /* vegetable_05_cropped@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D9ECF44176A06CA0028C737 /* vegetable_05_cropped@2x.png */; };
 		4D9ECF73176A06CA0028C737 /* vegetable_06_cropped.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D9ECF45176A06CA0028C737 /* vegetable_06_cropped.png */; };
 		4D9ECF74176A06CA0028C737 /* vegetable_06_cropped@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D9ECF46176A06CA0028C737 /* vegetable_06_cropped@2x.png */; };
+		4DF743B0176B658F00DFE56B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DF743AE176B657700DFE56B /* CoreBluetooth.framework */; };
+		4DF743B2176B67D900DFE56B /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DF743B1176B67D900DFE56B /* IOBluetooth.framework */; };
 		9C5954721769D4C000C353F4 /* drippingsauce.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5954701769D4C000C353F4 /* drippingsauce.png */; };
 		9C5954731769D4C000C353F4 /* drippingsauce@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5954711769D4C000C353F4 /* drippingsauce@2x.png */; };
 		9C5954761769DDFC00C353F4 /* drippingsauce2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C5954741769DDFC00C353F4 /* drippingsauce2.png */; };
@@ -1142,6 +1144,8 @@
 		4D9ECF44176A06CA0028C737 /* vegetable_05_cropped@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vegetable_05_cropped@2x.png"; sourceTree = "<group>"; };
 		4D9ECF45176A06CA0028C737 /* vegetable_06_cropped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vegetable_06_cropped.png; sourceTree = "<group>"; };
 		4D9ECF46176A06CA0028C737 /* vegetable_06_cropped@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vegetable_06_cropped@2x.png"; sourceTree = "<group>"; };
+		4DF743AE176B657700DFE56B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		4DF743B1176B67D900DFE56B /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IOBluetooth.framework; sourceTree = "<group>"; };
 		9C5954701769D4C000C353F4 /* drippingsauce.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drippingsauce.png; sourceTree = "<group>"; };
 		9C5954711769D4C000C353F4 /* drippingsauce@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drippingsauce@2x.png"; sourceTree = "<group>"; };
 		9C5954741769DDFC00C353F4 /* drippingsauce2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drippingsauce2.png; sourceTree = "<group>"; };
@@ -1311,6 +1315,7 @@
 				4D9ECEB0176908D90028C737 /* CoreVideo.framework in Frameworks */,
 				4D9ECEAF176908B10028C737 /* AVFoundation.framework in Frameworks */,
 				4D9ECC141768FAB00028C737 /* CoreMotion.framework in Frameworks */,
+				4DF743B0176B658F00DFE56B /* CoreBluetooth.framework in Frameworks */,
 				EAB65B1E1763B2D300D327ED /* GameKit.framework in Frameworks */,
 				4D4B9CA51762274E003673A0 /* Accounts.framework in Frameworks */,
 				4D4B9C5C176142DA003673A0 /* Social.framework in Frameworks */,
@@ -1319,6 +1324,7 @@
 				4D4B9C15176140AB003673A0 /* UIKit.framework in Frameworks */,
 				4D4B9C4A17614141003673A0 /* AudioToolbox.framework in Frameworks */,
 				4D4B9C4B17614141003673A0 /* CFNetwork.framework in Frameworks */,
+				4DF743B2176B67D900DFE56B /* IOBluetooth.framework in Frameworks */,
 				4D4B9C4C17614141003673A0 /* CoreLocation.framework in Frameworks */,
 				4D4B9C4E17614141003673A0 /* libz.1.1.3.dylib in Frameworks */,
 				4D4B9C4F17614141003673A0 /* MobileCoreServices.framework in Frameworks */,
@@ -1373,6 +1379,8 @@
 		4D4B9C13176140AB003673A0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4DF743B1176B67D900DFE56B /* IOBluetooth.framework */,
+				4DF743AE176B657700DFE56B /* CoreBluetooth.framework */,
 				4D9ECEB21769092D0028C737 /* CoreMedia.framework */,
 				4D9ECC25176906230028C737 /* ZXingObjC */,
 				4D9ECC101768E61B0028C737 /* ImageIO.framework */,

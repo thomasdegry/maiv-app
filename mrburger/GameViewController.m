@@ -1,11 +1,3 @@
-//
-//  GameViewController.m
-//
-//
-//  Created by Pieter Beulque on 7/06/13.
-//  Copyright (c) 2013 devine. All rights reserved.
-//
-
 #import "GameViewController.h"
 
 @interface GameViewController ()
@@ -17,17 +9,52 @@
 @synthesize user = _user;
 @synthesize currentScreen = _currentScreen;
 @synthesize sharedCode = _sharedCode;
+@synthesize manager = _manager;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+        
         self.navigationBarHidden = YES;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showEnjoyYourBurger:) name:@"SHOW_ENJOY" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self.sessionManager selector:@selector(destroySession) name:@"DESTROY_SESSION" object:nil];
     }
     return self;
+}
+
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central
+{
+    [self isLECapableHardware];
+}
+
+- (BOOL) isLECapableHardware
+{
+    NSString * state = nil;
+    
+    switch ([self.manager state])
+    {
+        case CBCentralManagerStateUnsupported:
+            state = @"The platform/hardware doesn't support Bluetooth Low Energy.";
+            break;
+        case CBCentralManagerStateUnauthorized:
+            state = @"The app is not authorized to use Bluetooth Low Energy.";
+            break;
+        case CBCentralManagerStatePoweredOff:
+            state = @"Bluetooth is currently powered off.";
+            break;
+        case CBCentralManagerStatePoweredOn:
+            return TRUE;
+        case CBCentralManagerStateUnknown:
+        default:
+            return FALSE;
+            
+    }
+    
+    NSLog(@"Central manager state: %@", state);
+    return FALSE;
 }
 
 - (void)viewDidLoad

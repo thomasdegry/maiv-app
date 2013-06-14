@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 
 #import "User.h"
 #import "SessionManager.h"
@@ -26,7 +27,7 @@ typedef enum {
     GameScreenEnjoy = 4
 } GameScreen;
 
-@interface GameViewController : UINavigationController <CloseButtonDelegate>
+@interface GameViewController : UINavigationController <CloseButtonDelegate, CBPeripheralDelegate, CBCentralManagerDelegate>
 
 @property (strong, nonatomic) User *user;
 @property GameScreen currentScreen;
@@ -34,6 +35,8 @@ typedef enum {
 @property (strong, nonatomic) NSString *sharedCode;
 @property (strong, nonatomic) NSMutableArray *ingredients;
 @property (strong, nonatomic) NSMutableArray *users;
+@property (strong, nonatomic) CBCentralManager *manager;
+
 
 - (id)initGame;
 
