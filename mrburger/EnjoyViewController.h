@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Social/Social.h>
 #import "EnjoyView.h"
 
 @interface EnjoyViewController : UIViewController
 
 @property (strong, nonatomic) NSArray *ingredients;
+
+- (id)initWithIngredients:(NSArray *)ingredients;
 
 @end

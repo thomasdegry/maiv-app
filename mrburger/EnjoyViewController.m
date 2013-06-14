@@ -30,6 +30,9 @@
     self = [super initWithNibName:nil bundle:nil];
     if(self) {
         self.ingredients = ingredients;
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"QRCode"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ingredients"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
     return self;
@@ -45,7 +48,40 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    [self shareOnFacebook:nil];
+	
+    EnjoyView *view = (EnjoyView *)self.view;
+    [view.closeButton addTarget:self action:@selector(dismissScreen:) forControlEvents:UIControlEventTouchUpInside];
+    [view.shareButton addTarget:self action:@selector(shareOnFacebook:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)dismissScreen:(id)sender
+{
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
+}
+
+- (void)shareOnFacebook:(id)sender
+{
+    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        EnjoyView *view = (EnjoyView *)self.view;
+        UIImage *shot = [self captureBurger:view];
+        
+        SLComposeViewController *composeVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        [composeVC setInitialText:@"I just enjoyed my free burger on PiemelFestival, how cool is that?"];
+        [composeVC addImage:shot];
+        [self presentViewController:composeVC animated:YES completion:^{}];
+    }
+}
+
+- (UIImage *)captureBurger:(UIView *)view
+{
+    CGRect frame = CGRectMake(0, 0, view.frame.size.width, view.frame.size.height);
+    UIGraphicsBeginImageContext(frame.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [view.layer renderInContext:context];
+    UIImage *shot = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return shot;
 }
 
 - (void)didReceiveMemoryWarning

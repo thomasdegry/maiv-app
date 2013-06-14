@@ -194,7 +194,7 @@
 - (void)showEnjoyYourBurger:(id)sender
 {
     self.currentScreen = GameScreenEnjoy;
-    [self pushViewController:[[EnjoyViewController alloc] initWithNibName:nil bundle:nil] animated:YES];
+    [self pushViewController:[[EnjoyViewController alloc] initWithIngredients:self.ingredients] animated:YES];
 }
 
 @end

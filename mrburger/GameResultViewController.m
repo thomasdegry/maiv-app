@@ -26,26 +26,6 @@
     return self;
 }
 
-//- (id)initWithSessionManager:(SessionManager *)sessionManager andSharedCode:(NSString *)sharedCode
-//{
-//    self = [self initWithNibName:nil bundle:nil];
-//    
-//    if (self) {
-//        self.sessionManager = sessionManager;
-//        self.sharedCode = sharedCode;
-//        
-//        self.users = [[NSMutableArray alloc] init];
-//        for (NSString *peerID in self.sessionManager.connectedPeers) {
-//            User *user = [self.sessionManager userForPeerID:peerID];
-//            [self.users addObject:user];
-//            [self.sessionManager.session disconnectPeerFromAllPeers:peerID];
-//        }
-//        
-//    }
-//    
-//    return self;
-//}
-
 - (id)initWithIngredients:(NSMutableArray *)ingredients users:(NSMutableArray *)users andSharedCode:(NSString *)sharedCode
 {
     self = [self initWithNibName:nil bundle:nil];
@@ -63,7 +43,6 @@
 {
     NSLog(@"GameresultVC loadView");
     CGRect frame = [[UIScreen mainScreen] bounds];
-    //GameResultView *view = [[GameResultView alloc] initWithFrame:frame sharedCode:self.sharedCode andUsers:self.users];
     GameResultView *view = [[GameResultView alloc] initWithFrame:frame sharedCode:self.sharedCode users:self.users andIngredients:self.ingredients];
     [self setView:view];
 }

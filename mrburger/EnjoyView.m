@@ -28,7 +28,22 @@
     self = [self initWithFrame:frame];
     if (self) {
         self.ingredients = ingredients;
+        
+        self.closeButton = [[CloseButton alloc] initWithX:280 andY:10];
+        [self addSubview:self.closeButton];
+        
+        UILabel *lblEnjoy = [[UILabel alloc] initWithFontMissionAndFrame:CGRectMake(35, 45, 80, 40) andSize:FontMissionSizeMedium andColor:[UIColor orange]];
+        lblEnjoy.text = @"Enjoy";
+        [self addSubview:lblEnjoy];
+        
+        UILabel *lblRest = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(90, 45, 220, 40) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
+        lblRest.text = [@"your free burger" uppercaseString];
+        [self addSubview:lblRest];
+        
         [self buildBurger];
+        
+        self.shareButton = [[FacebookButton alloc] initWithText:@"Share this experience" andX:((frame.size.width - 274) / 2) andY:(frame.size.height - 100)];
+        [self addSubview:self.shareButton];
     }
     
     return self;
@@ -37,7 +52,7 @@
 - (void)buildBurger
 {
     NSLog(@"build burger");
-    self.burger = [[UIView alloc] initWithFrame:CGRectMake(0, 160, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height - 160)];
+    self.burger = [[UIView alloc] initWithFrame:CGRectMake(0, 140, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height - 160)];
     [self addSubview:self.burger];
         
     self.burgerIngredients = [[NSMutableArray alloc] initWithCapacity:[self.ingredients count]];
@@ -61,7 +76,6 @@
     }
     
     for(Ingredient *ingredient in self.burgerIngredients) {
-        NSLog(@"In for");
         UIImage *burgerObject = [UIImage imageNamed:[NSString stringWithFormat:@"%@_%@", ingredient.image, @"cropped"]];
         UIImageView *burgerObjectIV = [[UIImageView alloc] initWithImage:burgerObject];
         float xPos = (([[UIScreen mainScreen] bounds].size.width - burgerObject.size.width) / 2);
@@ -78,6 +92,9 @@
     xPos = (([[UIScreen mainScreen] bounds].size.width - bottom.size.width) / 2);
     bottomIV.frame = CGRectMake(xPos, yPos, bottom.size.width, bottom.size.height);
     [self.burger addSubview:bottomIV];
+    
+    self.burger.frame = CGRectMake(self.burger.frame.origin.x, self.burger.frame.origin.y, self.burger.frame.size.width, yPos + bottom.size.height);
+    self.burger.frame = CGRectMake(self.burger.frame.origin.x, (([[UIScreen mainScreen] bounds].size.height - self.burger.frame.size.height) / 2), self.burger.frame.size.width, yPos + bottom.size.height);
 }
 
 

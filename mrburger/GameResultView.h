@@ -18,9 +18,7 @@
 @property (strong, nonatomic) NSArray *users;
 @property (strong, nonatomic) NSString *sharedCode;
 @property (strong, nonatomic) NSArray *ingredients;
-//@property (strong, nonatomic) NSMutableArray *cleanIngredients;
-//@property (strong, nonatomic) NSMutableArray *burgerIngredients;
-//@property (strong, nonatomic) NSMutableArray *burgerParts;
+
 @property (strong, nonatomic) UIView *burger;
 @property (strong, nonatomic) UIImage *qr;
 @property (strong, nonatomic) RoundedButton *saveForLater;
