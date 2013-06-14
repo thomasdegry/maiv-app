@@ -55,12 +55,23 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"ViewDidLoad");
     [super viewDidLoad];
+    GameResultView *view = (GameResultView *)self.view;
+    NSLog(@"Bestaat die knop wel ja - %@", view.saveForLater.label.text);
+    [view.saveForLater addTarget:self action:@selector(storeBurger:) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)createQRCodeFromID:(NSString *)identifier
+- (void)storeBurger:(id)sender
 {
+    NSLog(@"Store burger");
     
+    GameResultView *view = (GameResultView *)self.view;
+    
+    [[NSUserDefaults standardUserDefaults] setObject:UIImagePNGRepresentation(view.qr) forKey:@"QRCode"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self.navigationController.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
 }
 
 - (void)didReceiveMemoryWarning

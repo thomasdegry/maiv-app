@@ -19,6 +19,9 @@
 @property (strong, nonatomic) NSString *sharedCode;
 @property (strong, nonatomic) NSMutableArray *burgerIngredients;
 @property (strong, nonatomic) NSMutableArray *burgerParts;
+@property (strong, nonatomic) UIView *burger;
+@property (strong, nonatomic) UIImage *qr;
+@property (strong, nonatomic) RoundedButton *saveForLater;
 
 - (id)initWithFrame:(CGRect)frame sharedCode:(NSString *)code andUsers:(NSMutableArray *)users;
 
