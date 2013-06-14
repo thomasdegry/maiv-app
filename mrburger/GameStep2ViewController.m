@@ -53,7 +53,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showConnecting:) name:@"SENT_INVITE" object:self.nearbyTVC];
 	}
     
-    self.btnSave = [[RoundedButtonAlternate alloc] initWithText:@"Save my burger" andX:15 andY:230];
+    self.btnSave = [[RoundedButtonAlternate alloc] initWithText:@"Save my burger" andX:15 andY:235];
     self.btnSave.titleLabel.font  = [UIFont fontWithName:@"Mission-Script" size:FontMissionSizeTiny];
     [self.btnSave setTitle:@"Save my burger" forState:UIControlStateNormal];
     self.btnSave.hidden = YES;
@@ -71,7 +71,12 @@
     self.participantsView.tableView.hidden = NO;
     self.participantsView.unavailable.hidden = YES;
     
-    self.nearbyView = [[TitledTableAlternate alloc] initWithFrame:CGRectMake(15, 290, 290, 130) andTitle:@"Find ingredients"];
+    self.participantsCTA = [[UILabel alloc] initWithFontTravelerAndFrame:CGRectMake(15, 182, 290, 44) andSize:FontTravelerSizeSmall andColor:[UIColor colorWithRed:0.678 green:0.675 blue:0.624 alpha:1.000]];
+    self.participantsCTA.text = @"Find one to four other ingredients";
+    self.participantsCTA.hidden = NO;
+    [self.presentingView.mainView addSubview:self.participantsCTA];
+    
+    self.nearbyView = [[TitledTableAlternate alloc] initWithFrame:CGRectMake(15, 260, 290, 230) andTitle:@"Find ingredients"];
 	[self.mainView addSubview:self.nearbyView];
     [self.nearbyView.tableView setDataSource:self.nearbyTVC];
     [self.nearbyView.tableView setDelegate:self.nearbyTVC];
@@ -109,6 +114,7 @@
     if ([self.sessionManager.availablePeers count] == 0) {
         self.nearbyView.tableView.hidden = YES;
         self.nearbyView.unavailable.hidden = NO;
+       
     } else {
         self.nearbyView.tableView.hidden = NO;
         self.nearbyView.unavailable.hidden = YES;
@@ -127,9 +133,13 @@
         NSLog(@"participants %i", self.connected);
         self.btnSave.hidden = NO;
         self.nearbyView.title.text = @"ADD MORE INGREDIENTS";
+        self.nearbyView.frame = CGRectMake(15, 290, 290, 130);
+         self.participantsCTA.hidden = YES;
     }else {
         self.btnSave.hidden = YES;
+         self.nearbyView.frame = CGRectMake(15, 260, 290, 130);
         self.nearbyView.title.text = @"FIND INGREDIENTS";
+         self.participantsCTA.hidden = NO;
     }
     
 	[self.participantsView.tableView reloadData];
@@ -175,5 +185,7 @@
     [self.sessionManager didAcceptInvitation];
     [self peerListDidChange:self.sessionManager];
 }
+
+
 
 @end

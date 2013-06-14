@@ -27,6 +27,7 @@
         self.message.text = @"NOW GO FIND SOME OTHER INGREDIENTS NEARBY OUR FESTIVAL TRUCK. JUST TALK TO SOME PEOPLE. I KNOW YOU CAN DO IT!";
         [self.message makeParagraph];
         self.message.textAlignment = NSTextAlignmentCenter;
+        self.message.frame = CGRectMake(60, 60, 200, 200);
     }
     
     return self;
