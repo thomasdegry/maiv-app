@@ -46,8 +46,10 @@
     view.backgroundColor = [UIColor clearColor];
     
     [self.tableView setTableFooterView:view];
-    self.tableView.backgroundColor = [UIColor clearColor];
-}
+    //self.tableView.backgroundColor = [UIColor clearColor];
+    
+   }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -108,10 +110,13 @@
         myView.backgroundColor = [UIColor colorWithRed:0.99f green:0.41f blue:0.14f alpha:0.80f];
 
     }
+    
     cell.backgroundView = myView;
 
 	return cell;
 }
+
+
 
 #pragma mark - Table view delegate
 //

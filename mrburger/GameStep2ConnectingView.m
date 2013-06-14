@@ -25,8 +25,14 @@
     if (self) {        
         self.title.text = @"Connecting!";
         
-        Loader *loader = [[Loader alloc] initWithFrame:CGRectMake(135, 75, 50, 50)];
+        Loader *loader = [[Loader alloc] initWithFrame:CGRectMake(135, 115, 50, 50)];
         [self addSubview:loader];
+        
+        self.confirmBtn.hidden = YES;
+        
+        self.declineBtn = [[RoundedButtonAlternate alloc] initWithText:@"Decline" andX:23 andY:(self.frame.size.height - 87)];
+        [self addSubview:self.declineBtn];
+        [self.declineBtn setTitle:@"CANCEL CONNECTION" forState:UIControlStateNormal];
     }
     
     return self;

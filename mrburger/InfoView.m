@@ -59,7 +59,7 @@
          self.step3 = [[InfoStep3View alloc] initWithFrame:CGRectMake(0,  self.step2.frame.origin.y +  self.step2.frame.size.height, 320, 290)];
         [self addSubview:  self.step3];
         
-         self.step4 = [[InfoStep4View alloc] initWithFrame:CGRectMake(0,  self.step3.frame.origin.y +  self.step3.frame.size.height, 320, 290)];
+         self.step4 = [[InfoStep4View alloc] initWithFrame:CGRectMake(0,  self.step3.frame.origin.y +  self.step3.frame.size.height, 320, 350)];
         [self addSubview:  self.step4];
     
         

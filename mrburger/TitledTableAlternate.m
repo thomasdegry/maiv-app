@@ -25,7 +25,10 @@
     
     if (self) {
         self.titleBackground.backgroundColor = [UIColor blueDarkened];
-        self.unavailable.backgroundColor = [UIColor blue];    
+        self.unavailable.backgroundColor = [UIColor blue];
+        
+        self.tableView.backgroundColor = [UIColor colorWithRed:0.843 green:0.843 blue:0.843 alpha:0.500];
+        self.tableView.separatorColor = [UIColor clearColor];
     }
     
     return self;

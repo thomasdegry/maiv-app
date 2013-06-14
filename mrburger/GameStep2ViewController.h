@@ -33,6 +33,7 @@
 @property (strong, nonatomic) TitledTable *participantsView;
 @property (strong, nonatomic) TitledTableAlternate *nearbyView;
 @property (strong, nonatomic) RoundedButtonAlternate *btnSave;
+@property (strong, nonatomic) UILabel *participantsCTA;
 
 @property (strong, nonatomic) SessionManager *sessionManager;
 
