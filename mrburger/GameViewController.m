@@ -16,7 +16,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+//        self.manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         
         self.navigationBarHidden = YES;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showEnjoyYourBurger:) name:@"SHOW_ENJOY" object:nil];
@@ -25,37 +25,37 @@
     return self;
 }
 
-- (void)centralManagerDidUpdateState:(CBCentralManager *)central
-{
-    [self isLECapableHardware];
-}
-
-- (BOOL) isLECapableHardware
-{
-    NSString * state = nil;
-    
-    switch ([self.manager state])
-    {
-        case CBCentralManagerStateUnsupported:
-            state = @"The platform/hardware doesn't support Bluetooth Low Energy.";
-            break;
-        case CBCentralManagerStateUnauthorized:
-            state = @"The app is not authorized to use Bluetooth Low Energy.";
-            break;
-        case CBCentralManagerStatePoweredOff:
-            state = @"Bluetooth is currently powered off.";
-            break;
-        case CBCentralManagerStatePoweredOn:
-            return TRUE;
-        case CBCentralManagerStateUnknown:
-        default:
-            return FALSE;
-            
-    }
-    
-    NSLog(@"Central manager state: %@", state);
-    return FALSE;
-}
+//- (void)centralManagerDidUpdateState:(CBCentralManager *)central
+//{
+//    [self isLECapableHardware];
+//}
+//
+//- (BOOL) isLECapableHardware
+//{
+//    NSString * state = nil;
+//    
+//    switch ([self.manager state])
+//    {
+//        case CBCentralManagerStateUnsupported:
+//            state = @"The platform/hardware doesn't support Bluetooth Low Energy.";
+//            break;
+//        case CBCentralManagerStateUnauthorized:
+//            state = @"The app is not authorized to use Bluetooth Low Energy.";
+//            break;
+//        case CBCentralManagerStatePoweredOff:
+//            state = @"Bluetooth is currently powered off.";
+//            break;
+//        case CBCentralManagerStatePoweredOn:
+//            return TRUE;
+//        case CBCentralManagerStateUnknown:
+//        default:
+//            return FALSE;
+//            
+//    }
+//    
+//    NSLog(@"Central manager state: %@", state);
+//    return FALSE;
+//}
 
 - (void)viewDidLoad
 {
@@ -111,10 +111,7 @@
             self.currentScreen = GameScreenResult;
 
         }
-        
-        
-        
-        
+
     }
     
     return self;
@@ -125,7 +122,7 @@
     [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
     
     if (self.sessionManager) {
-        [self.sessionManager destroySession];
+        [self.sessionManager teardownSession];
     }
     
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
@@ -180,7 +177,7 @@
     [KGStatusBar showWithStatus: @"Saving your burger"];
     NSMutableString *JSONObject = [[NSMutableString alloc] initWithString:@"{\"ingredients\":["];
     for (NSString *peerID in self.sessionManager.connectedPeers) {
-        User *user = [self.sessionManager userForPeerID:peerID];
+        User *user = [self.sessionManager userForPeer:peerID];
         NSString *object = [NSString stringWithFormat:@"{\"user_id\": \"%@\", \"ingredient_id\": \"%@\"}, ", user.id, user.ingredient.id];
         [JSONObject appendString:object];
     }
@@ -225,7 +222,7 @@
 {
     self.users = [[NSMutableArray alloc] init];
     for (NSString *peerID in self.sessionManager.connectedPeers) {
-        User *user = [self.sessionManager userForPeerID:peerID];
+        User *user = [self.sessionManager userForPeer:peerID];
         [self.users addObject:user];
         [self.sessionManager.session disconnectPeerFromAllPeers:peerID];
     }

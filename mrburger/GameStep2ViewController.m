@@ -21,6 +21,7 @@
         self.modal = [[GameStep2InfoView alloc] initModal];
         self.modal.delegate = self;
         
+        self.isConnected = false;
         self.connected = 1; // Self makes it 1
         
         self.presentingView = [[ModalPresentingView alloc] initWithMain:self.mainView andModal:self.modal];
@@ -34,8 +35,7 @@
     self = [self initWithNibName:nil bundle:nil];
     if (self) {
         self.sessionManager = sessionManager;
-        [self.sessionManager setupSession];
-        self.sessionManager.tableViewControllerDelegate = self;
+        self.sessionManager.delegate = self;
     }
     return self;
 }
@@ -60,7 +60,7 @@
     CGRect btnSaveFrame = self.btnSave.frame;
     btnSaveFrame.size.width = 290;
     self.btnSave.frame = btnSaveFrame;
-    //[self.mainView addSubview:self.btnSave];
+
     [self.mainView insertSubview:self.btnSave atIndex:0];
     [self.btnSave addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -82,13 +82,12 @@
     [self.nearbyView.tableView setDelegate:self.nearbyTVC];
     self.nearbyView.tableView.hidden = YES;
     self.nearbyView.unavailable.hidden = NO;
-
+    
     [self peerListDidChange:nil];
 }
 
 - (void)save:(id)sender
 {
-    NSLog(@"saving");
     GameViewController *gameVC = (GameViewController *)self.navigationController;
     [gameVC postBurgerToServer];
 }
@@ -108,52 +107,61 @@
 
 - (void)peerListDidChange:(SessionManager *)session
 {
-	self.participantsTVC.participants = [self.sessionManager.connectedPeers copy];
-    self.nearbyTVC.nearby = [self.sessionManager.availablePeers copy];
+	self.participantsTVC.participants = [self.sessionManager.connectedPeers mutableCopy];
+    self.nearbyTVC.nearby = [self.sessionManager.availablePeers mutableCopy];
 
     if ([self.sessionManager.availablePeers count] == 0) {
         self.nearbyView.tableView.hidden = YES;
         self.nearbyView.unavailable.hidden = NO;
-       
     } else {
         self.nearbyView.tableView.hidden = NO;
         self.nearbyView.unavailable.hidden = YES;
     }
-  
-   
     
-    if (self.connected < [self.sessionManager.connectedPeers count]) {
+    if (self.connected < [self.sessionManager.connectedPeers count] && !self.isConnected) {
+        [KGStatusBar dismiss];
         [self hideModal:nil];
     }
     
+    if (self.isConnected) {
+        self.modal = [[GameStep2ConnectedView alloc] initModal];
+        [self showModal:nil];
+    }
     
     self.connected = [self.sessionManager.connectedPeers count];
-    
+
     if (self.connected > 1) {
-        NSLog(@"participants %i", self.connected);
         self.btnSave.hidden = NO;
         self.nearbyView.title.text = @"ADD MORE INGREDIENTS";
         self.nearbyView.frame = CGRectMake(15, 290, 290, 130);
-         self.participantsCTA.hidden = YES;
-    }else {
+        self.participantsCTA.hidden = YES;
+    } else {
         self.btnSave.hidden = YES;
-         self.nearbyView.frame = CGRectMake(15, 260, 290, 130);
+        self.nearbyView.frame = CGRectMake(15, 260, 290, 130);
         self.nearbyView.title.text = @"FIND INGREDIENTS";
-         self.participantsCTA.hidden = NO;
+        self.participantsCTA.hidden = NO;
     }
     
 	[self.participantsView.tableView reloadData];
-    [self.nearbyView.tableView reloadData];
+    [self.nearbyView.tableView reloadData];    
 }
 
-- (void) didReceiveInvitation:(SessionManager *)session fromPeer:(NSString *)participantID;
+- (void) didReceiveInvitation:(SessionManager *)session fromPeer:(NSString *)peer;
 {
+    NSLog(@"This device did receive an invitation from %@", peer);
+    
+    [KGStatusBar showWithStatus:@"You received an invitation!"];
+    
+    self.currentPeerID = peer;
+    
     [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:UIDeviceProximityStateDidChangeNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
-        if ([UIDevice currentDevice].proximityState) {
+        UIDevice *currentDevice = [UIDevice currentDevice];
+        if (currentDevice.proximityState && currentDevice.proximityMonitoringEnabled) {
             [self acceptInvitation:nil];
         }
+        [currentDevice setProximityMonitoringEnabled:NO];
     }];
     
     GameStep2InviteView *inviteView = [[GameStep2InviteView alloc] initModal];
@@ -164,28 +172,42 @@
 
 - (void)declineInvitation:(id)sender
 {
-    [self.sessionManager didDeclineInvitation];
-    [self hideModal:nil];
-    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+    if (self.currentPeerID) {
+        [KGStatusBar showWithStatus:@"Declining invitation"];
+        [self.sessionManager declineInvitationFrom:self.currentPeerID];
+        [self hideModal:nil];
+        [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+    }
 }
 
-- (void) invitationDidFail:(SessionManager *)session fromPeer:(NSString *)participantID
+- (void) invitationDidFail:(SessionManager *)session fromPeer:(NSString *)peer
 {
-    [self.sessionManager didDeclineInvitation];
+    [KGStatusBar showWithStatus:@"Connection failed"];
     [self hideModal:nil];
+//    [self.sessionManager declineInvitationFrom:peer];
 }
 
 - (void) acceptInvitation:(id)sender
 {
+    [KGStatusBar dismiss];
+            
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceProximityStateDidChangeNotification object:nil];
+        
     [self hideModal:nil];
-    
+        
     self.modal = [[GameStep2ConnectedView alloc] initModal];
     [self showModal:nil];
+        
+    self.isConnected = true;
     
-    [self.sessionManager didAcceptInvitation];
+    [self.sessionManager acceptInvitationFrom:self.currentPeerID];
+    
+    self.currentPeerID = nil;
+
     [self peerListDidChange:self.sessionManager];
+
 }
-
-
 
 @end

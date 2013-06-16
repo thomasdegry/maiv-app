@@ -18,7 +18,7 @@
 
 @property (strong, nonatomic) SessionManager *sessionManager;
 
-@property (strong, nonatomic) NSMutableArray *participants;
+@property (strong, nonatomic) NSArray *participants;
 
 - (id)initWithSessionManager:(SessionManager *)sessionManager;
 

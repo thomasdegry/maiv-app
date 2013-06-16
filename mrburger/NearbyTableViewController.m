@@ -82,7 +82,7 @@
     
 	NSUInteger row = [indexPath row];
 	
-    User *user = [self.sessionManager userForPeerID:[self.nearby objectAtIndex:row]];
+    User *user = [self.sessionManager userForPeer:[self.nearby objectAtIndex:row]];
     
     NSString *prefix;
     
