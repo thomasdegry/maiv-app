@@ -29,9 +29,7 @@
         
         // Set up starting/stopping session on application hiding/terminating
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willTerminate:) name:UIApplicationWillTerminateNotification object:nil];
-        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willTerminate:) name:UIApplicationWillResignActiveNotification object:nil];
-        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willResume:) name:UIApplicationDidBecomeActiveNotification object:nil];
 	}
 	return self;
@@ -60,16 +58,20 @@
 
 // Creates a GKSession and advertises availability to Peers
 - (void) setupSession
-{    
+{
+    [self disconnectCurrentCall];
+    [self destroySession];
 	// GKSession will default to using the device name as the display name
     NSString *displayName = [NSString stringWithFormat:@"%@£%@£%@£%@£%@", self.user.id, self.user.name, self.user.gender, self.user.ingredient.id, self.user.ingredient.name];
         
 	self.session = [[GKSession alloc] initWithSessionID:self.sessionID displayName:displayName sessionMode:GKSessionModePeer];
     self.session.delegate = self;
 	[self.session setDataReceiveHandler:self withContext:nil];
-    self.session.disconnectTimeout = 600.0;
+    self.session.disconnectTimeout = 3600;
 	self.session.available = YES;
     self.sessionState = ConnectionStateDisconnected;
+//    self.availablePeers = nil;
+//    self.connectedPeers = nil;
     [self.availablePeers setArray:[self.session peersWithConnectionState:GKPeerStateConnected]];
     [self.connectedPeers setArray:[[NSArray alloc] initWithObjects:self.session.peerID, nil]];
     [self.tableViewControllerDelegate peerListDidChange:self];
@@ -88,7 +90,7 @@
 {
     NSError *error = nil;
     if (![self.session acceptConnectionFromPeer:self.currentConfPeerID error:&error]) {
-        NSLog(@"%@",[error localizedDescription]);
+        NSLog(@"did accept invitation error - %@",[error localizedDescription]);
     }
     
     [self.availablePeers removeObject:self.session.peerID];
@@ -102,11 +104,11 @@
 // Called from GameLobbyController if the user declines the invitation alertView
 -(void) didDeclineInvitation
 {
+    NSLog(@"did decline invitation");
     // Deny the peer.
     if (self.sessionState != ConnectionStateDisconnected) {
-        if (self.currentConfPeerID) {
-            [self.session denyConnectionFromPeer:self.currentConfPeerID];
-        }
+        NSLog(@"did decline invitation - denying connection from peer - %@", self.currentConfPeerID);
+        [self.session denyConnectionFromPeer:self.currentConfPeerID];
         self.currentConfPeerID = nil;
         self.session.available = YES;
         self.sessionState = ConnectionStateDisconnected;
@@ -180,7 +182,7 @@
 // Unable to connect to a session with the peer, due to rejection or exiting the app
 - (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error
 {
-    NSLog(@"%@",[error localizedDescription]);
+    NSLog(@"Connection with peer failed - %@",[error localizedDescription]);
     if (self.sessionState != ConnectionStateDisconnected) {
         [self.tableViewControllerDelegate invitationDidFail:self fromPeer:[self.session displayNameForPeer:peerID]];
         // Make self available for a new connection.
@@ -199,30 +201,35 @@
 // React to some activity from other peers on the network.
 - (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state
 {
+    NSLog(@"some peer did change state");
 	switch (state) {
 		case GKPeerStateAvailable:
             // A peer became available by starting app, exiting settings, or ending a call.
 			if (![self.availablePeers containsObject:peerID] && peerID != self.session.peerID) {
-                self.session.available = YES;
+//                self.session.available = YES;
 				[self.availablePeers addObject:peerID];
 			}
 			break;
 		case GKPeerStateUnavailable:
-            self.session.available = NO;
-            [self.availablePeers removeObject:peerID];
+//            self.session.available = NO;
+            if ([self.availablePeers containsObject:peerID]) {
+                [self.availablePeers removeObject:peerID];
+            }
 			break;
 		case GKPeerStateConnected:
             // Connection was accepted, set up the voice chat.
             self.currentConfPeerID = peerID;
-            self.session.available = NO;
+//            self.session.available = YES;
             [self.connectedPeers addObject:peerID];
             [self.availablePeers removeObject:peerID];
             self.sessionState = ConnectionStateConnected;
 			break;
 		case GKPeerStateDisconnected:
             // The call ended either manually or due to failure somewhere.
-            self.session.available = YES;
-            [self.availablePeers removeObject:peerID];
+//            self.session.available = YES;
+            if ([self.availablePeers containsObject:peerID]) {
+                [self.availablePeers removeObject:peerID];
+            }
 			break;
         case GKPeerStateConnecting:
             // Peer is attempting to connect to the session.

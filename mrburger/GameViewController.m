@@ -16,7 +16,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+//        self.manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         
         self.navigationBarHidden = YES;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showEnjoyYourBurger:) name:@"SHOW_ENJOY" object:nil];
@@ -27,6 +27,7 @@
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
+    NSLog(@"Did update status");
     [self isLECapableHardware];
 }
 

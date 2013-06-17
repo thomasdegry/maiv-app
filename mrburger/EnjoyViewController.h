@@ -9,10 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <Social/Social.h>
 #import "EnjoyView.h"
+#import "User.h"
+#import "KGStatusBar.h"
+#import "AFNetworking.h"
 
 @interface EnjoyViewController : UIViewController
 
 @property (strong, nonatomic) NSArray *ingredients;
+@property (strong, nonatomic) NSString *burgerID;
+@property (strong, nonatomic) NSString *userID;
 
 - (id)initWithIngredients:(NSArray *)ingredients;
 

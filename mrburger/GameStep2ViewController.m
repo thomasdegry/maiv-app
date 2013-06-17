@@ -119,8 +119,6 @@
         self.nearbyView.tableView.hidden = NO;
         self.nearbyView.unavailable.hidden = YES;
     }
-  
-   
     
     if (self.connected < [self.sessionManager.connectedPeers count]) {
         [self hideModal:nil];

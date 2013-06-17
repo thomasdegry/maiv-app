@@ -31,6 +31,7 @@
     self = [self initWithNibName:nil bundle:nil];
     
     if (self) {
+        NSLog(@"%@", sharedCode);
         self.sharedCode = sharedCode;
         self.ingredients = ingredients;
         self.users = users;

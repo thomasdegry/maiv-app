@@ -20,7 +20,6 @@
     
     // Override point for customization after application launch.
     
-    
     [Parse setApplicationId:@"NtnxE18I4w5dIAHEec1UvRrRaMzwYQnY4EZ3VOwz" clientKey:@"aUUy8wQogs8VZ6TuW1BqGZH4BYwTroD9qQSdRoYL"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     

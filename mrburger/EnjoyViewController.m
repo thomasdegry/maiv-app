@@ -27,16 +27,45 @@
 
 - (id)initWithIngredients:(NSArray *)ingredients
 {
+    NSLog(@"sdkqfjm");
     self = [super initWithNibName:nil bundle:nil];
     if(self) {
+        NSLog(@"in self");
         self.ingredients = ingredients;
+        
+        NSString *QR = [[NSUserDefaults standardUserDefaults] objectForKey:@"QRCode"];
+        NSLog(@"%@", QR);
+        NSArray *codeInformation = [QR componentsSeparatedByString:@"-"];
+        self.burgerID = [codeInformation objectAtIndex:0];
+        self.userID = [codeInformation objectAtIndex:1];
+        
+        [self setPaidOnServer];
+        
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"QRCode"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        BOOL delete = [self delete];
-        NSLog(delete ? @"Leeg gemaakt" : @"Niet leeg gemaakt");
     }
     
     return self;
+}
+
+- (void)setPaidOnServer
+{
+    [KGStatusBar showWithStatus: @"Validating your order"];
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://student.howest.be"]];
+    NSMutableURLRequest *request = [httpClient requestWithMethod:@"GET"
+                                                            path:[NSString stringWithFormat:@"thomas.degry/20122013/MAIV/FOOD/api/creations/pay/%@/%@", self.userID, self.burgerID]
+                                                      parameters:nil];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        // Print the response body in text
+        NSLog(@"Response: %@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
+        [KGStatusBar dismiss];
+        [self delete];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    [operation start];
 }
 
 -(BOOL)delete {
@@ -77,6 +106,7 @@
         SLComposeViewController *composeVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
         [composeVC setInitialText:@"I just enjoyed my free burger on PiemelFestival, how cool is that?"];
         [composeVC addImage:shot];
+        [composeVC addURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://student.howest.be/thomas.degry/20122013/MAIV/mrburger/gallery/%@", self.burgerID]]];
         [self presentViewController:composeVC animated:YES completion:^{}];
     }
 }

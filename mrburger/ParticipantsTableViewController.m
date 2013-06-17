@@ -31,6 +31,7 @@
     self = [self initWithStyle:UITableViewStylePlain];
     
     if (self) {
+//        self.participants = nil;
         self.sessionManager = sessionManager;
     }
     

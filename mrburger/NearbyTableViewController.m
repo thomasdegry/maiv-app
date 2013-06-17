@@ -32,6 +32,7 @@
     self = [self initWithStyle:UITableViewStylePlain];
     
     if (self) {
+//        self.nearby = nil;
         self.sessionManager = sessionManager;
     }
     

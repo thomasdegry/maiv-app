@@ -29,9 +29,7 @@
         [self addSubview:self.saveForLater];
         
         [self buildBurger];
-        if(self.users) {
-            [self generatefaces];
-        }
+        [self generatefaces];
     }
     
     return self;
@@ -66,6 +64,12 @@
     self.participants = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 72)];
     self.participants.backgroundColor = [UIColor orange];
     [self addSubview:self.participants];
+    
+    if([self.users count] == 0) {
+        UILabel *savedBurger = [[UILabel alloc] initWithFontMissionAndFrame:CGRectMake(0, 3, [[UIScreen mainScreen] bounds].size.width, 72) andSize:FontMissionSizeMedium andColor:[UIColor white]];
+        savedBurger.text = @"Your saved burger";
+        [self addSubview:savedBurger];
+    }
     
     // Creating a sub view with all peers
     UIView *faces = [[UIView alloc] initWithFrame:CGRectMake(0, 4, [self.users count] * 60, 60)];
@@ -168,11 +172,12 @@
     ZXMultiFormatWriter* writer = [ZXMultiFormatWriter writer];
     ZXBitMatrix* result = [writer encode:self.sharedCode
                                   format:kBarcodeFormatQRCode
-                                   width:150
-                                  height:150
+                                   width:200
+                                  height:200
                                    error:&error];
     if (result) {
-        UIView *background = [[UIView alloc] initWithFrame:CGRectMake((([[UIScreen mainScreen] bounds].size.width - 150) / 2), 150, 150, 150)];
+        [[NSUserDefaults standardUserDefaults] setObject:self.sharedCode forKey:@"QRCode"];
+        UIView *background = [[UIView alloc] initWithFrame:CGRectMake((([[UIScreen mainScreen] bounds].size.width - 200) / 2), 150, 200, 200)];
         background.backgroundColor = [UIColor orange];
         background.alpha = 0;
         [background.layer setCornerRadius:10];
@@ -181,7 +186,7 @@
         UIImage *shadow = [UIImage imageNamed:@"shadow"];
         UIImageView *shadowIV = [[UIImageView alloc] initWithImage:shadow];
         shadowIV.alpha = 0;
-        shadowIV.frame = CGRectMake((([[UIScreen mainScreen] bounds].size.width - shadow.size.width) / 2), 325, shadow.size.width, shadow.size.height);
+        shadowIV.frame = CGRectMake((([[UIScreen mainScreen] bounds].size.width - shadow.size.width) / 2), 350, shadow.size.width, shadow.size.height);
         [self addSubview:shadowIV];
         
         CGImageRef image = [[ZXImage imageWithMatrix:result] cgimage];
