@@ -12,6 +12,7 @@
 
 #import "Ingredient.h"
 #import "User.h"
+#import "Burger.h"
 
 typedef enum {
     PacketTypeInvite = 0,

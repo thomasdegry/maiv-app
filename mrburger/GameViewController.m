@@ -136,7 +136,7 @@
         case GameScreenStep1:
             self.sessionManager = [[SessionManager alloc] initWithUser:self.user];
             nextScreen = [[GameStep2ViewController alloc] initWithSessionManager:self.sessionManager];
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedCode:) name:@"RECEIVED_CODE" object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedBurger:) name:@"RECEIVED_BURGER" object:nil];
 
             self.currentScreen = GameScreenStep2;
             break;
@@ -152,11 +152,13 @@
     
 }
 
-- (void)receivedCode:(NSNotification *)notification
+- (void)receivedBurger:(NSNotification *)notification
 {
     if (!self.sharedCode) {
+        self.burger = [notification.userInfo objectForKey:@"burger"];
+        
         [self createIngredientsAndUsers];
-        self.sharedCode = [NSString stringWithFormat:@"%@-%@", [notification.userInfo objectForKey:@"code"], self.user.id];
+        self.sharedCode = [NSString stringWithFormat:@"%@-%@", self.burger.id, self.user.id];
         [self showResultWithIngredients:self.ingredients users:self.users andSharedCode:self.sharedCode];
     }
 }
@@ -185,25 +187,31 @@
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSLog(@"Request Successful, response '%@'", responseStr);
         
-        Burger *burger = [[Burger alloc] init];
-        burger.id = responseStr;
+        self.burger = [[Burger alloc] init];
+        self.burger.id = responseStr;
         for (NSString *peerID in self.sessionManager.connectedPeers) {
-            User *user = [self.sessionManager userForPeerID:peerID];
-            [burger addIngredient:user.ingredient];
+            User *user = [self.sessionManager userForPeer:peerID];
+            [self.burger addIngredient:user.ingredient];
+            [self.burger addUser:user.id];
         }
         
-        NSData *burgerData = [NSKeyedArchiver archivedDataWithRootObject:burger];
+        NSData *burgerData = [self.burger burgerToNSData];
         
         self.sharedCode = [NSString stringWithFormat:@"%@-%@", responseStr, self.user.id];
         
 //        NSData *packet = [responseStr dataUsingEncoding:NSUTF8StringEncoding];
-        NSError *error = nil;
+//        NSError *error = nil;
         
-        [self.sessionManager sendBurger:responseStr];
+//        [self.sessionManager sendBurger:responseStr];
         
+        NSMutableArray *receivers = self.sessionManager.connectedPeers;
+        [receivers removeObject:self.sessionManager.session.peerID];
+        
+        [self.sessionManager sendPacket:burgerData ofType:PacketTypeBurger toPeers:receivers];
 //        [self.sessionManager.session sendData:packet toPeers:self.sessionManager.connectedPeers withDataMode:GKSendDataReliable error:&error];
         
         [KGStatusBar dismiss];
+        
         [self createIngredientsAndUsers];
         [self showResultWithIngredients:self.ingredients users:self.users andSharedCode:self.sharedCode];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -222,26 +230,35 @@
 
 - (void)createIngredientsAndUsers
 {
-    self.users = [[NSMutableArray alloc] init];
-    for (NSString *peerID in self.sessionManager.connectedPeers) {
-        User *user = [self.sessionManager userForPeer:peerID];
-        [self.users addObject:user];
-        [self.sessionManager.session disconnectPeerFromAllPeers:peerID];
+    // All user ids
+    self.users = [NSMutableArray array];
+    
+    for (NSString *userID in self.burger.users) {
+        User *temp = [[User alloc] init];
+        temp.id = userID;
+        [self.users addObject:temp];
     }
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"ingredients" ofType:@"plist"];
-    NSArray *ingredients = [[NSArray alloc] initWithContentsOfFile:path];
+    // All ingredient ids
+    NSMutableArray *ingredients = self.burger.ingredients;
     
-    self.ingredients = [[NSMutableArray alloc] init];
-    for(User *user in self.users) {
-        for (NSDictionary *ingredient in ingredients) {
-            if([[ingredient objectForKey:@"id"] isEqualToString:user.ingredient.id]) {
-                Ingredient *tempIngredient = [[Ingredient alloc] initWithDict:ingredient];
+    // Load ingredients
+    NSArray *allIngredients = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ingredients" ofType:@"plist"]];
+    
+    self.ingredients = [NSMutableArray array];
+    
+    for (Ingredient *ingredient36 in ingredients) {
+        NSLog(@"ingredient id %@", ingredientID);
+        for (NSDictionary *ingredient in allIngredients) {
+            if ([[ingredient objectForKey:@"id"] isEqualToString:ingredientID.id]) {
+                Ingredient *temp = [[Ingredient alloc] initWithDict:ingredient];
                 
-                if([[ingredient objectForKey:@"type"] isEqualToString:@"sauce"]) {
-                    [self.ingredients insertObject:tempIngredient atIndex:0];
+                NSLog(@"ingredient name %@", temp.name);
+                
+                if ([temp.type isEqualToString:@"sauce"]) {
+                    [self.ingredients insertObject:temp atIndex:0];
                 } else {
-                    [self.ingredients addObject:tempIngredient];
+                    [self.ingredients addObject:temp];
                 }
             }
         }

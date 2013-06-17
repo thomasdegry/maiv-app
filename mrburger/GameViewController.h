@@ -37,7 +37,7 @@ typedef enum {
 @property (strong, nonatomic) NSMutableArray *ingredients;
 @property (strong, nonatomic) NSMutableArray *users;
 @property (strong, nonatomic) CBCentralManager *manager;
-
+@property (strong, nonatomic) Burger *burger;
 
 - (id)initGame;
 
