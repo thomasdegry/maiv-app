@@ -35,11 +35,13 @@
 
 - (void)showModal:(id)sender
 {
+    NSLog(@"show modal");
     [self.presentingView showModal];
 }
 
 - (void)hideModal:(id)sender
 {
+    NSLog(@"hide modal");
     [self.presentingView hideModal];
 }
 

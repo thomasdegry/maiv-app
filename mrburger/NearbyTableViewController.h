@@ -19,7 +19,7 @@
 
 @property (strong, nonatomic) SessionManager *sessionManager;
 
-@property (strong, nonatomic) NSMutableArray *nearby;
+@property (strong, nonatomic) NSArray *nearby;
 @property (strong, nonatomic) UnavailableCell *unavailable;
 
 - (id)initWithSessionManager:(SessionManager *)sessionManager;

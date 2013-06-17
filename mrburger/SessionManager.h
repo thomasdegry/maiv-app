@@ -8,67 +8,62 @@
 
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
+#import "KGStatusBar.h"
 
 #import "Ingredient.h"
 #import "User.h"
 
 typedef enum {
-    ConnectionStateDisconnected,
-    ConnectionStateConnecting,
-    ConnectionStateConnected
-} ConnectionState;
+    PacketTypeInvite = 0,
+    PacketTypeAccept = 1,
+    PacketTypeDecline = 2,
+    PacketTypeJoining = 3,
+    PacketTypeDisconnect = 4,
+    PacketTypeBurger = 5,
+    PacketTypeKeepAlive = 6
+} PacketType;
+
+@class SessionManager;
+
+@protocol SessionManagerDelegate <NSObject>
+
+- (void)peerListDidChange:(SessionManager *)sessionManager;
+
+- (void)didReceiveInvitation:(SessionManager *)sessionManager fromPeer:(NSString *)peerID;
+- (void)peer:(NSString *)peer didAcceptInvitation:(SessionManager *)sessionManager;
+- (void)invitationDidFail:(SessionManager *)sessionManager fromPeer:(NSString *)peerID;
+
+@end
 
 @interface SessionManager : NSObject <GKSessionDelegate>
 
-@property (strong, nonatomic) NSString *sessionID;
 @property (strong, nonatomic) GKSession *session;
+
+@property (strong, nonatomic) NSTimer *timer;
 
 @property (strong, nonatomic) User *user;
 
-@property (strong, nonatomic) NSString *currentConfPeerID;
-@property (strong, nonatomic) NSMutableArray *connectedPeers;
 @property (strong, nonatomic) NSMutableArray *availablePeers;
-@property (assign, nonatomic) id tableViewControllerDelegate;
+@property (strong, nonatomic) NSMutableArray *connectedPeers;
+@property (strong, nonatomic) NSMutableArray *connectingPeers;
 
-@property (assign, nonatomic) ConnectionState sessionState;
+@property (strong, nonatomic) NSString *currentConfPeerID;
+
+@property (strong, nonatomic) id delegate;
 
 - (id)initWithUser:(User *)user;
 
-- (void) setupSession;
-- (void) connect:(NSString *)peerID;
-- (BOOL) didAcceptInvitation;
-- (void) didDeclineInvitation;
-//- (void) sendPacket:(NSData*)data ofType:(PacketType)type;
-//- (void) disconnectCurrentCall;
-- (User *)userForPeerID:(NSString *)peerID;
+- (void)setupSession;
+- (void)teardownSession;
+- (void)stopSearching;
+
+- (void)sendPacket:(NSData *)data ofType:(PacketType)type toPeers:(NSArray *)peers;
+
+- (void)invitePeer:(NSString *)peer;
+- (void)acceptInvitationFrom:(NSString *)peer;
+- (void)declineInvitationFrom:(NSString *)peer;
+- (void)sendBurger:(NSString *)burger;
+
+- (User *)userForPeer:(NSString *)peer;
 
 @end
-
-// Class extension for private methods.
-@interface SessionManager ()
-
-- (BOOL) comparePeerID:(NSString*)peerID;
-- (BOOL) isReadyToStart;
-//- (void) voiceChatDidStart;
-- (void) destroySession;
-- (void) willTerminate:(NSNotification *)notification;
-- (void) willResume:(NSNotification *)notification;
-
-@end
-
-@protocol SessionManagerLobbyDelegate
-
-- (void) peerListDidChange:(SessionManager *)session;
-- (void) didReceiveInvitation:(SessionManager *)session fromPeer:(NSString *)participantID;
-- (void) invitationDidFail:(SessionManager *)session fromPeer:(NSString *)participantID;
-
-@end
-
-//@protocol SessionManagerGameDelegate
-//
-//- (void) voiceChatWillStart:(SessionManager *)session;
-//- (void) session:(SessionManager *)session didConnectAsInitiator:(BOOL)shouldStart;
-//- (void) willDisconnect:(SessionManager *)session;
-//- (void) session:(SessionManager *)session didReceivePacket:(NSData*)data ofType:(PacketType)packetType;
-//
-//@end

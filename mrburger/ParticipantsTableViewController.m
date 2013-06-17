@@ -89,7 +89,7 @@
     
 	NSUInteger row = [indexPath row];
 	
-    User *user = [self.sessionManager userForPeerID:[self.participants objectAtIndex:row]];
+    User *user = [self.sessionManager userForPeer:[self.participants objectAtIndex:row]];
         
     NSString *prefix;
     
@@ -109,7 +109,6 @@
         myView.backgroundColor = [UIColor colorWithRed:0.99f green:0.41f blue:0.14f alpha:0.90f];
     } else {
         myView.backgroundColor = [UIColor colorWithRed:0.99f green:0.41f blue:0.14f alpha:0.80f];
-
     }
     
     cell.backgroundView = myView;

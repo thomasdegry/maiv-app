@@ -24,11 +24,14 @@
 #import "ParticipantsTableViewController.h"
 #import "NearbyTableViewController.h"
 
-@interface GameStep2ViewController : GameStepViewController
+@interface GameStep2ViewController : GameStepViewController <SessionManagerDelegate>
 
 @property (strong, nonatomic) ParticipantsTableViewController *participantsTVC;
 @property (strong, nonatomic) NearbyTableViewController *nearbyTVC;
 @property int connected;
+
+@property (strong, nonatomic) NSString *currentPeerID;
+@property BOOL isConnected;
 
 @property (strong, nonatomic) TitledTable *participantsView;
 @property (strong, nonatomic) TitledTableAlternate *nearbyView;
@@ -40,8 +43,8 @@
 - (id)initWithSessionManager:(SessionManager *)sessionManager;
 
 - (void) peerListDidChange:(SessionManager *)session;
-- (void) didReceiveInvitation:(SessionManager *)session fromPeer:(NSString *)participantID;
-- (void) invitationDidFail:(SessionManager *)session fromPeer:(NSString *)participantID;
+- (void) didReceiveInvitation:(SessionManager *)session fromPeer:(NSString *)peer;
+- (void) invitationDidFail:(SessionManager *)session fromPeer:(NSString *)peer;
 
 - (void) acceptInvitation:(id)sender;
 

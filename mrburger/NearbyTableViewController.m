@@ -83,7 +83,7 @@
     
 	NSUInteger row = [indexPath row];
 	
-    User *user = [self.sessionManager userForPeerID:[self.nearby objectAtIndex:row]];
+    User *user = [self.sessionManager userForPeer:[self.nearby objectAtIndex:row]];
     
     NSString *prefix;
     
@@ -114,8 +114,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"Nearby table view controller will send an invite to %@", [self.nearby objectAtIndex:[indexPath row]]);
+    [self.sessionManager invitePeer:[self.nearby objectAtIndex:[indexPath row]]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SENT_INVITE" object:self];
-    [self.sessionManager connect:[self.nearby objectAtIndex:[indexPath row]]];
 }
 
 @end

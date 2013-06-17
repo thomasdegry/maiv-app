@@ -1,26 +1,30 @@
 //
 //  SessionManager.m
-//  ProtoPeers
+//  GKSessionP2P
 //
-//  Created by Pieter Beulque on 5/06/13.
-//  Copyright (c) 2013 devine. All rights reserved.
+//  Created by Pieter Beulque on 16/06/13.
+//
 //
 
 #import "SessionManager.h"
 
 @implementation SessionManager
 
-@synthesize sessionID = _sessionID;
 @synthesize session = _session;
-@synthesize user = _user;
-@synthesize currentConfPeerID = _currentConfPeerID;
-@synthesize connectedPeers = _connectedPeers;
+@synthesize delegate = _delegate;
 @synthesize availablePeers = _availablePeers;
-@synthesize tableViewControllerDelegate = _tableViewControllerDelegate;
-@synthesize sessionState = _sessionState;
+@synthesize connectedPeers = _connectedPeers;
+
+// Non-global constants
+static NSTimeInterval const kConnectionTimeout = 3600.0;
+static NSTimeInterval const kDisconnectTimeout = 3600.0;
+static NSTimeInterval const kSleepTimeout = 5.0;
+
+#pragma mark - GKSession setup and teardown
 
 - (id)init
 {
+<<<<<<< HEAD
 	if (self = [super init]) {
         // Peers need to have the same sessionID set on their GKSession to see each other.
 		self.sessionID = @"TestingPeers";
@@ -33,21 +37,43 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willResume:) name:UIApplicationDidBecomeActiveNotification object:nil];
 	}
 	return self;
+=======
+    self = [super init];
+    
+    if (self) {        
+        NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+        
+        // Register for notifications when the application leaves the background state
+        // on its way to becoming the active application.
+        [defaultCenter addObserver:self
+                          selector:@selector(setupSession)
+                              name:UIApplicationWillEnterForegroundNotification
+                            object:nil];
+        
+        // Register for notifications when when the application enters the background.
+        [defaultCenter addObserver:self
+                          selector:@selector(teardownSession)
+                              name:UIApplicationDidEnterBackgroundNotification
+                            object:nil];
+    }
+    
+    return self;
+>>>>>>> b7e76c11062ca51303e387bf6d5bb245a6208dc0
 }
 
 - (id)initWithUser:(User *)user
 {
     self = [self init];
-    
     if (self) {
         self.user = user;
+        [self setupSession];
     }
-    
     return self;
 }
 
-- (void)dealloc
+- (void)setupSession
 {
+<<<<<<< HEAD
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     if (self.session) {
         [self destroySession];
@@ -62,10 +88,14 @@
     [self disconnectCurrentCall];
     [self destroySession];
 	// GKSession will default to using the device name as the display name
+=======
+    NSLog(@"Set up session");
+>>>>>>> b7e76c11062ca51303e387bf6d5bb245a6208dc0
     NSString *displayName = [NSString stringWithFormat:@"%@£%@£%@£%@£%@", self.user.id, self.user.name, self.user.gender, self.user.ingredient.id, self.user.ingredient.name];
         
-	self.session = [[GKSession alloc] initWithSessionID:self.sessionID displayName:displayName sessionMode:GKSessionModePeer];
+    self.session = [[GKSession alloc] initWithSessionID:nil displayName:displayName sessionMode:GKSessionModePeer];
     self.session.delegate = self;
+<<<<<<< HEAD
 	[self.session setDataReceiveHandler:self withContext:nil];
     self.session.disconnectTimeout = 3600;
 	self.session.available = YES;
@@ -75,19 +105,37 @@
     [self.availablePeers setArray:[self.session peersWithConnectionState:GKPeerStateConnected]];
     [self.connectedPeers setArray:[[NSArray alloc] initWithObjects:self.session.peerID, nil]];
     [self.tableViewControllerDelegate peerListDidChange:self];
+=======
+    self.session.disconnectTimeout = kDisconnectTimeout;
+    self.session.available = YES;
+    [self.session setDataReceiveHandler:self withContext:nil];
+    
+    self.availablePeers = [NSMutableArray array];
+    self.connectedPeers = [NSMutableArray arrayWithObject:self.session.peerID];
+    self.connectingPeers = [NSMutableArray array];
+    
+    // Set the timer on a random interval between 2 and 6
+    // to decrease the chance of clashing connections
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:((arc4random() % 4) + 2) target:self selector:@selector(keepAlive) userInfo:nil repeats:YES];
+    [self.timer fire];
+    
+>>>>>>> b7e76c11062ca51303e387bf6d5bb245a6208dc0
 }
 
-// Initiates a GKSession connection to a selected peer.
--(void) connect:(NSString *) peerID
+- (void)teardownSession
 {
-	[self.session connectToPeer:peerID withTimeout:60.0];
-    self.currentConfPeerID = peerID;
-    self.sessionState = ConnectionStateConnecting;
+    NSLog(@"Tear down session");
+    [self.session disconnectFromAllPeers];
+    self.session.available = NO;
+    self.session.delegate = nil;
+    [self stopSearching];
+    [self.availablePeers removeAllObjects];
+    [self.connectedPeers removeAllObjects];
 }
 
-// Called from GameLobbyController if the user accepts the invitation alertView
--(BOOL) didAcceptInvitation
+- (void) keepAlive
 {
+<<<<<<< HEAD
     NSError *error = nil;
     if (![self.session acceptConnectionFromPeer:self.currentConfPeerID error:&error]) {
         NSLog(@"did accept invitation error - %@",[error localizedDescription]);
@@ -99,11 +147,16 @@
     
     //    return (gameDelegate == nil);
     return true;
+=======
+    NSLog(@"sending keep alive");
+    [self.session sendDataToAllPeers:nil withDataMode:GKSendDataUnreliable error:nil];
+//    [self listAllPeers];
+>>>>>>> b7e76c11062ca51303e387bf6d5bb245a6208dc0
 }
 
-// Called from GameLobbyController if the user declines the invitation alertView
--(void) didDeclineInvitation
+- (void)stopSearching
 {
+<<<<<<< HEAD
     NSLog(@"did decline invitation");
     // Deny the peer.
     if (self.sessionState != ConnectionStateDisconnected) {
@@ -113,75 +166,221 @@
         self.session.available = YES;
         self.sessionState = ConnectionStateDisconnected;
     }    
+=======
+    [self.timer invalidate];
+    self.timer = nil;
+>>>>>>> b7e76c11062ca51303e387bf6d5bb245a6208dc0
 }
 
--(BOOL) comparePeerID:(NSString*)peerID
+#pragma mark - Memory management
+
+- (void)dealloc
 {
-    return [peerID compare:self.session.peerID] == NSOrderedAscending;
+    // Unregister for notifications on deallocation.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-// Called to check if the session is ready to start a voice chat.
--(BOOL) isReadyToStart
+#pragma mark - GKSessionDelegate protocol conformance
+
+- (void)listAllPeers
 {
-    return self.sessionState == ConnectionStateConnected;
+    // self.connectPeers !== connected devices!
+    // It's a fake array with those that accepted 
+    NSLog(@"Connected peers count: %i", [self.connectedPeers count]);
+    
+    // self.availablePeers == connected devices!
+    NSLog(@"Available peers count: %i", [self.availablePeers count]);
+//
+//    NSLog(@">>> GKPeerStateAvailable count: %i", [[self.session peersWithConnectionState:GKPeerStateAvailable] count]);
+//    NSLog(@">>> GKPeerStateUnavailable count: %i", [[self.session peersWithConnectionState:GKPeerStateUnavailable] count]);
+//    NSLog(@">>> GKPeerStateConnected count: %i", [[self.session peersWithConnectionState:GKPeerStateConnected] count]);
+//    NSLog(@">>> GKPeerStateConnecting count: %i", [[self.session peersWithConnectionState:GKPeerStateConnecting] count]);
+//    NSLog(@">>> GKPeerStateDisconnected count: %i", [[self.session peersWithConnectionState:GKPeerStateDisconnected] count]);
+    
+    [self.delegate peerListDidChange:self];
 }
 
-// Clear the connection states in the event of leaving a call or error.
--(void) disconnectCurrentCall
+- (void)session:(GKSession *)session peer:(NSString *)peer didChangeState:(GKPeerConnectionState)state
 {
-    if (self.sessionState != ConnectionStateDisconnected) {
-        // Don't leave a peer hangin'
-        if (self.sessionState == ConnectionStateConnecting) {
-            [self.session cancelConnectToPeer:self.currentConfPeerID];
+	switch (state)
+	{
+		case GKPeerStateAvailable:
+        {
+			NSLog(@"didChangeState: peer %@ available", [session displayNameForPeer:peer]);
+            
+            [NSThread sleepForTimeInterval:kSleepTimeout];
+            [session connectToPeer:peer withTimeout:kConnectionTimeout];
+			break;
         }
-        [self.session disconnectFromAllPeers];
-        self.session.available = YES;
-        self.sessionState = ConnectionStateDisconnected;
-        self.currentConfPeerID = nil;
+			
+		case GKPeerStateUnavailable:
+        {
+			NSLog(@"didChangeState: peer %@ unavailable", [session displayNameForPeer:peer]);
+			break;
+        }
+			
+		case GKPeerStateConnected:
+        {
+			NSLog(@"didChangeState: peer %@ connected", [session displayNameForPeer:peer]);
+            if ([self.session acceptConnectionFromPeer:peer error:nil]) {
+                if (![self.availablePeers containsObject:peer]) {
+                    [self.availablePeers addObject:peer];
+                }
+            }
+			break;
+        }
+			
+		case GKPeerStateDisconnected:
+        {
+			NSLog(@"didChangeState: peer %@ disconnected", [session displayNameForPeer:peer]);
+			break;
+        }
+			
+		case GKPeerStateConnecting:
+        {
+			NSLog(@"didChangeState: peer %@ connecting", [session displayNameForPeer:peer]);
+			break;
+        }
+	}
+    
+    [self listAllPeers];
+}
+
+- (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peer
+{
+	NSLog(@"didReceiveConnectionRequestFromPeer: %@", [session displayNameForPeer:peer]);
+    NSLog(@"Accepting connection request");
+    
+    if ([self.session acceptConnectionFromPeer:peer error:nil]) {
+        if (![self.availablePeers containsObject:peer]) {
+            [self.availablePeers addObject:peer];
+        }
+    }
+    
+    [self listAllPeers];
+}
+
+- (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peer withError:(NSError *)error
+{
+//	NSLog(@"connectionWithPeerFailed: peer: %@, error: %@", [session displayNameForPeer:peer], error co);
+    
+    if ([error code] != 30501 && ![self.connectedPeers containsObject:peer]) {
+        [session connectToPeer:peer withTimeout:kConnectionTimeout];
+    }
+
+//    [self.delegate invitationDidFail:self fromPeer:peerID];
+//    self.session.available = YES;
+//    [self listAllPeers];
+}
+
+- (void)session:(GKSession *)session didFailWithError:(NSError *)error
+{
+	NSLog(@"didFailWithError: error: %@", error);
+	
+//	[session disconnectFromAllPeers];
+//	
+//    [self.delegate invitationDidFail:self fromPeer:nil];
+//    [self.delegate peerListDidChange:self];
+}
+
+- (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context
+{
+    PacketType header;
+    uint32_t swappedHeader;
+    if ([data length] >= sizeof(uint32_t)) {
+        [data getBytes:&swappedHeader length:sizeof(uint32_t)];
+        header = (PacketType)CFSwapInt32BigToHost(swappedHeader);
+        NSRange payloadRange = {sizeof(uint32_t), [data length]-sizeof(uint32_t)};
+        NSData* payload = [data subdataWithRange:payloadRange];
+        
+        // Check the header to see if this is a voice or a game packet
+        switch (header) {
+            case PacketTypeInvite:
+            {
+                NSLog(@"received invite");
+                [self.connectingPeers addObject:peer];
+                [self.delegate didReceiveInvitation:self fromPeer:peer];
+            }
+            break;
+                
+            case PacketTypeAccept:
+            {
+                NSLog(@"accept invite");
+                [self.availablePeers removeObject:peer];
+                [self.connectingPeers removeObject:peer];
+                [self.connectedPeers addObject:peer];
+                [self.delegate peer:peer didAcceptInvitation:self];
+                [self listAllPeers];
+            }
+            break;
+            
+            case PacketTypeDecline:
+                NSLog(@"decline invite");
+            break;
+            
+            case PacketTypeJoining:
+            {
+                NSLog(@"joining other");
+//                if (![self.connectingPeers containsObject:peer]) {
+//                    NSLog(@"joining & not in connecting - removing from available!!!");
+//                    [self.availablePeers removeObject:peer];
+//                    [self listAllPeers];
+//                }
+                
+                NSLog(@"Available");
+                
+                [self.availablePeers removeObject:peer];
+                
+                NSString *server = [[NSString alloc] initWithData:payload encoding:NSUTF8StringEncoding];
+                
+                NSLog(@"Server peer id: %@", server);
+                if ([self.connectedPeers containsObject:server] && ![self.connectedPeers containsObject:peer]) {
+                    [self.connectedPeers addObject:peer];
+                }
+                
+            }
+            break;
+            
+            case PacketTypeDisconnect:
+            {
+                NSLog(@"disconnect");
+                break;
+            }
+            
+            case PacketTypeBurger:
+            {
+                NSLog(@"burger! %@", [[NSString alloc] initWithData:payload encoding:NSUTF8StringEncoding]);
+                NSString *code = [[NSString alloc] initWithData:payload encoding:NSUTF8StringEncoding];
+                NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:code, @"code", nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"RECEIVED_CODE" object:self userInfo:dict];
+                break;
+            }
+                
+            default:
+                NSLog(@"Received keep-alive packet");
+                break;
+        }
     }
 }
 
-// Application is exiting or becoming inactive, end the session.
-- (void)destroySession
-{
-    NSLog(@"destroying session");
-	self.session.delegate = nil;
-	[self.session setDataReceiveHandler:nil withContext:nil];
-    [self.connectedPeers removeAllObjects];
-    [self.availablePeers removeAllObjects];
-}
 
-// Called when notified the application is exiting or becoming inactive.
-- (void)willTerminate:(NSNotification *)notification
+- (void)sendPacket:(NSData *)data ofType:(PacketType)type toPeers:(NSArray *)peers
 {
-    [self destroySession];
-}
-
-// Called after the app comes back from being hidden by something like a phone call.
-- (void)willResume:(NSNotification *)notification
-{
-    [self setupSession];
-}
-
-#pragma mark -
-#pragma mark GKSessionDelegate Methods and Helpers
-
-// Received an invitation.  If we aren't already connected to someone, open the invitation dialog.
-- (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID
-{
-    if (self.sessionState == ConnectionStateDisconnected) {
-        self.session.available = NO;
-        self.currentConfPeerID = peerID;
-        self.sessionState = ConnectionStateConnecting;
-        [self.tableViewControllerDelegate didReceiveInvitation:self fromPeer:[self.session displayNameForPeer:peerID]];
-    } else {
-        [self.session denyConnectionFromPeer:peerID];
+    NSMutableData *newPacket = [NSMutableData dataWithCapacity:([data length]+sizeof(uint32_t))];
+    // Both game and voice data is prefixed with the PacketType so the peer knows where to send it.
+    uint32_t swappedType = CFSwapInt32HostToBig((uint32_t)type);
+    [newPacket appendBytes:&swappedType length:sizeof(uint32_t)];
+    [newPacket appendData:data];
+    
+    NSError *error;
+    if (![self.session sendData:newPacket toPeers:peers withDataMode:GKSendDataReliable error:&error]) {
+        NSLog(@"%@",[error localizedDescription]);
     }
 }
 
-// Unable to connect to a session with the peer, due to rejection or exiting the app
-- (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error
+- (void)invitePeer:(NSString *)peer
 {
+<<<<<<< HEAD
     NSLog(@"Connection with peer failed - %@",[error localizedDescription]);
     if (self.sessionState != ConnectionStateDisconnected) {
         [self.tableViewControllerDelegate invitationDidFail:self fromPeer:[self.session displayNameForPeer:peerID]];
@@ -190,17 +389,26 @@
         self.session.available = YES;
         self.sessionState = ConnectionStateDisconnected;
     }
+=======
+    NSLog(@"sending fake invite to peer %@", peer);
+    [KGStatusBar showWithStatus:@"Sending an invitation"];
+
+    [self.connectingPeers addObject:peer];
+    
+    [self sendPacket:[self.session.peerID dataUsingEncoding:NSUTF8StringEncoding] ofType:PacketTypeInvite toPeers:[NSArray arrayWithObject:peer]];
+>>>>>>> b7e76c11062ca51303e387bf6d5bb245a6208dc0
 }
 
-// The running session ended, potentially due to network failure.
-- (void)session:(GKSession *)session didFailWithError:(NSError*)error
+#pragma mark - Working with users
+
+- (User *)userForPeer:(NSString *)peer
 {
-    NSLog(@"%@",[error localizedDescription]);
+    return [[User alloc] initWithDisplayNameString:[self.session displayNameForPeer:peer]];
 }
 
-// React to some activity from other peers on the network.
-- (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state
+- (void)acceptInvitationFrom:(NSString *)peer
 {
+<<<<<<< HEAD
     NSLog(@"some peer did change state");
 	switch (state) {
 		case GKPeerStateAvailable:
@@ -238,20 +446,39 @@
 			break;
 	}
     [self.tableViewControllerDelegate peerListDidChange:self];
+=======
+    NSLog(@"!!! - Accepting connection from peer");
+    self.session.available = NO;
+    
+    [self.connectedPeers addObject:peer];
+    [self.connectingPeers removeObject:peer];
+    
+    // Send accept to the parrent ID
+    [self sendPacket:[self.session.peerID dataUsingEncoding:NSUTF8StringEncoding] ofType:PacketTypeAccept toPeers:[NSArray arrayWithObject:peer]];
+    
+    // Send JOINING to all other peers
+    // This way we can add them to CONNECTED if the inviting peer ID is in their connected
+    // and remove them from the AVAILABLE
+    [self sendPacket:[peer dataUsingEncoding:NSUTF8StringEncoding] ofType:PacketTypeJoining toPeers:self.availablePeers];
+        
+//    NSError *error = nil;
+//    if (![self.session acceptConnectionFromPeer:peer error:&error]) {
+//        NSLog(@"Error while accepting invitation: %@", [error localizedDescription]);
+//    }
+>>>>>>> b7e76c11062ca51303e387bf6d5bb245a6208dc0
 }
 
-// Called when voice or game data is received over the network from the peer
-- (void) receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context
+- (void)declineInvitationFrom:(NSString *)peer
 {
-    NSString *code = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"received - %@", code);
-    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:code, @"code", nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"RECEIVED_CODE" object:self userInfo:dict];
+    NSLog(@"!!! - Declining invitation from %@", peer);
+    
+    // @todo Send a packet with a decline-message
 }
 
-- (User *)userForPeerID:(NSString *)peerID
+- (void)sendBurger:(NSString *)burger
 {
-    return [[User alloc] initWithDisplayNameString:[self.session displayNameForPeer:peerID]];
+    NSLog(@"Sending burger");
+    [self sendPacket:[burger dataUsingEncoding:NSUTF8StringEncoding] ofType:PacketTypeBurger toPeers:self.connectedPeers];
 }
 
 @end

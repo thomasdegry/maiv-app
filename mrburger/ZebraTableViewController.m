@@ -28,31 +28,15 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
     
-    UIView *footer = [[UIView alloc] initWithFrame:CGRectZero];
-    footer.backgroundColor = [UIColor clearColor];
-    [self.tableView setTableFooterView:footer];
-    
-    self.tableView.backgroundColor = [UIColor whiteColor];
-
-    self.tableView.separatorColor = [UIColor clearColor];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    // Configure Refresh Control
-    [refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
-    // Configure View Controller
-    [self setRefreshControl:refreshControl];
-    NSLog(@"bestaat dat wel %@", self.refreshControl);
-
+//    UIView *footer = [[UIView alloc] initWithFrame:CGRectZero];
+//    footer.backgroundColor = [UIColor clearColor];
+//    [self.tableView setTableFooterView:footer];
+//    
+//    self.tableView.backgroundColor = [UIColor whiteColor];
+//
+//    self.tableView.separatorColor = [UIColor clearColor];
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
-
-- (void)refresh
-{
-    NSLog(@"refresh");
-}
-
-
 
 - (void)didReceiveMemoryWarning
 {
