@@ -18,6 +18,7 @@
 #import "GameResultViewController.h"
 #import "EnjoyViewController.h"
 #import "AFHTTPClient.h"
+#import "Burger.h"
 
 typedef enum {
     GameScreenLogin = 0,

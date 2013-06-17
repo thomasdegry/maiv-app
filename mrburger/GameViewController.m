@@ -198,9 +198,19 @@
     [httpClient postPath:@"burgers" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSLog(@"Request Successful, response '%@'", responseStr);
+        
+        Burger *burger = [[Burger alloc] init];
+        burger.id = responseStr;
+        for (NSString *peerID in self.sessionManager.connectedPeers) {
+            User *user = [self.sessionManager userForPeerID:peerID];
+            [burger addIngredient:user.ingredient];
+        }
+        
+        NSData *burgerData = [NSKeyedArchiver archivedDataWithRootObject:burger];
+        
         self.sharedCode = [NSString stringWithFormat:@"%@-%@", responseStr, self.user.id];
         
-        NSData *packet = [responseStr dataUsingEncoding:NSUTF8StringEncoding];
+//        NSData *packet = [responseStr dataUsingEncoding:NSUTF8StringEncoding];
         NSError *error = nil;
         
         [self.sessionManager.session sendData:packet toPeers:self.sessionManager.connectedPeers withDataMode:GKSendDataReliable error:&error];

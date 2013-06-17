@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4D05E95E176B0A4500AD0585 /* EnjoyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D05E95D176B0A4500AD0585 /* EnjoyViewController.m */; };
 		4D05E961176B0A5B00AD0585 /* EnjoyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D05E960176B0A5B00AD0585 /* EnjoyView.m */; };
+		4D367E85176F984F00F2360C /* Burger.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D367E84176F984F00F2360C /* Burger.m */; };
 		4D4B9C15176140AB003673A0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4B9C14176140AB003673A0 /* UIKit.framework */; };
 		4D4B9C17176140AB003673A0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4B9C16176140AB003673A0 /* Foundation.framework */; };
 		4D4B9C19176140AB003673A0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4B9C18176140AB003673A0 /* CoreGraphics.framework */; };
@@ -509,6 +510,8 @@
 		4D05E95D176B0A4500AD0585 /* EnjoyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnjoyViewController.m; sourceTree = "<group>"; };
 		4D05E95F176B0A5B00AD0585 /* EnjoyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnjoyView.h; sourceTree = "<group>"; };
 		4D05E960176B0A5B00AD0585 /* EnjoyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnjoyView.m; sourceTree = "<group>"; };
+		4D367E83176F984F00F2360C /* Burger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Burger.h; sourceTree = "<group>"; };
+		4D367E84176F984F00F2360C /* Burger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Burger.m; sourceTree = "<group>"; };
 		4D4B9C11176140AB003673A0 /* mrburger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mrburger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D4B9C14176140AB003673A0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4D4B9C16176140AB003673A0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1346,6 +1349,15 @@
 				4D05E960176B0A5B00AD0585 /* EnjoyView.m */,
 			);
 			name = Enjoy;
+			sourceTree = "<group>";
+		};
+		4D367E82176F983A00F2360C /* Burger */ = {
+			isa = PBXGroup;
+			children = (
+				4D367E83176F984F00F2360C /* Burger.h */,
+				4D367E84176F984F00F2360C /* Burger.m */,
+			);
+			name = Burger;
 			sourceTree = "<group>";
 		};
 		4D4B9C08176140AB003673A0 = {
@@ -2602,6 +2614,7 @@
 		EAE29A4C1761DAF600E01E88 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				4D367E82176F983A00F2360C /* Burger */,
 				EAB65B12176374E700D327ED /* Networking */,
 				EAE29AE617623FE400E01E88 /* User */,
 				EAE29A5C1761DC8300E01E88 /* Login */,
@@ -3234,6 +3247,7 @@
 				EA25684D1769E44200A121D3 /* CircularPicture.m in Sources */,
 				4D05E95E176B0A4500AD0585 /* EnjoyViewController.m in Sources */,
 				4D05E961176B0A5B00AD0585 /* EnjoyView.m in Sources */,
+				4D367E85176F984F00F2360C /* Burger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
