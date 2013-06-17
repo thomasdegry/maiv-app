@@ -13,12 +13,24 @@
 #import "Ingredient.h"
 #import "User.h"
 
+typedef enum {
+    PacketTypeInvite = 0,
+    PacketTypeAccept = 1,
+    PacketTypeDecline = 2,
+    PacketTypeJoining = 3,
+    PacketTypeDisconnect = 4,
+    PacketTypeBurger = 5,
+    PacketTypeKeepAlive = 6
+} PacketType;
+
 @class SessionManager;
 
 @protocol SessionManagerDelegate <NSObject>
 
 - (void)peerListDidChange:(SessionManager *)sessionManager;
+
 - (void)didReceiveInvitation:(SessionManager *)sessionManager fromPeer:(NSString *)peerID;
+- (void)peer:(NSString *)peer didAcceptInvitation:(SessionManager *)sessionManager;
 - (void)invitationDidFail:(SessionManager *)sessionManager fromPeer:(NSString *)peerID;
 
 @end
@@ -33,6 +45,7 @@
 
 @property (strong, nonatomic) NSMutableArray *availablePeers;
 @property (strong, nonatomic) NSMutableArray *connectedPeers;
+@property (strong, nonatomic) NSMutableArray *connectingPeers;
 
 @property (strong, nonatomic) NSString *currentConfPeerID;
 
@@ -42,10 +55,15 @@
 
 - (void)setupSession;
 - (void)teardownSession;
+- (void)stopSearching;
 
+- (void)sendPacket:(NSData *)data ofType:(PacketType)type toPeers:(NSArray *)peers;
+
+- (void)invitePeer:(NSString *)peer;
 - (void)acceptInvitationFrom:(NSString *)peer;
 - (void)declineInvitationFrom:(NSString *)peer;
-- (void)connect:(NSString *)peer;
+- (void)sendBurger:(NSString *)burger;
+
 - (User *)userForPeer:(NSString *)peer;
 
 @end

@@ -45,10 +45,10 @@
         self.tableView.backgroundColor = [UIColor colorWithRed:0.957 green:0.890 blue:0.729 alpha:0.500];
         self.tableView.separatorColor = [UIColor clearColor];
         
-        CAShapeLayer *tableMask = [CAShapeLayer layer];
-        tableMask.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, frame.size.width, frame.size.height - 30) byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:(CGSize){13.0f, 13.0f}].CGPath;
-        
-        self.tableView.layer.mask = tableMask;
+//        CAShapeLayer *tableMask = [CAShapeLayer layer];
+//        tableMask.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, frame.size.width, frame.size.height - 30) byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:(CGSize){13.0f, 13.0f}].CGPath;
+//        
+//        self.tableView.layer.mask = tableMask;
         
         [self addSubview:self.tableView];
         

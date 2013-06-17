@@ -113,8 +113,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"Nearby table view controller will send an invite to %@", [self.nearby objectAtIndex:[indexPath row]]);
+    [self.sessionManager invitePeer:[self.nearby objectAtIndex:[indexPath row]]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SENT_INVITE" object:self];
-    [self.sessionManager connect:[self.nearby objectAtIndex:[indexPath row]]];
 }
 
 @end

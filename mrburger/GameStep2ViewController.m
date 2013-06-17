@@ -25,7 +25,7 @@
         self.connected = 1; // Self makes it 1
         
         self.presentingView = [[ModalPresentingView alloc] initWithMain:self.mainView andModal:self.modal];
-        [self showModal:nil];
+//        [self showModal:nil];
     }
     return self;
 }
@@ -117,17 +117,7 @@
         self.nearbyView.tableView.hidden = NO;
         self.nearbyView.unavailable.hidden = YES;
     }
-    
-    if (self.connected < [self.sessionManager.connectedPeers count] && !self.isConnected) {
-        [KGStatusBar dismiss];
-        [self hideModal:nil];
-    }
-    
-    if (self.isConnected) {
-        self.modal = [[GameStep2ConnectedView alloc] initModal];
-        [self showModal:nil];
-    }
-    
+        
     self.connected = [self.sessionManager.connectedPeers count];
 
     if (self.connected > 1) {
@@ -170,6 +160,28 @@
     [self showModal:nil];
 }
 
+- (void)showInvitationWithPeer:(NSString *)peer
+{
+    [KGStatusBar showWithStatus:@"You received an invitation!"];
+    
+    self.currentPeerID = peer;
+    
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:UIDeviceProximityStateDidChangeNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
+        UIDevice *currentDevice = [UIDevice currentDevice];
+        if (currentDevice.proximityState && currentDevice.proximityMonitoringEnabled) {
+            [self acceptInvitation:nil];
+        }
+        [currentDevice setProximityMonitoringEnabled:NO];
+    }];
+    
+    GameStep2InviteView *inviteView = [[GameStep2InviteView alloc] initModal];
+    [inviteView.declineBtn addTarget:self action:@selector(declineInvitation:) forControlEvents:UIControlEventTouchUpInside];
+    self.modal = inviteView;
+    [self showModal:nil];
+}
+
 - (void)declineInvitation:(id)sender
 {
     if (self.currentPeerID) {
@@ -192,22 +204,23 @@
     [KGStatusBar dismiss];
             
     [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
-
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceProximityStateDidChangeNotification object:nil];
-        
-    [self hideModal:nil];
-        
-    self.modal = [[GameStep2ConnectedView alloc] initModal];
-    [self showModal:nil];
-        
+                        
     self.isConnected = true;
     
     [self.sessionManager acceptInvitationFrom:self.currentPeerID];
     
     self.currentPeerID = nil;
+    
+    self.modal = [[GameStep2ConnectedView alloc] initModal];
+    
+    [self.sessionManager stopSearching];
+}
 
-    [self peerListDidChange:self.sessionManager];
-
+- (void)peer:(NSString *)peer didAcceptInvitation:(SessionManager *)sessionManager
+{
+    [KGStatusBar dismiss];
+    [self hideModal:nil];    
 }
 
 @end
