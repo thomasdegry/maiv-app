@@ -24,27 +24,12 @@
         
         NSLog(@"[GameViewController] Generating ingredients and users from burger");
         
-//        // All ingredient ids
-//        NSMutableArray *ingredients = self.burger.ingredients;
-//        
-//        // Load ingredients
-//        NSArray *allIngredients = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ingredients" ofType:@"plist"]];
-//        
-//        self.ingredients = [NSMutableArray array];
-//        
-//        for (Ingredient *ingredientID in ingredients) {
-//            for (NSDictionary *ingredient in allIngredients) {
-//                if ([[ingredient objectForKey:@"id"] isEqualToString:ingredientID.id]) {
-//                    Ingredient *temp = [[Ingredient alloc] initWithDict:ingredient];
-//                    
-//                    if ([temp.type isEqualToString:@"sauce"]) {
-//                        [self.ingredients insertObject:temp atIndex:0];
-//                    } else {
-//                        [self.ingredients addObject:temp];
-//                    }
-//                }
-//            }
-//        }
+        
+        UILabel *getYour = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(20, 80, 280, 60) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
+        getYour.text = [@"Go get your free burger" uppercaseString];
+        
+        [self addSubview:getYour];
+        
         
         [self buildBurger];
         [self generatefaces];
@@ -53,54 +38,6 @@
     return self;
 }
 
-//- (id)initWithFrame:(CGRect)frame sharedCode:(NSString *)code users:(NSMutableArray *)users andIngredients:(NSMutableArray *)ingredients
-//{
-//    self = [self initWithFrame:frame];
-//    if(self) {
-//        self.users = [[NSArray alloc] initWithArray:users];
-//        self.sharedCode = code;
-//        self.ingredients = ingredients;
-//        
-//        UILabel *tempCode = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(20, 80, 280, 60) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
-//        tempCode.text = [@"Get your free burger" uppercaseString];
-//        
-//        [self addSubview:tempCode];
-//        
-//        CGRect frame = [[UIScreen mainScreen] bounds];
-//        self.saveForLater = [[RoundedButton alloc] initWithText:@"Save for later" andX:((frame.size.width - 274) / 2) andY:(frame.size.height - 85)];
-//        self.saveForLater.hidden = YES;
-//        [self addSubview:self.saveForLater];
-//        
-//        [self buildBurger];
-//        [self generatefaces];
-//    }
-//    
-//    return self;
-//}
-//
-//- (id)initWithFrame:(CGRect)frame sharedCode:(NSString *)code andUsers:(NSMutableArray *)users
-//{
-//    self = [self initWithFrame:frame];
-//    if(self) {
-//        NSLog(@"%@", code);
-//        self.users = [[NSArray alloc] initWithArray:users];
-//        self.sharedCode = code;
-//        
-//        UILabel *tempCode = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(20, 80, 280, 60) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
-//        tempCode.text = [@"Get your free burger" uppercaseString];
-//        
-//        [self addSubview:tempCode];
-//        
-//        CGRect frame = [[UIScreen mainScreen] bounds];
-//        self.saveForLater = [[RoundedButton alloc] initWithText:@"Save for later" andX:((frame.size.width - 274) / 2) andY:(frame.size.height - 85)];
-//        self.saveForLater.hidden = YES;
-//        [self addSubview:self.saveForLater];
-//
-//        [self buildBurger];
-//        [self generatefaces];
-//    }
-//    return self;
-//}
 
 - (void)generatefaces
 {
@@ -143,31 +80,13 @@
     [self.burgerView addSubview:topIV];
     
     yPos += top.size.height + 10;
-    
-//    NSMutableArray *renderIngredients = [NSMutableArray array];
-    
-    //        for (Ingredient *ingredientID in ingredients) {
-    //            for (NSDictionary *ingredient in allIngredients) {
-    //                if ([[ingredient objectForKey:@"id"] isEqualToString:ingredientID.id]) {
-    //                    Ingredient *temp = [[Ingredient alloc] initWithDict:ingredient];
-    //
-    //                    if ([temp.type isEqualToString:@"sauce"]) {
-    //                        [self.ingredients insertObject:temp atIndex:0];
-    //                    } else {
-    //                        [self.ingredients addObject:temp];
-    //                    }
-    //                }
-    //            }
-    //        }
 
     
-    
-    NSLog(@"------");
     for (NSString *ingredientID in self.burger.ingredients) {
                 
         Ingredient *ingredient = [Ingredient ingredientWithID:ingredientID];
         
-        UIImage *burgerObject = [UIImage imageNamed:[NSString stringWithFormat:@"%@_%@", ingredient.image, @"cropped"]];
+        UIImage *burgerObject = [UIImage imageNamed:[NSString stringWithFormat:@"%@_%@", ingredient.id, @"cropped"]];
 //        NSLog(@"%@", [NSString stringWithFormat:@"%@_%@", ingredient.image, @"cropped"]);
         UIImageView *burgerObjectIV = [[UIImageView alloc] initWithImage:burgerObject];
         float xPos = (([[UIScreen mainScreen] bounds].size.width - burgerObject.size.width) / 2);
@@ -176,9 +95,7 @@
         
         yPos += burgerObject.size.height + 10;
     }
-    
-    NSLog(@"------");
-    
+        
     [topIV bringSubviewToFront:topIV];
     
     UIImage *bottom = [UIImage imageNamed:@"bread_bottom.png"];
@@ -233,12 +150,12 @@
     ZXMultiFormatWriter* writer = [ZXMultiFormatWriter writer];
     ZXBitMatrix* result = [writer encode:self.sharedCode
                                   format:kBarcodeFormatQRCode
-                                   width:200
-                                  height:200
+                                   width:150
+                                  height:150
                                    error:&error];
     if (result) {
         [[NSUserDefaults standardUserDefaults] setObject:self.sharedCode forKey:@"QRCode"];
-        UIView *background = [[UIView alloc] initWithFrame:CGRectMake((([[UIScreen mainScreen] bounds].size.width - 200) / 2), 150, 200, 200)];
+        UIView *background = [[UIView alloc] initWithFrame:CGRectMake((([[UIScreen mainScreen] bounds].size.width - 150) / 2), 150, 150, 150)];
         background.backgroundColor = [UIColor orange];
         background.alpha = 0;
         [background.layer setCornerRadius:10];
@@ -247,7 +164,7 @@
         UIImage *shadow = [UIImage imageNamed:@"shadow"];
         UIImageView *shadowIV = [[UIImageView alloc] initWithImage:shadow];
         shadowIV.alpha = 0;
-        shadowIV.frame = CGRectMake((([[UIScreen mainScreen] bounds].size.width - shadow.size.width) / 2), 350, shadow.size.width, shadow.size.height);
+        shadowIV.frame = CGRectMake((([[UIScreen mainScreen] bounds].size.width - shadow.size.width) / 2), 320, shadow.size.width, shadow.size.height);
         [self addSubview:shadowIV];
         
         CGImageRef image = [[ZXImage imageWithMatrix:result] cgimage];

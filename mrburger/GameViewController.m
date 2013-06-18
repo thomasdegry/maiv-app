@@ -91,7 +91,7 @@
         if(![[NSUserDefaults standardUserDefaults] objectForKey:@"QRCode"]) {
             //Geen data in archive
             NSLog(@"[GameViewController] Start from clean slate no data found in archive, lauching step 1");
-            GameStep1ViewController *startVC = [[GameStep1ViewController alloc] initWithNibName:nil bundle:nil];
+            GameStep1ViewController *startVC = [[GameStep1ViewController alloc] initWithUser:self.user];
             self = [self initWithRootViewController:startVC];
             if (self) {
                 self.currentScreen = GameScreenStep1;
@@ -140,7 +140,7 @@
     
     switch (self.currentScreen) {
         case GameScreenLogin:
-            nextScreen = [[GameStep1ViewController alloc] initWithNibName:nil bundle:nil];
+            nextScreen = [[GameStep1ViewController alloc] initWithUser:self.user];
             self.currentScreen = GameScreenStep1;
             break;
         

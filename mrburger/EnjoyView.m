@@ -81,7 +81,7 @@
 //    }
     
     for(Ingredient *ingredient in ingredients) {
-        UIImage *burgerObject = [UIImage imageNamed:[NSString stringWithFormat:@"%@_%@", ingredient.image, @"cropped"]];
+        UIImage *burgerObject = [UIImage imageNamed:[NSString stringWithFormat:@"%@_%@", ingredient.id, @"cropped"]];
         UIImageView *burgerObjectIV = [[UIImageView alloc] initWithImage:burgerObject];
         float xPos = (([[UIScreen mainScreen] bounds].size.width - burgerObject.size.width) / 2);
         burgerObjectIV.frame = CGRectMake(xPos, yPos, burgerObject.size.width, burgerObject.size.height);

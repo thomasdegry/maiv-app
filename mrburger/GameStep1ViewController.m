@@ -23,6 +23,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        NSLog(@"init with frame");
         _ingredients = [[NSMutableArray alloc] initWithCapacity:5];
         
         NSString *categories[4];
@@ -65,12 +66,62 @@
         [self.mainView stopMotionUpdates];
 
         self.presentingView = [[ModalPresentingView alloc] initWithMain:self.mainView andModal:self.modal];
-        
         [self performSelector:@selector(showModal:) withObject:nil afterDelay:.6];
+
         //Listen to event on touch on ingredient
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopScrollView:) name:@"SLIDE_TOUCH" object:nil];
     }
     return self;
+}
+
+- (id)initWithUser:(User *)user
+{
+    self = [self initWithNibName:nil bundle:nil];
+    if (self) {
+        NSLog(@"init with user");
+        self.user = user;
+        
+        //[self doFreeCheck];
+        
+    }
+    return self;
+}
+
+- (void)doFreeCheck
+{
+    NSLog(@"dofreecheck");
+    [KGStatusBar showWithStatus:@"Getting your information"];
+    
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://student.howest.be/thomas.degry/20122013/MAIV/FOOD/api"]];
+    NSMutableURLRequest *request = [httpClient requestWithMethod:@"GET"
+                                                            path:[NSString stringWithFormat:@"users/%@/hasfree", self.user.id]
+                                                      parameters:nil];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *response = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"Response: %@", response);
+        [KGStatusBar dismiss];
+        
+        self.hasFree = YES;
+        
+        if([response isEqualToString:@"false"]) {
+            NSLog(@"blh");
+            self.hasFree = NO;
+            //gebruiker heeft geen recht meer op een gratis burger
+            GameStepInfoView *modalView = [[PayModalView alloc] initModal];
+            [modalView.confirmBtn addTarget:self action:@selector(hideModal:) forControlEvents:UIControlEventTouchUpInside];
+            self.modal = modalView;
+        }
+        
+        [[NSUserDefaults standardUserDefaults] setObject:response forKey:@"hasfree"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        [KGStatusBar showErrorWithStatus:@"Error connecting..?"];
+    }];
+    [operation start];
 }
 
 
@@ -105,6 +156,16 @@
 - (void)hideModal:(id)sender {
     [self.mainView startGyroLogging];
     [super hideModal:nil];
+    
+    if(self.hasFree == NO) {
+        [self performSelector:@selector(setInstructions) withObject:nil afterDelay:.6];
+    }
+}
+
+- (void)setInstructions {
+    GameStepInfoView *modalView = [[GameStep1InfoView alloc] initModal];
+    [modalView.confirmBtn addTarget:self action:@selector(hideModal:) forControlEvents:UIControlEventTouchUpInside];
+    self.modal = modalView;
 }
 
 - (void)viewDidLoad

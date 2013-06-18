@@ -24,7 +24,7 @@
         temp.path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)].CGPath;
         temp.fillColor = [UIColor redColor].CGColor;
         
-        UIImage *image = [UIImage imageNamed:self.image];
+        UIImage *image = [UIImage imageNamed:self.id];
         UIImageView *imageIV = [[UIImageView alloc] initWithImage:image];
         imageIV.frame = CGRectMake((frame.size.width - image.size.width) / 2, 0, image.size.width, image.size.height);
         [self addSubview:imageIV];
