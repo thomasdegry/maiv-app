@@ -9,9 +9,9 @@
 #import "KGStatusBar.h"
 
 @interface KGStatusBar ()
-    @property (nonatomic, strong, readonly) UIWindow *overlayWindow;
-    @property (nonatomic, strong, readonly) UIView *topBar;
-    @property (nonatomic, strong) UILabel *stringLabel;
+@property (nonatomic, strong, readonly) UIWindow *overlayWindow;
+@property (nonatomic, strong, readonly) UIView *topBar;
+@property (nonatomic, strong) UILabel *stringLabel;
 @end
 
 @implementation KGStatusBar
@@ -70,7 +70,7 @@
         stringWidth = stringSize.width;
         stringHeight = stringSize.height;
         
-        labelRect = CGRectMake((self.topBar.frame.size.width / 2) - (stringWidth / 2), 0, stringWidth, stringHeight);
+        labelRect = CGRectMake((self.topBar.frame.size.width / 2) - (stringWidth / 2), -20, stringWidth, stringHeight);
     }
     self.stringLabel.frame = labelRect;
     self.stringLabel.alpha = 0.0;
@@ -79,13 +79,14 @@
     self.stringLabel.textColor = textColor;
     [UIView animateWithDuration:0.4 animations:^{
         self.stringLabel.alpha = 1.0;
+        self.stringLabel.frame = CGRectMake((self.topBar.frame.size.width / 2) - (stringWidth / 2), 0, stringWidth, stringHeight);
     }];
     [self setNeedsDisplay];
 }
 
 - (void) dismiss
 {
-    [UIView animateWithDuration:0.4 animations:^{
+    [UIView animateWithDuration:0.5 animations:^{
         self.stringLabel.alpha = 0.0;
     } completion:^(BOOL finished) {
         [topBar removeFromSuperview];
@@ -188,12 +189,12 @@
     
     CGAffineTransform rotationTransform = CGAffineTransformMakeRotation([self rotation]);
     [UIView animateWithDuration:[[UIApplication sharedApplication] statusBarOrientationAnimationDuration]
-                       animations:^{
-                           self.overlayWindow.transform = rotationTransform;
-                           // Transform invalidates the frame, so use bounds/center
-                           self.overlayWindow.bounds = CGRectMake(0.f, 0.f, [self rotatedSize].width, [self rotatedSize].height);
-                           self.topBar.frame = CGRectMake(0.f, 0.f, [self rotatedSize].width, 20.f);
-                       }];
+                     animations:^{
+                         self.overlayWindow.transform = rotationTransform;
+                         // Transform invalidates the frame, so use bounds/center
+                         self.overlayWindow.bounds = CGRectMake(0.f, 0.f, [self rotatedSize].width, [self rotatedSize].height);
+                         self.topBar.frame = CGRectMake(0.f, 0.f, [self rotatedSize].width, 20.f);
+                     }];
 }
 
 @end

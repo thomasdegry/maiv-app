@@ -123,13 +123,7 @@
 {
     [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
     
-    if (self.sessionManager) {
-        [self.sessionManager teardownSession];
-        [self.sessionManager.connectedPeers removeAllObjects];
-        [self.sessionManager.availablePeers removeAllObjects];
-        self.sessionManager = nil;
-    }
-    
+    [self terminateSession];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
 }
 
@@ -173,9 +167,8 @@
     if (!self.sharedCode) {
         self.burger = [Burger burgerFromNSData:[notification.userInfo objectForKey:@"burger"]];
         
-//        [self createIngredientsAndUsers];
+        [self terminateSession];
         self.sharedCode = [NSString stringWithFormat:@"%@-%@", self.burger.id, self.user.id];
-        //[self showResultWithIngredients:self.ingredients users:self.users andSharedCode:self.sharedCode];
         [self showResult];
     }
 }
@@ -244,7 +237,8 @@
 {
     [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
     self.currentScreen = GameScreenResult;
-//    GameResultViewController *vc = [[GameResultViewController alloc] initWithIngredients:self.ingredients users:self.users andSharedCode:self.sharedCode];
+
+    [self terminateSession];
     GameResultViewController *vc = [[GameResultViewController alloc] initWithBurger:self.burger andSharedCode:self.sharedCode];
     [self pushViewController:vc animated:YES];
 }
@@ -298,11 +292,14 @@
     [self pushViewController:[[EnjoyViewController alloc] initWithBurger:self.burger] animated:YES];
 }
 
-- (NSString *)mrburgerArchivePath
+- (void)terminateSession
 {
-    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = [documentDirectories objectAtIndex:0];
-    return [documentDirectory stringByAppendingPathComponent:@"mrburger.archive"];
+    if (self.sessionManager) {
+        [self.sessionManager teardownSession];
+        [self.sessionManager.connectedPeers removeAllObjects];
+        [self.sessionManager.availablePeers removeAllObjects];
+        self.sessionManager = nil;
+    }
 }
 
 @end
