@@ -25,23 +25,23 @@
     return self;
 }
 
-- (id)initWithIngredients:(NSArray *)ingredients
+- (id)initWithBurger:(Burger *)burger
 {
-    NSLog(@"sdkqfjm");
     self = [super initWithNibName:nil bundle:nil];
-    if(self) {
-        NSLog(@"in self");
-        self.ingredients = ingredients;
+    
+    if (self) {
+        self.burger = burger;
         
         NSString *QR = [[NSUserDefaults standardUserDefaults] objectForKey:@"QRCode"];
-        NSLog(@"%@", QR);
         NSArray *codeInformation = [QR componentsSeparatedByString:@"-"];
+        
         self.burgerID = [codeInformation objectAtIndex:0];
         self.userID = [codeInformation objectAtIndex:1];
-        
+
         [self setPaidOnServer];
         
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"QRCode"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"burger"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
@@ -78,7 +78,7 @@
 - (void)loadView
 {
     CGRect frame = [[UIScreen mainScreen] bounds];
-    EnjoyView *view = [[EnjoyView alloc] initWithFrame:frame andIngredients:self.ingredients];
+    EnjoyView *view = [[EnjoyView alloc] initWithFrame:frame andIngredients:self.burger.ingredients];
     [self setView:view];
 }
 

@@ -39,11 +39,11 @@
 
 - (void)setPicturePath:(NSString *)picturePath
 {
-//    _picturePath = picturePath;
-//    NSURL *url = [NSURL URLWithString:_picturePath];
-//    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-//    
-//    (void)[[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
+    _picturePath = picturePath;
+    NSURL *url = [NSURL URLWithString:_picturePath];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    
+    (void)[[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response

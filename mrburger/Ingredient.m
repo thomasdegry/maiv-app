@@ -45,4 +45,19 @@
     return self;
 }
 
++ (id)ingredientWithID:(NSString *)identifier
+{
+    Ingredient *ingredient = nil;
+    
+    NSArray *allIngredients = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ingredients" ofType:@"plist"]];
+        
+    for (NSDictionary *ingredientDict in allIngredients) {
+        if ([[ingredientDict objectForKey:@"id"] isEqualToString:identifier]) {
+            ingredient = [[Ingredient alloc] initWithDict:ingredientDict];
+        }
+    }
+
+    return ingredient;
+}
+
 @end

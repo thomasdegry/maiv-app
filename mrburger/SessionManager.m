@@ -279,9 +279,8 @@ static NSTimeInterval const kSleepTimeout = 5.0;
                 
             case PacketTypeBurger:
             {
-                Burger *burger = [Burger burgerFromNSData:payload];
                 
-                NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:burger, @"burger", nil];
+                NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:payload, @"burger", nil];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"RECEIVED_BURGER" object:self userInfo:dict];
                 break;
             }

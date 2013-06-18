@@ -10,16 +10,15 @@
 #import "Ingredient.h"
 #import "User.h"
 
-@interface Burger : NSObject <NSCoding>
+@interface Burger : NSObject
 
 @property (strong, nonatomic) NSString *id;
 @property (strong, nonatomic) NSMutableArray *ingredients;
 @property (strong ,nonatomic) NSMutableArray *users;
-- (void)addIngredient:(Ingredient *)ingredient;
+- (void)addIngredient:(NSString *)ingredientID;
 - (void)addUser:(NSString *)userID;
 
 - (NSData *)burgerToNSData;
-
 + (Burger *)burgerFromNSData:(NSData *)data;
 
 @end

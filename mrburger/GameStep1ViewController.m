@@ -66,7 +66,7 @@
 
         self.presentingView = [[ModalPresentingView alloc] initWithMain:self.mainView andModal:self.modal];
         
-//        [self performSelector:@selector(showModal:) withObject:nil afterDelay:.6];
+        [self performSelector:@selector(showModal:) withObject:nil afterDelay:.6];
         //Listen to event on touch on ingredient
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopScrollView:) name:@"SLIDE_TOUCH" object:nil];
     }

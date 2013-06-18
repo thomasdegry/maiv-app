@@ -11,7 +11,7 @@
 @implementation EnjoyView
 
 @synthesize ingredients = _ingredients;
-@synthesize burger = _burger;
+@synthesize burgerView = _burgerView;
 @synthesize burgerIngredients = _burgerIngredients;
 
 - (id)initWithFrame:(CGRect)frame
@@ -52,10 +52,15 @@
 - (void)buildBurger
 {
     NSLog(@"build burger");
-    self.burger = [[UIView alloc] initWithFrame:CGRectMake(0, 140, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height - 160)];
-    [self addSubview:self.burger];
-        
-    self.burgerIngredients = [[NSMutableArray alloc] initWithCapacity:[self.ingredients count]];
+    self.burgerView = [[UIView alloc] initWithFrame:CGRectMake(0, 140, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height - 160)];
+    [self addSubview:self.burgerView];
+
+    NSMutableArray *ingredients = [[NSMutableArray alloc] initWithCapacity:[self.ingredients count]];
+    
+    for (NSString *ingredientID in self.ingredients) {
+        Ingredient *ingredient = [Ingredient ingredientWithID:ingredientID];
+        [ingredients addObject:ingredient];
+    }
     
     int yPos = 0;
     
@@ -63,24 +68,24 @@
     UIImageView *topIV = [[UIImageView alloc] initWithImage:top];
     float xPos = (([[UIScreen mainScreen] bounds].size.width - top.size.width) / 2);
     topIV.frame = CGRectMake(xPos, yPos, top.size.width, top.size.height);
-    [self.burger addSubview:topIV];
+    [self.burgerView addSubview:topIV];
     
     yPos += top.size.height + 10;
     
-    for (Ingredient *ingredient in self.ingredients) {        
-        if([ingredient.type isEqualToString:@"sauce"]) {
-            [self.burgerIngredients insertObject:ingredient atIndex:0];
-        } else {
-            [self.burgerIngredients addObject:ingredient];
-        }
-    }
+//    for (Ingredient *ingredient in ingredients) {
+//        if([ingredient.type isEqualToString:@"sauce"]) {
+//            [self.burgerIngredients insertObject:ingredient atIndex:0];
+//        } else {
+//            [self.burgerIngredients addObject:ingredient];
+//        }
+//    }
     
-    for(Ingredient *ingredient in self.burgerIngredients) {
+    for(Ingredient *ingredient in ingredients) {
         UIImage *burgerObject = [UIImage imageNamed:[NSString stringWithFormat:@"%@_%@", ingredient.image, @"cropped"]];
         UIImageView *burgerObjectIV = [[UIImageView alloc] initWithImage:burgerObject];
         float xPos = (([[UIScreen mainScreen] bounds].size.width - burgerObject.size.width) / 2);
         burgerObjectIV.frame = CGRectMake(xPos, yPos, burgerObject.size.width, burgerObject.size.height);
-        [self.burger addSubview:burgerObjectIV];
+        [self.burgerView addSubview:burgerObjectIV];
         
         yPos += burgerObject.size.height + 10;
     }
@@ -91,10 +96,10 @@
     UIImageView *bottomIV = [[UIImageView alloc] initWithImage:bottom];
     xPos = (([[UIScreen mainScreen] bounds].size.width - bottom.size.width) / 2);
     bottomIV.frame = CGRectMake(xPos, yPos, bottom.size.width, bottom.size.height);
-    [self.burger addSubview:bottomIV];
+    [self.burgerView addSubview:bottomIV];
     
-    self.burger.frame = CGRectMake(self.burger.frame.origin.x, self.burger.frame.origin.y, self.burger.frame.size.width, yPos + bottom.size.height);
-    self.burger.frame = CGRectMake(self.burger.frame.origin.x, (([[UIScreen mainScreen] bounds].size.height - self.burger.frame.size.height) / 2), self.burger.frame.size.width, yPos + bottom.size.height);
+    self.burgerView.frame = CGRectMake(self.burgerView.frame.origin.x, self.burgerView.frame.origin.y, self.burgerView.frame.size.width, yPos + bottom.size.height);
+    self.burgerView.frame = CGRectMake(self.burgerView.frame.origin.x, (([[UIScreen mainScreen] bounds].size.height - self.burgerView.frame.size.height) / 2), self.burgerView.frame.size.width, yPos + bottom.size.height);
 }
 
 

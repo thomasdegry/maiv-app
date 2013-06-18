@@ -25,7 +25,7 @@
         self.connected = 1; // Self makes it 1
         
         self.presentingView = [[ModalPresentingView alloc] initWithMain:self.mainView andModal:self.modal];
-//        [self showModal:nil];
+        [self showModal:nil];
     }
     return self;
 }

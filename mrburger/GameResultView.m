@@ -10,73 +10,110 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame sharedCode:(NSString *)code users:(NSMutableArray *)users andIngredients:(NSMutableArray *)ingredients
+- (id)initWithFrame:(CGRect)frame andBurger:(Burger *)burger andSharedCode:(NSString *)sharedCode
 {
     self = [self initWithFrame:frame];
-    if(self) {
-        self.users = [[NSArray alloc] initWithArray:users];
-        self.sharedCode = code;
-        self.ingredients = ingredients;
-        
-        UILabel *tempCode = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(20, 80, 280, 60) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
-        tempCode.text = [@"Get your free burger" uppercaseString];
-        
-        [self addSubview:tempCode];
+    if (self) {
+        self.burger = burger;
+        self.sharedCode = sharedCode;
         
         CGRect frame = [[UIScreen mainScreen] bounds];
         self.saveForLater = [[RoundedButton alloc] initWithText:@"Save for later" andX:((frame.size.width - 274) / 2) andY:(frame.size.height - 85)];
         self.saveForLater.hidden = YES;
         [self addSubview:self.saveForLater];
         
+        NSLog(@"[GameViewController] Generating ingredients and users from burger");
+        
+//        // All ingredient ids
+//        NSMutableArray *ingredients = self.burger.ingredients;
+//        
+//        // Load ingredients
+//        NSArray *allIngredients = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ingredients" ofType:@"plist"]];
+//        
+//        self.ingredients = [NSMutableArray array];
+//        
+//        for (Ingredient *ingredientID in ingredients) {
+//            for (NSDictionary *ingredient in allIngredients) {
+//                if ([[ingredient objectForKey:@"id"] isEqualToString:ingredientID.id]) {
+//                    Ingredient *temp = [[Ingredient alloc] initWithDict:ingredient];
+//                    
+//                    if ([temp.type isEqualToString:@"sauce"]) {
+//                        [self.ingredients insertObject:temp atIndex:0];
+//                    } else {
+//                        [self.ingredients addObject:temp];
+//                    }
+//                }
+//            }
+//        }
+        
         [self buildBurger];
         [self generatefaces];
+
     }
-    
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame sharedCode:(NSString *)code andUsers:(NSMutableArray *)users
-{
-    self = [self initWithFrame:frame];
-    if(self) {
-        NSLog(@"%@", code);
-        self.users = [[NSArray alloc] initWithArray:users];
-        self.sharedCode = code;
-        
-        UILabel *tempCode = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(20, 80, 280, 60) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
-        tempCode.text = [@"Get your free burger" uppercaseString];
-        
-        [self addSubview:tempCode];
-        
-        CGRect frame = [[UIScreen mainScreen] bounds];
-        self.saveForLater = [[RoundedButton alloc] initWithText:@"Save for later" andX:((frame.size.width - 274) / 2) andY:(frame.size.height - 85)];
-        self.saveForLater.hidden = YES;
-        [self addSubview:self.saveForLater];
-
-        [self buildBurger];
-        [self generatefaces];
-    }
-    return self;
-}
+//- (id)initWithFrame:(CGRect)frame sharedCode:(NSString *)code users:(NSMutableArray *)users andIngredients:(NSMutableArray *)ingredients
+//{
+//    self = [self initWithFrame:frame];
+//    if(self) {
+//        self.users = [[NSArray alloc] initWithArray:users];
+//        self.sharedCode = code;
+//        self.ingredients = ingredients;
+//        
+//        UILabel *tempCode = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(20, 80, 280, 60) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
+//        tempCode.text = [@"Get your free burger" uppercaseString];
+//        
+//        [self addSubview:tempCode];
+//        
+//        CGRect frame = [[UIScreen mainScreen] bounds];
+//        self.saveForLater = [[RoundedButton alloc] initWithText:@"Save for later" andX:((frame.size.width - 274) / 2) andY:(frame.size.height - 85)];
+//        self.saveForLater.hidden = YES;
+//        [self addSubview:self.saveForLater];
+//        
+//        [self buildBurger];
+//        [self generatefaces];
+//    }
+//    
+//    return self;
+//}
+//
+//- (id)initWithFrame:(CGRect)frame sharedCode:(NSString *)code andUsers:(NSMutableArray *)users
+//{
+//    self = [self initWithFrame:frame];
+//    if(self) {
+//        NSLog(@"%@", code);
+//        self.users = [[NSArray alloc] initWithArray:users];
+//        self.sharedCode = code;
+//        
+//        UILabel *tempCode = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(20, 80, 280, 60) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
+//        tempCode.text = [@"Get your free burger" uppercaseString];
+//        
+//        [self addSubview:tempCode];
+//        
+//        CGRect frame = [[UIScreen mainScreen] bounds];
+//        self.saveForLater = [[RoundedButton alloc] initWithText:@"Save for later" andX:((frame.size.width - 274) / 2) andY:(frame.size.height - 85)];
+//        self.saveForLater.hidden = YES;
+//        [self addSubview:self.saveForLater];
+//
+//        [self buildBurger];
+//        [self generatefaces];
+//    }
+//    return self;
+//}
 
 - (void)generatefaces
 {
     self.participants = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 72)];
     self.participants.backgroundColor = [UIColor orange];
     [self addSubview:self.participants];
-    
-    if([self.users count] == 0) {
-        UILabel *savedBurger = [[UILabel alloc] initWithFontMissionAndFrame:CGRectMake(0, 3, [[UIScreen mainScreen] bounds].size.width, 72) andSize:FontMissionSizeMedium andColor:[UIColor white]];
-        savedBurger.text = @"Your saved burger";
-        [self addSubview:savedBurger];
-    }
-    
+        
     // Creating a sub view with all peers
-    UIView *faces = [[UIView alloc] initWithFrame:CGRectMake(0, 4, [self.users count] * 60, 60)];
+    UIView *faces = [[UIView alloc] initWithFrame:CGRectMake(0, 4, [self.burger.users count] * 60, 60)];
     int xPos = 0;
     
-    for (User *user in self.users) {
-        CircularPicture *face = [[CircularPicture alloc] initWithPicturePath:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=104&height=104", user.id]];
+    for (NSString *userID in self.burger.users) {
+        CircularPicture *face = [[CircularPicture alloc] initWithPicturePath:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=104&height=104", userID]];
         
         face.frame = CGRectMake(xPos, 6, 52, 52);
         
@@ -94,8 +131,8 @@
 
 - (void)buildBurger
 {
-    self.burger = [[UIView alloc] initWithFrame:CGRectMake(0, 160, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height - 160)];
-    [self addSubview:self.burger];
+    self.burgerView = [[UIView alloc] initWithFrame:CGRectMake(0, 160, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height - 160)];
+    [self addSubview:self.burgerView];
     
     int yPos = 0;
     
@@ -103,20 +140,44 @@
     UIImageView *topIV = [[UIImageView alloc] initWithImage:top];
     float xPos = (([[UIScreen mainScreen] bounds].size.width - top.size.width) / 2);
     topIV.frame = CGRectMake(xPos, yPos, top.size.width, top.size.height);
-    [self.burger addSubview:topIV];
+    [self.burgerView addSubview:topIV];
     
     yPos += top.size.height + 10;
     
-    for(Ingredient *ingredient in self.ingredients) {
+//    NSMutableArray *renderIngredients = [NSMutableArray array];
+    
+    //        for (Ingredient *ingredientID in ingredients) {
+    //            for (NSDictionary *ingredient in allIngredients) {
+    //                if ([[ingredient objectForKey:@"id"] isEqualToString:ingredientID.id]) {
+    //                    Ingredient *temp = [[Ingredient alloc] initWithDict:ingredient];
+    //
+    //                    if ([temp.type isEqualToString:@"sauce"]) {
+    //                        [self.ingredients insertObject:temp atIndex:0];
+    //                    } else {
+    //                        [self.ingredients addObject:temp];
+    //                    }
+    //                }
+    //            }
+    //        }
+
+    
+    
+    NSLog(@"------");
+    for (NSString *ingredientID in self.burger.ingredients) {
+                
+        Ingredient *ingredient = [Ingredient ingredientWithID:ingredientID];
+        
         UIImage *burgerObject = [UIImage imageNamed:[NSString stringWithFormat:@"%@_%@", ingredient.image, @"cropped"]];
-        NSLog(@"%@", [NSString stringWithFormat:@"%@_%@", ingredient.image, @"cropped"]);
+//        NSLog(@"%@", [NSString stringWithFormat:@"%@_%@", ingredient.image, @"cropped"]);
         UIImageView *burgerObjectIV = [[UIImageView alloc] initWithImage:burgerObject];
         float xPos = (([[UIScreen mainScreen] bounds].size.width - burgerObject.size.width) / 2);
         burgerObjectIV.frame = CGRectMake(xPos, yPos, burgerObject.size.width, burgerObject.size.height);
-        [self.burger addSubview:burgerObjectIV];
+        [self.burgerView addSubview:burgerObjectIV];
         
         yPos += burgerObject.size.height + 10;
     }
+    
+    NSLog(@"------");
     
     [topIV bringSubviewToFront:topIV];
     
@@ -124,7 +185,7 @@
     UIImageView *bottomIV = [[UIImageView alloc] initWithImage:bottom];
     xPos = (([[UIScreen mainScreen] bounds].size.width - bottom.size.width) / 2);
     bottomIV.frame = CGRectMake(xPos, yPos, bottom.size.width, bottom.size.height);
-    [self.burger addSubview:bottomIV];
+    [self.burgerView addSubview:bottomIV];
     
     [self animateBurger];
 }
@@ -158,7 +219,7 @@
 //    }
     
     [UIView animateWithDuration:.3 delay:1 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        self.burger.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height, self.burger.frame.size.width, self.burger.frame.size.height);
+        self.burgerView.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height, self.burgerView.frame.size.width, self.burgerView.frame.size.height);
     }completion:^ (BOOL finished){
         if(finished) {
             [self generateCode];

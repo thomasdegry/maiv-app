@@ -21,68 +21,79 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        NSLog(@"GameresultVC init");
     }
     return self;
 }
 
-- (id)initWithIngredients:(NSMutableArray *)ingredients users:(NSMutableArray *)users andSharedCode:(NSString *)sharedCode
+- (id)initWithBurger:(Burger *)burger andSharedCode:(NSString *)sharedCode
 {
-    self = [self initWithNibName:nil bundle:nil];
-    
+    self = [super init];
     if (self) {
-        NSLog(@"%@", sharedCode);
+        self.burger = burger;
         self.sharedCode = sharedCode;
-        self.ingredients = ingredients;
-        self.users = users;
+        
+        [self storeBurger:nil];
     }
-    
     return self;
 }
+
+//- (id)initWithIngredients:(NSMutableArray *)ingredients users:(NSMutableArray *)users andSharedCode:(NSString *)sharedCode
+//{
+//    self = [self initWithNibName:nil bundle:nil];
+//    
+//    if (self) {
+//        NSLog(@"[GameResultViewController] alloc initWithSharedCode %@", sharedCode);
+//        self.sharedCode = sharedCode;
+//        self.ingredients = ingredients;
+//        self.users = users;
+//        
+//        [self storeBurger:nil];
+//    }
+//    
+//    return self;
+//}
 
 - (void)loadView
 {
-    NSLog(@"GameresultVC loadView");
     CGRect frame = [[UIScreen mainScreen] bounds];
-    GameResultView *view = [[GameResultView alloc] initWithFrame:frame sharedCode:self.sharedCode users:self.users andIngredients:self.ingredients];
+
+//    GameResultView *view = [[GameResultView alloc] initWithFrame:frame sharedCode:self.sharedCode users:self.users andIngredients:self.ingredients];
+    GameResultView *view = [[GameResultView alloc] initWithFrame:frame andBurger:self.burger andSharedCode:self.sharedCode];
     [self setView:view];
 }
 
 - (void)viewDidLoad
 {
-    NSLog(@"ViewDidLoad");
     [super viewDidLoad];
     GameResultView *view = (GameResultView *)self.view;
-    NSLog(@"Bestaat die knop wel ja - %@", view.saveForLater.label.text);
-    [view.saveForLater addTarget:self action:@selector(storeBurger:) forControlEvents:UIControlEventTouchUpInside];
+    [view.saveForLater addTarget:self action:@selector(dismissScreen:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)storeBurger:(id)sender
 {
-    NSLog(@"Store burger");
+    NSLog(@"[GameResultViewController] Store burger");
+        
+//    Burger *burger = [[Burger alloc] init];
+//    burger.ingredients = self.ingredients;
+//    burger.users = self.users;
     
-    GameResultView *view = (GameResultView *)self.view;
-    NSArray *ingredients = [[NSArray alloc] initWithArray:view.ingredients];
+    NSData *burgerData = [self.burger burgerToNSData];
     
+//    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:burger, @"burger", nil];
+//    
+//    NSMutableData *data = [[NSMutableData alloc] init];
+//    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+//    [archiver encodeObject:dict forKey:@"burger"];
+//    [archiver finishEncoding];
+
     [[NSUserDefaults standardUserDefaults] setObject:self.sharedCode forKey:@"QRCode"];
+    [[NSUserDefaults standardUserDefaults] setObject:burgerData forKey:@"burger"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    BOOL gelukt = [self save];
-    NSLog(gelukt ? @"Save gelukt" : @"Save failed");
-    
-    [self.navigationController.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
 }
 
--(BOOL)save {
-    NSString *path = [self mrburgerArchivePath];
-    NSLog(@"[GameResultViewControlller] Save to path %@", path);
-    return [NSKeyedArchiver archiveRootObject:self.ingredients toFile:path];
-}
-
-- (NSString *)mrburgerArchivePath
+- (void)dismissScreen:(id)sender
 {
-    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = [documentDirectories objectAtIndex:0];
-    return [documentDirectory stringByAppendingPathComponent:@"mrburger.archive"];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
 }
 
 - (void)didReceiveMemoryWarning

@@ -12,13 +12,15 @@
 #import "User.h"
 #import "KGStatusBar.h"
 #import "AFNetworking.h"
+#import "Burger.h"
 
 @interface EnjoyViewController : UIViewController
 
+@property (strong, nonatomic) Burger *burger;
 @property (strong, nonatomic) NSArray *ingredients;
 @property (strong, nonatomic) NSString *burgerID;
 @property (strong, nonatomic) NSString *userID;
 
-- (id)initWithIngredients:(NSArray *)ingredients;
+- (id)initWithBurger:(Burger *)burger;
 
 @end

@@ -16,7 +16,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-//        self.manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+        self.manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         
         self.navigationBarHidden = YES;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showEnjoyYourBurger:) name:@"SHOW_ENJOY" object:nil];
@@ -33,8 +33,19 @@
 
 - (BOOL) isLECapableHardware
 {    
+    NSString * state = nil;
+    
     switch ([self.manager state])
     {
+        case CBCentralManagerStateUnsupported:
+            state = @"The platform/hardware doesn't support Bluetooth Low Energy.";
+            break;
+        case CBCentralManagerStateUnauthorized:
+            state = @"The app is not authorized to use Bluetooth Low Energy.";
+            break;
+        case CBCentralManagerStatePoweredOff:
+            state = @"Bluetooth is currently powered off.";
+            break;
         case CBCentralManagerStatePoweredOn:
             return TRUE;
         case CBCentralManagerStateUnknown:
@@ -42,7 +53,6 @@
             return FALSE;
             
     }
-    
     return FALSE;
 }
 
@@ -80,25 +90,28 @@
         //Check if ingredients stored in NSArchive
         if(![[NSUserDefaults standardUserDefaults] objectForKey:@"QRCode"]) {
             //Geen data in archive
-            NSLog(@"Start from clean slate no data found in archive, lauching step 1");
+            NSLog(@"[GameViewController] Start from clean slate no data found in archive, lauching step 1");
             GameStep1ViewController *startVC = [[GameStep1ViewController alloc] initWithNibName:nil bundle:nil];
             self = [self initWithRootViewController:startVC];
             if (self) {
                 self.currentScreen = GameScreenStep1;
             }
         } else {
-            NSLog(@"Start again with existing data");
-            NSArray *ingredients = [NSKeyedUnarchiver unarchiveObjectWithFile:[self mrburgerArchivePath]];
-            self.ingredients = [[NSMutableArray alloc] initWithArray:ingredients];
+            NSLog(@"[GameViewController] Start again with existing data");
+            
+            NSData *burgerData = [[NSUserDefaults standardUserDefaults] objectForKey:@"burger"];
+            Burger *burger = [Burger burgerFromNSData:burgerData];
+            self.burger = burger;
+            
             self.sharedCode = [[NSUserDefaults standardUserDefaults] objectForKey:@"QRCode"];
-            NSLog(@"Code uit de userdefaults: %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"QRCode"]);
+            NSLog(@"[GameViewController] Code uit de userdefaults: %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"QRCode"]);
+            
+//            [self createIngredientsAndUsers];
             
             [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
-            self.users = [[NSMutableArray alloc] init];
-            GameResultViewController *vc = [[GameResultViewController alloc] initWithIngredients:self.ingredients users:self.users andSharedCode:self.sharedCode];
+            GameResultViewController *vc = [[GameResultViewController alloc] initWithBurger:self.burger andSharedCode:self.sharedCode];
             self = [self initWithRootViewController:vc];
             self.currentScreen = GameScreenResult;
-
         }
 
     }
@@ -112,6 +125,9 @@
     
     if (self.sessionManager) {
         [self.sessionManager teardownSession];
+        [self.sessionManager.connectedPeers removeAllObjects];
+        [self.sessionManager.availablePeers removeAllObjects];
+        self.sessionManager = nil;
     }
     
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
@@ -155,11 +171,12 @@
 - (void)receivedBurger:(NSNotification *)notification
 {
     if (!self.sharedCode) {
-        self.burger = [notification.userInfo objectForKey:@"burger"];
+        self.burger = [Burger burgerFromNSData:[notification.userInfo objectForKey:@"burger"]];
         
-        [self createIngredientsAndUsers];
+//        [self createIngredientsAndUsers];
         self.sharedCode = [NSString stringWithFormat:@"%@-%@", self.burger.id, self.user.id];
-        [self showResultWithIngredients:self.ingredients users:self.users andSharedCode:self.sharedCode];
+        //[self showResultWithIngredients:self.ingredients users:self.users andSharedCode:self.sharedCode];
+        [self showResult];
     }
 }
 
@@ -191,7 +208,7 @@
         self.burger.id = responseStr;
         for (NSString *peerID in self.sessionManager.connectedPeers) {
             User *user = [self.sessionManager userForPeer:peerID];
-            [self.burger addIngredient:user.ingredient];
+            [self.burger addIngredient:user.ingredient.id];
             [self.burger addUser:user.id];
         }
         
@@ -204,32 +221,45 @@
         
 //        [self.sessionManager sendBurger:responseStr];
         
-        NSMutableArray *receivers = self.sessionManager.connectedPeers;
-        [receivers removeObject:self.sessionManager.session.peerID];
+//        NSMutableArray *receivers = self.sessionManager.connectedPeers;
+//        [receivers removeObject:self.sessionManager.session.peerID];
         
-        [self.sessionManager sendPacket:burgerData ofType:PacketTypeBurger toPeers:receivers];
+        [self.sessionManager sendPacket:burgerData ofType:PacketTypeBurger toPeers:self.sessionManager.connectedPeers];
 //        [self.sessionManager.session sendData:packet toPeers:self.sessionManager.connectedPeers withDataMode:GKSendDataReliable error:&error];
         
         [KGStatusBar dismiss];
         
-        [self createIngredientsAndUsers];
-        [self showResultWithIngredients:self.ingredients users:self.users andSharedCode:self.sharedCode];
+//        [self createIngredientsAndUsers];
+
+        //[self showResultWithIngredients:self.ingredients users:self.users burgerData:burgerData andSharedCode:self.sharedCode];
+        //[self showResultWithIngredients:self.ingredients users:self.ingredients andSharedCode:self.sharedCode];
+        [self showResult];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
     }];
     
 }
 
-- (void)showResultWithIngredients:(NSMutableArray *)ingredients users:(NSMutableArray *)users andSharedCode:(NSString *)sharedcode
+- (void)showResult
 {
     [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
     self.currentScreen = GameScreenResult;
-    //[self pushViewController:[[GameResultViewController alloc] initWithSessionManager:self.sessionManager andSharedCode:self.sharedCode] animated:YES];
-    [self pushViewController:[[GameResultViewController alloc] initWithIngredients:ingredients users:users andSharedCode:sharedcode] animated:YES];
+//    GameResultViewController *vc = [[GameResultViewController alloc] initWithIngredients:self.ingredients users:self.users andSharedCode:self.sharedCode];
+    GameResultViewController *vc = [[GameResultViewController alloc] initWithBurger:self.burger andSharedCode:self.sharedCode];
+    [self pushViewController:vc animated:YES];
 }
+//
+//- (void)showResultWithIngredients:(NSMutableArray *)ingredients users:(NSMutableArray *)users andSharedCode:(NSString *)sharedcode
+//{
+//    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+//    self.currentScreen = GameScreenResult;
+//    [self pushViewController:[[GameResultViewController alloc] initWithIngredients:self.ingredients users:self.users andSharedCode:self.sharedCode] animated:YES];
+//}
 
 - (void)createIngredientsAndUsers
 {
+    NSLog(@"[GameViewController] Generating ingredients and users from burger");
+    
     // All user ids
     self.users = [NSMutableArray array];
     
@@ -241,20 +271,17 @@
     
     // All ingredient ids
     NSMutableArray *ingredients = self.burger.ingredients;
-    
+        
     // Load ingredients
     NSArray *allIngredients = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ingredients" ofType:@"plist"]];
     
     self.ingredients = [NSMutableArray array];
     
-    for (Ingredient *ingredient36 in ingredients) {
-        NSLog(@"ingredient id %@", ingredientID);
+    for (Ingredient *ingredientID in ingredients) {
         for (NSDictionary *ingredient in allIngredients) {
             if ([[ingredient objectForKey:@"id"] isEqualToString:ingredientID.id]) {
                 Ingredient *temp = [[Ingredient alloc] initWithDict:ingredient];
-                
-                NSLog(@"ingredient name %@", temp.name);
-                
+                                
                 if ([temp.type isEqualToString:@"sauce"]) {
                     [self.ingredients insertObject:temp atIndex:0];
                 } else {
@@ -268,7 +295,7 @@
 - (void)showEnjoyYourBurger:(id)sender
 {
     self.currentScreen = GameScreenEnjoy;
-    [self pushViewController:[[EnjoyViewController alloc] initWithIngredients:self.ingredients] animated:YES];
+    [self pushViewController:[[EnjoyViewController alloc] initWithBurger:self.burger] animated:YES];
 }
 
 - (NSString *)mrburgerArchivePath

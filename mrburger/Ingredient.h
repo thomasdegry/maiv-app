@@ -18,4 +18,6 @@
 
 - (id)initWithDict:(NSDictionary *)dict;
 
++ (id)ingredientWithID:(NSString *)id;
+
 @end
