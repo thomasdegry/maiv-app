@@ -122,6 +122,7 @@
 - (void)closeButtonClicked:(CloseButton *)closeButton
 {
     [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+    [KGStatusBar dismiss];
     
     [self terminateSession];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];

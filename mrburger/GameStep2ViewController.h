@@ -37,6 +37,7 @@
 @property (strong, nonatomic) TitledTableAlternate *nearbyView;
 @property (strong, nonatomic) RoundedButtonAlternate *btnSave;
 @property (strong, nonatomic) UILabel *participantsCTA;
+@property (strong, nonatomic) NSTimer *statusTimer;
 
 @property (strong, nonatomic) SessionManager *sessionManager;
 

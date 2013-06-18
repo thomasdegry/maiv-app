@@ -26,6 +26,9 @@
         
         self.presentingView = [[ModalPresentingView alloc] initWithMain:self.mainView andModal:self.modal];
         [self showModal:nil];
+        [self startStatusBarUpdates];
+        
+        self.statusTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(startStatusBarUpdates) userInfo:nil repeats:YES];
     }
     return self;
 }
@@ -88,6 +91,7 @@
 
 - (void)save:(id)sender
 {
+    [self stopStatusBarUpdates];
     GameViewController *gameVC = (GameViewController *)self.navigationController;
     [gameVC postBurgerToServer];
 }
@@ -221,6 +225,24 @@
 {
     [KGStatusBar dismiss];
     [self hideModal:nil];    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    NSLog(@"view will disappear");
+    [self.statusTimer invalidate];
+}
+
+- (void)startStatusBarUpdates
+{
+    NSArray *statuses = [NSArray arrayWithObjects:@"Looking for others..", @"Searching for ingredients..", @"Still looking..", @"Anyone around?", @"Hello? Anyone?", nil];
+    int test = arc4random() % [statuses count];
+    [KGStatusBar showStatusAndDismiss:[statuses objectAtIndex:test]];
+}
+
+- (void)stopStatusBarUpdates
+{
+    [self.statusTimer invalidate];
 }
 
 @end
