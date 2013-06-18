@@ -209,23 +209,10 @@
         
         self.sharedCode = [NSString stringWithFormat:@"%@-%@", responseStr, self.user.id];
         
-//        NSData *packet = [responseStr dataUsingEncoding:NSUTF8StringEncoding];
-//        NSError *error = nil;
-        
-//        [self.sessionManager sendBurger:responseStr];
-        
-//        NSMutableArray *receivers = self.sessionManager.connectedPeers;
-//        [receivers removeObject:self.sessionManager.session.peerID];
-        
         [self.sessionManager sendPacket:burgerData ofType:PacketTypeBurger toPeers:self.sessionManager.connectedPeers];
-//        [self.sessionManager.session sendData:packet toPeers:self.sessionManager.connectedPeers withDataMode:GKSendDataReliable error:&error];
         
         [KGStatusBar dismiss];
-        
-//        [self createIngredientsAndUsers];
 
-        //[self showResultWithIngredients:self.ingredients users:self.users burgerData:burgerData andSharedCode:self.sharedCode];
-        //[self showResultWithIngredients:self.ingredients users:self.ingredients andSharedCode:self.sharedCode];
         [self showResult];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
@@ -242,13 +229,6 @@
     GameResultViewController *vc = [[GameResultViewController alloc] initWithBurger:self.burger andSharedCode:self.sharedCode];
     [self pushViewController:vc animated:YES];
 }
-//
-//- (void)showResultWithIngredients:(NSMutableArray *)ingredients users:(NSMutableArray *)users andSharedCode:(NSString *)sharedcode
-//{
-//    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
-//    self.currentScreen = GameScreenResult;
-//    [self pushViewController:[[GameResultViewController alloc] initWithIngredients:self.ingredients users:self.users andSharedCode:self.sharedCode] animated:YES];
-//}
 
 - (void)createIngredientsAndUsers
 {

@@ -25,6 +25,4 @@
 
 - (id)initWithBurger:(Burger * )burger andSharedCode:(NSString *)sharedCode;
 
-- (id)initWithIngredients:(NSMutableArray *)ingredients users:(NSMutableArray *)users andSharedCode:(NSString *)sharedCode;
-
 @end

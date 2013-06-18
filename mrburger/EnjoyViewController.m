@@ -99,13 +99,9 @@
 
 - (void)shareOnFacebook:(id)sender
 {
-    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
-        EnjoyView *view = (EnjoyView *)self.view;
-        UIImage *shot = [self captureBurger:view];
-        
+    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {        
         SLComposeViewController *composeVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
         [composeVC setInitialText:@"I just enjoyed my free burger on PiemelFestival, how cool is that?"];
-        [composeVC addImage:shot];
         [composeVC addURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://student.howest.be/thomas.degry/20122013/MAIV/mrburger/gallery/%@", self.burgerID]]];
         [self presentViewController:composeVC animated:YES completion:^{}];
     }

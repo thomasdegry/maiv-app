@@ -37,27 +37,10 @@
     return self;
 }
 
-//- (id)initWithIngredients:(NSMutableArray *)ingredients users:(NSMutableArray *)users andSharedCode:(NSString *)sharedCode
-//{
-//    self = [self initWithNibName:nil bundle:nil];
-//    
-//    if (self) {
-//        NSLog(@"[GameResultViewController] alloc initWithSharedCode %@", sharedCode);
-//        self.sharedCode = sharedCode;
-//        self.ingredients = ingredients;
-//        self.users = users;
-//        
-//        [self storeBurger:nil];
-//    }
-//    
-//    return self;
-//}
-
 - (void)loadView
 {
     CGRect frame = [[UIScreen mainScreen] bounds];
 
-//    GameResultView *view = [[GameResultView alloc] initWithFrame:frame sharedCode:self.sharedCode users:self.users andIngredients:self.ingredients];
     GameResultView *view = [[GameResultView alloc] initWithFrame:frame andBurger:self.burger andSharedCode:self.sharedCode];
     [self setView:view];
 }
@@ -72,19 +55,8 @@
 - (void)storeBurger:(id)sender
 {
     NSLog(@"[GameResultViewController] Store burger");
-        
-//    Burger *burger = [[Burger alloc] init];
-//    burger.ingredients = self.ingredients;
-//    burger.users = self.users;
     
     NSData *burgerData = [self.burger burgerToNSData];
-    
-//    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:burger, @"burger", nil];
-//    
-//    NSMutableData *data = [[NSMutableData alloc] init];
-//    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-//    [archiver encodeObject:dict forKey:@"burger"];
-//    [archiver finishEncoding];
 
     [[NSUserDefaults standardUserDefaults] setObject:self.sharedCode forKey:@"QRCode"];
     [[NSUserDefaults standardUserDefaults] setObject:burgerData forKey:@"burger"];
