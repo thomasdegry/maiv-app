@@ -16,6 +16,7 @@
 @property (strong, nonatomic) ModalPresentingView *presentingView;
 @property (strong, nonatomic) UIView *mainView;
 @property (strong, nonatomic) ModalView *modal;
+@property BOOL isShowingModal;
 
 - (void)showModal:(id)sender;
 - (void)hideModal:(id)sender;

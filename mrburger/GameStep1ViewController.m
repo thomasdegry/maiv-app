@@ -23,7 +23,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        NSLog(@"init with frame");
         _ingredients = [[NSMutableArray alloc] initWithCapacity:5];
         
         NSString *categories[4];
@@ -66,10 +65,12 @@
         [self.mainView stopMotionUpdates];
 
         self.presentingView = [[ModalPresentingView alloc] initWithMain:self.mainView andModal:self.modal];
-        [self performSelector:@selector(showModal:) withObject:nil afterDelay:.6];
 
         //Listen to event on touch on ingredient
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopScrollView:) name:@"SLIDE_TOUCH" object:nil];
+        
+        [self performSelector:@selector(showModal:) withObject:nil afterDelay:.6];
+
     }
     return self;
 }
@@ -78,21 +79,18 @@
 {
     self = [self initWithNibName:nil bundle:nil];
     if (self) {
-        NSLog(@"init with user");
         self.user = user;
-        
         [self doFreeCheck];
-        
     }
+    
     return self;
 }
 
 - (void)doFreeCheck
 {
-    NSLog(@"dofreecheck");
     [KGStatusBar showWithStatus:@"Getting your information"];
     
-    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://student.howest.be/thomas.degry/20122013/MAIV/FOOD/api"]];
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kAPI]];
     NSMutableURLRequest *request = [httpClient requestWithMethod:@"GET"
                                                             path:[NSString stringWithFormat:@"users/%@/hasfree", self.user.id]
                                                       parameters:nil];
@@ -107,11 +105,19 @@
         
         if([response isEqualToString:@"false"]) {
             self.hasFree = NO;
-            //gebruiker heeft geen recht meer op een gratis burger
-            PayModalView *modalView = [[PayModalView alloc] initModal];
-            [modalView.confirmBtn addTarget:self action:@selector(hideModal:) forControlEvents:UIControlEventTouchUpInside];
-            [modalView.cancel addTarget:self action:@selector(endGame:) forControlEvents:UIControlEventTouchUpInside];
-            self.modal = modalView;
+            
+            PayModalView *payModal = [[PayModalView alloc] initModal];
+            [payModal.confirmBtn addTarget:self action:@selector(hideModal:) forControlEvents:UIControlEventTouchUpInside];
+            [payModal.cancel addTarget:self action:@selector(endGame:) forControlEvents:UIControlEventTouchUpInside];
+            
+            if (self.isShowingModal) {
+                [self hideModal:nil];
+                self.modal = payModal;
+                [self showModal:nil];
+            } else {
+                self.modal = payModal;
+                [self showModal:nil];
+            }
         }
         
         [[NSUserDefaults standardUserDefaults] setObject:response forKey:@"hasfree"];
@@ -124,18 +130,17 @@
     [operation start];
 }
 
-
-
-- (void)viewWillDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated
+{
     [self.mainView stopMotionUpdates];
 }
 
-- (void)stopScrollView:(NSNotification *)sender {
+- (void)stopScrollView:(NSNotification *)sender
+{
     int order = [[sender.userInfo objectForKey:@"order"] intValue];
     self.currentIngredient = [_ingredients objectAtIndex:order];
     [self.mainView lockAndScrollTo:order];
 }
-
 
 - (void)startGame:(id)sender
 {
@@ -154,16 +159,18 @@
     [gameVC closeButtonClicked:nil];
 }
 
-- (void)showModal:(id)sender {  
+- (void)showModal:(id)sender
+{
     [self.mainView stopMotionUpdates];
     [super showModal:nil];
 }
 
-- (void)hideModal:(id)sender {
+- (void)hideModal:(id)sender
+{
     [self.mainView startGyroLogging];
     [super hideModal:nil];
     
-    if(self.hasPlayed == NO && self.hasFree == NO) {
+    if (self.hasPlayed == NO && self.hasFree == NO) {
         SystemSoundID soundID;
         NSString *path = [[NSBundle mainBundle] pathForResource:@"hamburger" ofType:@"mp3"];
         NSURL *url = [NSURL fileURLWithPath:path];
@@ -172,12 +179,13 @@
         self.hasPlayed = YES;
     }
     
-    if(self.hasFree == NO) {
+    if (self.hasFree == NO) {
         [self performSelector:@selector(setInstructions) withObject:nil afterDelay:.6];
     }
 }
 
-- (void)setInstructions {
+- (void)setInstructions
+{
     GameStepInfoView *modalView = [[GameStep1InfoView alloc] initModal];
     [modalView.confirmBtn addTarget:self action:@selector(hideModal:) forControlEvents:UIControlEventTouchUpInside];
     self.modal = modalView;
@@ -191,7 +199,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

@@ -159,7 +159,7 @@
     [JSONObject deleteCharactersInRange:NSMakeRange([JSONObject length]-2, 2)];
     [JSONObject appendString:@"]}"];        
         
-    NSURL *url = [NSURL URLWithString:@"http://student.howest.be/thomas.degry/20122013/MAIV/FOOD/api"];
+    NSURL *url = [NSURL URLWithString:kAPI];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:

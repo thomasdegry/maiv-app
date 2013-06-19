@@ -17,6 +17,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self.isShowingModal = NO;
     return self;
 }
 
@@ -35,14 +36,18 @@
 
 - (void)showModal:(id)sender
 {
-    NSLog(@"show modal");
-    [self.presentingView showModal];
+    if (!self.isShowingModal) {
+        [self.presentingView showModal];
+        self.isShowingModal = YES;
+    }
 }
 
 - (void)hideModal:(id)sender
 {
-    NSLog(@"hide modal");
-    [self.presentingView hideModal];
+    if (self.isShowingModal) {
+        [self.presentingView hideModal];
+        self.isShowingModal = NO;
+    }
 }
 
 - (void)modalView:(ModalView *)modalView isConfirmed:(BOOL)proceed

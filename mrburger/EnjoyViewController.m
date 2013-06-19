@@ -51,9 +51,9 @@
 - (void)setPaidOnServer
 {
     [KGStatusBar showWithStatus: @"Validating your order"];
-    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://student.howest.be"]];
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kAPI]];
     NSMutableURLRequest *request = [httpClient requestWithMethod:@"GET"
-                                                            path:[NSString stringWithFormat:@"thomas.degry/20122013/MAIV/FOOD/api/creations/pay/%@/%@", self.userID, self.burgerID]
+                                                            path:[NSString stringWithFormat:@"/creations/pay/%@/%@", self.userID, self.burgerID]
                                                       parameters:nil];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
