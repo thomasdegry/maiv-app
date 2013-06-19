@@ -28,20 +28,18 @@ typedef enum {
     GameScreenEnjoy = 4
 } GameScreen;
 
-@interface GameViewController : UINavigationController <CloseButtonDelegate, CBPeripheralDelegate, CBCentralManagerDelegate>
+@interface GameViewController : UINavigationController <CloseButtonDelegate, CBCentralManagerDelegate>
+
+@property GameScreen currentScreen;
+
+@property (strong, nonatomic) SessionManager *sessionManager;
 
 @property (strong, nonatomic) User *user;
-@property GameScreen currentScreen;
-@property (strong, nonatomic) SessionManager *sessionManager;
 @property (strong, nonatomic) NSString *sharedCode;
-@property (strong, nonatomic) NSMutableArray *ingredients;
-@property (strong, nonatomic) NSMutableArray *users;
-@property (strong, nonatomic) CBCentralManager *manager;
 @property (strong, nonatomic) Burger *burger;
 
 - (id)initGame;
 
-- (void)calculateCode;
 - (void)postBurgerToServer;
 
 - (void)showNextScreen;
