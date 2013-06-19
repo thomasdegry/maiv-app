@@ -81,7 +81,7 @@
         NSLog(@"init with user");
         self.user = user;
         
-        //[self doFreeCheck];
+        [self doFreeCheck];
         
     }
     return self;
@@ -106,11 +106,11 @@
         self.hasFree = YES;
         
         if([response isEqualToString:@"false"]) {
-            NSLog(@"blh");
             self.hasFree = NO;
             //gebruiker heeft geen recht meer op een gratis burger
-            GameStepInfoView *modalView = [[PayModalView alloc] initModal];
+            PayModalView *modalView = [[PayModalView alloc] initModal];
             [modalView.confirmBtn addTarget:self action:@selector(hideModal:) forControlEvents:UIControlEventTouchUpInside];
+            [modalView.cancel addTarget:self action:@selector(endGame:) forControlEvents:UIControlEventTouchUpInside];
             self.modal = modalView;
         }
         
@@ -148,6 +148,12 @@
     }
 }
 
+- (void)endGame:(id)sender
+{
+    GameViewController *gameVC = (GameViewController *)self.navigationController;
+    [gameVC closeButtonClicked:nil];
+}
+
 - (void)showModal:(id)sender {  
     [self.mainView stopMotionUpdates];
     [super showModal:nil];
@@ -156,6 +162,15 @@
 - (void)hideModal:(id)sender {
     [self.mainView startGyroLogging];
     [super hideModal:nil];
+    
+    if(self.hasPlayed == NO && self.hasFree == NO) {
+        SystemSoundID soundID;
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"hamburger" ofType:@"mp3"];
+        NSURL *url = [NSURL fileURLWithPath:path];
+        AudioServicesCreateSystemSoundID ((__bridge CFURLRef)url, &soundID);
+        AudioServicesPlaySystemSound(soundID);
+        self.hasPlayed = YES;
+    }
     
     if(self.hasFree == NO) {
         [self performSelector:@selector(setInstructions) withObject:nil afterDelay:.6];

@@ -7,9 +7,13 @@
 //
 
 #import "GameStepInfoView.h"
+#import "User.h"
 
 @interface GameStep2InviteView : GameStepInfoView
 
 @property (strong, nonatomic) RoundedButtonAlternate *declineBtn;
+@property (strong, nonatomic) User *user;
+
+- (id)initModalWithUser:(User *)user;
 
 @end

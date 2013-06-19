@@ -10,4 +10,6 @@
 
 @interface PayModalView : GameStepInfoView
 
+@property (strong, nonatomic) RoundedButtonAlternate *cancel;
+
 @end

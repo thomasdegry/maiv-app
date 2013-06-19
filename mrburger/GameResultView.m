@@ -174,6 +174,13 @@
         codeIV.alpha = 0;
         [self addSubview:codeIV];
         
+        if([[UIScreen mainScreen] bounds].size.height > 480) {
+            NSLog(@"iPhone5");
+            background.frame = CGRectMake(background.frame.origin.x, (background.frame.origin.y + 20), background.frame.size.width, background.frame.size.height);
+            codeIV.frame = CGRectMake(codeIV.frame.origin.x, (codeIV.frame.origin.y + 20), codeIV.frame.size.width, codeIV.frame.size.height);
+            shadowIV.frame = CGRectMake(shadowIV.frame.origin.x, (shadowIV.frame.origin.y + 30), shadowIV.frame.size.width, shadowIV.frame.size.height);
+        }
+        
         
         //Save for later button
         self.saveForLater.hidden = NO;

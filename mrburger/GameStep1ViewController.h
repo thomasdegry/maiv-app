@@ -6,6 +6,9 @@
 //  Copyright (c) 2013 devine. All rights reserved.
 //
 
+#import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
+
 #import "GameStepViewController.h"
 
 #import "GameViewController.h"
@@ -23,6 +26,7 @@
 @property (strong, nonatomic) Ingredient *currentIngredient;
 @property (strong, nonatomic) User *user;
 @property (assign) BOOL hasFree;
+@property (assign) BOOL hasPlayed;
 
 - (id)initWithUser:(User *)user;
 

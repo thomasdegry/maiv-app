@@ -25,7 +25,11 @@
         self.connected = 1; // Self makes it 1
         
         self.presentingView = [[ModalPresentingView alloc] initWithMain:self.mainView andModal:self.modal];
-        [self showModal:nil];
+        
+        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"hasfree"] isEqualToString:@"true"]) {
+            [self showModal:nil];
+        }
+        
         [self startStatusBarUpdates];
         
         self.statusTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(startStatusBarUpdates) userInfo:nil repeats:YES];
@@ -158,7 +162,8 @@
         [currentDevice setProximityMonitoringEnabled:NO];
     }];
     
-    GameStep2InviteView *inviteView = [[GameStep2InviteView alloc] initModal];
+    User *tmpuser =  [self.sessionManager userForPeer:self.currentPeerID];
+    GameStep2InviteView *inviteView = [[GameStep2InviteView alloc] initModalWithUser:tmpuser];
     [inviteView.declineBtn addTarget:self action:@selector(declineInvitation:) forControlEvents:UIControlEventTouchUpInside];
     self.modal = inviteView;
     [self showModal:nil];
