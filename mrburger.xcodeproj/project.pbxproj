@@ -109,11 +109,9 @@
 		4D4B9C15176140AB003673A0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4B9C14176140AB003673A0 /* UIKit.framework */; };
 		4D4B9C17176140AB003673A0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4B9C16176140AB003673A0 /* Foundation.framework */; };
 		4D4B9C19176140AB003673A0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4B9C18176140AB003673A0 /* CoreGraphics.framework */; };
-		4D4B9C1B176140AB003673A0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4B9C1A176140AB003673A0 /* CoreData.framework */; };
 		4D4B9C21176140AB003673A0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D4B9C1F176140AB003673A0 /* InfoPlist.strings */; };
 		4D4B9C23176140AB003673A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4B9C22176140AB003673A0 /* main.m */; };
 		4D4B9C27176140AB003673A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4B9C26176140AB003673A0 /* AppDelegate.m */; };
-		4D4B9C30176140AB003673A0 /* mrburger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D4B9C2E176140AB003673A0 /* mrburger.xcdatamodeld */; };
 		4D4B9C4A17614141003673A0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4B9C3617614131003673A0 /* AudioToolbox.framework */; };
 		4D4B9C4B17614141003673A0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4B9C3717614131003673A0 /* CFNetwork.framework */; };
 		4D4B9C4C17614141003673A0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D4B9C3817614131003673A0 /* CoreLocation.framework */; };
@@ -627,7 +625,6 @@
 		4D4B9C28176140AB003673A0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4D4B9C2A176140AB003673A0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		4D4B9C2C176140AB003673A0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		4D4B9C2F176140AB003673A0 /* mrburger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = mrburger.xcdatamodel; sourceTree = "<group>"; };
 		4D4B9C3617614131003673A0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		4D4B9C3717614131003673A0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		4D4B9C3817614131003673A0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -1330,7 +1327,6 @@
 				EAB65B1E1763B2D300D327ED /* GameKit.framework in Frameworks */,
 				4D4B9CA51762274E003673A0 /* Accounts.framework in Frameworks */,
 				4D4B9C5C176142DA003673A0 /* Social.framework in Frameworks */,
-				4D4B9C1B176140AB003673A0 /* CoreData.framework in Frameworks */,
 				4D4B9C19176140AB003673A0 /* CoreGraphics.framework in Frameworks */,
 				4D4B9C15176140AB003673A0 /* UIKit.framework in Frameworks */,
 				4D4B9C4B17614141003673A0 /* CFNetwork.framework in Frameworks */,
@@ -1444,7 +1440,6 @@
 				4D4B9C631761D719003673A0 /* Info */,
 				4D4B9C25176140AB003673A0 /* AppDelegate.h */,
 				4D4B9C26176140AB003673A0 /* AppDelegate.m */,
-				4D4B9C2E176140AB003673A0 /* mrburger.xcdatamodeld */,
 				4D4B9C5D1761D35A003673A0 /* MainViewController.h */,
 				4D4B9C5E1761D35A003673A0 /* MainViewController.m */,
 				EAE29ADF17621A4C00E01E88 /* AppViewController.h */,
@@ -2984,7 +2979,6 @@
 			files = (
 				4D4B9C23176140AB003673A0 /* main.m in Sources */,
 				4D4B9C27176140AB003673A0 /* AppDelegate.m in Sources */,
-				4D4B9C30176140AB003673A0 /* mrburger.xcdatamodeld in Sources */,
 				EAE29A171761D16D00E01E88 /* CircularButton.m in Sources */,
 				EAE29A1A1761D18900E01E88 /* RoundedButton.m in Sources */,
 				EAE29A1D1761D19800E01E88 /* RoundedButtonAlternate.m in Sources */,
@@ -3409,19 +3403,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		4D4B9C2E176140AB003673A0 /* mrburger.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				4D4B9C2F176140AB003673A0 /* mrburger.xcdatamodel */,
-			);
-			currentVersion = 4D4B9C2F176140AB003673A0 /* mrburger.xcdatamodel */;
-			path = mrburger.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 4D4B9C09176140AB003673A0 /* Project object */;
 }
