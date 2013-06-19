@@ -124,6 +124,7 @@
     } else {
         self.nearbyView.tableView.hidden = NO;
         self.nearbyView.unavailable.hidden = YES;
+        [self stopStatusBarUpdates];
     }
 
     self.connected = [self.sessionManager.connectedPeers count];
@@ -139,7 +140,7 @@
         self.nearbyView.title.text = @"FIND INGREDIENTS";
         self.participantsCTA.hidden = NO;
     }
-    
+        
 	[self.participantsView.tableView reloadData];
     [self.nearbyView.tableView reloadData];    
 }
@@ -210,7 +211,7 @@
 
 - (void) acceptInvitation:(id)sender
 {
-    [KGStatusBar dismiss];
+    [self stopStatusBarUpdates];
             
     [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceProximityStateDidChangeNotification object:nil];
@@ -228,26 +229,26 @@
 
 - (void)peer:(NSString *)peer didAcceptInvitation:(SessionManager *)sessionManager
 {
-    [KGStatusBar dismiss];
+    [self stopStatusBarUpdates];
     [self hideModal:nil];    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    NSLog(@"view will disappear");
-    [self.statusTimer invalidate];
+    [self stopStatusBarUpdates];
 }
 
 - (void)startStatusBarUpdates
 {
     NSArray *statuses = [NSArray arrayWithObjects:@"Looking for others..", @"Searching for ingredients..", @"Still looking..", @"Anyone around?", @"Hello? Anyone?", nil];
-    int test = arc4random() % [statuses count];
-    [KGStatusBar showStatusAndDismiss:[statuses objectAtIndex:test]];
+    [KGStatusBar showStatusAndDismiss:[statuses objectAtIndex:(arc4random() % [statuses count])]];
 }
 
 - (void)stopStatusBarUpdates
 {
+    [KGStatusBar dismiss];
     [self.statusTimer invalidate];
+    self.statusTimer = nil;
 }
 
 @end

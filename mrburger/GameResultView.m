@@ -21,15 +21,11 @@
         self.saveForLater = [[RoundedButton alloc] initWithText:@"Save for later" andX:((frame.size.width - 274) / 2) andY:(frame.size.height - 85)];
         self.saveForLater.hidden = YES;
         [self addSubview:self.saveForLater];
-        
-        NSLog(@"[GameViewController] Generating ingredients and users from burger");
-        
-        
+                
         UILabel *getYour = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(20, 80, 280, 60) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
         getYour.text = [@"Go get your free burger" uppercaseString];
         
         [self addSubview:getYour];
-        
         
         [self buildBurger];
         [self generatefaces];
@@ -108,33 +104,7 @@
 }
 
 - (void)animateBurger
-{
-//    int middleIndex = [self.burgerParts count] / 2;
-//    
-//    UIImageView *middleOne = [self.burgerParts objectAtIndex:middleIndex];
-//    CGRect goToFrame = middleOne.frame;
-//    
-//    float delay = 1;
-//    int topOffset = 0;
-//    int bottomOffset = 0;
-//    for (int i = 0; i < [self.burgerParts count]; i++) {
-//        UIImageView *imageView = [self.burgerParts objectAtIndex:i];
-//        Ingredient *ingredient = [self.burgerIngredients objectAtIndex:i];
-//        if(i <= middleIndex - 1) {
-//            NSLog(@"Kleiner dan middle index voor ingredient met naam %@", ingredient.name);
-//            [UIView animateWithDuration:0.3 delay:delay options:UIViewAnimationOptionCurveEaseOut animations:^{
-//                imageView.frame = CGRectMake(imageView.frame.origin.x, goToFrame.origin.y - topOffset, imageView.frame.size.width, imageView.frame.size.height);
-//            }completion:nil];
-//            topOffset += 5;
-//        } else {
-//            NSLog(@"Groter dan middle index voor ingredient met naam %@", ingredient.name);
-//            [UIView animateWithDuration:0.3 delay:delay options:UIViewAnimationOptionCurveEaseOut animations:^{
-//                imageView.frame = CGRectMake(imageView.frame.origin.x, goToFrame.origin.y + goToFrame.size.height + bottomOffset, imageView.frame.size.width, imageView.frame.size.height);
-//            }completion:nil];
-//            bottomOffset += 5;
-//        }
-//    }
-    
+{    
     [UIView animateWithDuration:.3 delay:1 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.burgerView.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height, self.burgerView.frame.size.width, self.burgerView.frame.size.height);
     }completion:^ (BOOL finished){
@@ -142,8 +112,8 @@
             [self generateCode];
         }
     }];
-    
 }
+
 - (void)generateCode
 {
     NSError* error = nil;
@@ -195,14 +165,5 @@
         NSLog(@"Error %@", errorMessage);
     }
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

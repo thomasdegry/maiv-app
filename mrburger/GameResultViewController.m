@@ -53,9 +53,7 @@
 }
 
 - (void)storeBurger:(id)sender
-{
-    NSLog(@"[GameResultViewController] Store burger");
-    
+{    
     NSData *burgerData = [self.burger burgerToNSData];
 
     [[NSUserDefaults standardUserDefaults] setObject:self.sharedCode forKey:@"QRCode"];
