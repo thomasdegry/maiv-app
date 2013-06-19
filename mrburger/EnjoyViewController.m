@@ -94,6 +94,7 @@
 
 - (void)dismissScreen:(id)sender
 {
+    [KGStatusBar dismiss];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
 }
 
