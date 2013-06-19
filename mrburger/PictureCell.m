@@ -41,7 +41,10 @@
 {
     _picturePath = picturePath;
     NSURL *url = [NSURL URLWithString:_picturePath];
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30];
+    
+    urlRequest.HTTPShouldHandleCookies = NO;
+    urlRequest.HTTPShouldUsePipelining = YES;
     
     (void)[[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
 }
