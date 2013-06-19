@@ -12,4 +12,6 @@
 
 @interface NearbyCell : PictureCell
 
+- (void)showIngredientThumbnail:(NSString *)ingredientID;
+
 @end

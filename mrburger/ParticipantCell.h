@@ -12,4 +12,6 @@
 
 @interface ParticipantCell : PictureCell
 
+- (void)showIngredientThumbnail:(NSString *)ingredientID;
+
 @end

@@ -49,6 +49,9 @@
     [self.tableView setTableFooterView:view];
     //self.tableView.backgroundColor = [UIColor clearColor];
     
+    NSLog(@"reloading data for testing");
+    [self.tableView reloadData];
+    
    }
 
 
@@ -103,7 +106,7 @@
     cell.detailTextLabel.text = user.name;
     cell.picturePath = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=104&height=104", user.id];
     cell.imageView.image = [UIImage imageNamed:@"happy_face"];
-    
+        
     UIView *myView = [[UIView alloc] init];
     if (indexPath.row % 2) {
         myView.backgroundColor = [UIColor colorWithRed:0.99f green:0.41f blue:0.14f alpha:0.90f];
@@ -112,7 +115,11 @@
     }
     
     cell.backgroundView = myView;
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
+    [cell showIngredientThumbnail:user.ingredient.id];
+    
 	return cell;
 }
 

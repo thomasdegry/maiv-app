@@ -116,6 +116,8 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [KGStatusBar showWithStatus:@"Error connecting…"];
         
+        NSLog(@"%@", [error localizedDescription]);
+        
         InternetModalView *internetModal = [[InternetModalView alloc] initModal];
         [internetModal.cancelBtn addTarget:self action:@selector(endGame:) forControlEvents:UIControlEventTouchUpInside];
         

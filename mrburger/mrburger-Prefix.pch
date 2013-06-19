@@ -21,6 +21,6 @@
     #import "RoundedView.h"
     #import "CircularPicture.h"
 
-    #define kAPI @"http://student.howest.be/thomas.degry/20122013/MAIV/FOOD/api"
+    #define kAPI @"http://ksjkuurne.be/FOOD/api"
 
 #endif

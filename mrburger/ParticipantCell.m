@@ -20,15 +20,26 @@
         self.detailTextLabel.textColor = [UIColor beige];
         self.detailTextLabel.font = [UIFont fontWithName:@"Traveler-Medium" size:FontTravelerSizeSmall];
         self.detailTextLabel.backgroundColor = [UIColor clearColor];
-        
-        UIView *ingredientView = [[UIView alloc] initWithFrame:CGRectMake(self.frame.size.width - 95, 0, 95, 64)];
-        
-        ingredientView.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:.6f];
-        
-        [self.contentView addSubview:ingredientView];
-
     }
     return self;
+}
+
+- (void)showIngredientThumbnail:(NSString *)ingredientID
+{
+    [[self.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    UIView *ingredientView = [[UIView alloc] initWithFrame:CGRectMake(216, 0, 74, 64)];
+    
+    ingredientView.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:.1f];
+        
+    UIImageView *ingredient = [[UIImageView alloc] initWithImage:[UIImage imageNamed:ingredientID]];
+    
+    ingredient.contentMode = UIViewContentModeScaleAspectFit;
+    ingredient.frame = CGRectMake(12, 25, 50, 17);
+    [ingredientView addSubview:ingredient];
+    
+    [self.contentView addSubview:ingredientView];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

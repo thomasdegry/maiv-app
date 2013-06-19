@@ -37,8 +37,8 @@
         
         self.burgerID = [codeInformation objectAtIndex:0];
         self.userID = [codeInformation objectAtIndex:1];
-
-        [self setPaidOnServer];
+        
+        [self delete];
         
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"QRCode"];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"burger"];
@@ -48,30 +48,10 @@
     return self;
 }
 
-- (void)setPaidOnServer
-{
-    [KGStatusBar showWithStatus: @"Validating your order"];
-    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kAPI]];
-    NSMutableURLRequest *request = [httpClient requestWithMethod:@"GET"
-                                                            path:[NSString stringWithFormat:@"/creations/pay/%@/%@", self.userID, self.burgerID]
-                                                      parameters:nil];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    [httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        // Print the response body in text
-        NSLog(@"Response: %@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
-        [KGStatusBar dismiss];
-        [self delete];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-    [operation start];
-}
-
--(BOOL)delete {
+- (void)delete {
     NSString *path = [self mrburgerArchivePath];
     NSLog(@"[GameResultViewControlller] Save to path %@", path);
-    return [NSKeyedArchiver archiveRootObject:[[NSMutableArray alloc] init] toFile:path];
+    [NSKeyedArchiver archiveRootObject:[[NSMutableArray alloc] init] toFile:path];
 }
 
 
