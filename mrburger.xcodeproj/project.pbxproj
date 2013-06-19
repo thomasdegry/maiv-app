@@ -456,6 +456,8 @@
 		EA39C1161768754600EA8EC6 /* happy_face.png in Resources */ = {isa = PBXBuildFile; fileRef = EA39C1141768754600EA8EC6 /* happy_face.png */; };
 		EA39C1171768754600EA8EC6 /* happy_face@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA39C1151768754600EA8EC6 /* happy_face@2x.png */; };
 		EA59B62D177207D0002FDA97 /* InternetModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59B62C177207D0002FDA97 /* InternetModalView.m */; };
+		EA59B630177216A4002FDA97 /* plus-button.png in Resources */ = {isa = PBXBuildFile; fileRef = EA59B62E177216A4002FDA97 /* plus-button.png */; };
+		EA59B631177216A4002FDA97 /* plus-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA59B62F177216A4002FDA97 /* plus-button@2x.png */; };
 		EAB40D121764A749007A4106 /* ParticipantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB40D111764A749007A4106 /* ParticipantCell.m */; };
 		EAB40D171764B520007A4106 /* ZebraTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB40D161764B520007A4106 /* ZebraTableViewController.m */; };
 		EAB40D1A1764DE07007A4106 /* NearbyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB40D191764DE07007A4106 /* NearbyCell.m */; };
@@ -1216,6 +1218,8 @@
 		EA39C1151768754600EA8EC6 /* happy_face@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "happy_face@2x.png"; sourceTree = "<group>"; };
 		EA59B62B177207D0002FDA97 /* InternetModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternetModalView.h; sourceTree = "<group>"; };
 		EA59B62C177207D0002FDA97 /* InternetModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternetModalView.m; sourceTree = "<group>"; };
+		EA59B62E177216A4002FDA97 /* plus-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus-button.png"; sourceTree = "<group>"; };
+		EA59B62F177216A4002FDA97 /* plus-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus-button@2x.png"; sourceTree = "<group>"; };
 		EAB40D101764A749007A4106 /* ParticipantCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantCell.h; sourceTree = "<group>"; };
 		EAB40D111764A749007A4106 /* ParticipantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantCell.m; sourceTree = "<group>"; };
 		EAB40D151764B520007A4106 /* ZebraTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZebraTableViewController.h; sourceTree = "<group>"; };
@@ -1485,6 +1489,8 @@
 		4D4B9C641761D890003673A0 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				EA59B62E177216A4002FDA97 /* plus-button.png */,
+				EA59B62F177216A4002FDA97 /* plus-button@2x.png */,
 				4D3835D31771A6E3008C4C14 /* hamburger.mp3 */,
 				EA39C1141768754600EA8EC6 /* happy_face.png */,
 				EA39C1151768754600EA8EC6 /* happy_face@2x.png */,
@@ -2972,6 +2978,8 @@
 				4D367F401770B93400F2360C /* 7.png in Resources */,
 				4D367F411770B93400F2360C /* 7@2x.png in Resources */,
 				4D3835D41771A6E3008C4C14 /* hamburger.mp3 in Resources */,
+				EA59B630177216A4002FDA97 /* plus-button.png in Resources */,
+				EA59B631177216A4002FDA97 /* plus-button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

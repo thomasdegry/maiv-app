@@ -20,6 +20,17 @@
         self.detailTextLabel.textColor = [UIColor beige];
         self.detailTextLabel.font = [UIFont fontWithName:@"Traveler-Medium" size:FontTravelerSizeSmall];
         self.detailTextLabel.backgroundColor = [UIColor clearColor];
+        
+        UIView *ingredientView = [[UIView alloc] initWithFrame:CGRectMake(self.frame.size.width - 95, 0, 95, 64)];
+        
+        ingredientView.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:.6f];
+        
+        UIImageView *plus = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"plus-button"]];
+        plus.frame = CGRectMake(-8, 25, 16, 16);
+        
+        [ingredientView addSubview:plus];
+        
+        [self.contentView addSubview:ingredientView];
     }
     return self;
 }
