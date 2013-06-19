@@ -214,7 +214,7 @@ static UIAccelerationValue rollingX = 0;
         } completion:nil];
                 
     } else {
-        self.locked = NO;
+        self.isLocked = NO;
         [self startGyroLogging];
         
         [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
