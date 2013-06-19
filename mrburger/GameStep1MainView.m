@@ -6,6 +6,7 @@
 @synthesize scrollImages = _scrollImages;
 @synthesize motMan = _motMan;
 @synthesize isScrolling = _isScrolling;
+@synthesize isLocked = _isLocked;
 
 #define kFilteringFactor 0.1
 
@@ -136,16 +137,18 @@ static UIAccelerationValue rollingX = 0;
 
 - (void)startGyroLogging
 {
-    if (!self.motMan) {
-        self.motMan = [[CMMotionManager alloc] init];
-        self.motMan.accelerometerUpdateInterval = 1/4;
-    }
-    
-    if (self.motMan.accelerometerAvailable) {
-        self.isScrolling = YES;
-        [self.motMan startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
-            [self moveByMotion:accelerometerData andExtraMovement:0];
-        }];
+    if (!self.isLocked) {
+        if (!self.motMan) {
+            self.motMan = [[CMMotionManager alloc] init];
+            self.motMan.accelerometerUpdateInterval = 1/4;
+        }
+        
+        if (self.motMan.accelerometerAvailable) {
+            self.isScrolling = YES;
+            [self.motMan startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
+                [self moveByMotion:accelerometerData andExtraMovement:0];
+            }];
+        }
     }
 }
 
@@ -190,6 +193,7 @@ static UIAccelerationValue rollingX = 0;
 {
     if(self.isScrolling) {
         self.isScrolling = NO;
+        self.isLocked = YES;
         [self stopMotionUpdates];
         
         CGSize textSize = [[self.label text] sizeWithFont:[self.label font] forWidth:self.label.bounds.size.width lineBreakMode:NSLineBreakByWordWrapping];
@@ -210,6 +214,7 @@ static UIAccelerationValue rollingX = 0;
         } completion:nil];
                 
     } else {
+        self.locked = NO;
         [self startGyroLogging];
         
         [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{

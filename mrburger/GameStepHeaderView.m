@@ -28,8 +28,13 @@
         self.btnInfo = [[InfoButton alloc] initWithX:10 andY:10];
         [self addSubview:self.btnInfo];
         
+        [self.btnInfo becomeFirstResponder];
+        
         self.btnClose = [[CloseButton alloc] initWithX:280 andY:10];
         [self addSubview:self.btnClose];
+        
+        [self.btnClose becomeFirstResponder];
+
     }
     return self;
 }

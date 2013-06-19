@@ -62,15 +62,12 @@
         [self.mainView.btnStart addTarget:self action:@selector(startGame:) forControlEvents:UIControlEventTouchUpInside];
         self.modal = [[GameStep1InfoView alloc] initModal];
         self.modal.delegate = self;
-        [self.mainView stopMotionUpdates];
 
         self.presentingView = [[ModalPresentingView alloc] initWithMain:self.mainView andModal:self.modal];
 
         //Listen to event on touch on ingredient
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopScrollView:) name:@"SLIDE_TOUCH" object:nil];
         
-        [self performSelector:@selector(showModal:) withObject:nil afterDelay:.6];
-
     }
     return self;
 }
@@ -91,42 +88,39 @@
     [KGStatusBar showWithStatus:@"Getting your information"];
     
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:kAPI]];
-    NSMutableURLRequest *request = [httpClient requestWithMethod:@"GET"
-                                                            path:[NSString stringWithFormat:@"users/%@/hasfree", self.user.id]
-                                                      parameters:nil];
+    NSString *path = [NSString stringWithFormat:@"users/%@/hasfree", self.user.id];
+    
+    NSMutableURLRequest *request = [httpClient requestWithMethod:@"GET" path:path parameters:nil];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+
     [httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
+
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *response = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSLog(@"Response: %@", response);
+
         [KGStatusBar dismiss];
         
         self.hasFree = YES;
         
-        if([response isEqualToString:@"false"]) {
+        if ([response isEqualToString:@"false"]) {
             self.hasFree = NO;
             
             PayModalView *payModal = [[PayModalView alloc] initModal];
-            [payModal.confirmBtn addTarget:self action:@selector(hideModal:) forControlEvents:UIControlEventTouchUpInside];
+            [payModal.confirmBtn addTarget:self action:@selector(hidePayModal:) forControlEvents:UIControlEventTouchUpInside];
             [payModal.cancel addTarget:self action:@selector(endGame:) forControlEvents:UIControlEventTouchUpInside];
-            
-            if (self.isShowingModal) {
-                [self hideModal:nil];
-                self.modal = payModal;
-                [self showModal:nil];
-            } else {
-                self.modal = payModal;
-                [self showModal:nil];
-            }
+
+            self.modal = payModal;
         }
         
+        [self performSelector:@selector(showModal:) withObject:nil afterDelay:0.6];
+
         [[NSUserDefaults standardUserDefaults] setObject:response forKey:@"hasfree"];
         [[NSUserDefaults standardUserDefaults] synchronize];
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        [KGStatusBar showErrorWithStatus:@"Error connecting..?"];
+        [KGStatusBar showErrorWithStatus:@"Error connecting…"];
     }];
+    
     [operation start];
 }
 
@@ -169,19 +163,19 @@
 {
     [self.mainView startGyroLogging];
     [super hideModal:nil];
+}
+
+- (void)hidePayModal:(id)sender
+{
+    SystemSoundID soundID;
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"hamburger" ofType:@"mp3"];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    AudioServicesCreateSystemSoundID ((__bridge CFURLRef)url, &soundID);
+    AudioServicesPlaySystemSound(soundID);
     
-    if (self.hasPlayed == NO && self.hasFree == NO) {
-        SystemSoundID soundID;
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"hamburger" ofType:@"mp3"];
-        NSURL *url = [NSURL fileURLWithPath:path];
-        AudioServicesCreateSystemSoundID ((__bridge CFURLRef)url, &soundID);
-        AudioServicesPlaySystemSound(soundID);
-        self.hasPlayed = YES;
-    }
+    [self performSelector:@selector(setInstructions) withObject:nil afterDelay:.6];
     
-    if (self.hasFree == NO) {
-        [self performSelector:@selector(setInstructions) withObject:nil afterDelay:.6];
-    }
+    [self hideModal:sender];
 }
 
 - (void)setInstructions

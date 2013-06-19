@@ -52,6 +52,8 @@
     [[self subviews] makeObjectsPerformSelector: @selector(removeFromSuperview)];
     _modal = modal;
     
+    _modal.hidden = YES;
+    
     [self addSubview:self.mainView];
     [self addSubview:self.modal];
 }

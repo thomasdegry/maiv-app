@@ -29,6 +29,7 @@
 @property (strong, nonatomic) UILabel *tapInstructions;
 
 @property (assign) BOOL isScrolling;
+@property (assign) BOOL isLocked;
 
 - (id)initWithIngredients:(NSMutableArray *)ingredients andFrame:(CGRect)frame;
 - (void)stopMotionUpdates;
