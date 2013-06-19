@@ -99,12 +99,8 @@
         NSString *response = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
 
         [KGStatusBar dismiss];
-        
-        self.hasFree = YES;
-        
+                
         if ([response isEqualToString:@"false"]) {
-            self.hasFree = NO;
-            
             PayModalView *payModal = [[PayModalView alloc] initModal];
             [payModal.confirmBtn addTarget:self action:@selector(hidePayModal:) forControlEvents:UIControlEventTouchUpInside];
             [payModal.cancel addTarget:self action:@selector(endGame:) forControlEvents:UIControlEventTouchUpInside];
@@ -118,7 +114,14 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [KGStatusBar showErrorWithStatus:@"Error connecting…"];
+        [KGStatusBar showWithStatus:@"Error connecting…"];
+        
+        InternetModalView *internetModal = [[InternetModalView alloc] initModal];
+        [internetModal.cancelBtn addTarget:self action:@selector(endGame:) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.modal = internetModal;
+        
+        [self performSelector:@selector(showModal:) withObject:nil afterDelay:0.6];
     }];
     
     [operation start];
@@ -149,6 +152,7 @@
 
 - (void)endGame:(id)sender
 {
+    [KGStatusBar dismiss];
     GameViewController *gameVC = (GameViewController *)self.navigationController;
     [gameVC closeButtonClicked:nil];
 }

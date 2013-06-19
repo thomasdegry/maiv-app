@@ -16,6 +16,7 @@
 #import "GameStep1MainView.h"
 #import "GameStep1InfoView.h"
 #import "PayModalView.h"
+#import "InternetModalView.h"
 
 #import "ScrollImage.h"
 #import "Ingredient.h"
@@ -25,8 +26,6 @@
 @property (strong, nonatomic) GameStep1MainView *mainView;
 @property (strong, nonatomic) Ingredient *currentIngredient;
 @property (strong, nonatomic) User *user;
-@property (assign) BOOL hasFree;
-@property (assign) BOOL hasPlayed;
 
 - (id)initWithUser:(User *)user;
 

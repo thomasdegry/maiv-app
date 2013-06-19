@@ -455,6 +455,7 @@
 		EA25684D1769E44200A121D3 /* CircularPicture.m in Sources */ = {isa = PBXBuildFile; fileRef = EA25684C1769E44200A121D3 /* CircularPicture.m */; };
 		EA39C1161768754600EA8EC6 /* happy_face.png in Resources */ = {isa = PBXBuildFile; fileRef = EA39C1141768754600EA8EC6 /* happy_face.png */; };
 		EA39C1171768754600EA8EC6 /* happy_face@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA39C1151768754600EA8EC6 /* happy_face@2x.png */; };
+		EA59B62D177207D0002FDA97 /* InternetModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59B62C177207D0002FDA97 /* InternetModalView.m */; };
 		EAB40D121764A749007A4106 /* ParticipantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB40D111764A749007A4106 /* ParticipantCell.m */; };
 		EAB40D171764B520007A4106 /* ZebraTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB40D161764B520007A4106 /* ZebraTableViewController.m */; };
 		EAB40D1A1764DE07007A4106 /* NearbyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB40D191764DE07007A4106 /* NearbyCell.m */; };
@@ -1213,6 +1214,8 @@
 		EA25684C1769E44200A121D3 /* CircularPicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularPicture.m; sourceTree = "<group>"; };
 		EA39C1141768754600EA8EC6 /* happy_face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = happy_face.png; sourceTree = "<group>"; };
 		EA39C1151768754600EA8EC6 /* happy_face@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "happy_face@2x.png"; sourceTree = "<group>"; };
+		EA59B62B177207D0002FDA97 /* InternetModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternetModalView.h; sourceTree = "<group>"; };
+		EA59B62C177207D0002FDA97 /* InternetModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternetModalView.m; sourceTree = "<group>"; };
 		EAB40D101764A749007A4106 /* ParticipantCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantCell.h; sourceTree = "<group>"; };
 		EAB40D111764A749007A4106 /* ParticipantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantCell.m; sourceTree = "<group>"; };
 		EAB40D151764B520007A4106 /* ZebraTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZebraTableViewController.h; sourceTree = "<group>"; };
@@ -2666,6 +2669,8 @@
 				4D4B9D941764F538003673A0 /* Scrollimage.m */,
 				4D367F421770D8ED00F2360C /* PayModalView.h */,
 				4D367F431770D8ED00F2360C /* PayModalView.m */,
+				EA59B62B177207D0002FDA97 /* InternetModalView.h */,
+				EA59B62C177207D0002FDA97 /* InternetModalView.m */,
 			);
 			name = "Step 1";
 			sourceTree = "<group>";
@@ -3260,6 +3265,7 @@
 				4D05E961176B0A5B00AD0585 /* EnjoyView.m in Sources */,
 				4D367E85176F984F00F2360C /* Burger.m in Sources */,
 				4D367F441770D8EE00F2360C /* PayModalView.m in Sources */,
+				EA59B62D177207D0002FDA97 /* InternetModalView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
