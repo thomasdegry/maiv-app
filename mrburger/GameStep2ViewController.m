@@ -105,6 +105,8 @@
 
 - (void)save:(id)sender
 {
+    [self.btnSave removeTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
+
     [self stopStatusBarUpdates];
     GameViewController *gameVC = (GameViewController *)self.navigationController;
     [gameVC postBurgerToServer];

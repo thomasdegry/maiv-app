@@ -42,7 +42,7 @@ static NSTimeInterval const kSleepTimeout = 3.0;
         [defaultCenter addObserver:self
                           selector:@selector(teardownSession)
                               name:UIApplicationDidEnterBackgroundNotification
-                            object:nil];
+                            object:nil];        
     }
     
     return self;
@@ -77,34 +77,34 @@ static NSTimeInterval const kSleepTimeout = 3.0;
     
     // Set the timer on a random interval between 2 and 10
     // to decrease the chance of clashing connections
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:((arc4random() % 8) + 2) target:self selector:@selector(keepAlive) userInfo:nil repeats:YES];
-    [self.timer fire];
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:((arc4random() % 8) + 2) target:self selector:@selector(keepAlive) userInfo:nil repeats:YES];
+//    [self.timer fire];
     
 }
 
 - (void)teardownSession
 {
-    NSLog(@"Tear down session");
+    [self stopSearching];
     self.allowsInvitation = NO;
     [self.session disconnectFromAllPeers];
     self.session.available = NO;
     self.session.delegate = nil;
-    [self stopSearching];
+    [self.session setDataReceiveHandler:nil withContext:nil];
+    self.session = nil;
     [self.availablePeers removeAllObjects];
     [self.connectedPeers removeAllObjects];
 }
 
 - (void) keepAlive
 {
-    NSLog(@"sending keep alive");
     [self.session sendDataToAllPeers:nil withDataMode:GKSendDataUnreliable error:nil];
     //    [self listAllPeers];
 }
 
 - (void)stopSearching
 {
-    [self.timer invalidate];
-    self.timer = nil;
+//    [self.timer invalidate];
+//    self.timer = nil;
 }
 
 #pragma mark - Memory management
