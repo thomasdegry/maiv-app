@@ -107,10 +107,9 @@
     }
     cell.backgroundView = myView;
     
-    cell.selectedBackgroundView = [[UIView alloc] init];
-    cell.selectedBackgroundView.backgroundColor = [UIColor blueDarkened];
-
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    UIView *bgColorView = [[UIView alloc] init];
+    [bgColorView setBackgroundColor:[UIColor blueDarkened]];
+    [cell setSelectedBackgroundView:bgColorView];
     
     [cell showIngredientThumbnail:user.ingredient.id];
     
