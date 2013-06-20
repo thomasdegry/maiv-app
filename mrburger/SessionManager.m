@@ -126,7 +126,7 @@ static NSTimeInterval const kSleepTimeout = 3.0;
 		case GKPeerStateAvailable:
         {
 			NSLog(@"didChangeState: peer %@ available", [session displayNameForPeer:peer]);
-            
+                        
             [NSThread sleepForTimeInterval:kSleepTimeout];
             [session connectToPeer:peer withTimeout:kConnectionTimeout];
 			break;
@@ -226,6 +226,8 @@ static NSTimeInterval const kSleepTimeout = 3.0;
                 if (self.allowsInvitation) {
                     [self.connectingPeers addObject:peer];
                     [self.delegate didReceiveInvitation:self fromPeer:peer];
+                } else {
+                    [self declineInvitationFrom:peer];
                 }
             }
                 break;
@@ -236,6 +238,9 @@ static NSTimeInterval const kSleepTimeout = 3.0;
                 [self.connectingPeers removeObject:peer];
                 [self.connectedPeers addObject:peer];
                 [self.delegate peer:peer didAcceptInvitation:self];
+                
+                [self sendPacket:nil ofType:PacketTypeJoining toPeers:[self.session peersWithConnectionState:GKPeerStateConnected]];
+                
                 [self listAllPeers];
             }
                 break;
@@ -321,6 +326,8 @@ static NSTimeInterval const kSleepTimeout = 3.0;
     NSLog(@"sending fake invite to peer %@", peer);
     [KGStatusBar showWithStatus:@"Sending an invitation"];
     
+    self.session.available = NO;
+    
     [self.connectingPeers addObject:peer];
     
     [self sendPacket:[self.session.peerID dataUsingEncoding:NSUTF8StringEncoding] ofType:PacketTypeInvite toPeers:[NSArray arrayWithObject:peer]];
@@ -336,7 +343,6 @@ static NSTimeInterval const kSleepTimeout = 3.0;
 - (void)acceptInvitationFrom:(NSString *)peer
 {
     if (self.allowsInvitation) {
-        NSLog(@"!!! - Accepting connection from peer");
         self.session.available = NO;
         
         [self.connectedPeers addObject:peer];
@@ -357,7 +363,7 @@ static NSTimeInterval const kSleepTimeout = 3.0;
 - (void)declineInvitationFrom:(NSString *)peer
 {
     NSLog(@"!!! - Declining invitation from %@", peer);
-    
+    self.session.available = NO;
     [self sendPacket:[self.session.peerID dataUsingEncoding:NSUTF8StringEncoding] ofType:PacketTypeDecline toPeers:[NSArray arrayWithObject:peer]];
 }
 
