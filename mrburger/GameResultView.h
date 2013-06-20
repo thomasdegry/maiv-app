@@ -26,6 +26,7 @@
 @property (strong, nonatomic) UIView *burgerView;
 @property (strong, nonatomic) UIImage *qr;
 @property (strong, nonatomic) RoundedButton *saveForLater;
+@property (strong, nonatomic) UIView *container;
 
 - (id)initWithFrame:(CGRect)frame andBurger:(Burger *)burger andSharedCode:(NSString *)sharedCode;
 
