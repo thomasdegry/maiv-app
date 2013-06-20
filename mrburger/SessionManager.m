@@ -273,12 +273,24 @@ static NSTimeInterval const kSleepTimeout = 3.0;
                     [self.connectedPeers addObject:peer];
                 }
                 
+                [self listAllPeers];
+                
             }
                 break;
                 
             case PacketTypeDisconnect:
             {
                 NSLog(@"disconnect");
+                
+                [self.connectedPeers removeObject:peer];
+                [self.connectingPeers removeObject:peer];
+            
+                if (![self.availablePeers containsObject:peer]) {
+                    [self.availablePeers addObject:peer];
+                }
+                
+                [self listAllPeers];
+                
                 break;
             }
                 
@@ -346,11 +358,6 @@ static NSTimeInterval const kSleepTimeout = 3.0;
         [self sendPacket:[peer dataUsingEncoding:NSUTF8StringEncoding] ofType:PacketTypeJoining toPeers:self.availablePeers];
         
         self.allowsInvitation = NO;
-        
-        //    NSError *error = nil;
-        //    if (![self.session acceptConnectionFromPeer:peer error:&error]) {
-        //        NSLog(@"Error while accepting invitation: %@", [error localizedDescription]);
-        //    }
     }
 }
 
@@ -359,6 +366,18 @@ static NSTimeInterval const kSleepTimeout = 3.0;
     NSLog(@"!!! - Declining invitation from %@", peer);
     
     [self sendPacket:[self.session.peerID dataUsingEncoding:NSUTF8StringEncoding] ofType:PacketTypeDecline toPeers:[NSArray arrayWithObject:peer]];
+}
+
+- (void)leavePeer:(NSString *)peer
+{
+    NSLog(@"receiving peers");
+    [self sendPacket:[self.session.peerID dataUsingEncoding:NSUTF8StringEncoding] ofType:PacketTypeDisconnect toPeers:[NSArray arrayWithObject:peer]];
+    
+    [self.connectingPeers removeObject:peer];
+    [self.connectedPeers removeObject:peer];
+    
+    self.session.available = YES;
+    [self listAllPeers];
 }
 
 - (void)sendBurger:(NSString *)burger

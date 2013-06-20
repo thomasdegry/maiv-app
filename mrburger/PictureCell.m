@@ -67,4 +67,9 @@
 {
 }
 
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    NSLog(@"tableviewcell touch");
+//}
+
 @end
