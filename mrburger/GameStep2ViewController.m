@@ -163,8 +163,8 @@
         UIDevice *currentDevice = [UIDevice currentDevice];
         if (currentDevice.proximityState && currentDevice.proximityMonitoringEnabled) {
             [self acceptInvitation:nil];
+            [currentDevice setProximityMonitoringEnabled:NO];
         }
-        [currentDevice setProximityMonitoringEnabled:NO];
     }];
     
     User *tmpuser =  [self.sessionManager userForPeer:self.currentPeerID];
@@ -199,10 +199,10 @@
 - (void)declineInvitation:(id)sender
 {
     if (self.currentPeerID) {
-        [KGStatusBar showWithStatus:@"Declining invitation"];
         [self.sessionManager declineInvitationFrom:self.currentPeerID];
         [self hideModal:nil];
         [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+        self.currentPeerID = nil;
     }
 }
 
@@ -235,6 +235,12 @@
 {
     [self stopStatusBarUpdates];
     [self hideModal:nil];    
+}
+
+- (void)peer:(NSString *)peer didDeclineInvitation:(SessionManager *)sessionManager
+{
+    [self stopStatusBarUpdates];
+    [self hideModal:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

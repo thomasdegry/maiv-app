@@ -247,6 +247,10 @@ static NSTimeInterval const kSleepTimeout = 3.0;
                 
             case PacketTypeDecline:
                 NSLog(@"decline invite");
+                [self.connectingPeers removeObject:peer];
+                [self.connectedPeers removeObject:peer];
+                [self.delegate peer:peer didDeclineInvitation:self];
+                [self listAllPeers];
                 break;
                 
             case PacketTypeJoining:
@@ -354,7 +358,7 @@ static NSTimeInterval const kSleepTimeout = 3.0;
 {
     NSLog(@"!!! - Declining invitation from %@", peer);
     
-    // @todo Send a packet with a decline-message
+    [self sendPacket:[self.session.peerID dataUsingEncoding:NSUTF8StringEncoding] ofType:PacketTypeDecline toPeers:[NSArray arrayWithObject:peer]];
 }
 
 - (void)sendBurger:(NSString *)burger

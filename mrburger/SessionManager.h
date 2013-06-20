@@ -32,6 +32,7 @@ typedef enum {
 
 - (void)didReceiveInvitation:(SessionManager *)sessionManager fromPeer:(NSString *)peerID;
 - (void)peer:(NSString *)peer didAcceptInvitation:(SessionManager *)sessionManager;
+- (void)peer:(NSString *)peer didDeclineInvitation:(SessionManager *)sessionManager;
 - (void)invitationDidFail:(SessionManager *)sessionManager fromPeer:(NSString *)peerID;
 
 @end
