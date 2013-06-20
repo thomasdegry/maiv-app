@@ -26,16 +26,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor clearColor];
-    
-//    UIView *footer = [[UIView alloc] initWithFrame:CGRectZero];
-//    footer.backgroundColor = [UIColor clearColor];
-//    [self.tableView setTableFooterView:footer];
-//    
-//    self.tableView.backgroundColor = [UIColor whiteColor];
-//
-//    self.tableView.separatorColor = [UIColor clearColor];
-//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)didReceiveMemoryWarning

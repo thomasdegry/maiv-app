@@ -77,13 +77,15 @@
     [self.participantsView.tableView setDelegate:self.participantsTVC];
     self.participantsView.tableView.hidden = NO;
     self.participantsView.unavailable.hidden = YES;
+    self.participantsView.userInteractionEnabled = NO;
     
-    self.participantsCTA = [[UILabel alloc] initWithFontTravelerAndFrame:CGRectMake(15, 182, 290, 44) andSize:FontTravelerSizeSmall andColor:[UIColor colorWithRed:0.678 green:0.675 blue:0.624 alpha:1.000]];
+    self.participantsCTA = [[UILabel alloc] initWithFontTravelerAndFrame:CGRectMake(15, 172, 290, 22) andSize:FontTravelerSizeSmall andColor:[UIColor colorWithRed:0.678 green:0.675 blue:0.624 alpha:1.000]];
+    self.participantsCTA.backgroundColor = [UIColor clearColor];
     self.participantsCTA.text = @"Find one to four other ingredients";
     self.participantsCTA.hidden = NO;
     [self.presentingView.mainView addSubview:self.participantsCTA];
     
-    self.nearbyView = [[TitledTableAlternate alloc] initWithFrame:CGRectMake(15, 260, 290, 230) andTitle:@"Find ingredients"];
+    self.nearbyView = [[TitledTableAlternate alloc] initWithFrame:CGRectMake(15, 200, 290, 230) andTitle:@"Find ingredients"];
 	[self.mainView addSubview:self.nearbyView];
     [self.nearbyView.tableView setDataSource:self.nearbyTVC];
     [self.nearbyView.tableView setDelegate:self.nearbyTVC];
@@ -136,11 +138,13 @@
         self.participantsCTA.hidden = YES;
     } else {
         self.btnSave.hidden = YES;
-        self.nearbyView.frame = CGRectMake(15, 260, 290, 130);
+        self.nearbyView.frame = CGRectMake(15, 200, 290, 130);
         self.nearbyView.title.text = @"FIND INGREDIENTS";
         self.participantsCTA.hidden = NO;
     }
-        
+    
+    self.participantsView.tableView.frame = CGRectMake(0, 40, self.participantsView.tableView.frame.size.width, self.connected * 64);
+    
 	[self.participantsView.tableView reloadData];
     [self.nearbyView.tableView reloadData];    
 }
