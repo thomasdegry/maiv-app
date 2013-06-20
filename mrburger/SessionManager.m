@@ -162,6 +162,9 @@ static NSTimeInterval const kSleepTimeout = 3.0;
 		case GKPeerStateDisconnected:
         {
 			NSLog(@"didChangeState: peer %@ disconnected", [session displayNameForPeer:peer]);
+            [self.connectedPeers removeObject:peer];
+            [self.connectingPeers removeObject:peer];
+            [self.availablePeers removeObject:peer];
 			break;
         }
 			
