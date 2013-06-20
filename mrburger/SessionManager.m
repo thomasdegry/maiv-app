@@ -11,14 +11,16 @@
 @implementation SessionManager
 
 @synthesize session = _session;
+@synthesize timer = _timer;
 @synthesize delegate = _delegate;
 @synthesize availablePeers = _availablePeers;
 @synthesize connectedPeers = _connectedPeers;
+@synthesize allowsInvitation = _allowsInvitation;
 
 // Non-global constants
 static NSTimeInterval const kConnectionTimeout = 3600.0;
 static NSTimeInterval const kDisconnectTimeout = 3600.0;
-static NSTimeInterval const kSleepTimeout = 5.0;
+static NSTimeInterval const kSleepTimeout = 3.0;
 
 #pragma mark - GKSession setup and teardown
 
@@ -71,9 +73,11 @@ static NSTimeInterval const kSleepTimeout = 5.0;
     self.connectedPeers = [NSMutableArray arrayWithObject:self.session.peerID];
     self.connectingPeers = [NSMutableArray array];
     
-    // Set the timer on a random interval between 2 and 6
+    self.allowsInvitation = YES;
+    
+    // Set the timer on a random interval between 2 and 10
     // to decrease the chance of clashing connections
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:((arc4random() % 4) + 2) target:self selector:@selector(keepAlive) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:((arc4random() % 8) + 2) target:self selector:@selector(keepAlive) userInfo:nil repeats:YES];
     [self.timer fire];
     
 }
@@ -81,6 +85,7 @@ static NSTimeInterval const kSleepTimeout = 5.0;
 - (void)teardownSession
 {
     NSLog(@"Tear down session");
+    self.allowsInvitation = NO;
     [self.session disconnectFromAllPeers];
     self.session.available = NO;
     self.session.delegate = nil;
@@ -120,12 +125,6 @@ static NSTimeInterval const kSleepTimeout = 5.0;
     
     // self.availablePeers == connected devices!
     NSLog(@"Available peers count: %i", [self.availablePeers count]);
-    //
-    //    NSLog(@">>> GKPeerStateAvailable count: %i", [[self.session peersWithConnectionState:GKPeerStateAvailable] count]);
-    //    NSLog(@">>> GKPeerStateUnavailable count: %i", [[self.session peersWithConnectionState:GKPeerStateUnavailable] count]);
-    //    NSLog(@">>> GKPeerStateConnected count: %i", [[self.session peersWithConnectionState:GKPeerStateConnected] count]);
-    //    NSLog(@">>> GKPeerStateConnecting count: %i", [[self.session peersWithConnectionState:GKPeerStateConnecting] count]);
-    //    NSLog(@">>> GKPeerStateDisconnected count: %i", [[self.session peersWithConnectionState:GKPeerStateDisconnected] count]);
     
     [self.delegate peerListDidChange:self];
 }
@@ -195,6 +194,8 @@ static NSTimeInterval const kSleepTimeout = 5.0;
     //	NSLog(@"connectionWithPeerFailed: peer: %@, error: %@", [session displayNameForPeer:peer], error co);
     
     if ([error code] != 30501 && ![self.connectedPeers containsObject:peer]) {
+//        [NSThread sleepForTimeInterval:kSleepTimeout];
+        NSLog(@"will retry connection");
         [session connectToPeer:peer withTimeout:kConnectionTimeout];
     }
     
@@ -227,15 +228,15 @@ static NSTimeInterval const kSleepTimeout = 5.0;
         switch (header) {
             case PacketTypeInvite:
             {
-                NSLog(@"received invite");
-                [self.connectingPeers addObject:peer];
-                [self.delegate didReceiveInvitation:self fromPeer:peer];
+                if (self.allowsInvitation) {
+                    [self.connectingPeers addObject:peer];
+                    [self.delegate didReceiveInvitation:self fromPeer:peer];
+                }
             }
                 break;
                 
             case PacketTypeAccept:
             {
-                NSLog(@"accept invite");
                 [self.availablePeers removeObject:peer];
                 [self.connectingPeers removeObject:peer];
                 [self.connectedPeers addObject:peer];
@@ -279,7 +280,6 @@ static NSTimeInterval const kSleepTimeout = 5.0;
                 
             case PacketTypeBurger:
             {
-                
                 NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:payload, @"burger", nil];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"RECEIVED_BURGER" object:self userInfo:dict];
                 break;
@@ -326,24 +326,28 @@ static NSTimeInterval const kSleepTimeout = 5.0;
 
 - (void)acceptInvitationFrom:(NSString *)peer
 {
-    NSLog(@"!!! - Accepting connection from peer");
-    self.session.available = NO;
-    
-    [self.connectedPeers addObject:peer];
-    [self.connectingPeers removeObject:peer];
-    
-    // Send accept to the parrent ID
-    [self sendPacket:[self.session.peerID dataUsingEncoding:NSUTF8StringEncoding] ofType:PacketTypeAccept toPeers:[NSArray arrayWithObject:peer]];
-    
-    // Send JOINING to all other peers
-    // This way we can add them to CONNECTED if the inviting peer ID is in their connected
-    // and remove them from the AVAILABLE
-    [self sendPacket:[peer dataUsingEncoding:NSUTF8StringEncoding] ofType:PacketTypeJoining toPeers:self.availablePeers];
-    
-    //    NSError *error = nil;
-    //    if (![self.session acceptConnectionFromPeer:peer error:&error]) {
-    //        NSLog(@"Error while accepting invitation: %@", [error localizedDescription]);
-    //    }
+    if (self.allowsInvitation) {
+        NSLog(@"!!! - Accepting connection from peer");
+        self.session.available = NO;
+        
+        [self.connectedPeers addObject:peer];
+        [self.connectingPeers removeObject:peer];
+        
+        // Send accept to the parrent ID
+        [self sendPacket:[self.session.peerID dataUsingEncoding:NSUTF8StringEncoding] ofType:PacketTypeAccept toPeers:[NSArray arrayWithObject:peer]];
+        
+        // Send JOINING to all other peers
+        // This way we can add them to CONNECTED if the inviting peer ID is in their connected
+        // and remove them from the AVAILABLE
+        [self sendPacket:[peer dataUsingEncoding:NSUTF8StringEncoding] ofType:PacketTypeJoining toPeers:self.availablePeers];
+        
+        self.allowsInvitation = NO;
+        
+        //    NSError *error = nil;
+        //    if (![self.session acceptConnectionFromPeer:peer error:&error]) {
+        //        NSLog(@"Error while accepting invitation: %@", [error localizedDescription]);
+        //    }
+    }
 }
 
 - (void)declineInvitationFrom:(NSString *)peer

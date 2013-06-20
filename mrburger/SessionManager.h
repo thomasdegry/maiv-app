@@ -48,7 +48,9 @@ typedef enum {
 @property (strong, nonatomic) NSMutableArray *connectedPeers;
 @property (strong, nonatomic) NSMutableArray *connectingPeers;
 
-@property (strong, nonatomic) NSString *currentConfPeerID;
+//@property (strong, nonatomic) NSString *currentConfPeerID;
+
+@property (assign) BOOL allowsInvitation;
 
 @property (strong, nonatomic) id delegate;
 
