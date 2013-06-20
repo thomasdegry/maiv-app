@@ -29,6 +29,8 @@ static NSTimeInterval const kSleepTimeout = 3.0;
     self = [super init];
     
     if (self) {
+        self.allowsInvitation = YES;
+        
         NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
         
         // Register for notifications when the application leaves the background state
@@ -72,19 +74,10 @@ static NSTimeInterval const kSleepTimeout = 3.0;
     self.availablePeers = [NSMutableArray array];
     self.connectedPeers = [NSMutableArray arrayWithObject:self.session.peerID];
     self.connectingPeers = [NSMutableArray array];
-    
-    self.allowsInvitation = YES;
-    
-    // Set the timer on a random interval between 2 and 10
-    // to decrease the chance of clashing connections
-//    self.timer = [NSTimer scheduledTimerWithTimeInterval:((arc4random() % 8) + 2) target:self selector:@selector(keepAlive) userInfo:nil repeats:YES];
-//    [self.timer fire];
-    
 }
 
 - (void)teardownSession
 {
-    [self stopSearching];
     self.allowsInvitation = NO;
     [self.session disconnectFromAllPeers];
     self.session.available = NO;
@@ -93,18 +86,6 @@ static NSTimeInterval const kSleepTimeout = 3.0;
     self.session = nil;
     [self.availablePeers removeAllObjects];
     [self.connectedPeers removeAllObjects];
-}
-
-- (void) keepAlive
-{
-    [self.session sendDataToAllPeers:nil withDataMode:GKSendDataUnreliable error:nil];
-    //    [self listAllPeers];
-}
-
-- (void)stopSearching
-{
-//    [self.timer invalidate];
-//    self.timer = nil;
 }
 
 #pragma mark - Memory management
@@ -119,10 +100,19 @@ static NSTimeInterval const kSleepTimeout = 3.0;
 
 - (void)listAllPeers
 {
+    if ([self.connectedPeers count] > 1) {
+        self.allowsInvitation = NO;
+    } else {
+        self.allowsInvitation = YES;
+    }
+    
     // self.connectPeers !== connected devices!
     // It's a fake array with those that accepted
     NSLog(@"Connected peers count: %i", [self.connectedPeers count]);
     
+    // self.connectingPeers
+    NSLog(@"Connecting peers count: %i", [self.connectingPeers count]);
+
     // self.availablePeers == connected devices!
     NSLog(@"Available peers count: %i", [self.availablePeers count]);
     
@@ -231,6 +221,8 @@ static NSTimeInterval const kSleepTimeout = 3.0;
         switch (header) {
             case PacketTypeInvite:
             {
+                NSLog(@"received invitation - allow? %@", (self.allowsInvitation) ? @"yes" : @"no");
+                
                 if (self.allowsInvitation) {
                     [self.connectingPeers addObject:peer];
                     [self.delegate didReceiveInvitation:self fromPeer:peer];
@@ -264,9 +256,7 @@ static NSTimeInterval const kSleepTimeout = 3.0;
                 //                    [self.availablePeers removeObject:peer];
                 //                    [self listAllPeers];
                 //                }
-                
-                NSLog(@"Available");
-                
+                                
                 [self.availablePeers removeObject:peer];
                 
                 NSString *server = [[NSString alloc] initWithData:payload encoding:NSUTF8StringEncoding];

@@ -59,7 +59,6 @@ typedef enum {
 
 - (void)setupSession;
 - (void)teardownSession;
-- (void)stopSearching;
 
 - (void)sendPacket:(NSData *)data ofType:(PacketType)type toPeers:(NSArray *)peers;
 

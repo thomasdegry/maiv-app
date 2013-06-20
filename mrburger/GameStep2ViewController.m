@@ -248,8 +248,6 @@
     [self hideModal:nil];
     
     [self performSelector:@selector(showConnected) withObject:nil afterDelay:1];
-    
-    [self.sessionManager stopSearching];
 }
 
 - (void)showConnected
