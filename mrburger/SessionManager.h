@@ -66,6 +66,8 @@ typedef enum {
 - (void)invitePeer:(NSString *)peer;
 - (void)acceptInvitationFrom:(NSString *)peer;
 - (void)declineInvitationFrom:(NSString *)peer;
+- (void)leavePeer:(NSString *)peer;
+
 - (void)sendBurger:(NSString *)burger;
 
 - (User *)userForPeer:(NSString *)peer;

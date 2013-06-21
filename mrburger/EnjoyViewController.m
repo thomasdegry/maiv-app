@@ -65,7 +65,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self shareOnFacebook:nil];
 	
     EnjoyView *view = (EnjoyView *)self.view;
     [view.closeButton addTarget:self action:@selector(dismissScreen:) forControlEvents:UIControlEventTouchUpInside];

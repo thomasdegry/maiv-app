@@ -30,9 +30,9 @@
         
         self.confirmBtn.hidden = YES;
         
-        self.declineBtn = [[RoundedButtonAlternate alloc] initWithText:@"Decline" andX:23 andY:(self.frame.size.height - 87)];
-        [self addSubview:self.declineBtn];
-        [self.declineBtn setTitle:@"CANCEL CONNECTION" forState:UIControlStateNormal];
+//        self.declineBtn = [[RoundedButtonAlternate alloc] initWithText:@"Decline" andX:23 andY:(self.frame.size.height - 87)];
+//        [self addSubview:self.declineBtn];
+//        [self.declineBtn setTitle:@"CANCEL CONNECTION" forState:UIControlStateNormal];
     }
     
     return self;

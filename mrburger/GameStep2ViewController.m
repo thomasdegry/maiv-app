@@ -17,21 +17,28 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        NSLog(@"showing main view");
         self.mainView = [[GameStep2MainView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        
+        NSLog(@"showing modal");
         self.modal = [[GameStep2InfoView alloc] initModal];
         self.modal.delegate = self;
         
+        NSLog(@"setting connected info");
         self.isConnected = false;
         self.connected = 1; // Self makes it 1
         
+        NSLog(@"initing view");
         self.presentingView = [[ModalPresentingView alloc] initWithMain:self.mainView andModal:self.modal];
         
-        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"hasfree"] isEqualToString:@"true"]) {
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"hasfree"] isEqualToString:@"true"]) {
             [self showModal:nil];
         }
         
+        NSLog(@"starting status bar updates");
         [self startStatusBarUpdates];
         
+        NSLog(@"setting a timer");
         self.statusTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(startStatusBarUpdates) userInfo:nil repeats:YES];
     }
     return self;
@@ -91,12 +98,15 @@
     [self.nearbyView.tableView setDelegate:self.nearbyTVC];
     self.nearbyView.tableView.hidden = YES;
     self.nearbyView.unavailable.hidden = NO;
+    self.nearbyView.tableView.scrollEnabled = NO;
     
     [self peerListDidChange:nil];
 }
 
 - (void)save:(id)sender
 {
+    [self.btnSave removeTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
+
     [self stopStatusBarUpdates];
     GameViewController *gameVC = (GameViewController *)self.navigationController;
     [gameVC postBurgerToServer];
@@ -133,8 +143,11 @@
 
     if (self.connected > 1) {
         self.btnSave.hidden = NO;
+        CGRect btnSaveFrame = self.btnSave.frame;
+        self.btnSave.frame = CGRectMake(btnSaveFrame.origin.x, 110 + self.connected * 64, btnSaveFrame.size.width, btnSaveFrame.size.height);
+        
         self.nearbyView.title.text = @"ADD MORE INGREDIENTS";
-        self.nearbyView.frame = CGRectMake(15, 290, 290, 130);
+        self.nearbyView.frame = CGRectMake(15, 170 + self.connected * 64, 290, 130);
         self.participantsCTA.hidden = YES;
     } else {
         self.btnSave.hidden = YES;
@@ -182,18 +195,23 @@
     
     [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:UIDeviceProximityStateDidChangeNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
-        UIDevice *currentDevice = [UIDevice currentDevice];
-        if (currentDevice.proximityState && currentDevice.proximityMonitoringEnabled) {
-            [self acceptInvitation:nil];
-        }
-        [currentDevice setProximityMonitoringEnabled:NO];
-    }];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(detectProximity:) name:UIDeviceProximityStateDidChangeNotification object:nil];
+        
     GameStep2InviteView *inviteView = [[GameStep2InviteView alloc] initModal];
     [inviteView.declineBtn addTarget:self action:@selector(declineInvitation:) forControlEvents:UIControlEventTouchUpInside];
     self.modal = inviteView;
     [self showModal:nil];
+}
+
+- (void)detectProximity:(id)notification
+{
+    UIDevice *currentDevice = [UIDevice currentDevice];
+    if (currentDevice.proximityState && currentDevice.proximityMonitoringEnabled) {
+        [self acceptInvitation:nil];
+        [currentDevice setProximityMonitoringEnabled:NO];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceProximityStateDidChangeNotification object:nil];
+    }
+
 }
 
 - (void)declineInvitation:(id)sender
@@ -216,19 +234,37 @@
 - (void) acceptInvitation:(id)sender
 {
     [self stopStatusBarUpdates];
-            
-    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceProximityStateDidChangeNotification object:nil];
-                        
+    
+    NSLog(@"accepting");
+//    [self hideModal:nil];
+    
+//    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceProximityStateDidChangeNotification object:nil];
+    
     self.isConnected = true;
     
     [self.sessionManager acceptInvitationFrom:self.currentPeerID];
+        
+    [self hideModal:nil];
     
-    self.currentPeerID = nil;
-    
-    self.modal = [[GameStep2ConnectedView alloc] initModal];
+    [self performSelector:@selector(showConnected) withObject:nil afterDelay:1];
     
     [self.sessionManager stopSearching];
+}
+
+- (void)showConnected
+{
+    GameStep2ConnectedView *modal = [[GameStep2ConnectedView alloc] initModal];
+    [modal.btnDisconnect addTarget:self action:@selector(leaveBurger:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.modal = modal;
+    [self showModal:nil];
+}
+
+- (void)leaveBurger:(id)sender
+{
+    [self.sessionManager leavePeer:self.currentPeerID];
+    [self hideModal:nil];
 }
 
 - (void)peer:(NSString *)peer didAcceptInvitation:(SessionManager *)sessionManager
@@ -260,5 +296,6 @@
     [self.statusTimer invalidate];
     self.statusTimer = nil;
 }
+
 
 @end

@@ -42,7 +42,7 @@ static NSTimeInterval const kSleepTimeout = 3.0;
         [defaultCenter addObserver:self
                           selector:@selector(teardownSession)
                               name:UIApplicationDidEnterBackgroundNotification
-                            object:nil];
+                            object:nil];        
     }
     
     return self;
@@ -77,34 +77,34 @@ static NSTimeInterval const kSleepTimeout = 3.0;
     
     // Set the timer on a random interval between 2 and 10
     // to decrease the chance of clashing connections
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:((arc4random() % 8) + 2) target:self selector:@selector(keepAlive) userInfo:nil repeats:YES];
-    [self.timer fire];
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:((arc4random() % 8) + 2) target:self selector:@selector(keepAlive) userInfo:nil repeats:YES];
+//    [self.timer fire];
     
 }
 
 - (void)teardownSession
 {
-    NSLog(@"Tear down session");
+    [self stopSearching];
     self.allowsInvitation = NO;
     [self.session disconnectFromAllPeers];
     self.session.available = NO;
     self.session.delegate = nil;
-    [self stopSearching];
+    [self.session setDataReceiveHandler:nil withContext:nil];
+    self.session = nil;
     [self.availablePeers removeAllObjects];
     [self.connectedPeers removeAllObjects];
 }
 
 - (void) keepAlive
 {
-    NSLog(@"sending keep alive");
     [self.session sendDataToAllPeers:nil withDataMode:GKSendDataUnreliable error:nil];
     //    [self listAllPeers];
 }
 
 - (void)stopSearching
 {
-    [self.timer invalidate];
-    self.timer = nil;
+//    [self.timer invalidate];
+//    self.timer = nil;
 }
 
 #pragma mark - Memory management
@@ -162,6 +162,9 @@ static NSTimeInterval const kSleepTimeout = 3.0;
 		case GKPeerStateDisconnected:
         {
 			NSLog(@"didChangeState: peer %@ disconnected", [session displayNameForPeer:peer]);
+            [self.connectedPeers removeObject:peer];
+            [self.connectingPeers removeObject:peer];
+            [self.availablePeers removeObject:peer];
 			break;
         }
 			
@@ -273,12 +276,24 @@ static NSTimeInterval const kSleepTimeout = 3.0;
                     [self.connectedPeers addObject:peer];
                 }
                 
+                [self listAllPeers];
+                
             }
                 break;
                 
             case PacketTypeDisconnect:
             {
                 NSLog(@"disconnect");
+                
+                [self.connectedPeers removeObject:peer];
+                [self.connectingPeers removeObject:peer];
+            
+                if (![self.availablePeers containsObject:peer]) {
+                    [self.availablePeers addObject:peer];
+                }
+                
+                [self listAllPeers];
+                
                 break;
             }
                 
@@ -346,11 +361,6 @@ static NSTimeInterval const kSleepTimeout = 3.0;
         [self sendPacket:[peer dataUsingEncoding:NSUTF8StringEncoding] ofType:PacketTypeJoining toPeers:self.availablePeers];
         
         self.allowsInvitation = NO;
-        
-        //    NSError *error = nil;
-        //    if (![self.session acceptConnectionFromPeer:peer error:&error]) {
-        //        NSLog(@"Error while accepting invitation: %@", [error localizedDescription]);
-        //    }
     }
 }
 
@@ -359,6 +369,18 @@ static NSTimeInterval const kSleepTimeout = 3.0;
     NSLog(@"!!! - Declining invitation from %@", peer);
     
     [self sendPacket:[self.session.peerID dataUsingEncoding:NSUTF8StringEncoding] ofType:PacketTypeDecline toPeers:[NSArray arrayWithObject:peer]];
+}
+
+- (void)leavePeer:(NSString *)peer
+{
+    NSLog(@"receiving peers");
+    [self sendPacket:[self.session.peerID dataUsingEncoding:NSUTF8StringEncoding] ofType:PacketTypeDisconnect toPeers:[NSArray arrayWithObject:peer]];
+    
+    [self.connectingPeers removeObject:peer];
+    [self.connectedPeers removeObject:peer];
+    
+    self.session.available = YES;
+    [self listAllPeers];
 }
 
 - (void)sendBurger:(NSString *)burger

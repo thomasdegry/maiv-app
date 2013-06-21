@@ -10,6 +10,8 @@
 
 @implementation GameStep2ConnectedView
 
+@synthesize btnDisconnect = _btnDisconnect;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -29,6 +31,14 @@
         paragraph.text = [@"If you could keep your iPhones together until you made your burger, that would be awesome" uppercaseString];
         [paragraph makeParagraph];
         [self addSubview:paragraph];
+        
+        IphoneLoop *iphoneLoopAnimation = [[IphoneLoop alloc] initWithFrame:CGRectMake(-18, -45, 160, 259)];
+        [self addSubview:iphoneLoopAnimation];
+
+        self.confirmBtn.hidden = YES;
+        
+        self.btnDisconnect = [[RoundedButtonAlternate alloc] initWithText:@"Leave this burger" andX:23 andY:(self.frame.size.height - 87)];
+        [self addSubview:self.btnDisconnect];  
     }
     
     return self;

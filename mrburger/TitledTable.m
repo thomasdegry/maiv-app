@@ -44,7 +44,7 @@
         
         self.tableView.backgroundColor = [UIColor colorWithRed:0.957 green:0.890 blue:0.729 alpha:0.500];
         self.tableView.separatorColor = [UIColor clearColor];
-                
+        
         [self addSubview:self.tableView];
         
         [self showUnavailable];
@@ -78,5 +78,11 @@
     unavailableTextLabel.textAlignment = NSTextAlignmentLeft;
     [self.unavailable addSubview:unavailableTextLabel];
 }
+
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    NSLog(@"touch titledtable");
+//    [self resignFirstResponder];
+//}
 
 @end

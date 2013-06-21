@@ -8,6 +8,10 @@
 
 #import "GameStepInfoView.h"
 
+#import "IphoneLoop.h"
+
 @interface GameStep2ConnectedView : GameStepInfoView
+
+@property (strong, nonatomic) RoundedButtonAlternate *btnDisconnect;
 
 @end
