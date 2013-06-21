@@ -155,6 +155,9 @@ static NSTimeInterval const kSleepTimeout = 3.0;
             [self.connectedPeers removeObject:peer];
             [self.connectingPeers removeObject:peer];
             [self.availablePeers removeObject:peer];
+            
+            [session connectToPeer:peer withTimeout:kConnectionTimeout];
+
 			break;
         }
 			
