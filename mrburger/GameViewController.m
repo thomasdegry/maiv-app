@@ -212,7 +212,6 @@
 - (void)terminateSession
 {
     if (self.sessionManager) {
-        [self.sessionManager stopSearching];
         [self.sessionManager teardownSession];
         [self.sessionManager.connectedPeers removeAllObjects];
         [self.sessionManager.availablePeers removeAllObjects];

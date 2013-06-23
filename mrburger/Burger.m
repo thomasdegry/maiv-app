@@ -34,48 +34,15 @@
     [self.users addObject:userID];
 }
 
-//- (void)encodeWithCoder:(NSCoder *)encoder {
-//    [encoder encodeObject:self.id forKey:@"id"];
-//    
-//    NSMutableArray *encodedIngredients = [NSMutableArray array];
-//    
-//    for (Ingredient *ingredient in self.ingredients) {
-//        [encodedIngredients addObject:[NSKeyedArchiver archivedDataWithRootObject:ingredient]];
-//    }
-//    
-//    [encoder encodeObject:encodedIngredients forKey:@"ingredients"];
-//
-//    NSMutableArray *encodedUsers = [NSMutableArray array];
-//    
-//    for (User *user in self.users) {
-//        [encodedIngredients addObject:[NSKeyedArchiver archivedDataWithRootObject:user]];
-//    }
-//    
-//    [encoder encodeObject:encodedUsers forKey:@"users"];
-//}
-//
-//- (id)initWithCoder:(NSCoder *)decoder {
-//    if((self = [super init])) {
-//        self.id = [decoder decodeObjectForKey:@"id"];
-//        NSMutableArray *encodedIngredients = [decoder decodeObjectForKey:@"ingredients"];
-//        self.ingredients = encodedIngredients;
-//    }
-//    return self;
-//}
-
 - (NSData *)burgerToNSData
 {
-//    NSMutableArray *ingredientsIDs = [[NSMutableArray alloc] init];
-//    for (Ingredient *ingredient in self.ingredients) {
-//        [ingredientsIDs addObject:ingredient.id];
-//    }
     NSMutableDictionary *dictBurger = [[NSMutableDictionary alloc] initWithObjectsAndKeys:self.id, @"id", self.ingredients, @"ingredients", self.users, @"users", nil];
     
     NSMutableData *data = [[NSMutableData alloc] init];
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
     [archiver encodeObject:dictBurger forKey:@"burger"];
     [archiver finishEncoding];
-    
+        
     return [NSData dataWithData:data];
 }
 
