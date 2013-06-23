@@ -189,7 +189,7 @@ static NSTimeInterval const kSleepTimeout = 3.0;
 {
     //	NSLog(@"connectionWithPeerFailed: peer: %@, error: %@", [session displayNameForPeer:peer], error co);
     
-    if ([error code] != 30501 && ![self.connectedPeers containsObject:peer]) {
+    if ([error code] != 30501 && ![self.availablePeers containsObject:peer] && ![self.connectedPeers containsObject:peer]) {
 //        [NSThread sleepForTimeInterval:kSleepTimeout];
         NSLog(@"will retry connection");
         [session connectToPeer:peer withTimeout:kConnectionTimeout];
