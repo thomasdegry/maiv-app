@@ -18,8 +18,8 @@
 @synthesize allowsInvitation = _allowsInvitation;
 
 // Non-global constants
-static NSTimeInterval const kConnectionTimeout = 3600.0;
-static NSTimeInterval const kDisconnectTimeout = 3600.0;
+static NSTimeInterval const kConnectionTimeout = 120.0;
+static NSTimeInterval const kDisconnectTimeout = 120.0;
 static NSTimeInterval const kSleepTimeout = 3.0;
 
 #pragma mark - GKSession setup and teardown

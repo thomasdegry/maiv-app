@@ -74,8 +74,8 @@
             self.burger = burger;
             
             self.sharedCode = [[NSUserDefaults standardUserDefaults] objectForKey:@"QRCode"];
-                        
-            [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+            
+            //[[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
             
             rootViewController = [[GameResultViewController alloc] initWithBurger:self.burger andSharedCode:self.sharedCode];
             currentScreen = GameScreenResult;
@@ -195,7 +195,7 @@
 
 - (void)showResult
 {
-    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+    //[[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
     self.currentScreen = GameScreenResult;
 
     [self terminateSession];

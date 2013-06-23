@@ -105,6 +105,7 @@
 
 - (void)save:(id)sender
 {
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
     [self.btnSave removeTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
 
     [self stopStatusBarUpdates];
@@ -176,7 +177,6 @@
         UIDevice *currentDevice = [UIDevice currentDevice];
         if (currentDevice.proximityState && currentDevice.proximityMonitoringEnabled) {
             [self acceptInvitation:nil];
-            [currentDevice setProximityMonitoringEnabled:NO];
         }
     }];
     
@@ -208,7 +208,6 @@
     UIDevice *currentDevice = [UIDevice currentDevice];
     if (currentDevice.proximityState && currentDevice.proximityMonitoringEnabled) {
         [self acceptInvitation:nil];
-        [currentDevice setProximityMonitoringEnabled:NO];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceProximityStateDidChangeNotification object:nil];
     }
 
@@ -219,7 +218,6 @@
     if (self.currentPeerID) {
         [self.sessionManager declineInvitationFrom:self.currentPeerID];
         [self hideModal:nil];
-        [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
         self.currentPeerID = nil;
     }
 }
@@ -238,7 +236,7 @@
     NSLog(@"accepting");
 //    [self hideModal:nil];
     
-//    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
 //    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceProximityStateDidChangeNotification object:nil];
     
     self.isConnected = true;

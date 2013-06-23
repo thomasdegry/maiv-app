@@ -24,6 +24,9 @@
         
         UILabel *getYour = [[UILabel alloc] initWithFontAlternateAndFrame:CGRectMake(20, 80, 280, 60) andSize:FontAlternateSizeBig andColor:[UIColor blue]];
         getYour.text = [@"Go get your free burger" uppercaseString];
+        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"hasfree"] isEqualToString:@"false"]) {
+            getYour.text = [@"Go get your burger!" uppercaseString];
+        }
         
         [self addSubview:getYour];
         
