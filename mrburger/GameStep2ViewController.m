@@ -148,17 +148,32 @@
         self.btnSave.frame = CGRectMake(btnSaveFrame.origin.x, 110 + self.connected * 64, btnSaveFrame.size.width, btnSaveFrame.size.height);
         
         self.nearbyView.title.text = @"ADD MORE INGREDIENTS";
-        self.nearbyView.frame = CGRectMake(15, 170 + self.connected * 64, 290, 130);
+        
+        uint height = 130;
+        
+        if ([self.sessionManager.availablePeers count] > 1) {
+            height = 66 + [self.sessionManager.availablePeers count] * 64;
+        }
+        
+        self.nearbyView.frame = CGRectMake(15, 170 + self.connected * 64, 290, height);
+        
         self.participantsCTA.hidden = YES;
     } else {
         self.btnSave.hidden = YES;
-        self.nearbyView.frame = CGRectMake(15, 200, 290, 130);
+        
+        uint height = 130;
+        
+        if ([self.sessionManager.availablePeers count] > 1) {
+            height = 66 + [self.sessionManager.availablePeers count] * 64;
+        }
+
+        self.nearbyView.frame = CGRectMake(15, 200, 290, height);
         self.nearbyView.title.text = @"FIND INGREDIENTS";
         self.participantsCTA.hidden = NO;
     }
     
     self.participantsView.tableView.frame = CGRectMake(0, 40, self.participantsView.tableView.frame.size.width, self.connected * 64);
-    
+        
 	[self.participantsView.tableView reloadData];
     [self.nearbyView.tableView reloadData];    
 }
