@@ -15,6 +15,11 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.header.lblTitle.text = [@"Step 2 of 3" uppercaseString];
+        
+        self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 48, 320, ([[UIScreen mainScreen] bounds]).size.height - 48)];
+        // self.scrollView.backgroundColor = [UIColor redColor];
+        self.scrollView.scrollEnabled = NO;
+        [self addSubview:self.scrollView];
     }
     return self;
 }

@@ -10,4 +10,6 @@
 
 @interface GameStep2MainView : GameStepMainView
 
+@property (strong, nonatomic) UIScrollView *scrollView;
+
 @end

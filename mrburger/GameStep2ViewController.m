@@ -31,10 +31,8 @@
             [self showModal:nil];
         }
         
-        NSLog(@"starting status bar updates");
         [self startStatusBarUpdates];
         
-        NSLog(@"setting a timer");
         self.statusTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(startStatusBarUpdates) userInfo:nil repeats:YES];
     }
     return self;
@@ -53,7 +51,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	    
+	   
+    GameStep2MainView *mainView = (GameStep2MainView *)self.mainView;
+    
     if (self.participantsTVC == nil) {
 		self.participantsTVC = [[ParticipantsTableViewController alloc] initWithSessionManager:self.sessionManager];
 	}
@@ -64,32 +64,32 @@
 	}
     
     self.btnSave = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.btnSave.frame = CGRectMake(15, 167, 290, 48);
     self.btnSave.titleLabel.font  = [UIFont fontWithName:@"Mission-Script" size:FontMissionSizeTiny];
     [self.btnSave setTitle:@"Save My Burger" forState:UIControlStateNormal];
     [self.btnSave setBackgroundImage:[UIImage imageNamed:@"btn_flat_top"] forState:UIControlStateNormal];
     [self.btnSave setBackgroundImage:[UIImage imageNamed:@"btn_flat_top_active"] forState:UIControlStateHighlighted];
-    self.btnSave.hidden = NO;
-    self.btnSave.frame = CGRectMake(15, 215, 290, 48);
-
-    [self.mainView insertSubview:self.btnSave atIndex:0];
+    self.btnSave.hidden = YES;
     [self.btnSave addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
+
+    [mainView.scrollView insertSubview:self.btnSave atIndex:0];
     
-    self.participantsView = [[TitledTable alloc] initWithFrame:CGRectMake(15, 60, 290, 162) andTitle:@"Your burger"];
-    [self.mainView addSubview:self.participantsView];
+    self.participantsView = [[TitledTable alloc] initWithFrame:CGRectMake(15, 12, 290, 162) andTitle:@"Your burger"];
+    [mainView.scrollView addSubview:self.participantsView];
     [self.participantsView.tableView setDataSource:self.participantsTVC];
     [self.participantsView.tableView setDelegate:self.participantsTVC];
     self.participantsView.tableView.hidden = NO;
     self.participantsView.unavailable.hidden = YES;
     self.participantsView.userInteractionEnabled = NO;
     
-    self.participantsCTA = [[UILabel alloc] initWithFontTravelerAndFrame:CGRectMake(15, 172, 290, 22) andSize:FontTravelerSizeSmall andColor:[UIColor colorWithRed:0.678 green:0.675 blue:0.624 alpha:1.000]];
+    self.participantsCTA = [[UILabel alloc] initWithFontTravelerAndFrame:CGRectMake(15, 171, 290, 22) andSize:FontTravelerSizeSmall andColor:[UIColor colorWithRed:0.678 green:0.675 blue:0.624 alpha:1.000]];
     self.participantsCTA.backgroundColor = [UIColor clearColor];
     self.participantsCTA.text = @"Find one to four other ingredients";
     self.participantsCTA.hidden = NO;
     [self.presentingView.mainView addSubview:self.participantsCTA];
     
-    self.nearbyView = [[TitledTableAlternate alloc] initWithFrame:CGRectMake(15, 200, 290, 230) andTitle:@"Find ingredients"];
-	[self.mainView addSubview:self.nearbyView];
+    self.nearbyView = [[TitledTableAlternate alloc] initWithFrame:CGRectMake(15, 152, 290, 230) andTitle:@"Find ingredients"];
+	[mainView.scrollView addSubview:self.nearbyView];
     [self.nearbyView.tableView setDataSource:self.nearbyTVC];
     [self.nearbyView.tableView setDelegate:self.nearbyTVC];
     self.nearbyView.tableView.hidden = YES;
@@ -123,7 +123,7 @@
 }
 
 - (void)peerListDidChange:(SessionManager *)session
-{
+{    
 	self.participantsTVC.participants = [self.sessionManager.connectedPeers mutableCopy];
     self.nearbyTVC.nearby = [self.sessionManager.availablePeers mutableCopy];
 
@@ -141,7 +141,7 @@
     if (self.connected > 1) {
         self.btnSave.hidden = NO;
         CGRect btnSaveFrame = self.btnSave.frame;
-        self.btnSave.frame = CGRectMake(btnSaveFrame.origin.x, 100 + self.connected * 64, btnSaveFrame.size.width, btnSaveFrame.size.height);
+        self.btnSave.frame = CGRectMake(btnSaveFrame.origin.x, 52 + self.connected * 64, btnSaveFrame.size.width, btnSaveFrame.size.height);
         
         self.nearbyView.title.text = @"ADD MORE INGREDIENTS";
         
@@ -151,7 +151,7 @@
             height = 66 + [self.sessionManager.availablePeers count] * 64;
         }
         
-        self.nearbyView.frame = CGRectMake(15, 170 + self.connected * 64, 290, height);
+        self.nearbyView.frame = CGRectMake(15, 122 + self.connected * 64, 290, height);
         
         self.participantsCTA.hidden = YES;
     } else {
@@ -163,13 +163,19 @@
             height = 66 + [self.sessionManager.availablePeers count] * 64;
         }
 
-        self.nearbyView.frame = CGRectMake(15, 200, 290, height);
+        self.nearbyView.frame = CGRectMake(15, 152, 290, height);
         self.nearbyView.title.text = @"FIND INGREDIENTS";
         self.participantsCTA.hidden = NO;
     }
     
     self.participantsView.tableView.frame = CGRectMake(0, 40, self.participantsView.tableView.frame.size.width, self.connected * 64);
-        
+    
+    // 300 is an offset for other thingies…
+    uint scrollViewHeight = self.connected * 64 + [self.sessionManager.availablePeers count] * 64 + 300;
+    NSLog(@"Scroll view height: %i", scrollViewHeight);
+    GameStep2MainView *mainView = (GameStep2MainView *)self.mainView;
+    mainView.scrollView.contentSize = CGSizeMake(0, scrollViewHeight);
+    
 	[self.participantsView.tableView reloadData];
     [self.nearbyView.tableView reloadData];    
 }
