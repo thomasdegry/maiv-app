@@ -39,14 +39,23 @@
 
 - (void)setPicturePath:(NSString *)picturePath
 {
-    _picturePath = picturePath;
-    NSURL *url = [NSURL URLWithString:_picturePath];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30];
+    if (_picturePath != picturePath) {
+        _picturePath = picturePath;
     
-    urlRequest.HTTPShouldHandleCookies = NO;
-    urlRequest.HTTPShouldUsePipelining = YES;
-    
-    (void)[[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
+        NSURL *url = [NSURL URLWithString:_picturePath];
+        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30];
+            
+        urlRequest.HTTPShouldHandleCookies = NO;
+        urlRequest.HTTPShouldUsePipelining = YES;
+            
+        (void)[[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
+    }
+}
+
+- (void)setImageWithData:(NSData *)data
+{
+    self.imageView.image = [UIImage imageWithData:data];
+    [self layoutSubviews];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -55,8 +64,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    self.imageView.image = [UIImage imageWithData:data scale:0.5f];
-    [self layoutSubviews];
+    [self setImageWithData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error

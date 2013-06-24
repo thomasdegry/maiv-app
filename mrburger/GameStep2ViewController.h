@@ -35,7 +35,7 @@
 
 @property (strong, nonatomic) TitledTable *participantsView;
 @property (strong, nonatomic) TitledTableAlternate *nearbyView;
-@property (strong, nonatomic) RoundedButtonAlternate *btnSave;
+@property (strong, nonatomic) UIButton *btnSave;
 @property (strong, nonatomic) UILabel *participantsCTA;
 @property (strong, nonatomic) NSTimer *statusTimer;
 

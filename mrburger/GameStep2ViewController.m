@@ -17,18 +17,14 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        NSLog(@"showing main view");
         self.mainView = [[GameStep2MainView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         
-        NSLog(@"showing modal");
         self.modal = [[GameStep2InfoView alloc] initModal];
         self.modal.delegate = self;
         
-        NSLog(@"setting connected info");
         self.isConnected = false;
-        self.connected = 1; // Self makes it 1
+        self.connected = 1; // Self makes it 1 @todo change to one
         
-        NSLog(@"initing view");
         self.presentingView = [[ModalPresentingView alloc] initWithMain:self.mainView andModal:self.modal];
         
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"hasfree"] isEqualToString:@"true"]) {
@@ -67,13 +63,13 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showConnecting:) name:@"SENT_INVITE" object:self.nearbyTVC];
 	}
     
-    self.btnSave = [[RoundedButtonAlternate alloc] initWithText:@"Save my burger" andX:15 andY:235];
+    self.btnSave = [UIButton buttonWithType:UIButtonTypeCustom];
     self.btnSave.titleLabel.font  = [UIFont fontWithName:@"Mission-Script" size:FontMissionSizeTiny];
-    [self.btnSave setTitle:@"Save my burger" forState:UIControlStateNormal];
-    self.btnSave.hidden = YES;
-    CGRect btnSaveFrame = self.btnSave.frame;
-    btnSaveFrame.size.width = 290;
-    self.btnSave.frame = btnSaveFrame;
+    [self.btnSave setTitle:@"Save My Burger" forState:UIControlStateNormal];
+    [self.btnSave setBackgroundImage:[UIImage imageNamed:@"btn_flat_top"] forState:UIControlStateNormal];
+    [self.btnSave setBackgroundImage:[UIImage imageNamed:@"btn_flat_top_active"] forState:UIControlStateHighlighted];
+    self.btnSave.hidden = NO;
+    self.btnSave.frame = CGRectMake(15, 215, 290, 48);
 
     [self.mainView insertSubview:self.btnSave atIndex:0];
     [self.btnSave addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
@@ -106,6 +102,7 @@
 - (void)save:(id)sender
 {
     self.btnSave.alpha = .7;
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
     [self.btnSave removeTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
     [self stopStatusBarUpdates];
     GameViewController *gameVC = (GameViewController *)self.navigationController;
@@ -144,20 +141,35 @@
     if (self.connected > 1) {
         self.btnSave.hidden = NO;
         CGRect btnSaveFrame = self.btnSave.frame;
-        self.btnSave.frame = CGRectMake(btnSaveFrame.origin.x, 110 + self.connected * 64, btnSaveFrame.size.width, btnSaveFrame.size.height);
+        self.btnSave.frame = CGRectMake(btnSaveFrame.origin.x, 100 + self.connected * 64, btnSaveFrame.size.width, btnSaveFrame.size.height);
         
         self.nearbyView.title.text = @"ADD MORE INGREDIENTS";
-        self.nearbyView.frame = CGRectMake(15, 170 + self.connected * 64, 290, 130);
+        
+        uint height = 130;
+        
+        if ([self.sessionManager.availablePeers count] > 1) {
+            height = 66 + [self.sessionManager.availablePeers count] * 64;
+        }
+        
+        self.nearbyView.frame = CGRectMake(15, 170 + self.connected * 64, 290, height);
+        
         self.participantsCTA.hidden = YES;
     } else {
         self.btnSave.hidden = YES;
-        self.nearbyView.frame = CGRectMake(15, 200, 290, 130);
+        
+        uint height = 130;
+        
+        if ([self.sessionManager.availablePeers count] > 1) {
+            height = 66 + [self.sessionManager.availablePeers count] * 64;
+        }
+
+        self.nearbyView.frame = CGRectMake(15, 200, 290, height);
         self.nearbyView.title.text = @"FIND INGREDIENTS";
         self.participantsCTA.hidden = NO;
     }
     
     self.participantsView.tableView.frame = CGRectMake(0, 40, self.participantsView.tableView.frame.size.width, self.connected * 64);
-    
+        
 	[self.participantsView.tableView reloadData];
     [self.nearbyView.tableView reloadData];    
 }
@@ -176,7 +188,6 @@
         UIDevice *currentDevice = [UIDevice currentDevice];
         if (currentDevice.proximityState && currentDevice.proximityMonitoringEnabled) {
             [self acceptInvitation:nil];
-            [currentDevice setProximityMonitoringEnabled:NO];
         }
     }];
     
@@ -208,7 +219,6 @@
     UIDevice *currentDevice = [UIDevice currentDevice];
     if (currentDevice.proximityState && currentDevice.proximityMonitoringEnabled) {
         [self acceptInvitation:nil];
-        [currentDevice setProximityMonitoringEnabled:NO];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceProximityStateDidChangeNotification object:nil];
     }
 
@@ -219,7 +229,6 @@
     if (self.currentPeerID) {
         [self.sessionManager declineInvitationFrom:self.currentPeerID];
         [self hideModal:nil];
-        [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
         self.currentPeerID = nil;
     }
 }
@@ -238,7 +247,7 @@
     NSLog(@"accepting");
 //    [self hideModal:nil];
     
-//    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
+    [[UIDevice currentDevice] setProximityMonitoringEnabled:NO];
 //    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceProximityStateDidChangeNotification object:nil];
     
     self.isConnected = true;

@@ -40,6 +40,13 @@
         lblRest.text = [@"your free burger" uppercaseString];
         [self addSubview:lblRest];
         
+        if([[[NSUserDefaults standardUserDefaults] objectForKey:@"hasfree"] isEqualToString:@"false"]) {
+            lblRest.text = [@"your burger" uppercaseString];
+            
+            lblEnjoy.frame = CGRectMake(lblEnjoy.frame.origin.x + 10, lblEnjoy.frame.origin.y, lblEnjoy.frame.size.width, lblEnjoy.frame.size.height);
+            lblRest.frame = CGRectMake(lblRest.frame.origin.x - 10, lblRest.frame.origin.y, lblRest.frame.size.width, lblRest.frame.size.height);
+        }
+        
         [self buildBurger];
         
         self.shareButton = [[FacebookButton alloc] initWithText:@"Share this experience" andX:((frame.size.width - 274) / 2) andY:(frame.size.height - 100)];
