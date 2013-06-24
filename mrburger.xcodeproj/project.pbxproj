@@ -458,6 +458,10 @@
 		EA59B62D177207D0002FDA97 /* InternetModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA59B62C177207D0002FDA97 /* InternetModalView.m */; };
 		EA59B630177216A4002FDA97 /* plus-button.png in Resources */ = {isa = PBXBuildFile; fileRef = EA59B62E177216A4002FDA97 /* plus-button.png */; };
 		EA59B631177216A4002FDA97 /* plus-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA59B62F177216A4002FDA97 /* plus-button@2x.png */; };
+		EA9134B01777D98400E0F76E /* btn_flat_top_active.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9134AC1777D98400E0F76E /* btn_flat_top_active.png */; };
+		EA9134B11777D98400E0F76E /* btn_flat_top_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9134AD1777D98400E0F76E /* btn_flat_top_active@2x.png */; };
+		EA9134B21777D98400E0F76E /* btn_flat_top.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9134AE1777D98400E0F76E /* btn_flat_top.png */; };
+		EA9134B31777D98400E0F76E /* btn_flat_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA9134AF1777D98400E0F76E /* btn_flat_top@2x.png */; };
 		EAB40D121764A749007A4106 /* ParticipantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB40D111764A749007A4106 /* ParticipantCell.m */; };
 		EAB40D171764B520007A4106 /* ZebraTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB40D161764B520007A4106 /* ZebraTableViewController.m */; };
 		EAB40D1A1764DE07007A4106 /* NearbyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB40D191764DE07007A4106 /* NearbyCell.m */; };
@@ -1220,6 +1224,10 @@
 		EA59B62C177207D0002FDA97 /* InternetModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternetModalView.m; sourceTree = "<group>"; };
 		EA59B62E177216A4002FDA97 /* plus-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus-button.png"; sourceTree = "<group>"; };
 		EA59B62F177216A4002FDA97 /* plus-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus-button@2x.png"; sourceTree = "<group>"; };
+		EA9134AC1777D98400E0F76E /* btn_flat_top_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_flat_top_active.png; sourceTree = "<group>"; };
+		EA9134AD1777D98400E0F76E /* btn_flat_top_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_flat_top_active@2x.png"; sourceTree = "<group>"; };
+		EA9134AE1777D98400E0F76E /* btn_flat_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_flat_top.png; sourceTree = "<group>"; };
+		EA9134AF1777D98400E0F76E /* btn_flat_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_flat_top@2x.png"; sourceTree = "<group>"; };
 		EAB40D101764A749007A4106 /* ParticipantCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantCell.h; sourceTree = "<group>"; };
 		EAB40D111764A749007A4106 /* ParticipantCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantCell.m; sourceTree = "<group>"; };
 		EAB40D151764B520007A4106 /* ZebraTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZebraTableViewController.h; sourceTree = "<group>"; };
@@ -1518,6 +1526,10 @@
 		4D4B9C651761D89E003673A0 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				EA9134AC1777D98400E0F76E /* btn_flat_top_active.png */,
+				EA9134AD1777D98400E0F76E /* btn_flat_top_active@2x.png */,
+				EA9134AE1777D98400E0F76E /* btn_flat_top.png */,
+				EA9134AF1777D98400E0F76E /* btn_flat_top@2x.png */,
 				4D4B9C9317620D36003673A0 /* btn_circle_active.png */,
 				4D4B9CA917622A38003673A0 /* btn_fb_active.png */,
 				4D4B9CAA17622A38003673A0 /* btn_fb_active@2x.png */,
@@ -2980,6 +2992,10 @@
 				EA59B631177216A4002FDA97 /* plus-button@2x.png in Resources */,
 				4D4CABE81777D74A00AF928C /* Dawasnutochniezomoeilijke.png in Resources */,
 				4D4CABEA1777D74D00AF928C /* Dawasnutochniezomoeilijke_klein.png in Resources */,
+				EA9134B01777D98400E0F76E /* btn_flat_top_active.png in Resources */,
+				EA9134B11777D98400E0F76E /* btn_flat_top_active@2x.png in Resources */,
+				EA9134B21777D98400E0F76E /* btn_flat_top.png in Resources */,
+				EA9134B31777D98400E0F76E /* btn_flat_top@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

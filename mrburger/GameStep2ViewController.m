@@ -17,18 +17,14 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        NSLog(@"showing main view");
         self.mainView = [[GameStep2MainView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         
-        NSLog(@"showing modal");
         self.modal = [[GameStep2InfoView alloc] initModal];
         self.modal.delegate = self;
         
-        NSLog(@"setting connected info");
         self.isConnected = false;
-        self.connected = 1; // Self makes it 1
+        self.connected = 1; // Self makes it 1 @todo change to one
         
-        NSLog(@"initing view");
         self.presentingView = [[ModalPresentingView alloc] initWithMain:self.mainView andModal:self.modal];
         
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"hasfree"] isEqualToString:@"true"]) {
@@ -67,13 +63,13 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showConnecting:) name:@"SENT_INVITE" object:self.nearbyTVC];
 	}
     
-    self.btnSave = [[RoundedButtonAlternate alloc] initWithText:@"Save my burger" andX:15 andY:235];
+    self.btnSave = [UIButton buttonWithType:UIButtonTypeCustom];
     self.btnSave.titleLabel.font  = [UIFont fontWithName:@"Mission-Script" size:FontMissionSizeTiny];
-    [self.btnSave setTitle:@"Save my burger" forState:UIControlStateNormal];
-    self.btnSave.hidden = YES;
-    CGRect btnSaveFrame = self.btnSave.frame;
-    btnSaveFrame.size.width = 290;
-    self.btnSave.frame = btnSaveFrame;
+    [self.btnSave setTitle:@"Save My Burger" forState:UIControlStateNormal];
+    [self.btnSave setBackgroundImage:[UIImage imageNamed:@"btn_flat_top"] forState:UIControlStateNormal];
+    [self.btnSave setBackgroundImage:[UIImage imageNamed:@"btn_flat_top_active"] forState:UIControlStateHighlighted];
+    self.btnSave.hidden = NO;
+    self.btnSave.frame = CGRectMake(15, 215, 290, 48);
 
     [self.mainView insertSubview:self.btnSave atIndex:0];
     [self.btnSave addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
@@ -145,7 +141,7 @@
     if (self.connected > 1) {
         self.btnSave.hidden = NO;
         CGRect btnSaveFrame = self.btnSave.frame;
-        self.btnSave.frame = CGRectMake(btnSaveFrame.origin.x, 110 + self.connected * 64, btnSaveFrame.size.width, btnSaveFrame.size.height);
+        self.btnSave.frame = CGRectMake(btnSaveFrame.origin.x, 100 + self.connected * 64, btnSaveFrame.size.width, btnSaveFrame.size.height);
         
         self.nearbyView.title.text = @"ADD MORE INGREDIENTS";
         
