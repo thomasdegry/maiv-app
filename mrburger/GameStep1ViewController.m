@@ -144,8 +144,9 @@
 - (void)startGame:(id)sender
 {
     if (self.currentIngredient) {
+        self.mainView.btnStart.alpha = .7;
+        [self.mainView.btnStart removeTarget:self action:@selector(startGame:) forControlEvents:UIControlEventTouchUpInside];
         GameViewController *gameVC = (GameViewController *)self.navigationController;
-        
         gameVC.user.ingredient.id = self.currentIngredient.id;
         gameVC.user.ingredient.name = self.currentIngredient.name;
         [gameVC showNextScreen];
