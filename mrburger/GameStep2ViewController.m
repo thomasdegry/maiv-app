@@ -175,7 +175,7 @@
     NSLog(@"Scroll view height: %i", scrollViewHeight);
     GameStep2MainView *mainView = (GameStep2MainView *)self.mainView;
     mainView.scrollView.contentSize = CGSizeMake(0, scrollViewHeight);
-    
+
 	[self.participantsView.tableView reloadData];
     [self.nearbyView.tableView reloadData];    
 }
